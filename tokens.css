@@ -129,8 +129,8 @@
 
   /* Text */
   --text:           #e4e4e8;            /* Primary — headings, body */
-  --text-muted:     var(--p-zinc-500);  /* Secondary — labels, descriptions */
-  --text-dim:       var(--p-zinc-600);  /* Tertiary — metadata, timestamps */
+  --text-muted:     var(--p-zinc-400);  /* Secondary — labels, descriptions */
+  --text-dim:       var(--p-zinc-500);  /* Tertiary — metadata, timestamps */
   --text-disabled:  var(--p-zinc-700);  /* Disabled states */
   --text-inverse:   var(--p-zinc-950);  /* Text on light backgrounds */
 
@@ -197,7 +197,7 @@
 
   --text:           var(--p-warm-950);
   --text-muted:     var(--p-warm-500);
-  --text-dim:       var(--p-warm-300);
+  --text-dim:       var(--p-warm-800);
   --text-disabled:  #c8c8c4;
   --text-inverse:   var(--p-warm-50);
 

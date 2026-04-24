@@ -407,6 +407,8 @@
         <h2>What governance looks like — and doesn't</h2>
 
         <div class="article-prose-block">
+          <h3>What "governance" requires in practice</h3>
+
           <figure class="article-figure article-figure--right">
             <div style="padding:var(--space-4);min-width:190px;">
               <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:var(--space-3);">AI governance by org size</div>
@@ -435,8 +437,6 @@
             </div>
             <figcaption class="article-figcaption" style="padding:0 var(--space-4) var(--space-3);">Share of AI deployments with documented governance policy, by newsroom size band. Source: barnowl v2.1 implementation database.</figcaption>
           </figure>
-
-          <h3>What "governance" requires in practice</h3>
 
           <p>In the barnowl taxonomy, a governance record requires three things at minimum: a documented policy specifying which AI capabilities are permitted and which are prohibited; an identified staff member responsible for oversight; and some form of review process for AI-assisted content before publication. By that definition — which is <del>demanding</del> <ins>minimal by any standard applied to other editorial processes</ins> — large-newsroom AI deployments meet the bar at reasonable rates. For small newsrooms, governance is the exception, not the rule.</p>
 
@@ -546,6 +546,26 @@
           </ul>
         </div>
 
+        <nav class="article-toc" aria-label="Table of contents">
+          <details open>
+            <summary>Contents</summary>
+            <nav>
+              <ol>
+                <li data-level="2"><a href="#toc-corpus">How the corpus was built</a></li>
+                <li data-level="2"><a href="#toc-independence">The editorial independence consensus</a></li>
+                <li data-level="3"><a href="#toc-consent">The consent documentation gap</a></li>
+                <li data-level="2"><a href="#toc-disclosure">The disclosure problem</a></li>
+                <li data-level="2"><a href="#toc-vendor">Vendor governance: the gap nobody talks about</a></li>
+                <li data-level="2"><a href="#toc-landscape">The full governance landscape</a></li>
+                <li data-level="2"><a href="#toc-enforcement">The enforcement gap</a></li>
+                <li data-level="2"><a href="#toc-nonenglish">The non-English newsroom gap in the corpus itself</a></li>
+                <li data-level="2"><a href="#toc-nextsteps">What the gap hypotheses reveal about next steps</a></li>
+                <li data-level="2"><a href="#toc-requirements">What adequate governance requires</a></li>
+              </ol>
+            </nav>
+          </details>
+        </nav>
+
         <header class="article-header">
           <span class="article-kicker">Barnowl Deep Read · AI Governance · April 2026</span>
           <h1 class="article-h1">What 312 Newsroom AI Policies Actually Say</h1>
@@ -563,7 +583,7 @@
 
         <p class="article-lede">The policy document is an artifact of organizational ambition. It says: we have thought about this carefully and arrived at a position. It does not necessarily say: we have enforced this, monitored compliance with this, or will revisit this when the technology changes again next quarter. AI governance policies for news organizations are, at the moment, largely artifacts of ambition — written under external pressure, published in response to public inquiry, and left unenforced because enforcement infrastructure does not yet exist in most newsrooms. That, in summary, is what 312 of them show.</p>
 
-        <h2>How the corpus was built</h2>
+        <h2 id="toc-corpus">How the corpus was built</h2>
 
         <div class="article-mrow">
           <p>Barnowl's AI policy corpus was assembled over 18 months through a combination of direct outreach to newsrooms, systematic search of organizational websites, and reference tracking from secondary sources including academic literature, journalism trade press, and civil-society monitoring reports. Of 312 documents in the current corpus, <span class="stat-inline">247</span> are full policy documents; the remaining 65 are partial policy statements, editorial guidelines with AI-specific sections, or staff-facing memos that were made publicly accessible. Documents not publicly available are excluded — the corpus reflects what organizations chose to share, which is a meaningful limitation and a meaningful signal in its own right.</p>
@@ -582,7 +602,7 @@
           </aside>
         </div>
 
-        <h2>The editorial independence consensus</h2>
+        <h2 id="toc-independence">The editorial independence consensus</h2>
 
         <p>The single most consistent provision across the corpus: human editorial control over publication decisions. <span class="stat-inline">73%</span> of documents contain language requiring human sign-off on AI-assisted content — language ranging from brief ("a journalist must approve all AI-generated content before publication") to detailed workflow specifications identifying which roles are authorized to approve which content types under what circumstances. This provision commands broader agreement than any other in the corpus, appearing across newsroom types, size bands, and geographies with a consistency that suggests genuine professional consensus rather than independent convergence on shared language.</p>
 
@@ -599,6 +619,8 @@
         </figure>
 
         <div class="article-prose-block">
+          <h3 id="toc-consent">The consent documentation gap</h3>
+
           <figure class="article-figure article-figure--right">
             <div style="padding:var(--space-4);min-width:190px;">
               <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:var(--space-3);">Sign-off provisions by org type</div>
@@ -628,8 +650,6 @@
             <figcaption class="article-figcaption" style="padding:0 var(--space-4) var(--space-3);">Human sign-off provisions by organization type. Wire services and broadcasters lead; nonprofits trail despite higher AI adoption rates. Source: barnowl v2.1.</figcaption>
           </figure>
 
-          <h3>The consent documentation gap</h3>
-
           <p>Requiring sign-off and documenting sign-off are different things. Of the 73% of policies with sign-off language, only <span class="stat-inline stat-inline--error">18%</span> include any mechanism for creating an auditable record of the review. The remainder rely on workflow norms and institutional memory — approaches that function well on a small team where accountability is direct and immediate, but that degrade during staff transitions, provide no external accountability, and offer no basis for correction when things go wrong.</p>
 
           <p>The absence of audit mechanisms is not uniformly distributed across organization types. Wire services, which face the highest legal and reputational exposure from AI errors at scale, are the most likely to have implemented documentation requirements — <span class="stat-inline">44%</span> of wire service policies include them. At the other end of the distribution, nonprofit digital outlets have audit mechanisms in fewer than <span class="stat-inline stat-inline--error">9%</span> of policies that require sign-off. The organizations most dependent on donor and reader trust are the least likely to have built the documentation that would make that trust verifiable.</p>
@@ -642,7 +662,7 @@
 
         <p>The convergence on similar language across unrelated organizations is itself a data point worth examining. When the same phrase appears independently in documents from a nonprofit metro desk in Minneapolis, a wire service bureau in London, and a digital-native outlet in Lagos, it suggests the phrase has become ambient — absorbed from coverage, conferences, and peer exchange rather than invented fresh by each organization. Barnowl's <abbr title="Natural Language Processing">NLP</abbr> similarity analysis finds a clustering coefficient of 0.74 for this phrase family across the corpus, which is unusually high for language that is not quoting a single source.</p>
 
-        <h2>The disclosure problem</h2>
+        <h2 id="toc-disclosure">The disclosure problem</h2>
 
         <div class="article-mrow">
           <p>Disclosure requirements — telling audiences when AI was involved in content production — appear in <span class="stat-inline">61%</span> of policies. What they require varies so widely that the 61% figure is largely uninterpretable as a measure of actual practice. Barnowl's coding identified seven distinct operational definitions of "AI disclosure" across the corpus, ranging from "a label is required when AI generated the text" to "a label is required whenever any AI tool was used at any stage of the production process." These definitions are not compatible. A newsroom in full compliance with the narrowest definition may be in clear violation of the broadest one, and there is currently no external standard that adjudicates between them — no industry body, no regulatory framework, no commonly adopted benchmark.</p>
@@ -673,7 +693,7 @@
           <cite>From the enforcement analysis, Section 4 below</cite>
         </blockquote>
 
-        <h2>Vendor governance: the gap nobody talks about</h2>
+        <h2 id="toc-vendor">Vendor governance: the gap nobody talks about</h2>
 
         <p>The most consequential underaddressed topic in the policy corpus is vendor governance — the rules, if any, that determine which AI tools a newsroom may adopt, under what contractual terms, and subject to what data-handling and intellectual-property constraints. Only <span class="stat-inline stat-inline--error">37%</span> of policies address this. The omission is not minor: <dfn title="Third-party AI providers whose tools are integrated into newsroom editorial workflows, often without being disclosed to audiences as distinct systems">AI vendors</dfn> are the primary mechanism through which AI capabilities enter the newsroom. A policy with detailed sign-off requirements and no vendor governance provisions has regulated the end of the pipeline and ignored the beginning — the point at which the tools are selected, integrated, and given access to newsroom data.</p>
 
@@ -687,7 +707,7 @@
 
         <p>The intellectual-property dimension is comparably underaddressed. Only <span class="stat-inline stat-inline--error">22%</span> of policies address copyright questions for AI-generated content; fewer than <span class="stat-inline stat-inline--error">10%</span> address the ownership of AI outputs produced from a newsroom's proprietary data. When an AI system trained in part on a newsroom's archived reporting produces content in response to a query about that newsroom's coverage beat, who owns the output? The policies, with rare exceptions, do not say — because most organizations have not yet worked through the question.</p>
 
-        <h2>The full governance landscape</h2>
+        <h2 id="toc-landscape">The full governance landscape</h2>
 
         <figure class="article-figure article-full" style="margin-top:var(--space-8)">
           <div style="overflow-x:auto;">
@@ -766,7 +786,7 @@
           </figcaption>
         </figure>
 
-        <h2>The enforcement gap</h2>
+        <h2 id="toc-enforcement">The enforcement gap</h2>
 
         <p>Table 1 makes the structural problem visible: across every governance dimension, the gap between provision coverage and enforcement coverage is large. Sign-off — the strongest provision in the corpus — has enforcement language in fewer than a third of policies that require it. Disclosure provisions, where they exist, are accompanied by enforcement language in fewer than one in seven cases. Vendor governance and data handling, the newest and most underaddressed areas, have enforcement language in fewer than one in eight policies that address them at all. The pattern is consistent: newsrooms write intentions and leave accountability to culture.</p>
 
@@ -779,7 +799,7 @@
 
         <p>There is a chicken-and-egg problem at the center of the enforcement gap. Newsrooms that do not monitor AI use cannot know whether their policies are being followed. Newsrooms that do not know whether their policies are being followed have no basis for reporting accurately on their own AI governance practices. The opacity is self-reinforcing: without audit mechanisms, there is nothing to audit; without audit results, there is no pressure to build audit mechanisms. External pressure — from audiences, from funders, from peers — is the most likely catalyst for breaking the cycle. The barnowl policy corpus exists, in part, to create that pressure.</p>
 
-        <h2>The non-English newsroom gap in the corpus itself</h2>
+        <h2 id="toc-nonenglish">The non-English newsroom gap in the corpus itself</h2>
 
         <p>Barnowl's geographic and linguistic distribution data has a reflexive implication: the policy corpus almost certainly underrepresents the newsrooms that are most actively using AI. English-language outlets account for <span class="stat-inline">89%</span> of the 312 documents. Spanish-language outlets — which barnowl's implementation data identifies as the most AI-active non-English group globally — appear in fewer than <span class="stat-inline stat-inline--error">3%</span> of the corpus despite representing approximately 15% of all news organizations within the dataset's geographic scope.</p>
 
@@ -792,7 +812,7 @@
           </aside>
         </div>
 
-        <h2>What the gap hypotheses reveal about next steps</h2>
+        <h2 id="toc-nextsteps">What the gap hypotheses reveal about next steps</h2>
 
         <p>Beyond the claim data, barnowl's methodology generates gap hypotheses — structured research questions surfaced by the absence of evidence where evidence would be expected if certain conditions held. The current corpus contains <span class="stat-inline">602</span> gap hypotheses across the full dataset. Three categories account for the majority, and each points toward a different kind of research and action.</p>
 
@@ -809,7 +829,7 @@
 
         <p>This dynamic — policy as response to external inquiry rather than internal deliberation — recurred across multiple interviews during the research period. It is not, on reflection, a failure. Reactive governance is better than no governance, and external pressure is a legitimate and often effective catalyst for organizational change. But it means that a significant portion of the policy corpus reflects what organizations thought they were expected to say when asked directly, which is not the same as what they have decided to do independently, and may not be the same as what they are actually doing. Both distinctions matter for interpreting the data.</p>
 
-        <h2>What adequate governance requires</h2>
+        <h2 id="toc-requirements">What adequate governance requires</h2>
 
         <p>The purpose of this analysis is not to rank newsrooms or assign blame. Most of the 312 organizations in this corpus are trying to act responsibly under conditions of genuine uncertainty, constrained resources, and technological change moving faster than deliberate governance can comfortably track. The purpose is to identify the structural gaps that responsible intentions cannot fill without deliberate action — and to name what that action looks like in practical terms.</p>
 
@@ -860,6 +880,47 @@ const observer = new IntersectionObserver((entries) => {
 }, { rootMargin: `-48px 0px -60% 0px` });
 
 sections.forEach(s => observer.observe(s));
+
+// Footnote hover tooltips
+(function() {
+  const isTouchOnly = window.matchMedia('(hover: none)').matches;
+
+  document.querySelectorAll('.fn-ref').forEach(ref => {
+    const article = ref.closest('.article');
+    if (!article) return;
+    const href = ref.getAttribute('href');
+    const num = href ? parseInt(href.replace('#fn:', '')) : null;
+    if (!num) return;
+    const footnotesOl = article.querySelector('.article-footnotes ol');
+    if (!footnotesOl) return;
+    const li = footnotesOl.querySelectorAll('li')[num - 1];
+    if (!li) return;
+    const liClone = li.cloneNode(true);
+    liClone.querySelectorAll('.fn-back').forEach(el => el.remove());
+    const text = liClone.textContent.trim();
+    const tip = document.createElement('span');
+    tip.className = 'fn-tooltip';
+    tip.textContent = text;
+    ref.appendChild(tip);
+
+    if (isTouchOnly) {
+      ref.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelectorAll('.fn-tooltip--visible').forEach(t => {
+          if (t !== tip) t.classList.remove('fn-tooltip--visible');
+        });
+        tip.classList.toggle('fn-tooltip--visible');
+      });
+    }
+  });
+
+  // Close touch tooltip on tap outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.fn-ref')) {
+      document.querySelectorAll('.fn-tooltip--visible').forEach(t => t.classList.remove('fn-tooltip--visible'));
+    }
+  });
+})();
 
 const VARIANT_THEMES = ['carbon', 'slate', 'parchment'];
 
