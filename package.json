@@ -1,6 +1,6 @@
 {
   "name": "@lavallee/des",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Design system for the Lyra Forge tool family",
   "license": "MIT",
   "type": "module",
