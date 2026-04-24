@@ -886,6 +886,34 @@
   grid-column: margin;
 }
 
+/*
+ * Paired prose + margin row — subgrid wrapper that lets a paragraph and its
+ * margin note share a single grid row and align at the top.
+ * Usage: <div class="article-mrow"><p>…</p><aside class="article-marginnote …">…</aside></div>
+ */
+.article-mrow {
+  grid-column: prose-start / margin-end;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: start;
+}
+.article-mrow > * {
+  grid-column: prose;
+}
+.article-mrow > .article-marginnote {
+  grid-column: margin;
+}
+
+/*
+ * Prose block — groups a float figure with the paragraphs that wrap around it.
+ * Direct children of .article can't participate in float layout since grid items
+ * are isolated formatting contexts. Wrap float + wrapping text in this container.
+ */
+.article-prose-block {
+  grid-column: prose;
+  display: flow-root; /* contains internal floats without a clearfix */
+}
+
 
 /* ── Article header ────────────────────────────────────────────────────── */
 
