@@ -1,7 +1,7 @@
 {
   "name": "@lavallee/des",
   "version": "0.1.0",
-  "description": "Design system for the barnowl / keel / tern / steve / weaver / malo tool family",
+  "description": "Design system for the Lyra Forge tool family",
   "license": "MIT",
   "type": "module",
   "exports": {
