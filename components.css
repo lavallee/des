@@ -575,6 +575,30 @@
 .col--sort-desc::after { content: " ▼"; font-size: 9px; }
 .col--sort-none::after { content: " ⇅"; font-size: 9px; opacity: 0.4; }
 
+/* TanStack Table: button-based sort header (used with DataTableColumnHeader) */
+.col--sortable-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+.col--sortable-btn:hover { color: var(--text); }
+
+/* TanStack Table: selected row highlight */
+.data-table tbody tr[data-state="selected"] {
+  background: var(--accent-surface);
+}
+.data-table tbody tr[data-state="selected"] td {
+  color: var(--text);
+}
+
 /* Responsive: horizontally scrollable */
 .table-scroll {
   overflow-x: auto;
@@ -619,6 +643,12 @@
 .filter-input:focus,
 .filter-select:focus {
   border-color: var(--border-focus);
+}
+
+/* Triggered filter button — shows count badge inside */
+.filter-input--active {
+  border-color: var(--accent-muted);
+  color: var(--text);
 }
 
 /* Active filter chip (dismissible) */
