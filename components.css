@@ -818,14 +818,38 @@
 
 /* ── Article grid ─────────────────────────────────────────────────────────
  *
- *  [full-start] 1fr [breakout-start] gutter [prose-start] content [prose-end] gutter [breakout-end] 1fr [full-end]
+ *  7 tracks, 4 named zones:
  *
- *  All children default to the prose column.
- *  .article-breakout → steps out to the wider breakout zone (~940px)
- *  .article-full     → spans the full container
+ *  [full-start]
+ *    1fr                         ← outer-left (page margin)
+ *  [breakout-start]
+ *    0–130px                     ← left breakout gutter
+ *  [prose-start]
+ *    0–680px                     ← PROSE (default for all children)
+ *  [prose-end]
+ *    --article-margin-gap (32px) ← gutter between prose and margin column
+ *  [margin-start]
+ *    0–200px                     ← MARGIN (definitions, notes, small charts)
+ *  [margin-end]
+ *    minmax(20px, 1fr)           ← outer-right (minimum keeps margin from clipping)
+ *  [full-end]
+ *
+ *  Zone shortcuts:
+ *    grid-column: prose     → center column only (default)
+ *    grid-column: breakout  → prose + left gutter (940px max)
+ *    grid-column: full      → full container edge-to-edge
+ *    grid-column: margin    → right margin column (200px)
+ *
+ *  Margin notes flow in document order alongside prose — no JS needed.
+ *  They stack vertically adjacent to their reference points.
+ *  Below --prose-wide (940px) the margin column collapses to 0 and notes
+ *  pull back into the prose column via a class swap or media query.
  */
 
 .article {
+  --article-margin-gap:   var(--space-8);
+  --article-margin-width: 200px;
+
   display: grid;
   grid-template-columns:
     [full-start]
@@ -835,8 +859,10 @@
     [prose-start]
     minmax(0, var(--prose-max))
     [prose-end]
-    minmax(0, calc((var(--prose-wide) - var(--prose-max)) / 2))
-    [breakout-end]
+    var(--article-margin-gap)
+    [margin-start]
+    minmax(0, var(--article-margin-width))
+    [margin-end]
     minmax(var(--space-5), 1fr)
     [full-end];
   row-gap: 0;
@@ -853,6 +879,11 @@
 
 .article-full {
   grid-column: full;
+}
+
+/* Margin items sit in the right-gutter column, flowing alongside prose */
+.article-marginnote {
+  grid-column: margin;
 }
 
 
@@ -1114,6 +1145,126 @@
 }
 
 
+/* ── Text-flow figures ───────────────────────────────────────────────────
+ *
+ * Figures that let prose wrap around them rather than breaking the column.
+ * Use for images, small charts, pull-out boxes up to ~half the column width.
+ *
+ * .article-figure--left   float left, prose wraps right
+ * .article-figure--right  float right, prose wraps left
+ *
+ * Rules:
+ * - Max 45% of prose width so wrapped text stays readable (≥3 words/line)
+ * - h2/h3 always clear floats — a new section starts fresh
+ * - Add .article-figure--clear after a floated figure to cancel the float
+ *   before the next section if you don't want wrapping to continue
+ * - On narrow screens (< 640px) float collapses to full-width block
+ */
+
+.article-figure--left,
+.article-figure--right {
+  max-width: 45%;
+  margin-bottom: var(--space-4);
+}
+
+.article-figure--left {
+  float: left;
+  margin-right: var(--space-6);
+  margin-top: var(--space-1);
+  clear: left;
+}
+
+.article-figure--right {
+  float: right;
+  margin-left: var(--space-6);
+  margin-top: var(--space-1);
+  clear: right;
+}
+
+/* Section headings always start below any active float */
+.article h2,
+.article h3,
+.article-section,
+.article-h3 {
+  clear: both;
+}
+
+/* Explicit clear — use as an empty div after a floated figure */
+.article-figure--clear {
+  clear: both;
+  display: block;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+@media (max-width: 640px) {
+  .article-figure--left,
+  .article-figure--right {
+    float: none;
+    max-width: 100%;
+    margin: var(--space-5) 0;
+  }
+}
+
+
+/* ── Inline graphics ─────────────────────────────────────────────────────
+ *
+ * Small visual elements that sit within the text flow, not as block figures.
+ *
+ * .inline-chart    sparkline-sized SVG or canvas element (~80×24px)
+ * .inline-swatch   small color square (for legend refs in prose)
+ * .inline-badge    status indicator sized for inline text
+ */
+
+/* Sparkline: tiny inline chart flush with text baseline */
+.inline-chart {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  line-height: 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.inline-chart svg,
+.inline-chart canvas {
+  display: block;
+}
+
+/* Default sparkline size — override width/height as needed */
+.inline-chart--sm  { width: 60px;  height: 20px; }
+.inline-chart--md  { width: 100px; height: 24px; }
+.inline-chart--lg  { width: 160px; height: 32px; }
+
+/* Color swatch — for inline legend references */
+.inline-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  flex-shrink: 0;
+}
+
+/* Thumbnail image in text flow — small, right- or left-aligned */
+.inline-thumb {
+  display: inline-block;
+  vertical-align: top;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin: 0 var(--space-2);
+}
+
+
 /* ── Inline note / aside ───────────────────────────────────────────────── */
 /* A callout block within the prose flow — not a sidebar */
 
@@ -1329,17 +1480,135 @@
 }
 
 
-/* ── Sidenotes / margin notes ──────────────────────────────────────────── */
-/*
- * Tufte-inspired: appears in the right margin on wide screens, inline on mobile.
- * Usage:
- *   <span class="sidenote-ref"><label for="sn-1">1</label></span>
- *   <span class="sidenote" id="sn-1">Note content here.</span>
+/* ── Marginalia ──────────────────────────────────────────────────────────
  *
- * The sidenote span should be placed immediately after the reference in the flow.
- * It floats right into the margin at large widths; collapses inline at narrow.
+ * .article-marginnote is a direct child of .article placed in the grid's
+ * `margin` zone (right gutter column, 200px). It flows in document order
+ * alongside its prose sibling — no JS, no absolute positioning.
+ *
+ * Placement rule: put the marginnote element BEFORE the prose element it
+ * annotates. Because both are grid children in the same row-gap:0 grid,
+ * the note will be aligned to the top of the adjacent prose block.
+ *
+ * Variants:
+ *   .article-marginnote--def     definition / glossary term
+ *   .article-marginnote--source  source / citation
+ *   .article-marginnote--figure  thumbnail chart or image
+ *   .article-marginnote--callout highlighted aside
+ *
+ * Below --prose-wide (940px) the margin column collapses and notes
+ * automatically pull into the prose column via a media query.
  */
 
+.article-marginnote {
+  grid-column: margin;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  padding-top: 2px; /* optical alignment with first line of adjacent prose */
+  align-self: start;
+}
+
+/* Definition variant — term + explanation */
+.article-marginnote--def {
+  border-left: 2px solid var(--border);
+  padding-left: var(--space-3);
+}
+
+.article-marginnote--def .mn-term {
+  display: block;
+  font-weight: var(--weight-semibold);
+  color: var(--text-muted);
+  margin-bottom: 2px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.article-marginnote--def .mn-body {
+  display: block;
+  color: var(--text-dim);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Source / citation variant */
+.article-marginnote--source {
+  border-left: 2px solid var(--border-subtle);
+  padding-left: var(--space-3);
+  font-style: italic;
+}
+
+.article-marginnote--source .mn-source-num {
+  font-style: normal;
+  font-weight: var(--weight-semibold);
+  color: var(--accent-text);
+  margin-right: 4px;
+}
+
+/* Callout variant — highlighted aside */
+.article-marginnote--callout {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* Thumbnail figure variant — small chart or image in margin */
+.article-marginnote--figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.article-marginnote--figure .mn-fig {
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-disabled);
+  font-size: 10px;
+}
+
+.article-marginnote--figure .mn-caption {
+  font-size: 10px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* Collapse: at narrow widths, notes flow back into prose column */
+@media (max-width: 940px) {
+  .article-marginnote {
+    grid-column: prose;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border-strong);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-3);
+    /* reset variant borders that would double up */
+    border-left-width: 3px;
+  }
+
+  .article-marginnote--def,
+  .article-marginnote--source {
+    border-left: 3px solid var(--border-strong);
+    padding-left: var(--space-3);
+  }
+
+  .article-marginnote--callout {
+    border-left-width: 3px;
+  }
+}
+
+/* Inline sidenote ref marker (used for footnote-style calls into marginalia) */
 .sidenote-ref {
   font-family: var(--font-sans);
   font-size: 11px;
@@ -1348,36 +1617,7 @@
   vertical-align: super;
   line-height: 0;
   cursor: default;
-}
-
-.sidenote {
-  float: right;
-  clear: right;
-  width: 180px;
-  margin-right: calc(-180px - var(--space-8));
-  margin-left: var(--space-4);
-  margin-bottom: var(--space-2);
-  font-family: var(--font-sans);
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--text-dim);
-  border-left: 2px solid var(--border);
-  padding-left: var(--space-3);
-  font-optical-sizing: auto;
-}
-
-/* Collapse to inline below breakout width */
-@media (max-width: 940px) {
-  .sidenote {
-    float: none;
-    width: auto;
-    margin: var(--space-2) 0;
-    padding: var(--space-2) var(--space-4);
-    border-left: 2px solid var(--border);
-    background: var(--surface-raised);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    display: block;
-  }
+  user-select: none;
 }
 
 

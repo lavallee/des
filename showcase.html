@@ -1358,7 +1358,7 @@
       <!-- ── Full article layout demo ──────────────────────── -->
       <div class="demo" style="padding:0;overflow:hidden;border-radius:var(--radius-lg);">
         <div style="padding:var(--space-4) var(--space-6);background:var(--surface-inset);border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:var(--text-sm);color:var(--text-dim);">
-          .article — named grid layout (prose 680px · breakout 940px · full)
+          .article — 7-track named grid: full · breakout · prose (680px) · margin-gap · margin (200px)
         </div>
         <div style="padding: var(--space-10) 0; background: var(--surface);">
           <article class="article">
@@ -1415,8 +1415,42 @@
             <!-- lede -->
             <p class="article-lede">Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off.</p>
 
-            <!-- sidenote example -->
-            <p>This principle appears in <span class="stat-inline">73%</span> of reviewed policies, making it the single most widely-held norm in the dataset.<span class="sidenote-ref"><label for="sn-1">†</label></span><span class="sidenote" id="sn-1">Percentage calculated from policies with explicit editorial decision provisions. Policies addressing only AI-generated images were excluded from this count.</span> Implementation varies significantly: <span class="stat-inline stat-inline--success">42%</span> of organizations have formal sign-off workflows; the remainder rely on cultural norms alone.</p>
+            <!-- margin note: definition -->
+            <aside class="article-marginnote article-marginnote--def" aria-label="Definition">
+              <span class="mn-term">Sign-off</span>
+              <span class="mn-body">Any documented human review step that must occur before AI-assisted content is published. Oral approval not counted.</span>
+            </aside>
+
+            <p>This principle appears in <span class="stat-inline">73%</span> of reviewed policies, making it the single most widely-held norm in the dataset. Implementation varies significantly: <span class="stat-inline stat-inline--success">42%</span> of organizations have formal sign-off workflows; the remainder rely on cultural norms alone.</p>
+
+            <!-- margin note: source -->
+            <aside class="article-marginnote article-marginnote--source" aria-label="Source">
+              <span class="mn-source-num">1</span>Reuters Institute Digital News Report 2025 found similar rates across European newsrooms.
+            </aside>
+
+            <p>This gap is most pronounced among organizations with fewer than 50 editorial staff, where the overhead of formal processes can exceed the perceived benefit. Smaller organizations disproportionately rely on cultural norms — an approach that correlates with lower audit-trail compliance in the dataset.<span class="sidenote-ref">†</span></p>
+
+            <!-- float figure: text wraps left around right-floated chart -->
+            <figure class="article-figure article-figure--right">
+              <div style="padding:var(--space-4);min-width:200px;">
+                <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:var(--space-3);">Sign-off by org size</div>
+                <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>50+ staff</span><span style="font-family:var(--font-mono)">61%</span></div>
+                    <div class="score-bar"><div class="score-bar__fill score-bar__fill--hi" style="width:61%"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>10–49 staff</span><span style="font-family:var(--font-mono)">38%</span></div>
+                    <div class="score-bar"><div class="score-bar__fill score-bar__fill--mid" style="width:38%"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>&lt;10 staff</span><span style="font-family:var(--font-mono)">14%</span></div>
+                    <div class="score-bar"><div class="score-bar__fill score-bar__fill--lo" style="width:14%"></div></div>
+                  </div>
+                </div>
+              </div>
+              <figcaption class="article-figcaption" style="padding: 0 var(--space-4) var(--space-3);">Formal sign-off rate by editorial headcount.</figcaption>
+            </figure>
 
             <!-- breakout figure -->
             <figure class="article-figure article-breakout">
@@ -1451,7 +1485,29 @@
             <!-- section break -->
             <h2>Transparency Requirements</h2>
 
-            <p>Disclosure requirements — telling audiences when AI was involved — are the second most common provision at 61%. But the definition of <dfn title="Any audience-facing communication about AI involvement in content production">"disclosure"</dfn> varies so widely that comparisons across policies are unreliable.<a class="fn-ref" id="ref:2" href="#fn:2"><sup>2</sup></a></p>
+            <!-- margin note: thumbnail figure -->
+            <aside class="article-marginnote article-marginnote--figure" aria-label="Related chart">
+              <div class="mn-fig" style="aspect-ratio:4/3;background:var(--surface-inset);">
+                <!-- In practice: embed a small SVG sparkline or thumbnail here -->
+                <span style="font-size:10px;color:var(--text-disabled);text-align:center;padding:var(--space-2);">trend 2022–2026</span>
+              </div>
+              <span class="mn-caption">Disclosure requirement prevalence has grown 18pp since 2022. See Figure 3.</span>
+            </aside>
+
+            <!-- margin note: callout -->
+            <aside class="article-marginnote article-marginnote--callout" aria-label="Note">
+              Seven distinct definitions of "AI disclosure" identified across European policies. <abbr title="Reuters Institute for the Study of Journalism">RISJ</abbr> 2025.
+            </aside>
+
+            <p>Disclosure requirements — telling audiences when AI was involved — are the second most common provision at 61%. But the definition of <dfn title="Any audience-facing communication about AI involvement in content production">"disclosure"</dfn> varies so widely that comparisons across policies are unreliable.<a class="fn-ref" id="ref:2" href="#fn:2"><sup>2</sup></a> The trend line is
+              <span class="inline-chart inline-chart--md" title="Disclosure provisions 2022–2026: 43%, 49%, 54%, 58%, 61%">
+                <svg viewBox="0 0 100 24" width="100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="0,20 25,16 50,12 75,8 100,5" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="100" cy="5" r="2.5" fill="var(--accent)"/>
+                </svg>
+              </span>
+              consistently upward — from 43% in 2022 to 61% today.
+            </p>
 
             <!-- pull quote (decorative excerpt — no attribution, distinct from blockquote) -->
             <blockquote class="article-pullquote">
