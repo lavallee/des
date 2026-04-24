@@ -1,2 +1,4 @@
 .playwright-mcp
 .somm
+*.zip
+*.png

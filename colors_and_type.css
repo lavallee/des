@@ -1,0 +1,168 @@
+/*
+ * Lyra Forge Design System — Colors + Type re-export
+ * ────────────────────────────────────────────────────────────────────────
+ * A convenience facade over tokens.css for prototyping in this project.
+ * Defines base tokens (--fg1, --fg2, --bg1, --bg2 …) alongside the
+ * canonical semantic tokens (--text, --surface …) and component-level
+ * type variables (--h1, --h2, --body, --code) so simple prototypes can
+ * drop this file in without importing the full system.
+ *
+ * For production use: import tokens.css + components.css directly.
+ * ────────────────────────────────────────────────────────────────────────
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap");
+@import url("./tokens.css");
+
+/* ─── Base aliases ─────────────────────────────────────────────────────
+   Short aliases for quick use in prototypes. Always resolve to canonical
+   semantic tokens; never hardcode values here. */
+:root {
+  /* Foreground scale */
+  --fg1: var(--text);          /* primary text */
+  --fg2: var(--text-muted);    /* secondary text */
+  --fg3: var(--text-dim);      /* tertiary / metadata */
+  --fg4: var(--text-disabled); /* disabled */
+
+  /* Background / surface scale */
+  --bg1: var(--bg);             /* page */
+  --bg2: var(--surface);        /* card, panel */
+  --bg3: var(--surface-raised); /* hover, elevated */
+  --bg4: var(--surface-inset);  /* inset, code */
+
+  /* Border scale */
+  --line-subtle: var(--border-subtle);
+  --line:        var(--border);
+  --line-strong: var(--border-strong);
+
+  /* Accent */
+  --brand:      var(--accent);
+  --brand-text: var(--accent-text);
+  --brand-bg:   var(--accent-surface);
+
+  /* Type family aliases */
+  --sans:    var(--font-sans);
+  --serif-display: var(--font-serif);   /* Instrument Serif italic */
+  --serif-prose:   var(--font-prose);   /* Newsreader */
+  --mono:    var(--font-mono);
+}
+
+/* ─── Semantic text styles ─────────────────────────────────────────────
+   Component-level shortcuts — apply via class or reference in custom CSS. */
+
+.h-display {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  color: var(--fg1);
+  letter-spacing: var(--tracking-tight);
+}
+
+.h1 {
+  font-family: var(--serif-prose);
+  font-optical-sizing: auto;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--fg1);
+}
+
+.h2 {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--fg3);
+}
+
+.h3 {
+  font-family: var(--serif-prose);
+  font-optical-sizing: auto;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--fg1);
+}
+
+.h4 {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--fg2);
+}
+
+.ui-title {
+  font-family: var(--sans);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--fg1);
+}
+
+.ui-body {
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg1);
+}
+
+.ui-label {
+  font-family: var(--sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--fg2);
+}
+
+.ui-meta {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  color: var(--fg3);
+}
+
+.p {
+  font-family: var(--serif-prose);
+  font-optical-sizing: auto;
+  font-size: 17px;
+  line-height: var(--leading-relaxed);
+  color: var(--fg1);
+}
+
+.lede {
+  font-family: var(--serif-prose);
+  font-optical-sizing: auto;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--fg2);
+}
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--brand-text);
+}
+
+.code,
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-sm);
+}
+
+.num-lg {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--fg1);
+}

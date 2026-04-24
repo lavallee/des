@@ -7,6 +7,7 @@
   "exports": {
     "./tokens.css": "./tokens.css",
     "./components.css": "./components.css",
+    "./colors_and_type.css": "./colors_and_type.css",
     "./themes/carbon.css": "./themes/carbon.css",
     "./themes/slate.css": "./themes/slate.css",
     "./themes/parchment.css": "./themes/parchment.css"
@@ -14,7 +15,9 @@
   "files": [
     "tokens.css",
     "components.css",
-    "themes/"
+    "colors_and_type.css",
+    "themes/",
+    "assets/"
   ],
   "keywords": [
     "design-system",

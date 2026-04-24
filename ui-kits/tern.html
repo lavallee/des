@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>tern — UI kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  /* Slate-theme overrides — blue-shifted dark + cyan accent */
+  :root {
+    --bg: #0a1020;
+    --surface: #0f1730;
+    --surface-raised: #17203a;
+    --surface-inset: #080d1c;
+    --border-subtle: #152040;
+    --border: #1e2b52;
+    --border-strong: #2b3b6b;
+    --accent: #22d3ee;
+    --accent-muted: #0891b2;
+    --accent-surface: rgba(34, 211, 238, 0.12);
+    --accent-text: #67e8f9;
+    --text: #e4ecff;
+    --text-muted: #8aa0c9;
+    --text-dim: #5b6a93;
+  }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+  .app { display: grid; grid-template-columns: 220px 1fr 340px; grid-template-rows: 48px 1fr; min-height: 100vh; }
+  .hdr { grid-column: 1/-1; display: flex; align-items: center; gap: 16px; padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+  .hdr__brand { font-family: var(--font-serif); font-style: italic; font-size: 20px; color: var(--text); }
+  .hdr__meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.03em; }
+  .hdr__right { margin-left: auto; display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .live { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: p 2s infinite; }
+  @keyframes p { 0%,100%{opacity:1}50%{opacity:.3} }
+  .sb { border-right: 1px solid var(--border); background: var(--surface); padding: 12px 8px; }
+  .sb__s { padding: 8px 10px 4px; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; }
+  .sb__i { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 6px; font-size: 13px; color: var(--text-muted); cursor: pointer; height: 28px; }
+  .sb__i:hover { background: var(--surface-raised); color: var(--text); }
+  .sb__i.is-active { background: var(--accent-surface); color: var(--accent-text); border-left: 2px solid var(--accent); padding-left: 8px; }
+  .sb__i .n { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); }
+  .sb__pip { display: flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+  .sb__pip::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+  .sb__pip.ok::before { background: #22c55e; }
+  .sb__pip.warn::before { background: #eab308; }
+  .sb__pip.err::before { background: #ef4444; }
+
+  .map { position: relative; overflow: hidden; background: var(--surface-inset); }
+  .map svg { width: 100%; height: 100%; display: block; }
+  .map__overlay { position: absolute; top: 16px; left: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .map__overlay strong { color: var(--text); font-weight: 500; }
+  .map__legend { position: absolute; bottom: 16px; left: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); display: flex; gap: 12px; }
+  .map__legend span { display: flex; align-items: center; gap: 6px; }
+  .map__legend i { width: 8px; height: 8px; border-radius: 50%; }
+  .map__stats { position: absolute; top: 16px; right: 16px; display: flex; gap: 8px; }
+  .map__stat { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; min-width: 100px; }
+  .map__stat__l { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
+  .map__stat__v { font-family: var(--font-mono); font-size: 22px; color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; margin-top: 2px; }
+
+  .insp { border-left: 1px solid var(--border); background: var(--surface); padding: 16px; overflow-y: auto; }
+  .insp__h { font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--text); margin: 0 0 4px; }
+  .insp__sub { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+  .insp__sec { border-top: 1px solid var(--border-subtle); padding-top: 12px; margin-top: 12px; }
+  .insp__sec:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .insp__lbl { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; margin-bottom: 8px; font-family: var(--font-mono); }
+  .feed { max-height: 260px; overflow-y: auto; }
+  .feed__it { display: grid; grid-template-columns: 72px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); font-size: 12px; }
+  .feed__t { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); }
+  .feed__b { color: var(--text); line-height: 1.4; }
+  .feed__b .reg { font-family: var(--font-mono); color: var(--accent-text); font-size: 10px; margin-right: 6px; }
+
+  .spark { display: flex; align-items: flex-end; gap: 2px; height: 40px; }
+  .spark i { flex: 1; background: var(--accent); border-radius: 1px; min-width: 2px; }
+  .route-row { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 0; border-bottom: 1px solid var(--border-subtle); }
+  .route-row:last-child { border-bottom: none; }
+  .route-row .region { font-family: var(--font-mono); color: var(--text-dim); width: 32px; }
+  .route-row .name { color: var(--text); flex: 1; }
+  .route-row .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hdr">
+    <span class="hdr__brand">tern</span>
+    <span class="hdr__meta">live feeds · 2026-04-22 14:04Z</span>
+    <div class="hdr__right"><span class="live"></span>stream · 200ms · 6 feeds</div>
+  </header>
+  <aside class="sb">
+    <div class="sb__s">Regions</div>
+    <div class="sb__i is-active">All<span class="n">412</span></div>
+    <div class="sb__i">MENA<span class="n">84</span></div>
+    <div class="sb__i">Europe<span class="n">112</span></div>
+    <div class="sb__i">Americas<span class="n">96</span></div>
+    <div class="sb__i">APAC<span class="n">78</span></div>
+    <div class="sb__i">Africa<span class="n">42</span></div>
+    <div class="sb__s" style="margin-top:12px;">Feeds</div>
+    <div class="sb__pip ok">reuters · ok</div>
+    <div class="sb__pip ok">bloomberg · ok</div>
+    <div class="sb__pip ok">ft · ok</div>
+    <div class="sb__pip warn">ap · lag 1.2s</div>
+    <div class="sb__pip ok">nikkei · ok</div>
+    <div class="sb__pip err">folha · reconnect</div>
+  </aside>
+
+  <div class="map">
+    <svg viewBox="0 0 900 520" preserveAspectRatio="xMidYMid slice">
+      <!-- stylised world grid -->
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e2b52" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="900" height="520" fill="url(#grid)"/>
+      <!-- continents (very stylised blobs) -->
+      <g fill="#17203a" stroke="#2b3b6b" stroke-width="1">
+        <path d="M80,150 Q140,120 220,140 T360,130 Q420,150 410,210 Q390,260 300,270 Q200,280 140,240 Q90,210 80,150 Z"/>
+        <path d="M420,130 Q480,110 560,130 Q620,160 610,200 Q580,230 510,230 Q450,220 430,180 Z"/>
+        <path d="M440,250 Q510,270 560,310 Q580,380 520,430 Q450,460 410,410 Q400,330 440,250 Z"/>
+        <path d="M600,240 Q680,220 760,250 Q820,290 810,350 Q770,400 690,400 Q620,370 600,310 Z"/>
+        <path d="M760,120 Q820,110 860,140 Q870,190 820,220 Q770,200 760,170 Z"/>
+      </g>
+      <!-- latitude lines -->
+      <g stroke="#1e2b52" stroke-width="0.5" stroke-dasharray="2 4" fill="none">
+        <path d="M0,180 L900,180"/>
+        <path d="M0,260 L900,260"/>
+        <path d="M0,340 L900,340"/>
+      </g>
+      <!-- events -->
+      <g>
+        <circle cx="490" cy="200" r="14" fill="#22d3ee" fill-opacity="0.15"/>
+        <circle cx="490" cy="200" r="4" fill="#22d3ee"/>
+        <text x="502" y="204" fill="#67e8f9" font-family="Geist Mono,monospace" font-size="10">TR · 2.3M</text>
+
+        <circle cx="455" cy="175" r="18" fill="#22d3ee" fill-opacity="0.1"/>
+        <circle cx="455" cy="175" r="4" fill="#22d3ee"/>
+        <text x="465" y="170" fill="#67e8f9" font-family="Geist Mono,monospace" font-size="10">UK · 4.2B</text>
+
+        <circle cx="470" cy="195" r="3" fill="#22d3ee"/>
+        <circle cx="520" cy="220" r="3" fill="#eab308"/>
+        <text x="528" y="224" fill="#fde047" font-family="Geist Mono,monospace" font-size="10">IL · review</text>
+
+        <circle cx="220" cy="260" r="3" fill="#22d3ee"/>
+        <circle cx="250" cy="310" r="3" fill="#ef4444"/>
+        <text x="258" y="314" fill="#fca5a5" font-family="Geist Mono,monospace" font-size="10">BR · reject</text>
+
+        <circle cx="720" cy="220" r="3" fill="#22d3ee"/>
+        <circle cx="760" cy="280" r="10" fill="#22d3ee" fill-opacity="0.15"/>
+        <circle cx="760" cy="280" r="3" fill="#22d3ee"/>
+        <text x="770" y="284" fill="#67e8f9" font-family="Geist Mono,monospace" font-size="10">IN · 3 claims</text>
+
+        <circle cx="820" cy="200" r="3" fill="#22d3ee"/>
+        <text x="770" y="196" fill="#67e8f9" font-family="Geist Mono,monospace" font-size="10">JP · review</text>
+      </g>
+    </svg>
+
+    <div class="map__overlay">
+      <strong>Live feed</strong> · 412 events · 60m<br>
+      <span style="color:var(--accent-text);">6 regions active</span>
+    </div>
+    <div class="map__stats">
+      <div class="map__stat"><div class="map__stat__l">Events · 60m</div><div class="map__stat__v">412</div></div>
+      <div class="map__stat"><div class="map__stat__l">p95 latency</div><div class="map__stat__v">214ms</div></div>
+    </div>
+    <div class="map__legend">
+      <span><i style="background:#22d3ee"></i>confirmed</span>
+      <span><i style="background:#eab308"></i>review</span>
+      <span><i style="background:#ef4444"></i>reject</span>
+    </div>
+  </div>
+
+  <aside class="insp">
+    <h2 class="insp__h">Global feed</h2>
+    <div class="insp__sub">412 events · 00:00:42 since last</div>
+
+    <div class="insp__sec">
+      <div class="insp__lbl">Activity · 60m</div>
+      <div class="spark">
+        <i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:55%"></i>
+        <i style="height:42%"></i><i style="height:60%"></i><i style="height:70%"></i><i style="height:55%"></i>
+        <i style="height:75%"></i><i style="height:68%"></i><i style="height:82%"></i><i style="height:78%"></i>
+        <i style="height:88%"></i><i style="height:72%"></i><i style="height:90%"></i><i style="height:85%"></i>
+        <i style="height:100%"></i><i style="height:92%"></i><i style="height:78%"></i><i style="height:82%"></i>
+      </div>
+    </div>
+
+    <div class="insp__sec">
+      <div class="insp__lbl">Top regions</div>
+      <div class="route-row"><span class="region">EU</span><span class="name">Europe</span><span class="num">112</span></div>
+      <div class="route-row"><span class="region">US</span><span class="name">Americas</span><span class="num">96</span></div>
+      <div class="route-row"><span class="region">ME</span><span class="name">MENA</span><span class="num">84</span></div>
+      <div class="route-row"><span class="region">AP</span><span class="name">APAC</span><span class="num">78</span></div>
+      <div class="route-row"><span class="region">AF</span><span class="name">Africa</span><span class="num">42</span></div>
+    </div>
+
+    <div class="insp__sec">
+      <div class="insp__lbl">Live events</div>
+      <div class="feed">
+        <div class="feed__it"><span class="feed__t">14:04:11Z</span><span class="feed__b"><span class="reg">UK</span>Treasury draft · confirmed</span></div>
+        <div class="feed__it"><span class="feed__t">14:03:58Z</span><span class="feed__b"><span class="reg">TR</span>Displacement figure matched primary</span></div>
+        <div class="feed__it"><span class="feed__t">14:03:21Z</span><span class="feed__b"><span class="reg">BR</span>Aide reserves figure · rejected</span></div>
+        <div class="feed__it"><span class="feed__t">14:02:48Z</span><span class="feed__b"><span class="reg">JP</span>Ministry spokesperson · review</span></div>
+        <div class="feed__it"><span class="feed__t">14:02:03Z</span><span class="feed__b"><span class="reg">DE</span>Bloomberg GDP revision · 0.91</span></div>
+        <div class="feed__it"><span class="feed__t">14:01:44Z</span><span class="feed__b"><span class="reg">IN</span>RBI circular pending publish</span></div>
+      </div>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

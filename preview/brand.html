@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brand — Lyra Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<link rel="stylesheet" href="_preview.css">
+<style>
+  .hero {
+    padding: var(--space-16) var(--space-8);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    text-align: center;
+  }
+  .hero__mark {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 128px;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .hero__rule {
+    width: 48px;
+    height: 1px;
+    background: var(--border-strong);
+    margin: var(--space-5) auto;
+  }
+  .hero__tag {
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .family {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .family__cell {
+    padding: var(--space-8) var(--space-5);
+    border-right: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: center;
+    background: var(--surface);
+  }
+  .family__cell:nth-child(3n) { border-right: none; }
+  .family__cell:nth-last-child(-n+3) { border-bottom: none; }
+  .family__wordmark {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+  .family__role {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-2);
+  }
+  .family__desc {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: 24ch;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .dont-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .rule-card {
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+  .rule-card__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  .rule-card__mark {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: var(--weight-medium);
+  }
+  .rule-card--do .rule-card__mark { color: var(--success); }
+  .rule-card--dont .rule-card__mark { color: var(--error); }
+  .rule-card__example {
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    background: var(--bg);
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  .rule-card__text { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.55; }
+
+  .context-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  .ctx {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    height: 56px;
+  }
+  .ctx__mark {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text);
+  }
+  .ctx__right {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .masthead {
+    padding: var(--space-10) var(--space-8);
+    background: #fafaf7;
+    color: #1a1a1a;
+    border: 1px solid #e4e4e0;
+    border-radius: var(--radius-md);
+  }
+  .masthead__brand {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 28px;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: var(--space-6);
+  }
+  .masthead__title {
+    font-family: var(--font-prose);
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.1;
+    color: #1a1a1a;
+    letter-spacing: -0.015em;
+    margin: 0 0 var(--space-3);
+    max-width: 20ch;
+  }
+  .masthead__deck {
+    font-family: var(--font-prose);
+    font-style: italic;
+    font-size: 20px;
+    color: #444;
+    max-width: 44ch;
+    line-height: 1.45;
+    margin: 0;
+  }
+  .masthead__rule { height: 1px; background: #c8c8c4; margin: var(--space-5) 0; }
+  .masthead__meta {
+    display: flex;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #7a7a7a;
+  }
+</style>
+</head>
+<body>
+<div class="preview">
+  <p class="preview-kicker">Brand</p>
+  <h1 class="preview-title">The wordmark is the logo</h1>
+  <p class="preview-sub">There is no bug, no monogram, no iconographic lockup. Every tool in the family renders its name in Instrument Serif italic — and that, at 20px in a header, is the logo. The lower-case wordmark signals engineered humility: names are tools, not monuments.</p>
+
+  <section class="preview-section">
+    <div class="hero">
+      <div class="hero__mark">lyra forge</div>
+      <div class="hero__rule"></div>
+      <div class="hero__tag">Media × AI · product development studio</div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">The tool family</p>
+    <div class="family">
+      <div class="family__cell">
+        <div class="family__wordmark">barnowl</div>
+        <div class="family__role">Instrument</div>
+        <div class="family__desc">Claims research &amp; verification. Pipeline, article view, timeline.</div>
+      </div>
+      <div class="family__cell">
+        <div class="family__wordmark">keel</div>
+        <div class="family__role">Reference impl</div>
+        <div class="family__desc">Dashboard, command palette, multi-panel shells.</div>
+      </div>
+      <div class="family__cell">
+        <div class="family__wordmark">tern</div>
+        <div class="family__role">Instrument</div>
+        <div class="family__desc">Geographic pipeline dashboard. Maps &amp; live feeds.</div>
+      </div>
+      <div class="family__cell">
+        <div class="family__wordmark">steve</div>
+        <div class="family__role">Artifact</div>
+        <div class="family__desc">Cream-themed public scoring artifact. Python + HTMX.</div>
+      </div>
+      <div class="family__cell">
+        <div class="family__wordmark">weaver</div>
+        <div class="family__role">Artifact</div>
+        <div class="family__desc">Data-viz publishing. One-off long-form story pages.</div>
+      </div>
+      <div class="family__cell">
+        <div class="family__wordmark">malo · jay</div>
+        <div class="family__role">Adjacent</div>
+        <div class="family__desc">Tools and generated reports sharing the same vocabulary.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">In context — tool header</p>
+    <div class="context-strip">
+      <div class="ctx"><span class="ctx__mark">barnowl</span><span class="ctx__right">dark · zinc + indigo</span></div>
+      <div class="ctx" data-theme="light" style="background: #fafaf7; border-color: #e4e4e0; color: #1a1a1a;"><span class="ctx__mark" style="color: #1a1a1a">steve</span><span class="ctx__right" style="color: #7a7a7a;">light · warm + navy</span></div>
+      <div class="ctx" style="background: #000; border-color: #222;"><span class="ctx__mark" style="color: #e4e4e8">tern</span><span class="ctx__right" style="color: #71717a">slate · blue-shifted</span></div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Do / don't</p>
+    <div class="dont-rules">
+      <div class="rule-card rule-card--do">
+        <div class="rule-card__head"><span class="rule-card__mark">✓ Do</span></div>
+        <div class="rule-card__example">
+          <span style="font-family: var(--font-serif); font-style: italic; font-size: 44px; color: var(--text);">barnowl</span>
+        </div>
+        <p class="rule-card__text">Instrument Serif italic, sentence/lowercase, color <code style="font-family:var(--font-mono);font-size:11px">--text</code>. Kerning untouched. The mark earns its presence from the typeface.</p>
+      </div>
+      <div class="rule-card rule-card--dont">
+        <div class="rule-card__head"><span class="rule-card__mark">✗ Don't</span></div>
+        <div class="rule-card__example" style="background: linear-gradient(135deg, #6366f1, #a78bfa);">
+          <span style="font-family: var(--font-sans); font-weight: 700; font-size: 36px; color: #fff; letter-spacing: 0.05em; text-transform: uppercase;">BARNOWL</span>
+        </div>
+        <p class="rule-card__text">No uppercase, no bold sans substitute, no gradient containers, no enclosing mark. The wordmark is the logo — don't build a cage around it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">In context — artifact masthead</p>
+    <div class="masthead">
+      <div class="masthead__brand">steve</div>
+      <h2 class="masthead__title">The claim aged out of verifiability.</h2>
+      <p class="masthead__deck">How a qualifier disappeared between Ankara, a wire desk, and the third paper that ran the number — and what it cost the record.</p>
+      <div class="masthead__rule"></div>
+      <div class="masthead__meta"><span>Published · 2026-04-22</span><span>Confidence · 0.84</span><span>8 min read</span></div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Color on the mark</p>
+    <div class="grid-3">
+      <div class="rule-card" style="text-align: center;">
+        <div style="font-family: var(--font-serif); font-style: italic; font-size: 48px; color: var(--text);">keel</div>
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase; margin-top: var(--space-2);">--text · default</div>
+      </div>
+      <div class="rule-card" style="text-align: center;">
+        <div style="font-family: var(--font-serif); font-style: italic; font-size: 48px; color: var(--accent);">keel</div>
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase; margin-top: var(--space-2);">--accent · link / active</div>
+      </div>
+      <div class="rule-card" style="text-align: center; background: var(--bg);">
+        <div style="font-family: var(--font-serif); font-style: italic; font-size: 48px; color: var(--text-muted);">keel</div>
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase; margin-top: var(--space-2);">--text-muted · tagline</div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<title>weaver — UI kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+  .hdr { position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .hdr__wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 56px; display: flex; align-items: center; }
+  .hdr__brand { font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--text); text-decoration: none; }
+  .hdr__nav { display: flex; gap: 20px; margin-left: 32px; }
+  .hdr__nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+  .hdr__nav a.is-active { color: var(--text); }
+  .hdr__right { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+  .page { max-width: 1200px; margin: 0 auto; padding: 40px 32px 80px; }
+  .kicker { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 12px; }
+  .title { font-family: var(--font-prose); font-weight: 400; font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.02em; color: var(--text); max-width: 20ch; margin: 0 0 16px; }
+  .deck { font-family: var(--font-prose); font-style: italic; font-size: 22px; line-height: 1.45; color: var(--text-dim); max-width: 50ch; margin: 0 0 24px; }
+  .meta { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+
+  .prose { max-width: 680px; margin: 40px auto; font-family: var(--font-prose); font-size: 19px; line-height: 1.65; color: var(--text); }
+  .prose p { margin: 0 0 20px; }
+  .prose h2 { font-family: var(--font-prose); font-weight: 400; font-size: 30px; letter-spacing: -0.01em; line-height: 1.2; margin: 40px 0 16px; color: var(--text); }
+  .prose em { font-style: italic; }
+
+  .figure { max-width: 940px; margin: 40px auto; }
+  .figure__cap { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+  .figure__title { font-family: var(--font-prose); font-size: 22px; color: var(--text); margin: 0 0 4px; }
+  .figure__deck { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; max-width: 60ch; }
+  .figure__frame { border: 1px solid var(--border); border-radius: 6px; background: var(--surface); padding: 28px; }
+  .figure__note { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-top: 10px; }
+
+  /* Sankey-ish diagram */
+  .sankey { width: 100%; height: 320px; }
+  .sankey text { font-family: var(--font-mono); font-size: 10px; fill: var(--text-muted); }
+  .sankey .node text { fill: var(--text); font-size: 11px; font-weight: 500; }
+  .sankey .label { font-size: 10px; fill: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* Horizon strip */
+  .horizon-grid { display: grid; grid-template-columns: 120px 1fr 60px; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); font-size: 13px; }
+  .horizon-grid:last-child { border-bottom: none; }
+  .horizon-grid .name { color: var(--text); }
+  .horizon-grid .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; color: var(--text-muted); }
+  .horizon-bar { height: 22px; display: flex; align-items: flex-end; gap: 1px; }
+  .horizon-bar i { flex: 1; background: var(--accent); opacity: 0.4; border-radius: 1px; }
+  .horizon-bar i.hi { opacity: 1; }
+
+  /* Footer callout */
+  .endnote { max-width: 680px; margin: 48px auto; padding: 20px 24px; border-left: 3px solid var(--accent); background: var(--surface); font-family: var(--font-prose); font-size: 16px; line-height: 1.55; color: var(--text-dim); border-radius: 0 6px 6px 0; }
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr__wrap">
+    <a class="hdr__brand" href="#">weaver</a>
+    <nav class="hdr__nav">
+      <a class="is-active">Stories</a>
+      <a>Data</a>
+      <a>About</a>
+    </nav>
+    <span class="hdr__right">Issue 17 · Spring 2026</span>
+  </div>
+</header>
+
+<div class="page">
+  <p class="kicker">Data narrative · 2026-04-18</p>
+  <h1 class="title">Where the qualifier goes.</h1>
+  <p class="deck">Eighty-three claims followed from wire to rewrite to re-rewrite. We traced which caveats survived the journey.</p>
+  <div class="meta">
+    <span>T. Ogunsola</span>
+    <span>14 min read</span>
+    <span>Methodology · <span style="color:var(--accent-text);text-transform:none;letter-spacing:0;">download ↓</span></span>
+    <span style="margin-left:auto;">confidence · 0.89</span>
+  </div>
+
+  <article class="prose">
+    <p>Across 83 news events tracked in March, <em>every single one</em> shed at least one qualifier between its original publication and its third re-publication. The figures below disaggregate what went missing and where.</p>
+  </article>
+
+  <figure class="figure">
+    <div class="figure__cap">Fig. 1 · Flow of 83 claims across publication tiers</div>
+    <h3 class="figure__title">The qualifier drop-off</h3>
+    <p class="figure__deck">Primary source → wire → re-publication. Bar height encodes claim count; color encodes qualifier survival.</p>
+    <div class="figure__frame">
+      <svg class="sankey" viewBox="0 0 900 320" preserveAspectRatio="xMidYMid meet">
+        <text x="80" y="24" class="label">PRIMARY</text>
+        <text x="380" y="24" class="label">WIRE</text>
+        <text x="700" y="24" class="label">RE-PUBLISHED</text>
+
+        <!-- nodes -->
+        <g class="node">
+          <rect x="40" y="40" width="16" height="240" fill="#1a4480"/>
+          <text x="62" y="60">Briefings · 83</text>
+        </g>
+        <g class="node">
+          <rect x="420" y="40" width="16" height="220" fill="#2563a8"/>
+          <text x="442" y="60">Wire summary · 74</text>
+        </g>
+        <g class="node">
+          <rect x="800" y="40" width="16" height="120" fill="#2b6a3c"/>
+          <text x="770" y="172" text-anchor="end" fill="#2b6a3c">With caveat · 32</text>
+          <rect x="800" y="180" width="16" height="80" fill="#a04a00"/>
+          <text x="770" y="228" text-anchor="end" fill="#a04a00">Without · 42</text>
+        </g>
+
+        <!-- flows -->
+        <path d="M 56 50 C 230 50, 260 80, 420 80" stroke="#2563a8" stroke-width="30" fill="none" opacity="0.35"/>
+        <path d="M 56 160 C 230 160, 260 160, 420 160" stroke="#c8c8c4" stroke-width="50" fill="none" opacity="0.35"/>
+        <path d="M 56 260 C 230 260, 260 240, 420 240" stroke="#c0362a" stroke-width="20" fill="none" opacity="0.35"/>
+
+        <path d="M 436 80 C 600 80, 640 100, 800 100" stroke="#2b6a3c" stroke-width="26" fill="none" opacity="0.4"/>
+        <path d="M 436 160 C 600 160, 640 180, 800 200" stroke="#a04a00" stroke-width="34" fill="none" opacity="0.4"/>
+        <path d="M 436 240 C 600 240, 640 240, 800 248" stroke="#a04a00" stroke-width="18" fill="none" opacity="0.4"/>
+
+        <!-- counts -->
+        <text x="236" y="48" fill="#5b5b5b">→ matched 74</text>
+        <text x="236" y="288" fill="#a04a00">→ dropped 9</text>
+        <text x="616" y="92" fill="#2b6a3c">caveat kept · 32</text>
+        <text x="616" y="252" fill="#a04a00">caveat lost · 42</text>
+      </svg>
+      <div class="figure__note">N = 83 · March 2026 · Source: barnowl trace · see methodology</div>
+    </div>
+  </figure>
+
+  <article class="prose">
+    <h2>What kind of qualifier goes missing?</h2>
+    <p>The most-dropped phrase was "internal estimate, pending publication" — lost in 31 of 42 cases where a qualifier was stripped. The second most-dropped was "according to officials familiar with the matter," lost in 18 cases.</p>
+  </article>
+
+  <figure class="figure">
+    <div class="figure__cap">Fig. 2 · Qualifier drop rate · by phrase</div>
+    <div class="figure__frame">
+      <div class="horizon-grid"><span class="name">internal estimate, pending publication</span><div class="horizon-bar"><i class="hi" style="height:90%"></i><i class="hi" style="height:85%"></i><i class="hi" style="height:95%"></i><i class="hi" style="height:80%"></i><i class="hi" style="height:88%"></i><i class="hi" style="height:92%"></i><i class="hi" style="height:86%"></i><i class="hi" style="height:94%"></i><i style="height:40%"></i><i style="height:30%"></i><i style="height:35%"></i><i style="height:28%"></i></div><span class="num">74%</span></div>
+      <div class="horizon-grid"><span class="name">officials familiar with the matter</span><div class="horizon-bar"><i class="hi" style="height:60%"></i><i class="hi" style="height:70%"></i><i class="hi" style="height:65%"></i><i class="hi" style="height:72%"></i><i class="hi" style="height:78%"></i><i class="hi" style="height:80%"></i><i class="hi" style="height:68%"></i><i class="hi" style="height:75%"></i><i style="height:40%"></i><i style="height:35%"></i><i style="height:30%"></i><i style="height:32%"></i></div><span class="num">43%</span></div>
+      <div class="horizon-grid"><span class="name">as of filing</span><div class="horizon-bar"><i class="hi" style="height:40%"></i><i class="hi" style="height:35%"></i><i class="hi" style="height:42%"></i><i class="hi" style="height:38%"></i><i class="hi" style="height:48%"></i><i class="hi" style="height:44%"></i><i class="hi" style="height:50%"></i><i class="hi" style="height:46%"></i><i style="height:28%"></i><i style="height:30%"></i><i style="height:26%"></i><i style="height:32%"></i></div><span class="num">31%</span></div>
+      <div class="horizon-grid"><span class="name">subject to revision</span><div class="horizon-bar"><i class="hi" style="height:25%"></i><i class="hi" style="height:30%"></i><i class="hi" style="height:22%"></i><i class="hi" style="height:28%"></i><i class="hi" style="height:32%"></i><i class="hi" style="height:26%"></i><i class="hi" style="height:30%"></i><i class="hi" style="height:24%"></i><i style="height:18%"></i><i style="height:20%"></i><i style="height:22%"></i><i style="height:16%"></i></div><span class="num">22%</span></div>
+      <div class="horizon-grid"><span class="name">declined to confirm</span><div class="horizon-bar"><i class="hi" style="height:20%"></i><i class="hi" style="height:18%"></i><i class="hi" style="height:22%"></i><i class="hi" style="height:24%"></i><i class="hi" style="height:16%"></i><i class="hi" style="height:20%"></i><i class="hi" style="height:18%"></i><i class="hi" style="height:22%"></i><i style="height:14%"></i><i style="height:12%"></i><i style="height:16%"></i><i style="height:18%"></i></div><span class="num">18%</span></div>
+      <div class="figure__note">Rate · fraction of publications in which phrase was stripped before third re-publication</div>
+    </div>
+  </figure>
+
+  <div class="endnote">The dataset behind this piece is open. You can read the methodology, re-run the extraction locally, or contest a specific classification from the interface — <span style="color: var(--accent-text);">every claim links back to its barnowl record.</span></div>
+</div>
+</body>
+</html>

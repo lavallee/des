@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Type — Lyra Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<link rel="stylesheet" href="_preview.css">
+<style>
+  .spec-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: var(--space-4);
+    align-items: baseline;
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .spec-row:first-child { border-top: none; }
+  .spec-row__name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+  .spec-row__sample {
+    color: var(--text);
+  }
+  .spec-row__meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .family-card {
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .family-card:last-child { border-bottom: none; }
+  .family-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-3);
+  }
+  .family-card__role {
+    font-size: 11px;
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .family-card__stack {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .family-card__sample { font-size: 44px; line-height: 1.1; color: var(--text); }
+  .family-card__usage { font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-2); }
+
+  .prose-sample {
+    font-family: var(--font-prose);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--text);
+    max-width: 60ch;
+  }
+  .prose-sample h1 {
+    font-family: var(--font-prose);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.01em;
+  }
+  .prose-sample p { margin: 0 0 var(--space-4); }
+  .prose-sample p:last-child { margin-bottom: 0; }
+
+  .number-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+  .number-grid__cell {
+    padding: var(--space-4);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+  .number-grid__num {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+  .number-grid__label {
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: var(--space-1);
+  }
+</style>
+</head>
+<body>
+<div class="preview">
+  <p class="preview-kicker">Type</p>
+  <h1 class="preview-title">Three faces, four roles</h1>
+  <p class="preview-sub">Geist for the interface. Instrument Serif italic for the brand mark. Newsreader for long-form prose. Geist Mono for numbers, IDs, and anything the machine cares about.</p>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Families</p>
+    <div class="frame">
+      <div class="family-card">
+        <div class="family-card__top">
+          <span class="family-card__role">Sans · UI</span>
+          <span class="family-card__stack">"Geist", "Inter", system-ui</span>
+        </div>
+        <div class="family-card__sample" style="font-family: var(--font-sans)">Every action reachable from the keyboard before the mouse.</div>
+        <div class="family-card__usage">Labels, body, navigation, tables, buttons. 400/500/600/700.</div>
+      </div>
+      <div class="family-card">
+        <div class="family-card__top">
+          <span class="family-card__role">Serif display · Brand mark</span>
+          <span class="family-card__stack">"Instrument Serif" italic, Georgia</span>
+        </div>
+        <div class="family-card__sample" style="font-family: var(--font-serif); font-style: italic;">lyra forge · barnowl · keel · tern · steve</div>
+        <div class="family-card__usage">Wordmarks and display headings only. Italic is the brand voice; upright is not used.</div>
+      </div>
+      <div class="family-card">
+        <div class="family-card__top">
+          <span class="family-card__role">Serif prose · Newsreader</span>
+          <span class="family-card__stack">"Newsreader", Georgia, serif</span>
+        </div>
+        <div class="family-card__sample" style="font-family: var(--font-prose);">A table is always valid. A chart is justified when it beats one.</div>
+        <div class="family-card__usage">Long-form prose in artifacts (steve, weaver). Never in instruments.</div>
+      </div>
+      <div class="family-card">
+        <div class="family-card__top">
+          <span class="family-card__role">Mono · Numbers &amp; code</span>
+          <span class="family-card__stack">"Geist Mono", "JetBrains Mono"</span>
+        </div>
+        <div class="family-card__sample" style="font-family: var(--font-mono); font-size: 38px; font-variant-numeric: tabular-nums;">0.7284 · 2026-04-22T14:03Z · 12,487</div>
+        <div class="family-card__usage">Tabular numerals everywhere a number appears in data. IDs, thresholds, timestamps.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Scale — instruments</p>
+    <div class="frame">
+      <div style="padding: var(--space-5) var(--space-6);">
+        <div class="spec-row">
+          <span class="spec-row__name">2xl</span>
+          <span class="spec-row__sample" style="font-size: 28px; line-height: 1.2;">Confirmed by three independent sources</span>
+          <span class="spec-row__meta">28 / 1.25 · page titles, brand</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-row__name">xl</span>
+          <span class="spec-row__sample" style="font-size: 22px; line-height: 1.3;">Claim scoring methodology</span>
+          <span class="spec-row__meta">22 / 1.3 · section headings</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-row__name">lg</span>
+          <span class="spec-row__sample" style="font-size: 18px; line-height: 1.4;">Inspector · Source timeline</span>
+          <span class="spec-row__meta">18 / 1.4 · panel headings</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-row__name">md</span>
+          <span class="spec-row__sample" style="font-size: 15px; line-height: 1.55;">Flagged overnight by two ingestion agents. Awaiting editor sign-off.</span>
+          <span class="spec-row__meta">15 / 1.55 · detail prose</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-row__name">base</span>
+          <span class="spec-row__sample" style="font-size: 13px; line-height: 1.55;">Default interface size — used for table body, form controls, navigation.</span>
+          <span class="spec-row__meta">13 / 1.55 · default UI</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-row__name">sm</span>
+          <span class="spec-row__sample" style="font-size: 12px; line-height: 1.4;">Metadata row — source, author, confidence score, ingest time.</span>
+          <span class="spec-row__meta">12 / 1.4 · metadata, captions</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-row__name">xs</span>
+          <span class="spec-row__sample" style="font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted);">Axis · Severity · Threshold</span>
+          <span class="spec-row__meta">10 · badge text, axis labels</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Prose — artifacts</p>
+    <div class="frame">
+      <div class="frame__body" style="background: var(--bg); padding: var(--space-8);">
+        <article class="prose-sample">
+          <h1>The claim aged out of verifiability.</h1>
+          <p>Three weeks ago, a deputy press officer in Ankara referenced a demographic figure during a briefing. It was picked up by two wire services and, by the time it reached the third, had dropped its qualifier. The number kept the authority of the original source while losing every caveat the briefing attached to it.</p>
+          <p>This is not a failure of a single reporter. It is a failure of the ecosystem to preserve provenance at the speed it moves. <em>barnowl</em> exists to keep the qualifier attached.</p>
+        </article>
+      </div>
+      <div class="frame__caption"><span>Newsreader 19px / 1.65 · max-width 60ch</span><code>font-prose · leading-relaxed</code></div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Numerals — tabular by default</p>
+    <div class="number-grid">
+      <div class="number-grid__cell">
+        <div class="number-grid__num">0.7284</div>
+        <div class="number-grid__label">Confidence — high band</div>
+      </div>
+      <div class="number-grid__cell">
+        <div class="number-grid__num">12,487</div>
+        <div class="number-grid__label">Flagged events · 30d</div>
+      </div>
+      <div class="number-grid__cell">
+        <div class="number-grid__num">+14.2%</div>
+        <div class="number-grid__label">Δ vs. prior window</div>
+      </div>
+      <div class="number-grid__cell">
+        <div class="number-grid__num">02:14:08</div>
+        <div class="number-grid__label">Ingestion latency p95</div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

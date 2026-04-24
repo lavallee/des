@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>barnowl — UI kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; }
+  .app { display: grid; grid-template-columns: 220px 1fr 360px; grid-template-rows: 48px 1fr; min-height: 100vh; }
+  .hdr {
+    grid-column: 1/-1; display: flex; align-items: center; gap: 16px;
+    padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .hdr__brand { font-family: var(--font-serif); font-style: italic; font-size: 20px; color: var(--text); }
+  .hdr__meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.03em; }
+  .hdr__search { flex: 1; max-width: 420px; margin: 0 auto; display: flex; align-items: center; gap: 8px; padding: 0 12px; height: 28px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface-inset); font-size: 12px; color: var(--text-dim); }
+  .hdr__search svg { width: 14px; height: 14px; }
+  .hdr__search .kbd { margin-left: auto; display: inline-flex; align-items: center; height: 18px; padding: 0 5px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 3px; background: var(--surface-raised); color: var(--text-muted); font-family: var(--font-mono); font-size: 10px; }
+  .hdr__user { width: 28px; height: 28px; border-radius: 50%; background: var(--accent-surface); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
+
+  .sb { border-right: 1px solid var(--border); padding: 12px 8px; background: var(--surface); position: sticky; top: 48px; height: calc(100vh - 48px); overflow-y: auto; }
+  .sb__section { padding: 8px 10px 4px; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; }
+  .sb__item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 6px; font-size: 13px; color: var(--text-muted); cursor: pointer; height: 28px; }
+  .sb__item svg { width: 14px; height: 14px; }
+  .sb__item:hover { background: var(--surface-raised); color: var(--text); }
+  .sb__item.is-active { background: var(--accent-surface); color: var(--accent-text); border-left: 2px solid var(--accent); padding-left: 8px; }
+  .sb__item .count { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); }
+
+  .main { padding: 20px 24px; min-width: 0; overflow-x: hidden; }
+  .main__head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+  .main__crumb { font-size: 12px; color: var(--text-muted); }
+  .main__crumb .sep { color: var(--text-dim); margin: 0 6px; }
+  .main__title { font-family: var(--font-serif); font-style: italic; font-size: 28px; line-height: 1; color: var(--text); }
+  .main__sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat { padding: 12px 16px; border: 1px solid var(--border-subtle); border-radius: 6px; background: var(--surface-raised); }
+  .stat__lbl { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; margin-bottom: 6px; }
+  .stat__val { font-family: var(--font-mono); font-size: 22px; font-variant-numeric: tabular-nums; color: var(--text); letter-spacing: -0.01em; }
+  .stat__dlt { font-family: var(--font-mono); font-size: 11px; margin-top: 2px; color: var(--success); }
+  .stat__dlt.dn { color: var(--error); }
+
+  .filterbar {
+    display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+    border: 1px solid var(--border); border-radius: 6px; background: var(--surface);
+    margin-bottom: 12px;
+  }
+  .filterbar .sp { flex: 1; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 9999px; border: 1px solid var(--border); background: var(--surface-raised); color: var(--text-muted); font-size: 11px; }
+  .pill.is-on { background: var(--accent-surface); color: var(--accent-text); border-color: var(--accent); }
+  .pill svg { width: 12px; height: 12px; }
+
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--surface); }
+  .tbl th { text-align: left; font-weight: 500; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); padding: 8px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; background: var(--surface); }
+  .tbl td { padding: 8px 12px; border-bottom: 1px solid var(--border-subtle); color: var(--text); font-size: 13px; vertical-align: middle; line-height: 1.3; }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr.is-sel td { background: var(--accent-surface); }
+  .tbl tr:hover td { background: var(--surface-raised); }
+  .tbl tr.is-sel:hover td { background: var(--accent-surface); }
+  .tbl .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+  .tbl .muted { color: var(--text-muted); }
+  .tbl .id { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+
+  .badge { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 3px; font-size: 10px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1; }
+  .badge--ok { background: var(--success-subtle); color: var(--success); border: 1px solid var(--success); }
+  .badge--warn { background: var(--warning-subtle); color: var(--warning); border: 1px solid var(--warning); }
+  .badge--err { background: var(--error-subtle); color: var(--error); border: 1px solid var(--error); }
+  .badge--neutral { background: var(--surface-raised); color: var(--text-muted); border: 1px solid var(--border); }
+
+  .scoredot { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .scoredot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+  .scoredot.hi::before { background: var(--score-hi); }
+  .scoredot.mid::before { background: var(--score-mid); }
+  .scoredot.lo::before { background: var(--score-lo); }
+  .scoredot.hi { color: var(--score-hi); }
+  .scoredot.mid { color: var(--score-mid); }
+  .scoredot.lo { color: var(--score-lo); }
+
+  .insp { border-left: 1px solid var(--border); background: var(--surface); padding: 20px; position: sticky; top: 48px; height: calc(100vh - 48px); overflow-y: auto; }
+  .insp__kicker { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; font-family: var(--font-mono); }
+  .insp__title { font-family: var(--font-serif); font-style: italic; font-size: 22px; line-height: 1.2; color: var(--text); margin: 6px 0 4px; }
+  .insp__id { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .insp__actions { display: flex; gap: 6px; margin: 16px 0; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border: 1px solid transparent; border-radius: 6px; font-family: var(--font-sans); font-size: 12px; font-weight: 500; cursor: pointer; }
+  .btn--primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn--secondary { background: var(--surface-raised); border-color: var(--border-strong); color: var(--text); }
+  .btn--ghost { color: var(--text-muted); background: transparent; }
+  .btn svg { width: 12px; height: 12px; }
+
+  .insp__sec { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-subtle); }
+  .insp__label { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; margin-bottom: 6px; }
+
+  .scorebox { border: 1px solid var(--border); border-radius: 6px; padding: 12px; background: var(--bg); }
+  .scorebox__top { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .scorebox__num { font-family: var(--font-mono); font-size: 28px; font-variant-numeric: tabular-nums; color: var(--score-hi); letter-spacing: -0.02em; }
+  .scorebox__band { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--score-hi); font-weight: 500; }
+  .scorebox__bar { height: 5px; background: var(--surface-inset); border-radius: 3px; overflow: hidden; border: 1px solid var(--border-subtle); position: relative; }
+  .scorebox__bar::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 84%; background: var(--score-hi); }
+  .scorebox__lbl { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); margin-top: 4px; }
+
+  .timeline { position: relative; padding-left: 16px; }
+  .timeline::before { content: ''; position: absolute; left: 4px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .tli { position: relative; padding: 6px 0 6px 12px; }
+  .tli::before { content: ''; position: absolute; left: -12px; top: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+  .tli.is-past::before { border-color: var(--text-dim); }
+  .tli__time { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); }
+  .tli__body { font-size: 12px; color: var(--text); }
+
+  .quote { margin-top: 16px; padding: 12px 14px; border-left: 3px solid var(--accent); background: var(--surface-inset); font-family: var(--font-prose); font-style: italic; font-size: 14px; line-height: 1.5; color: var(--text); border-radius: 0 6px 6px 0; }
+  .quote small { display: block; font-family: var(--font-sans); font-style: normal; font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hdr">
+    <a class="hdr__brand" href="#">barnowl</a>
+    <span class="hdr__meta">claims · 2026-04-22 · <span style="color:var(--accent-text)">live</span></span>
+    <div class="hdr__search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Jump to claim, source, or action</span>
+      <span class="kbd">⌘K</span>
+    </div>
+    <div class="hdr__user">KP</div>
+  </header>
+
+  <aside class="sb">
+    <div class="sb__section">Claims</div>
+    <div class="sb__item is-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>Incoming<span class="count">214</span></div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Confirmed<span class="count">1,284</span></div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Needs review<span class="count">38</span></div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>Rejected<span class="count">412</span></div>
+
+    <div class="sb__section" style="margin-top: 12px;">Sources</div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>Wire feeds<span class="count">6</span></div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>Primary docs<span class="count">92</span></div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>Social<span class="count">48</span></div>
+
+    <div class="sb__section" style="margin-top: 12px;">Saved views</div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>MENA · last 7d</div>
+    <div class="sb__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>Statistical · 0.40–0.70</div>
+  </aside>
+
+  <main class="main">
+    <div class="main__head">
+      <div class="main__crumb">Claims<span class="sep">›</span>Incoming<span class="sep">›</span>Today</div>
+    </div>
+    <h1 class="main__title">Incoming — needs triage</h1>
+    <p class="main__sub">214 claims ingested in the last 24h. 38 require editor review; the rest have been auto-scored.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="stat__lbl">Ingested · 24h</div><div class="stat__val">214</div><div class="stat__dlt">▲ 12.4% vs prior</div></div>
+      <div class="stat"><div class="stat__lbl">Auto-confirmed</div><div class="stat__val">132</div><div class="stat__dlt" style="color:var(--text-muted)">61.7% of ingested</div></div>
+      <div class="stat"><div class="stat__lbl">Needs review</div><div class="stat__val">38</div><div class="stat__dlt dn">▲ 4 since 09:00</div></div>
+      <div class="stat"><div class="stat__lbl">Median confidence</div><div class="stat__val">0.72</div><div class="stat__dlt">▲ 0.04</div></div>
+    </div>
+
+    <div class="filterbar">
+      <span class="pill is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>today</span>
+      <span class="pill">wire · <span style="color:var(--text)">6</span></span>
+      <span class="pill">region · all</span>
+      <span class="pill">conf · ≥ 0.40</span>
+      <span class="sp"></span>
+      <span class="pill" style="cursor:pointer;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>add filter</span>
+    </div>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width:80px;">ID</th>
+          <th>Claim</th>
+          <th style="width:100px;">Source</th>
+          <th style="width:60px;">Region</th>
+          <th style="width:100px; text-align: right;">Confidence ▼</th>
+          <th style="width:110px;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="id">TR-04-017</td>
+          <td>Deputy press officer cited 2.3M internal displacement figure</td>
+          <td class="muted">Reuters</td>
+          <td class="muted">TR</td>
+          <td class="num"><span class="scoredot hi">0.84</span></td>
+          <td><span class="badge badge--ok">Confirmed</span></td>
+        </tr>
+        <tr class="is-sel">
+          <td class="id">UK-04-091</td>
+          <td>Treasury draft mentions $4.2B subsidy withdrawal ahead of Q3 statement</td>
+          <td class="muted">FT</td>
+          <td class="muted">UK</td>
+          <td class="num"><span class="scoredot mid">0.68</span></td>
+          <td><span class="badge badge--warn">Needs review</span></td>
+        </tr>
+        <tr>
+          <td class="id">US-04-204</td>
+          <td>Unverified claim about central bank policy shift spreading on X</td>
+          <td class="muted">X / social</td>
+          <td class="muted">US</td>
+          <td class="num"><span class="scoredot lo">0.32</span></td>
+          <td><span class="badge badge--err">Rejected</span></td>
+        </tr>
+        <tr>
+          <td class="id">FR-04-033</td>
+          <td>Figure re-used from 2019 report without updated caveat</td>
+          <td class="muted">AP</td>
+          <td class="muted">FR</td>
+          <td class="num"><span class="scoredot mid">0.52</span></td>
+          <td><span class="badge badge--warn">Needs review</span></td>
+        </tr>
+        <tr>
+          <td class="id">DE-04-112</td>
+          <td>Primary-source transcript matches wire summary on GDP revision</td>
+          <td class="muted">Bloomberg</td>
+          <td class="muted">DE</td>
+          <td class="num"><span class="scoredot hi">0.91</span></td>
+          <td><span class="badge badge--ok">Confirmed</span></td>
+        </tr>
+        <tr>
+          <td class="id">JP-04-058</td>
+          <td>Ministry spokesperson declines to confirm leaked emissions target</td>
+          <td class="muted">Nikkei</td>
+          <td class="muted">JP</td>
+          <td class="num"><span class="scoredot mid">0.47</span></td>
+          <td><span class="badge badge--warn">Needs review</span></td>
+        </tr>
+        <tr>
+          <td class="id">BR-04-019</td>
+          <td>Presidential aide’s figure on reserves contradicts two prior filings</td>
+          <td class="muted">Folha</td>
+          <td class="muted">BR</td>
+          <td class="num"><span class="scoredot lo">0.28</span></td>
+          <td><span class="badge badge--err">Rejected</span></td>
+        </tr>
+        <tr>
+          <td class="id">IN-04-260</td>
+          <td>RBI circular referenced in wire but not yet published on bank site</td>
+          <td class="muted">Reuters</td>
+          <td class="muted">IN</td>
+          <td class="num"><span class="scoredot mid">0.61</span></td>
+          <td><span class="badge badge--neutral">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <aside class="insp">
+    <div class="insp__kicker">UK · Inspector</div>
+    <h2 class="insp__title">Treasury draft mentions $4.2B subsidy withdrawal ahead of Q3 statement</h2>
+    <div class="insp__id">claim · UK-04-091 · FT · 13:47:05Z</div>
+
+    <div class="insp__actions">
+      <button class="btn btn--primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Confirm</button>
+      <button class="btn btn--secondary">Reject</button>
+      <button class="btn btn--ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+    </div>
+
+    <div class="insp__sec" style="border-top:none; padding-top:0;">
+      <div class="insp__label">Confidence</div>
+      <div class="scorebox">
+        <div class="scorebox__top"><span class="scorebox__num" style="color: var(--score-mid); ">0.68</span><span class="scorebox__band" style="color:var(--score-mid);">Mid · review</span></div>
+        <div class="scorebox__bar"><div style="position:absolute;left:0;top:0;bottom:0;width:68%;background:var(--score-mid)"></div></div>
+        <div class="scorebox__lbl"><span>0.00</span><span style="color:var(--text-muted)">threshold · 0.70</span><span>1.00</span></div>
+      </div>
+    </div>
+
+    <div class="insp__sec">
+      <div class="insp__label">Quoted fragment</div>
+      <div class="quote">"…the draft, circulated to department heads on Tuesday, allocates a £4.2bn rollback of fuel subsidies beginning in the third quarter."<small>FT · Niamh Fallon · 2026-04-22</small></div>
+    </div>
+
+    <div class="insp__sec">
+      <div class="insp__label">Timeline</div>
+      <div class="timeline">
+        <div class="tli"><div class="tli__time">13:47:05Z · today</div><div class="tli__body">Ingested from FT — initial score 0.44</div></div>
+        <div class="tli"><div class="tli__time">13:52:19Z · today</div><div class="tli__body">Matched against Reuters preview · +0.14</div></div>
+        <div class="tli"><div class="tli__time">14:01:44Z · today</div><div class="tli__body">Waiting on primary-source confirmation</div></div>
+        <div class="tli is-past"><div class="tli__time">— pending</div><div class="tli__body" style="color: var(--text-muted)">Treasury publication window · expected 15:30Z</div></div>
+      </div>
+    </div>
+  </aside>
+</div>
+</body>
+</html>

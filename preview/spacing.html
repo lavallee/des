@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spacing &amp; shape — Lyra Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<link rel="stylesheet" href="_preview.css">
+<style>
+  .space-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .space-row:first-child { border-top: none; }
+  .space-row__name { font-family: var(--font-mono); font-size: 11px; color: var(--text); }
+  .space-row__bar { height: 16px; background: var(--accent); border-radius: 2px; }
+  .space-row__val { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-align: right; }
+
+  .radius-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+  .radius-card {
+    border: 1px solid var(--border);
+    padding: var(--space-5);
+    background: var(--surface);
+  }
+  .radius-card__demo {
+    height: 72px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-strong);
+    margin-bottom: var(--space-3);
+  }
+  .radius-card__name { font-family: var(--font-mono); font-size: 11px; color: var(--text); font-weight: var(--weight-medium); }
+  .radius-card__val { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+  .radius-card__usage { font-size: 11px; color: var(--text-muted); margin-top: var(--space-1); }
+
+  .shadow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); padding: var(--space-6); background: var(--bg); }
+  .shadow-card {
+    height: 96px;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  .layout-diagram {
+    display: grid;
+    grid-template-columns: 60px 1fr 100px;
+    grid-template-rows: 32px 280px;
+    height: 312px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .ld-header {
+    grid-column: 1 / -1;
+    background: var(--surface-raised);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .ld-sidebar, .ld-main, .ld-inspector {
+    padding: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+  .ld-sidebar { border-right: 1px solid var(--border); background: var(--surface); }
+  .ld-main { background: var(--bg); display: flex; align-items: center; justify-content: center; color: var(--text-dim); }
+  .ld-inspector { border-left: 1px solid var(--border); background: var(--surface); }
+  .ld-dim { font-family: var(--font-mono); font-size: 10px; color: var(--accent-text); display: block; margin-top: 2px; }
+
+  .density-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .density-box {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    background: var(--surface);
+  }
+  .density-box__label { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: var(--space-3); font-family: var(--font-mono); }
+  .density-box__sample {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
+  .density-box__sample strong { color: var(--text); font-weight: var(--weight-medium); }
+</style>
+</head>
+<body>
+<div class="preview">
+  <p class="preview-kicker">Spacing, shape &amp; elevation</p>
+  <h1 class="preview-title">A 4px grid, two densities</h1>
+  <p class="preview-sub">Ten named spacing stops on a 4px base. Four radii. Four shadows used sparingly — borders carry most of the elevation work. Instrument density is compact and keyboard-driven; artifact density breathes for reading.</p>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Spacing scale · 4px base</p>
+    <div class="frame">
+      <div style="padding: var(--space-5) var(--space-6);">
+        <div class="space-row"><span class="space-row__name">--space-1</span><div class="space-row__bar" style="width: 4px;"></div><span class="space-row__val">4px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-2</span><div class="space-row__bar" style="width: 8px;"></div><span class="space-row__val">8px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-3</span><div class="space-row__bar" style="width: 12px;"></div><span class="space-row__val">12px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-4</span><div class="space-row__bar" style="width: 16px;"></div><span class="space-row__val">16px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-5</span><div class="space-row__bar" style="width: 20px;"></div><span class="space-row__val">20px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-6</span><div class="space-row__bar" style="width: 24px;"></div><span class="space-row__val">24px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-8</span><div class="space-row__bar" style="width: 32px;"></div><span class="space-row__val">32px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-10</span><div class="space-row__bar" style="width: 40px;"></div><span class="space-row__val">40px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-12</span><div class="space-row__bar" style="width: 48px;"></div><span class="space-row__val">48px</span></div>
+        <div class="space-row"><span class="space-row__name">--space-16</span><div class="space-row__bar" style="width: 64px;"></div><span class="space-row__val">64px</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Radius</p>
+    <div class="radius-grid">
+      <div class="radius-card">
+        <div class="radius-card__demo" style="border-radius: 3px;"></div>
+        <div class="radius-card__name">--radius-sm</div>
+        <div class="radius-card__val">3px</div>
+        <div class="radius-card__usage">Score badges · inline code</div>
+      </div>
+      <div class="radius-card">
+        <div class="radius-card__demo" style="border-radius: 6px;"></div>
+        <div class="radius-card__name">--radius-md</div>
+        <div class="radius-card__val">6px</div>
+        <div class="radius-card__usage">Cards · panels · inputs · buttons</div>
+      </div>
+      <div class="radius-card">
+        <div class="radius-card__demo" style="border-radius: 10px;"></div>
+        <div class="radius-card__name">--radius-lg</div>
+        <div class="radius-card__val">10px</div>
+        <div class="radius-card__usage">Modals · command palette</div>
+      </div>
+      <div class="radius-card">
+        <div class="radius-card__demo" style="border-radius: 9999px;"></div>
+        <div class="radius-card__name">--radius-full</div>
+        <div class="radius-card__val">9999px</div>
+        <div class="radius-card__usage">Pills · chips — nothing else</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Elevation — borders first, shadows sparingly</p>
+    <div class="frame">
+      <div class="shadow-grid">
+        <div class="shadow-card" style="box-shadow: var(--shadow-sm);">--shadow-sm</div>
+        <div class="shadow-card" style="box-shadow: var(--shadow-md);">--shadow-md</div>
+        <div class="shadow-card" style="box-shadow: var(--shadow-lg);">--shadow-lg</div>
+        <div class="shadow-card" style="box-shadow: var(--shadow-overlay);">--shadow-overlay</div>
+      </div>
+      <div class="frame__caption"><span>Reserved for tooltips, dropdowns, modals, palette. Never on cards.</span><code>shadow-sm → overlay</code></div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Layout tokens</p>
+    <div class="layout-diagram">
+      <div class="ld-header">Header · 48px <span style="margin-left:auto; color: var(--accent-text)">--header-height</span></div>
+      <div class="ld-sidebar">Sidebar<span class="ld-dim">220px</span><span style="color:var(--text-dim)">--sidebar-width</span></div>
+      <div class="ld-main">Main · fluid, capped at 1400px<span class="ld-dim">--content-max</span></div>
+      <div class="ld-inspector">Inspector<span class="ld-dim">360px</span><span style="color:var(--text-dim)">--inspector-width</span></div>
+    </div>
+    <p style="font-size: 11px; color: var(--text-muted); margin-top: var(--space-3); font-family: var(--font-mono);">Prose widths: --prose-max 680px · --prose-wide 940px (figures).</p>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Density</p>
+    <div class="density-row">
+      <div class="density-box">
+        <div class="density-box__label">Instrument · compact</div>
+        <div class="density-box__sample">
+          Table row height — <strong>32–34px</strong><br>
+          Sidebar nav item — <strong>28–30px</strong><br>
+          Cell padding — <strong>4–6px vertical</strong><br>
+          Gap between components — <strong>16px</strong><br>
+          Gap within a component — <strong>8px</strong>
+        </div>
+      </div>
+      <div class="density-box">
+        <div class="density-box__label">Artifact · comfortable</div>
+        <div class="density-box__sample">
+          Paragraph margin-bottom — <strong>16px</strong><br>
+          Card padding — <strong>16–20px</strong><br>
+          Prose max-width — <strong>680px (~65–75ch)</strong><br>
+          Lede font-size — <strong>19px / 1.65</strong><br>
+          H1 — <strong>clamp(28, 4vw, 48)</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

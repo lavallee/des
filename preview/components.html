@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Components — Lyra Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<link rel="stylesheet" href="_preview.css">
+<style>
+  .specimen {
+    padding: var(--space-6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+  .specimen + .specimen { margin-top: var(--space-4); }
+  .specimen__label {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-4);
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 32px;
+    padding: 0 var(--space-3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+  }
+  .btn--primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn--primary:hover { background: var(--accent-muted); border-color: var(--accent-muted); }
+  .btn--secondary { background: var(--surface-raised); border-color: var(--border-strong); }
+  .btn--secondary:hover { background: var(--border); }
+  .btn--ghost { color: var(--text-muted); }
+  .btn--ghost:hover { background: var(--surface-raised); color: var(--text); }
+  .btn--danger { background: var(--error-subtle); border-color: var(--error); color: var(--error); }
+  .btn--sm { height: 26px; padding: 0 var(--space-2); font-size: 12px; }
+  .btn--lg { height: 40px; padding: 0 var(--space-4); font-size: 15px; }
+  .btn svg { width: 14px; height: 14px; stroke-width: 1.75; }
+
+  /* ── Badges / tags ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    height: 20px;
+    padding: 0 var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+    line-height: 1;
+  }
+  .badge--success { background: var(--success-subtle); color: var(--success); border: 1px solid var(--success); }
+  .badge--warning { background: var(--warning-subtle); color: var(--warning); border: 1px solid var(--warning); }
+  .badge--error   { background: var(--error-subtle);   color: var(--error);   border: 1px solid var(--error); }
+  .badge--info    { background: var(--info-subtle);    color: var(--info);    border: 1px solid var(--info); }
+  .badge--neutral { background: var(--surface-raised); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge--solid-success { background: var(--success); color: #07220f; border: none; }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+  }
+
+  /* ── Inputs ── */
+  .input {
+    width: 100%;
+    height: 32px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+  }
+  .input::placeholder { color: var(--text-dim); }
+  .input:focus { outline: 2px solid var(--border-focus); outline-offset: -1px; border-color: var(--border-focus); }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    gap: var(--space-2);
+  }
+  .input-group svg { width: 14px; height: 14px; color: var(--text-dim); }
+  .input-group input { border: none; background: transparent; outline: none; flex: 1; color: var(--text); font-size: var(--text-base); }
+  .input-group .kbd { margin-left: auto; }
+
+  .kbd {
+    display: inline-flex;
+    align-items: center;
+    height: 18px;
+    padding: 0 5px;
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    background: var(--surface-raised);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  /* ── Stat cards ── */
+  .stat-card {
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
+  }
+  .stat-card__label {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: var(--weight-medium);
+    margin-bottom: var(--space-2);
+  }
+  .stat-card__value {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: var(--weight-medium);
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .stat-card__delta {
+    margin-top: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .stat-card__delta.is-up { color: var(--success); }
+  .stat-card__delta.is-down { color: var(--error); }
+
+  /* ── Table ── */
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-base);
+  }
+  .tbl th {
+    text-align: left;
+    font-weight: var(--weight-medium);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .tbl td {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text);
+    vertical-align: middle;
+  }
+  .tbl tr:hover td { background: var(--surface-raised); }
+  .tbl .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+  .tbl .muted { color: var(--text-muted); }
+  .tbl .id { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+
+  /* ── Callout ── */
+  .callout {
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    display: flex;
+    gap: var(--space-3);
+  }
+  .callout--info { border-left-color: var(--info); background: var(--info-subtle); }
+  .callout--warning { border-left-color: var(--warning); background: var(--warning-subtle); }
+  .callout svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+  .callout strong { font-weight: var(--weight-medium); display: block; margin-bottom: 2px; }
+  .callout p { margin: 0; color: var(--text-muted); }
+
+  /* ── Progress bar (score) ── */
+  .score-bar {
+    position: relative;
+    height: 6px;
+    background: var(--surface-inset);
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+  .score-bar__fill { position: absolute; top: 0; left: 0; bottom: 0; border-radius: 3px; }
+
+  /* ── Command palette ── */
+  .palette {
+    width: 520px;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .palette__search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    color: var(--text);
+  }
+  .palette__search svg { width: 16px; height: 16px; color: var(--text-dim); }
+  .palette__search input { border: none; background: transparent; outline: none; flex: 1; color: var(--text); font-size: 15px; font-family: var(--font-sans); }
+  .palette__group {
+    padding: var(--space-2) 0;
+  }
+  .palette__group-label {
+    padding: var(--space-1) var(--space-4);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: var(--weight-medium);
+  }
+  .palette__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-base);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .palette__item svg { width: 14px; height: 14px; color: var(--text-muted); }
+  .palette__item:hover, .palette__item.is-selected { background: var(--accent-surface); }
+  .palette__item.is-selected { color: var(--accent-text); }
+  .palette__item .kbd { margin-left: auto; }
+
+  /* ── Timeline row ── */
+  .timeline {
+    position: relative;
+    padding-left: var(--space-5);
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline__item {
+    position: relative;
+    padding: var(--space-2) 0;
+    padding-left: var(--space-4);
+  }
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    left: -12px; top: 14px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+  }
+  .timeline__time {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .timeline__body { font-size: var(--text-base); color: var(--text); }
+  .timeline__meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="preview">
+  <p class="preview-kicker">Components</p>
+  <h1 class="preview-title">The core vocabulary</h1>
+  <p class="preview-sub">Every component below pulls exclusively from semantic tokens. None of them invent a color. The goal is a small set of unambiguously-named parts that compose into dense, keyboard-driven instruments.</p>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Buttons</p>
+    <div class="specimen">
+      <div class="specimen__label">Hierarchy</div>
+      <div class="row">
+        <button class="btn btn--primary">Confirm claim</button>
+        <button class="btn btn--secondary">Open in editor</button>
+        <button class="btn btn--ghost">Skip</button>
+        <button class="btn btn--danger">Reject</button>
+        <button class="btn btn--primary" disabled style="opacity: 0.5; cursor: not-allowed;">Disabled</button>
+      </div>
+      <div class="specimen__label" style="margin-top: var(--space-5);">With leading glyph</div>
+      <div class="row">
+        <button class="btn btn--primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Approve</button>
+        <button class="btn btn--secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>Edit note</button>
+        <button class="btn btn--ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>Export</button>
+      </div>
+      <div class="specimen__label" style="margin-top: var(--space-5);">Sizes</div>
+      <div class="row">
+        <button class="btn btn--primary btn--sm">Small · 26px</button>
+        <button class="btn btn--primary">Default · 32px</button>
+        <button class="btn btn--primary btn--lg">Large · 40px</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Badges &amp; tags</p>
+    <div class="specimen">
+      <div class="specimen__label">Status badges</div>
+      <div class="row">
+        <span class="badge badge--success">Confirmed</span>
+        <span class="badge badge--warning">Needs review</span>
+        <span class="badge badge--error">Rejected</span>
+        <span class="badge badge--info">Running</span>
+        <span class="badge badge--neutral">Draft</span>
+        <span class="badge badge--neutral">Archived</span>
+      </div>
+      <div class="specimen__label" style="margin-top: var(--space-5);">Filter tags</div>
+      <div class="row">
+        <span class="tag">claim-type · statistical</span>
+        <span class="tag">source · wire</span>
+        <span class="tag">region · MENA</span>
+        <span class="tag">confidence ≥ 0.70</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Inputs</p>
+    <div class="specimen">
+      <div class="grid-2">
+        <div class="col">
+          <label style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase;">Search</label>
+          <div class="input-group">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input placeholder="Find a claim or source…">
+            <span class="kbd">⌘K</span>
+          </div>
+        </div>
+        <div class="col">
+          <label style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase;">Ingest URL</label>
+          <input class="input" value="https://wire.reuters.com/feed/2026-04-22">
+        </div>
+        <div class="col">
+          <label style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase;">Focused</label>
+          <input class="input" value="barnowl-2026-q2" style="outline: 2px solid var(--border-focus); outline-offset: -1px; border-color: var(--border-focus);">
+        </div>
+        <div class="col">
+          <label style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase;">Disabled</label>
+          <input class="input" value="read-only snapshot" disabled style="opacity: 0.5;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Stat cards</p>
+    <div class="grid-4">
+      <div class="stat-card">
+        <div class="stat-card__label">Claims confirmed</div>
+        <div class="stat-card__value">1,284</div>
+        <div class="stat-card__delta is-up">▲ 12.4% · vs. prior week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Pending review</div>
+        <div class="stat-card__value">214</div>
+        <div class="stat-card__delta is-down">▼ 3.1% · vs. prior week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Ingest latency p95</div>
+        <div class="stat-card__value">02:14</div>
+        <div class="stat-card__delta is-up" style="color: var(--text-muted);">· within SLO</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Median confidence</div>
+        <div class="stat-card__value">0.72</div>
+        <div class="stat-card__delta is-up">▲ 0.04</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Table — data density</p>
+    <div class="specimen" style="padding: 0; overflow: hidden;">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Claim</th>
+            <th>Source</th>
+            <th>Region</th>
+            <th style="text-align: right;">Confidence</th>
+            <th style="text-align: right;">Ingested</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Deputy press officer cited 2.3M internal displacement figure</td>
+            <td class="muted">Reuters wire</td>
+            <td class="muted">TR</td>
+            <td class="num">0.84</td>
+            <td class="num muted">14:03:22Z</td>
+            <td><span class="badge badge--success">Confirmed</span></td>
+          </tr>
+          <tr>
+            <td>Treasury draft mentions $4.2B subsidy withdrawal</td>
+            <td class="muted">FT</td>
+            <td class="muted">UK</td>
+            <td class="num">0.68</td>
+            <td class="num muted">13:47:05Z</td>
+            <td><span class="badge badge--warning">Needs review</span></td>
+          </tr>
+          <tr>
+            <td>Unverified claim about central bank policy shift</td>
+            <td class="muted">Twitter / X</td>
+            <td class="muted">US</td>
+            <td class="num">0.32</td>
+            <td class="num muted">13:41:58Z</td>
+            <td><span class="badge badge--error">Rejected</span></td>
+          </tr>
+          <tr>
+            <td>Figure re-used from 2019 report without updated caveat</td>
+            <td class="muted">AP</td>
+            <td class="muted">FR</td>
+            <td class="num">0.52</td>
+            <td class="num muted">13:22:11Z</td>
+            <td><span class="badge badge--warning">Needs review</span></td>
+          </tr>
+          <tr>
+            <td>Primary-source transcript matches wire summary</td>
+            <td class="muted">Bloomberg</td>
+            <td class="muted">DE</td>
+            <td class="num">0.91</td>
+            <td class="num muted">12:58:40Z</td>
+            <td><span class="badge badge--success">Confirmed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Callouts</p>
+    <div class="col">
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--info)"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <div><strong>Score bands are not a gradient.</strong><p>Bucket continuous confidence values into three states. Thresholds default to ≥0.70 / ≥0.40 / &lt;0.40 and are documented per tool.</p></div>
+      </div>
+      <div class="callout callout--warning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--warning)"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        <div><strong>Never use a modal for something the user wants to read alongside the list.</strong><p>Use an inspector panel instead. It opens without navigating away and keeps the selected row in context.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Score bar — in-cell</p>
+    <div class="specimen">
+      <table class="tbl">
+        <thead><tr><th>Claim</th><th style="width: 200px; text-align: left;">Confidence</th><th style="text-align: right;">Score</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Primary-source transcript matches wire summary</td>
+            <td><div class="score-bar"><div class="score-bar__fill" style="width: 91%; background: var(--score-hi);"></div></div></td>
+            <td class="num" style="color: var(--score-hi)">0.91</td>
+          </tr>
+          <tr>
+            <td>Figure re-used from 2019 report without updated caveat</td>
+            <td><div class="score-bar"><div class="score-bar__fill" style="width: 52%; background: var(--score-mid);"></div></div></td>
+            <td class="num" style="color: var(--score-mid)">0.52</td>
+          </tr>
+          <tr>
+            <td>Unverified claim about central bank policy shift</td>
+            <td><div class="score-bar"><div class="score-bar__fill" style="width: 32%; background: var(--score-lo);"></div></div></td>
+            <td class="num" style="color: var(--score-lo)">0.32</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Command palette</p>
+    <div class="specimen" style="background: var(--bg); padding: var(--space-10); display: flex; justify-content: center;">
+      <div class="palette">
+        <div class="palette__search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input placeholder="Jump to a claim, source, or action…" value="conf">
+          <span class="kbd">esc</span>
+        </div>
+        <div class="palette__group">
+          <div class="palette__group-label">Actions</div>
+          <div class="palette__item is-selected">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Confirm selected claim
+            <span class="kbd">⌘ ↵</span>
+          </div>
+          <div class="palette__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+            Reject with reason
+            <span class="kbd">⌘ R</span>
+          </div>
+          <div class="palette__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+            Edit confidence threshold…
+          </div>
+        </div>
+        <div class="palette__group" style="border-top: 1px solid var(--border-subtle);">
+          <div class="palette__group-label">Recent</div>
+          <div class="palette__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+            Claim · TR-2026-04-04-017
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <p class="preview-section__label">Timeline — event history</p>
+    <div class="specimen">
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__time">14:03:22Z · today</div>
+          <div class="timeline__body">Claim confirmed by editor <span style="color: var(--text-muted)">· K. Park</span></div>
+          <div class="timeline__meta">Score bumped 0.68 → 0.84 after primary-source match.</div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__time">13:47:05Z · today</div>
+          <div class="timeline__body">Second wire service corroborated</div>
+          <div class="timeline__meta">Reuters + Bloomberg concur on 2.3M figure.</div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__time">09:14:11Z · today</div>
+          <div class="timeline__body">Ingested from wire</div>
+          <div class="timeline__meta">Initial confidence 0.44 · flagged for review.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

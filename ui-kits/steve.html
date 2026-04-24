@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<title>steve — UI kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+  .hdr { position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .hdr__wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; height: 56px; display: flex; align-items: center; gap: 24px; }
+  .hdr__brand { font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--text); text-decoration: none; }
+  .hdr__nav { display: flex; gap: 20px; margin-left: auto; }
+  .hdr__nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+  .hdr__nav a.is-active { color: var(--text); }
+
+  .page { max-width: 1100px; margin: 0 auto; padding: 48px 32px 64px; }
+  .kicker { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 12px; }
+  .masthead-title { font-family: var(--font-prose); font-weight: 400; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.015em; color: var(--text); max-width: 20ch; margin: 0 0 16px; }
+  .deck { font-family: var(--font-prose); font-style: italic; font-size: 20px; line-height: 1.5; color: var(--text-dim); max-width: 50ch; margin: 0 0 24px; }
+  .meta { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); padding: 12px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .layout { display: grid; grid-template-columns: 680px 1fr; gap: 48px; margin-top: 40px; align-items: start; }
+  .prose { font-family: var(--font-prose); font-size: 19px; line-height: 1.65; color: var(--text); }
+  .prose p { margin: 0 0 20px; }
+  .prose em { font-style: italic; }
+  .prose a { color: var(--accent-text); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .dropcap::first-letter { font-size: 5em; float: left; line-height: 0.9; padding: 6px 10px 0 0; font-family: var(--font-prose); font-weight: 400; color: var(--text); }
+
+  .score-card { border: 1px solid var(--border); border-radius: 6px; padding: 20px; background: var(--surface); position: sticky; top: 80px; }
+  .score-card__head { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 12px; }
+  .score-card__big { font-family: var(--font-mono); font-size: 56px; font-variant-numeric: tabular-nums; color: var(--success); letter-spacing: -0.02em; line-height: 1; }
+  .score-card__band { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; color: var(--success); margin-top: 6px; }
+  .score-card__rule { height: 1px; background: var(--border); margin: 16px 0; }
+  .score-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; }
+  .score-row__k { color: var(--text-muted); }
+  .score-row__v { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text); }
+
+  .breakout { margin: 32px 0; padding: 24px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); max-width: 940px; margin-left: calc((680px - 940px) / 2); }
+  .breakout__cap { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 12px; }
+  .breakout__chart { height: 180px; display: flex; align-items: flex-end; gap: 4px; padding: 0 4px; }
+  .breakout__bar { flex: 1; background: var(--accent); border-radius: 2px 2px 0 0; position: relative; }
+  .breakout__bar.mid { background: var(--warning); }
+  .breakout__bar.lo { background: var(--error); }
+  .breakout__axis { display: flex; gap: 4px; padding: 8px 4px 0; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); }
+  .breakout__axis span { flex: 1; text-align: center; }
+
+  .pullquote { font-family: var(--font-prose); font-style: italic; font-size: 26px; line-height: 1.35; color: var(--text); padding: 24px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 32px 0; max-width: 32ch; }
+  .pullquote small { display: block; font-style: normal; font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-top: 12px; }
+
+  .biblio { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .biblio__head { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; }
+  .src { display: grid; grid-template-columns: 24px 1fr 80px 80px; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-subtle); font-size: 13px; align-items: baseline; }
+  .src__n { font-family: var(--font-mono); color: var(--text-dim); }
+  .src__t { color: var(--text); line-height: 1.4; }
+  .src__t em { color: var(--text-muted); font-style: normal; }
+  .src__score { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+  .src__score.hi { color: var(--success); }
+  .src__score.mid { color: var(--warning); }
+  .src__score.lo { color: var(--error); }
+  .src__date { font-family: var(--font-mono); color: var(--text-muted); font-size: 11px; text-align: right; }
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr__wrap">
+    <a class="hdr__brand" href="#">steve</a>
+    <nav class="hdr__nav">
+      <a href="#" class="is-active">Archive</a>
+      <a href="#">Methodology</a>
+      <a href="#">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <p class="kicker">Published · 2026-04-22 · MENA desk</p>
+  <h1 class="masthead-title">The claim aged out of verifiability.</h1>
+  <p class="deck">How a qualifier disappeared between Ankara, a wire desk, and the third paper that ran the number — and what it cost the record.</p>
+  <div class="meta">
+    <span>By K. Park · T. Ogunsola</span>
+    <span>8 min read</span>
+    <span>Confidence · 0.84</span>
+    <span style="margin-left:auto;">Rev. 3</span>
+  </div>
+
+  <div class="layout">
+    <article class="prose">
+      <p class="dropcap">Three weeks ago, a deputy press officer in Ankara referenced a demographic figure during a briefing. It was picked up by two wire services and, by the time it reached the third, had dropped its qualifier. The number kept the authority of the original source while losing every caveat the briefing attached to it.</p>
+
+      <p>This is not a failure of a single reporter. It is a failure of the ecosystem to preserve <em>provenance at the speed it moves</em>. <a href="#">barnowl</a> exists to keep the qualifier attached — to treat the phrase "according to internal estimates, pending verification" as part of the fact itself, not cruft to be trimmed.</p>
+
+      <div class="breakout">
+        <div class="breakout__cap">Fig. 1 · Confidence decay across re-publication · 72h window</div>
+        <div class="breakout__chart">
+          <div class="breakout__bar" style="height: 84%;"></div>
+          <div class="breakout__bar" style="height: 78%;"></div>
+          <div class="breakout__bar mid" style="height: 68%;"></div>
+          <div class="breakout__bar mid" style="height: 61%;"></div>
+          <div class="breakout__bar mid" style="height: 54%;"></div>
+          <div class="breakout__bar lo" style="height: 38%;"></div>
+          <div class="breakout__bar lo" style="height: 29%;"></div>
+          <div class="breakout__bar lo" style="height: 21%;"></div>
+        </div>
+        <div class="breakout__axis"><span>T0</span><span>+6h</span><span>+12h</span><span>+18h</span><span>+24h</span><span>+36h</span><span>+48h</span><span>+72h</span></div>
+      </div>
+
+      <p>The score on this story is 0.84 — high band, confirmed. The work to get there is not automatable. It is the patient reassembly of a sentence, word by word, against three independent transcripts and a Treasury publication that hadn't surfaced when the first wire moved.</p>
+
+      <div class="pullquote">A table is always valid. A chart is justified when it enables a comparison a table can't.<small>— Lyra Forge · design principles</small></div>
+
+      <p>The instrument defaults to a dark interface; you are reading the artifact view, and it defaults to cream. Both are generated from the same tokens. What you see is not a different system — it is the same system, printing itself for a cold reader rather than an editor on hour ten of a shift.</p>
+    </article>
+
+    <aside>
+      <div class="score-card">
+        <div class="score-card__head">Score</div>
+        <div class="score-card__big">0.84</div>
+        <div class="score-card__band">High · confirmed</div>
+        <div class="score-card__rule"></div>
+        <div class="score-row"><span class="score-row__k">Sources</span><span class="score-row__v">4</span></div>
+        <div class="score-row"><span class="score-row__k">Primary</span><span class="score-row__v">2</span></div>
+        <div class="score-row"><span class="score-row__k">Corroboration</span><span class="score-row__v">0.78</span></div>
+        <div class="score-row"><span class="score-row__k">Recency</span><span class="score-row__v">21h</span></div>
+        <div class="score-row"><span class="score-row__k">Last updated</span><span class="score-row__v">14:03Z</span></div>
+        <div class="score-card__rule"></div>
+        <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Score updates as new sources are added and recency decays. See <a href="#" style="color: var(--accent-text);">methodology</a>.</div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="biblio">
+    <div class="biblio__head">Bibliography · 4 sources</div>
+    <div class="src"><span class="src__n">01</span><span class="src__t">Fallon, N. — Treasury draft mentions $4.2B subsidy withdrawal <em>· Financial Times</em></span><span class="src__score hi">0.91</span><span class="src__date">2026-04-22</span></div>
+    <div class="src"><span class="src__n">02</span><span class="src__t">Koç, E. — Ankara briefing transcript, pp. 14–18 <em>· primary source</em></span><span class="src__score hi">0.88</span><span class="src__date">2026-04-21</span></div>
+    <div class="src"><span class="src__n">03</span><span class="src__t">Reuters wire desk — Updated summary pulled 13:52Z <em>· wire</em></span><span class="src__score mid">0.72</span><span class="src__date">2026-04-22</span></div>
+    <div class="src"><span class="src__n">04</span><span class="src__t">Bloomberg terminal extract — GDP revision context <em>· corroborating</em></span><span class="src__score hi">0.84</span><span class="src__date">2026-04-22</span></div>
+  </section>
+</div>
+</body>
+</html>
