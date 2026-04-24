@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Article Playground — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" id="theme-variant-link" href="">
+<style>
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--header-height) 1fr;
+  min-height: 100vh;
+}
+.shell-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-6);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}
+.shell-header .brand {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text);
+  margin-right: auto;
+}
+.shell-sidebar {
+  grid-row: 2;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: var(--space-4) 0;
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+}
+.shell-main {
+  padding: var(--space-8) var(--space-8);
+  max-width: 1200px;
+}
+.nav-section { margin-bottom: var(--space-4); }
+.nav-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-dim);
+  padding: var(--space-1) var(--space-4);
+  margin-bottom: var(--space-1);
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color var(--transition), background var(--transition);
+}
+.nav-item:hover  { color: var(--text); background: var(--surface-raised); }
+.nav-item.active { color: var(--accent-text); border-left-color: var(--accent); background: var(--accent-surface); }
+.nav-item--dim   { opacity: 0.6; font-size: var(--text-xs); }
+
+.article-break {
+  margin: var(--space-16) 0 var(--space-12);
+  border: none;
+  border-top: 2px solid var(--border);
+}
+
+.pg-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pg-meta__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-muted);
+  flex-shrink: 0;
+}
+.pg-meta__tag {
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.theme-toggle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface-raised);
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="shell-header">
+    <span class="brand">design system</span>
+    <a href="showcase.html" style="font-size:var(--text-sm);color:var(--text-dim);text-decoration:none;margin-right:var(--space-2);">← showcase</a>
+    <select class="theme-toggle" onchange="setTheme(this.value)" id="theme-select" style="padding:4px 8px;cursor:pointer;">
+      <option value="dark">☾ dark</option>
+      <option value="carbon">◼ carbon</option>
+      <option value="slate">◈ slate</option>
+      <option value="parchment">◉ parchment</option>
+      <option value="light">☀ cream</option>
+    </select>
+  </header>
+
+  <nav class="shell-sidebar">
+    <div class="nav-section">
+      <div class="nav-label">Articles</div>
+      <a class="nav-item" href="#art-500">~500 w · The Disclosure Paradox</a>
+      <a class="nav-item" href="#art-900">~900 w · Elizabeth, N.J.</a>
+      <a class="nav-item" href="#art-1500">~1500 w · The Adoption Gap</a>
+      <a class="nav-item" href="#art-3500">~3500 w · 312 AI Policies</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Elements tested</div>
+      <a class="nav-item nav-item--dim" href="#art-500">minimal prose, margin note, stat</a>
+      <a class="nav-item nav-item--dim" href="#art-900">series, summary, breakout, sparkline</a>
+      <a class="nav-item nav-item--dim" href="#art-1500">float figure, pullquote, footnotes</a>
+      <a class="nav-item nav-item--dim" href="#art-3500">table, correction, all note types</a>
+    </div>
+  </nav>
+
+  <main class="shell-main">
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         ARTICLE 1 · ~500 WORDS
+         Layout: minimal — kicker/h1/dek/byline, dateline, lede, h3,
+                 1× margin note (def), stat-inline, article-note
+         ═════════════════════════════════════════════════════════════════════ -->
+
+    <div id="art-500" class="section">
+
+      <div class="pg-meta">
+        <span class="pg-meta__dot"></span>
+        Article 1
+        <span class="pg-meta__tag">~500 words</span>
+        <span class="pg-meta__tag">minimal layout</span>
+        <span class="pg-meta__tag">margin note · def</span>
+        <span class="pg-meta__tag">stat-inline</span>
+        <span class="pg-meta__tag">article-note</span>
+      </div>
+
+      <article class="article">
+
+        <header class="article-header">
+          <span class="article-kicker">Barnowl Research · April 2026</span>
+          <h1 class="article-h1">The AI Disclosure Paradox</h1>
+          <p class="article-dek">Telling readers that content is AI-assisted does exactly what transparency advocates hoped. And then something unexpected happens.</p>
+          <div class="article-byline">
+            <span>barnowl research team</span>
+            <span class="article-byline__sep">·</span>
+            <time datetime="2026-04-24">April 24, 2026</time>
+            <span class="article-byline__sep">·</span>
+            <span>barnowl v2.1</span>
+          </div>
+        </header>
+
+        <p class="article-lede">Newsrooms have raced to add AI disclosure labels to content. The instinct is sound: audiences deserve to know when AI was involved in what they're reading. But new evidence from the barnowl dataset — 1,224 verified claims drawn from 282 sources spanning six years of adoption research — points to a complication. Disclosure labels reliably reduce perceived trustworthiness by a small but consistent margin, regardless of content quality. This finding does not argue against disclosure. It argues for understanding what disclosure alone cannot accomplish.</p>
+
+        <h3>The finding</h3>
+
+        <div class="article-mrow">
+          <p>Across the subset of the barnowl dataset where trust-perception data exists, content carrying AI disclosure labels scores, on average, <span class="stat-inline stat-inline--error">0.47 pts</span> lower on perceived trustworthiness than matched content without labels. The effect is consistent across newsroom size bands, content categories, and publication types. Notably, it holds even when controlling for actual AI involvement: a human-written article labeled "AI-assisted" drops nearly as much as a genuinely AI-generated one. The label itself is doing the work, not the underlying reality it describes.</p>
+          <aside class="article-marginnote article-marginnote--def" aria-label="Definition">
+            <span class="mn-term">AI disclosure</span>
+            <span class="mn-body">Any audience-facing communication about AI involvement in content production. Definitions in the barnowl corpus range from generic "produced with AI tools" labels to workflow-specific descriptions naming which production steps involved AI and which did not.</span>
+          </aside>
+        </div>
+
+        <p>The paradox sharpens when you look at what counteracts the effect. Adding visible source citations alongside the AI label largely neutralizes the trust penalty. The combination of disclosure <em>plus</em> sourcing transparency produces trust scores within <span class="stat-inline">0.08 pts</span> of unlabeled content — a gap that is not statistically distinguishable from zero. Disclosure alone is insufficient. Disclosure paired with sourcing works. The difference between those two approaches is the difference between raising a question and answering it.</p>
+
+        <h3>What this means for editorial practice</h3>
+
+        <p>For newsrooms, the implication is specific: AI disclosure and source citation should be treated as a single bundled practice, not two optional elements that can be adopted independently. Disclosure without sourcing may leave audiences more skeptical than no disclosure at all — the label primes skepticism that unaccompanied disclosure does nothing to resolve. Organizations that have adopted "bare label" policies — a disclosure notice with no accompanying evidence chain — may need to revisit them in light of this finding.</p>
+
+        <div class="article-note">
+          <p><strong>Methodology:</strong> Trust-perception data comes from 47 claim records in the barnowl dataset with attached reader-panel measurements. Sample skews toward English-language digital publications. Effect size may differ in broadcast or print contexts. Claims marked <code>needs_review</code> are excluded from aggregate calculations.</p>
+        </div>
+
+        <p>A structural explanation for the pattern: AI labels prime readers to apply a skepticism heuristic before engaging with content. Without a source list to anchor against, that skepticism has nowhere to resolve — it simply persists as a reduced baseline of trust. With visible sourcing, the label and the citations form a coherent package: skepticism is invited and then answered. "We used AI. Here is where our facts come from." That construction works. The label alone does not. The implication for interface design is as important as the implication for editorial policy: disclosure and sourcing need to be co-located on the page, not separated by link or buried in a footer.</p>
+
+      </article>
+    </div><!-- /art-500 -->
+
+
+    <hr class="article-break">
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         ARTICLE 2 · ~900 WORDS
+         Layout: data-forward — series nav, summary (collapsible), dateline,
+                 2× margin notes (def + source), inline sparkline,
+                 breakout figure (4 stat cards), blockquote, update notice
+         ═════════════════════════════════════════════════════════════════════ -->
+
+    <div id="art-900" class="section">
+
+      <div class="pg-meta">
+        <span class="pg-meta__dot"></span>
+        Article 2
+        <span class="pg-meta__tag">~900 words</span>
+        <span class="pg-meta__tag">data-forward layout</span>
+        <span class="pg-meta__tag">series · summary · breakout</span>
+        <span class="pg-meta__tag">inline sparkline</span>
+        <span class="pg-meta__tag">2× margin notes</span>
+        <span class="pg-meta__tag">blockquote · update</span>
+      </div>
+
+      <article class="article">
+
+        <nav class="article-series" aria-label="Series navigation">
+          <span class="article-series__label">Community Dossiers — Tern Research</span>
+          <div class="article-series__nav">
+            <a href="#">← Paterson, NJ</a>
+            <span style="color:var(--border-strong)">·</span>
+            <strong style="color:var(--text-muted)">Elizabeth, NJ</strong>
+            <span style="color:var(--border-strong)">·</span>
+            <a href="#">New Bern, NC →</a>
+          </div>
+        </nav>
+
+        <div class="article-summary">
+          <details>
+            <summary>Key findings</summary>
+            <ul>
+              <li><span class="stat-inline">57.9%</span> broadband penetration — 21 points below the New Jersey state average</li>
+              <li>Three active ecosystem nodes covering a city of 135,000; no daily newspaper; only one outlet with a full-time paid reporter</li>
+              <li>Community Information Wellbeing Index: <span class="stat-inline stat-inline--error">4.2 / 10</span> — pulled down by low decision-confidence and high news-fatigue scores</li>
+              <li>Spanish-dominant residents (54% of population) are served by one Spanish-language outlet operating on an all-volunteer model with no documented succession plan</li>
+            </ul>
+          </details>
+        </div>
+
+        <header class="article-header">
+          <span class="article-kicker">Tern Research · Community Information Ecosystems · March 2026</span>
+          <h1 class="article-h1">Elizabeth Has 135,000 Residents and Three Working News Outlets</h1>
+          <p class="article-dek">A community information profile of a mid-Atlantic city navigating language access gaps, fragile infrastructure, and a news ecosystem running at minimum viable coverage.</p>
+          <div class="article-byline">
+            <span>Tern community research</span>
+            <span class="article-byline__sep">·</span>
+            <time datetime="2026-03-15">March 15, 2026</time>
+            <span class="article-byline__sep">·</span>
+            <span>tern v1.4</span>
+          </div>
+        </header>
+
+        <p class="article-dateline"><span class="article-dateline__location">Elizabeth, N.J.</span> — March 2026</p>
+
+        <p class="article-lede">On the western edge of Newark Bay, where three interstate highways converge and the Port of New York's container stacks define the skyline, Elizabeth is a city that does a great deal of what New Jersey depends on and receives very little of the coverage that other cities its size take for granted. It has more residents than Trenton. It has fewer working news outlets than many towns with a tenth of its population. By the standard Tern uses to measure community information ecosystems — not whether journalism exists, but whether it is sufficient for the decisions a community needs to make — Elizabeth is in deficit.</p>
+
+        <h2>What the ecosystem looks like</h2>
+
+        <div class="article-mrow">
+          <p>Tern's community dossier methodology maps what it calls ecosystem nodes: organizations and platforms that function as meaningful information providers for a community's decision-making. In Elizabeth, the current map shows three active nodes — a weekly community newspaper with one full-time reporter, a Spanish-language digital outlet operating on volunteer labor, and a local government information portal that publishes notices and meeting agendas but no independent reporting. The trend line is
+            <span class="inline-chart inline-chart--md" title="Active news outlets 2018–2026: 7, 6, 5, 4, 4, 3, 3, 3">
+              <svg viewBox="0 0 100 24" width="100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="0,4 14,6 29,8 43,14 57,14 71,20 86,20 100,20" stroke="var(--error)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="100" cy="20" r="2.5" fill="var(--error)"/>
+              </svg>
+            </span>
+            steadily downward since 2018, when seven nodes were active and two of them produced daily content.</p>
+          <aside class="article-marginnote article-marginnote--def" aria-label="Definition">
+            <span class="mn-term">Ecosystem node</span>
+            <span class="mn-body">Any organization or platform that provides information a community demonstrably uses for decision-making. Includes news orgs, civic organizations, libraries, and active community forums. Does not require professional journalism — but does require regular publication and demonstrated reach.</span>
+          </aside>
+        </div>
+
+        <div class="article-mrow">
+          <p>The node count understates the fragility. The weekly newspaper relies on freelance contributions for coverage beyond municipal government, and its owner has said publicly that financial sustainability requires stable local advertising — a market that regional projections do not support recovering. The Spanish-language outlet has no paid staff and operates on contributed labor from community members with journalism backgrounds, a structure that has sustained it for six years but has no documented plan for what happens when its founding contributors step back. Tern's composite structural assessment assigns Elizabeth a <dfn title="A composite score weighting broadband access, income, news outlet density, library access, civic engagement, and language access on a 0–10 scale">Structural Context Weight</dfn> of 3.1 out of 10.</p>
+          <aside class="article-marginnote article-marginnote--source" aria-label="Source">
+            <span class="mn-source-num">1</span>Structural Context Weight (SCW) methodology: Tern Program Documentation v1.4, §4.2. Broadband access weighted at 0.22; news outlets per 10K residents weighted at 0.19. SCW below 4.0 is classified as high-risk for ecosystem collapse.
+          </aside>
+        </div>
+
+        <figure class="article-figure article-breakout">
+          <div style="padding:var(--space-6);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);">
+            <div class="stat-card"><div class="stat-card__value">135K</div><div class="stat-card__label">Residents</div></div>
+            <div class="stat-card"><div class="stat-card__value stat-card__value--error">3</div><div class="stat-card__label">Active news nodes</div></div>
+            <div class="stat-card"><div class="stat-card__value stat-card__value--warning">57.9%</div><div class="stat-card__label">Broadband access</div></div>
+            <div class="stat-card"><div class="stat-card__value stat-card__value--error">4.2</div><div class="stat-card__label">CIWI / 10</div></div>
+          </div>
+          <figcaption class="article-figcaption" style="padding:0 var(--space-3) var(--space-4);">
+            <strong>Community snapshot.</strong> Key structural indicators for Elizabeth, N.J. CIWI = Community Information Wellbeing Index. Sources: ACS 2024, Tern dossier database, Tern CIWI assessment March 2026.
+          </figcaption>
+        </figure>
+
+        <h2>The language access dimension</h2>
+
+        <p>More than half of Elizabeth's population speaks Spanish as a primary or co-primary language. The single Spanish-language outlet covers local government, schools, and community events at a pace of two to three stories per week — calibrated to what volunteer contributors can sustain, not to what coverage demands. There is no Spanish-language source covering public safety, utilities, or housing at any regular cadence. Tern's information-jobs framework identifies four coverage types a community depends on: navigating systems, holding power accountable, seeing itself reflected in media, and staying safe. By that framework, Elizabeth's Spanish-speaking majority has partial coverage for the first, near nothing for the second and third, and nothing reliable for the fourth.</p>
+
+        <blockquote>
+          <p>"We're not a news desert in the way people think of a news desert — a place where there used to be a paper and now there isn't. We never had the coverage we needed. That's a different kind of gap, and it gets treated differently by funders and policymakers."</p>
+          <cite>Community member, Elizabeth focus group, February 2026. Name withheld per research protocol.</cite>
+        </blockquote>
+
+        <p>The distinction the speaker is drawing is important for Tern's analysis. A community that loses an existing outlet experiences a visible, dateable collapse — it becomes a news desert by the conventional definition, and funders and policymakers have frameworks for responding to that. A community that was never adequately covered in the first place occupies a different category: not a desert created by loss, but a deficit that was always there, structured into local media markets by language, economics, and geography. Elizabeth is the second kind. It requires creation, not restoration.</p>
+
+        <h2>What would have to be true</h2>
+
+        <p>Tern's scenario analysis for Elizabeth identifies three structural prerequisites for meaningful improvement within a five-year window. First: the Spanish-language outlet transitions from volunteer to paid labor, requiring a minimum operating budget of approximately $180,000 annually for two part-time positions and basic infrastructure. Second: the weekly newspaper expands to twice-weekly publication with at least two additional reporters capable of accountability and investigative coverage. Third: broadband penetration reaches 72% — the threshold at which digital-only distribution becomes viable without systematically excluding a disproportionate share of the community.</p>
+
+        <p>None of these conditions is currently in motion. The Spanish-language outlet explored foundation funding twice in six years and was rejected both times — reviewers cited the absence of financial controls and succession documentation as disqualifying factors. The weekly newspaper's owner has stated publicly that expansion is not financially feasible without local advertising recovery. And broadband investment in Elizabeth, while ongoing, is projected to reach 72% penetration no earlier than 2029 under current infrastructure plans. Tern's assessment: the five-year window is likely to close without the structural changes needed to move the ecosystem out of the high-risk zone.</p>
+
+        <div class="article-update" role="note">
+          <span class="article-update__label">Update</span>
+          <p>March 22, 2026: A regional community foundation announced a one-year pilot grant of $60,000 to the Spanish-language outlet for part-time staffing and financial systems infrastructure. Tern will track publication frequency and coverage scope through Q1 2027.</p>
+        </div>
+
+      </article>
+    </div><!-- /art-900 -->
+
+
+    <hr class="article-break">
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         ARTICLE 3 · ~1500 WORDS
+         Layout: editorial — summary, h2/h3 structure,
+                 3× margin notes (def, callout, figure),
+                 article-prose-block with float-right chart,
+                 blockquote, pullquote, del/ins/dfn/abbr, footnotes
+         ═════════════════════════════════════════════════════════════════════ -->
+
+    <div id="art-1500" class="section">
+
+      <div class="pg-meta">
+        <span class="pg-meta__dot"></span>
+        Article 3
+        <span class="pg-meta__tag">~1500 words</span>
+        <span class="pg-meta__tag">editorial layout</span>
+        <span class="pg-meta__tag">float figure</span>
+        <span class="pg-meta__tag">3× margin notes</span>
+        <span class="pg-meta__tag">pullquote · footnotes · del/ins/dfn</span>
+      </div>
+
+      <article class="article">
+
+        <header class="article-header">
+          <span class="article-kicker">Analysis · AI Adoption Inequity · Barnowl</span>
+          <h1 class="article-h1">Small Newsrooms Are Outrunning Large Ones on AI — And That's a Problem</h1>
+          <p class="article-dek">Conventional wisdom has the story backwards. Smaller organizations are deploying AI tools at higher rates, with less governance infrastructure, and the gap between those two curves is growing.</p>
+          <div class="article-byline">
+            <span>barnowl analysis</span>
+            <span class="article-byline__sep">·</span>
+            <time datetime="2026-04-10">April 10, 2026</time>
+            <span class="article-byline__sep">·</span>
+            <span>barnowl v2.1 · 1,224 claims · 377 organizations</span>
+          </div>
+        </header>
+
+        <div class="article-summary">
+          <span class="article-summary__label">Key findings</span>
+          <ul>
+            <li>Small newsrooms (5–19 staff) deploy AI at <span class="stat-inline">5.5×</span> the rate of enterprise outlets (500+ staff), per the barnowl implementation database</li>
+            <li>Only <span class="stat-inline stat-inline--error">12%</span> of small-newsroom AI deployments have documented governance policies; the figure for large outlets is <span class="stat-inline stat-inline--success">61%</span></li>
+            <li>Non-English newsrooms deploy AI at <span class="stat-inline">4×</span> the rate of English-language counterparts — primarily for translation, audience-interface, and social distribution tasks</li>
+            <li>The most-deployed capability without governance oversight: <abbr title="AI systems that generate news copy from structured data inputs such as earnings tables or election results">automated articles</abbr>, present in 34% of small-newsroom AI use, governed in fewer than 1 in 5 cases</li>
+          </ul>
+        </div>
+
+        <h2>The adoption gap, inverted</h2>
+
+        <p>Coverage of AI in journalism tends to foreground large organizations: the <em>Times</em> has a policy, Reuters has a framework, the BBC has a working group. These developments are genuinely important and genuinely unrepresentative. The newsrooms deploying AI most aggressively — with the least documentation, the least oversight, and the most at stake in their communities — are the ones that rarely appear in coverage of the topic: local weeklies, Spanish-language digital outlets, nonprofit metro desks, and the long tail of small operations that sustain most community-level journalism in the United States and abroad.</p>
+
+        <div class="article-mrow">
+          <p>The barnowl dataset currently holds 286 distinct tool implementations tagged to specific organizational profiles. When sorted by newsroom size band,<a class="fn-ref" id="ref:1" href="#fn:1"><sup>1</sup></a> the pattern is unambiguous: micro- and small-scale newsrooms account for <span class="stat-inline">58%</span> of all recorded implementations despite representing just 44% of organizations in the dataset. The rate difference is not noise — it reflects a structural dynamic where small outlets, unencumbered by institutional review processes and multi-stage approval chains, can move from awareness to deployment in weeks rather than the quarters that large organizations typically require.</p>
+          <aside class="article-marginnote article-marginnote--def" aria-label="Definition">
+            <span class="mn-term">Size bands</span>
+            <span class="mn-body">barnowl uses five bands: micro (&lt;5 staff), small (5–19), medium (20–99), large (100–499), enterprise (500+). Band assignment reflects FTE editorial headcount at time of implementation record — not total organization headcount, which often includes non-editorial staff.</span>
+          </aside>
+        </div>
+
+        <p>This is not inherently a problem. Speed and experimentation are assets, and small newsrooms have historically been more agile than larger organizations in many domains. The issue is the governance gap that accompanies rapid adoption — and that gap, on the available evidence, is substantial enough to constitute a structural risk to the credibility of AI-assisted journalism in the outlets that serve most communities.</p>
+
+        <h2>What governance looks like — and doesn't</h2>
+
+        <div class="article-prose-block">
+          <figure class="article-figure article-figure--right">
+            <div style="padding:var(--space-4);min-width:190px;">
+              <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:var(--space-3);">AI governance by org size</div>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Enterprise (500+)</span><span style="font-family:var(--font-mono)">61%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--hi" style="width:61%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Large (100–499)</span><span style="font-family:var(--font-mono)">44%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--mid" style="width:44%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Medium (20–99)</span><span style="font-family:var(--font-mono)">28%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--mid" style="width:28%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Small (5–19)</span><span style="font-family:var(--font-mono)">12%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--lo" style="width:12%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Micro (&lt;5)</span><span style="font-family:var(--font-mono)">7%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--lo" style="width:7%"></div></div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="article-figcaption" style="padding:0 var(--space-4) var(--space-3);">Share of AI deployments with documented governance policy, by newsroom size band. Source: barnowl v2.1 implementation database.</figcaption>
+          </figure>
+
+          <h3>What "governance" requires in practice</h3>
+
+          <p>In the barnowl taxonomy, a governance record requires three things at minimum: a documented policy specifying which AI capabilities are permitted and which are prohibited; an identified staff member responsible for oversight; and some form of review process for AI-assisted content before publication. By that definition — which is <del>demanding</del> <ins>minimal by any standard applied to other editorial processes</ins> — large-newsroom AI deployments meet the bar at reasonable rates. For small newsrooms, governance is the exception, not the rule.</p>
+
+          <p>The most common substitute for formal governance is what barnowl codes as "cultural norm" policy: no written document, but a shared staff understanding of what is and isn't permissible. This approach is not inherently inadequate for small teams where accountability is immediate and everyone involved knows each other. It becomes problematic at scale, during staff transitions, and when AI capabilities expand faster than informal consensus can track — which is to say, it is becoming problematic now, across most of the small-newsroom AI deployments in the dataset.</p>
+
+          <p>Among the <span class="stat-inline stat-inline--error">88%</span> of small-newsroom implementations without formal governance, the most common situation barnowl codes is "undocumented deployment": tools in active editorial use with no policy record and no identified oversight person. These are not necessarily irresponsible operations; many have thoughtful practitioners making considered decisions. What they lack is institutional memory. When the person who made those decisions leaves, the decisions leave with them — and the next person to pick up the tools starts from scratch.</p>
+        </div>
+
+        <h2>The non-English newsroom story</h2>
+
+        <div class="article-mrow">
+          <p>The dataset's sharpest finding may be its least discussed. Non-English newsrooms — defined in barnowl as outlets publishing primarily in a language other than English — deploy AI at four times the rate of English-language counterparts. The dominant use cases are <dfn title="AI systems that convert journalistic content between languages, often used by bilingual outlets to serve audiences who cannot access English-language coverage">translation and localization tools</dfn>, audience-interface automation including reader query chatbots, and summarization for social media distribution. These are not vanity experiments or early-adopter posturing; they are operational responses to resource constraints that English-language newsrooms, on the whole, do not face in the same form.</p>
+          <aside class="article-marginnote article-marginnote--callout" aria-label="Key finding">
+            Non-English newsrooms deploy AI at 4× the rate of English-language counterparts. Governance coverage: <span class="stat-inline stat-inline--error">9%</span>. The gap between adoption and governance is wider here than in any other segment of the barnowl dataset.
+          </aside>
+        </div>
+
+        <p>A Spanish-language outlet serving 200,000 readers cannot afford both a full-time translator and a full-time reporter. AI translation tools, imperfect as they are in preserving journalistic register and cultural nuance, change the math enough to matter. The same dynamic is visible for Arabic, Portuguese, and Mandarin-language outlets in the dataset. What looks from the outside like aggressive AI adoption looks from the inside like a survival strategy — and one that has largely escaped the governance conversation that has focused on large English-language institutions.</p>
+
+        <blockquote class="article-pullquote">
+          "They have governance frameworks because they can afford governance frameworks. We have AI tools because we can't afford not to have them. Those are different conversations, and the field keeps treating them as the same one."
+          <cite>Editor, Spanish-language weekly, interview February 2026</cite>
+        </blockquote>
+
+        <h2>The capability in question</h2>
+
+        <div class="article-mrow">
+          <p>Automated articles — AI systems that generate news copy directly from structured data inputs such as earnings tables, sports scores, election results, or municipal budget filings — are present in <span class="stat-inline">34%</span> of small-newsroom AI implementations in the barnowl dataset. This is the single capability with the largest deployment-to-governance gap: present in more than a third of small newsrooms using AI, governed by barnowl's minimal criteria in fewer than one in five of those cases.<a class="fn-ref" id="ref:2" href="#fn:2"><sup>2</sup></a> The risk is not that automated articles are inherently low quality — in structured domains they often perform at par with human-written equivalents. The risk is that they are being deployed without the editorial review processes that would catch errors, hallucinations, or data-sourcing problems before publication.</p>
+          <aside class="article-marginnote article-marginnote--figure" aria-label="Related data">
+            <div class="mn-fig" style="aspect-ratio:4/3;background:var(--surface-inset);display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:10px;color:var(--text-disabled);text-align:center;padding:var(--space-2);">Deployment vs. governance gap by capability type</span>
+            </div>
+            <span class="mn-caption">Automated articles have the widest deployment-to-governance gap across all tracked AI capabilities. Full analysis: barnowl capability report, April 2026.</span>
+          </aside>
+        </div>
+
+        <p>What would adequate governance look like for a five-person newsroom operating on a $300,000 annual budget? Not a 40-page policy document modeled on Reuters. Something far more manageable: a one-page checklist specifying which content types can run AI-assisted and which require human review; an identified editor responsible for sign-off; and a clear rule about what automated content looks like when it goes wrong and who gets notified when it does. The overhead is achievable. The absence of it, in most cases, is not a resource problem. It is a problem of not yet having been asked.</p>
+
+        <h2>What the data cannot tell us</h2>
+
+        <p>The barnowl dataset is built from public records — policy documents, published reports, press releases, and interviews where organizations chose to participate. It captures what organizations are willing to say about their AI use, which is not the same as what they are actually doing. The governance gap documented here is almost certainly an undercount: organizations with no documentation are also less likely to have publicized their practices, and the dataset skews toward organizations that have engaged with the AI governance conversation publicly enough to appear in a systematic literature review. The actual gap is wider than what the data shows.</p>
+
+        <p>What the data can say with confidence is directional: small newsrooms are moving faster on AI adoption and slower on governance, and the gap between those two curves is widening by every available measure. That matters not because it implies bad intent — it doesn't — but because the news ecosystem's credibility with audiences depends on practices that hold across organizations of all sizes, not just those with the resources to build dedicated compliance infrastructure. Right now, that consistency does not exist. The task of building it starts with acknowledging how far from it we currently are.</p>
+
+        <section class="article-footnotes" aria-label="Footnotes">
+          <ol>
+            <li id="fn:1"><a href="#ref:1" class="fn-back">↑</a> Size band definitions follow the barnowl taxonomy. The implementation database includes 377 distinct organizations; size band data is available for 341 (90.4%). The 36 organizations without size band assignments are excluded from rate calculations but retained in the corpus.</li>
+            <li id="fn:2"><a href="#ref:2" class="fn-back">↑</a> "Governed" here means meeting barnowl's minimal governance criteria: a documented policy, an identified oversight role, and a review process. It does not imply that governance is adequate or effective — only that something beyond informal practice has been documented.</li>
+          </ol>
+        </section>
+
+      </article>
+    </div><!-- /art-1500 -->
+
+
+    <hr class="article-break">
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         ARTICLE 4 · ~3500 WORDS
+         Layout: full treatment — series, correction, summary, dateline,
+                 lede, h2/h3, all 4 margin note types, article-prose-block
+                 with float, breakout figure, full-width table, 2× blockquotes,
+                 pullquote, del/ins/dfn/abbr, article-note, footnotes, references
+         ═════════════════════════════════════════════════════════════════════ -->
+
+    <div id="art-3500" class="section">
+
+      <div class="pg-meta">
+        <span class="pg-meta__dot"></span>
+        Article 4
+        <span class="pg-meta__tag">~3500 words</span>
+        <span class="pg-meta__tag">full treatment</span>
+        <span class="pg-meta__tag">series · correction · all margin types</span>
+        <span class="pg-meta__tag">float · breakout · full-width table</span>
+        <span class="pg-meta__tag">pullquote · footnotes · references</span>
+      </div>
+
+      <article class="article">
+
+        <nav class="article-series" aria-label="Series navigation">
+          <span class="article-series__label">AI Policy Landscape — Barnowl Series</span>
+          <div class="article-series__nav">
+            <a href="#art-500">1. The disclosure paradox</a>
+            <span style="color:var(--border-strong)">·</span>
+            <strong style="color:var(--text-muted)">2. What 312 policies say</strong>
+            <span style="color:var(--border-strong)">·</span>
+            <a href="#">3. Enforcement gaps →</a>
+          </div>
+        </nav>
+
+        <aside class="article-correction" role="note">
+          <span class="article-correction__label">Correction</span>
+          <div>
+            <p>An earlier version of this article stated that <del>38%</del> of policies address vendor relationships. The correct figure is <ins>37%</ins>. The error affected one table cell and two inline statistics; analysis and conclusions are unchanged. Updated April 18, 2026.</p>
+          </div>
+        </aside>
+
+        <div class="article-summary">
+          <span class="article-summary__label">Key findings</span>
+          <ul>
+            <li><span class="stat-inline">73%</span> of policies require human sign-off on AI-assisted content before publication — the single strongest provision in the corpus</li>
+            <li>Disclosure requirements appear in <span class="stat-inline">61%</span> of policies, but barnowl identified seven distinct operational definitions; they are mutually inconsistent and cannot be compared across organizations</li>
+            <li>Only <span class="stat-inline stat-inline--error">28%</span> of transparency provisions include any enforcement mechanism; audit mechanisms are rarer still at <span class="stat-inline stat-inline--error">18%</span></li>
+            <li>Vendor governance — rules governing which AI tools a newsroom may adopt and under what data-handling terms — appears in just <span class="stat-inline stat-inline--error">37%</span> of policies despite being the primary channel through which AI enters editorial workflows</li>
+            <li><span class="stat-inline stat-inline--error">89%</span> of the policy corpus comes from English-language outlets, although non-English newsrooms represent roughly half the global journalism ecosystem</li>
+          </ul>
+        </div>
+
+        <header class="article-header">
+          <span class="article-kicker">Barnowl Deep Read · AI Governance · April 2026</span>
+          <h1 class="article-h1">What 312 Newsroom AI Policies Actually Say</h1>
+          <p class="article-dek">A systematic analysis of every public AI governance document we could find from news organizations worldwide — where the consensus holds, where it fractures, and what the silences reveal.</p>
+          <div class="article-byline">
+            <span>barnowl research team</span>
+            <span class="article-byline__sep">·</span>
+            <time datetime="2026-04-15">April 15, 2026</time>
+            <span class="article-byline__sep">·</span>
+            <span>barnowl v2.1 · 312 policies · 1,224 claims</span>
+          </div>
+        </header>
+
+        <p class="article-dateline"><span class="article-dateline__location">New York</span> — April 2026</p>
+
+        <p class="article-lede">The policy document is an artifact of organizational ambition. It says: we have thought about this carefully and arrived at a position. It does not necessarily say: we have enforced this, monitored compliance with this, or will revisit this when the technology changes again next quarter. AI governance policies for news organizations are, at the moment, largely artifacts of ambition — written under external pressure, published in response to public inquiry, and left unenforced because enforcement infrastructure does not yet exist in most newsrooms. That, in summary, is what 312 of them show.</p>
+
+        <h2>How the corpus was built</h2>
+
+        <div class="article-mrow">
+          <p>Barnowl's AI policy corpus was assembled over 18 months through a combination of direct outreach to newsrooms, systematic search of organizational websites, and reference tracking from secondary sources including academic literature, journalism trade press, and civil-society monitoring reports. Of 312 documents in the current corpus, <span class="stat-inline">247</span> are full policy documents; the remaining 65 are partial policy statements, editorial guidelines with AI-specific sections, or staff-facing memos that were made publicly accessible. Documents not publicly available are excluded — the corpus reflects what organizations chose to share, which is a meaningful limitation and a meaningful signal in its own right.</p>
+          <aside class="article-marginnote article-marginnote--def" aria-label="Definition">
+            <span class="mn-term">Policy corpus</span>
+            <span class="mn-body">The 312-document set assembled by barnowl. Includes full policies, partial statements, and public editorial guidelines with AI provisions. Excludes internal documents not accessible to researchers. Language: 89% English, 5% Spanish, 3% French, 3% other. Updated quarterly.</span>
+          </aside>
+        </div>
+
+        <p>Claim extraction used barnowl's standard methodology: each document was processed to identify discrete verifiable assertions about AI governance practice. A claim is a statement that can, in principle, be confirmed or contradicted by evidence. "Our editors review all AI-assisted content before publication" is a claim. "We believe AI has transformative potential for journalism" is not. The 312 documents yielded 1,224 scoreable claims after filtering for specificity. An additional 847 statements were coded as "aspirational" — directional language too general to verify against any observable practice.</p>
+
+        <div class="article-mrow">
+          <p>Geographic distribution skews heavily toward the United States and United Kingdom, which together account for <span class="stat-inline">61%</span> of documents. Western Europe contributes another 22%. The Global South is substantially underrepresented at 8% of the corpus — a gap that almost certainly reflects the direction of international AI journalism research coverage rather than the actual distribution of newsroom AI adoption, which barnowl's implementation data suggests is more globally distributed than the policy literature implies.</p>
+          <aside class="article-marginnote article-marginnote--source" aria-label="Source">
+            <span class="mn-source-num">1</span>Reuters Institute Digital News Report 2025 found similar geographic concentration in AI ethics research, noting that coverage "systematically underrepresents newsrooms in Africa, South and Southeast Asia, and Latin America."
+          </aside>
+        </div>
+
+        <h2>The editorial independence consensus</h2>
+
+        <p>The single most consistent provision across the corpus: human editorial control over publication decisions. <span class="stat-inline">73%</span> of documents contain language requiring human sign-off on AI-assisted content — language ranging from brief ("a journalist must approve all AI-generated content before publication") to detailed workflow specifications identifying which roles are authorized to approve which content types under what circumstances. This provision commands broader agreement than any other in the corpus, appearing across newsroom types, size bands, and geographies with a consistency that suggests genuine professional consensus rather than independent convergence on shared language.</p>
+
+        <figure class="article-figure article-breakout">
+          <div style="padding:var(--space-6);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);">
+            <div class="stat-card"><div class="stat-card__value">73%</div><div class="stat-card__label">Require human sign-off</div></div>
+            <div class="stat-card"><div class="stat-card__value stat-card__value--success">61%</div><div class="stat-card__label">Disclosure provisions</div></div>
+            <div class="stat-card"><div class="stat-card__value stat-card__value--warning">37%</div><div class="stat-card__label">Vendor governance</div></div>
+            <div class="stat-card"><div class="stat-card__value stat-card__value--error">28%</div><div class="stat-card__label">Enforcement mechanisms</div></div>
+          </div>
+          <figcaption class="article-figcaption" style="padding:0 var(--space-3) var(--space-4);">
+            <strong>Figure 1.</strong> Prevalence of key governance provisions across 312 policies. Percentages reflect share of total corpus. Documents may contain multiple provision types.
+          </figcaption>
+        </figure>
+
+        <div class="article-prose-block">
+          <figure class="article-figure article-figure--right">
+            <div style="padding:var(--space-4);min-width:190px;">
+              <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:var(--space-3);">Sign-off provisions by org type</div>
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Wire service</span><span style="font-family:var(--font-mono)">91%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--hi" style="width:91%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Broadcaster</span><span style="font-family:var(--font-mono)">84%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--hi" style="width:84%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Newspaper</span><span style="font-family:var(--font-mono)">76%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--hi" style="width:76%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Digital-native</span><span style="font-family:var(--font-mono)">68%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--mid" style="width:68%"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;font-family:var(--font-sans);color:var(--text-muted);"><span>Nonprofit</span><span style="font-family:var(--font-mono)">61%</span></div>
+                  <div class="score-bar"><div class="score-bar__fill score-bar__fill--mid" style="width:61%"></div></div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="article-figcaption" style="padding:0 var(--space-4) var(--space-3);">Human sign-off provisions by organization type. Wire services and broadcasters lead; nonprofits trail despite higher AI adoption rates. Source: barnowl v2.1.</figcaption>
+          </figure>
+
+          <h3>The consent documentation gap</h3>
+
+          <p>Requiring sign-off and documenting sign-off are different things. Of the 73% of policies with sign-off language, only <span class="stat-inline stat-inline--error">18%</span> include any mechanism for creating an auditable record of the review. The remainder rely on workflow norms and institutional memory — approaches that function well on a small team where accountability is direct and immediate, but that degrade during staff transitions, provide no external accountability, and offer no basis for correction when things go wrong.</p>
+
+          <p>The absence of audit mechanisms is not uniformly distributed across organization types. Wire services, which face the highest legal and reputational exposure from AI errors at scale, are the most likely to have implemented documentation requirements — <span class="stat-inline">44%</span> of wire service policies include them. At the other end of the distribution, nonprofit digital outlets have audit mechanisms in fewer than <span class="stat-inline stat-inline--error">9%</span> of policies that require sign-off. The organizations most dependent on donor and reader trust are the least likely to have built the documentation that would make that trust verifiable.</p>
+        </div>
+
+        <blockquote>
+          <p>"The algorithm suggests; the editor decides." This phrase, or close variants, appeared verbatim in <span class="stat-inline">three</span> independent policy documents from newsrooms that had not coordinated on language — a convergence that suggests either genuine professional consensus forming around a shared formulation, or the influence of shared consulting and professional development sources on policy language across organizations that believe themselves to be working independently.</p>
+          <cite>barnowl claim cluster C-2847, synthesis of recent policies, April 2026</cite>
+        </blockquote>
+
+        <p>The convergence on similar language across unrelated organizations is itself a data point worth examining. When the same phrase appears independently in documents from a nonprofit metro desk in Minneapolis, a wire service bureau in London, and a digital-native outlet in Lagos, it suggests the phrase has become ambient — absorbed from coverage, conferences, and peer exchange rather than invented fresh by each organization. Barnowl's <abbr title="Natural Language Processing">NLP</abbr> similarity analysis finds a clustering coefficient of 0.74 for this phrase family across the corpus, which is unusually high for language that is not quoting a single source.</p>
+
+        <h2>The disclosure problem</h2>
+
+        <div class="article-mrow">
+          <p>Disclosure requirements — telling audiences when AI was involved in content production — appear in <span class="stat-inline">61%</span> of policies. What they require varies so widely that the 61% figure is largely uninterpretable as a measure of actual practice. Barnowl's coding identified seven distinct operational definitions of "AI disclosure" across the corpus, ranging from "a label is required when AI generated the text" to "a label is required whenever any AI tool was used at any stage of the production process." These definitions are not compatible. A newsroom in full compliance with the narrowest definition may be in clear violation of the broadest one, and there is currently no external standard that adjudicates between them — no industry body, no regulatory framework, no commonly adopted benchmark.</p>
+          <aside class="article-marginnote article-marginnote--callout" aria-label="Key finding">
+            Seven mutually inconsistent definitions of "AI disclosure" appear across the 312-policy corpus. A newsroom compliant with the narrowest may violate the broadest. No external standard currently resolves the gap.
+          </aside>
+        </div>
+
+        <div class="article-mrow">
+          <p>The trend line for disclosure provisions is
+            <span class="inline-chart inline-chart--md" title="Disclosure provisions 2022–2026: 43%, 49%, 54%, 58%, 61%">
+              <svg viewBox="0 0 100 24" width="100" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="0,20 25,16 50,12 75,8 100,5" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="100" cy="5" r="2.5" fill="var(--accent)"/>
+              </svg>
+            </span>
+            consistently upward since 2022 — from 43% to today's 61% — but that growth conflates two phenomena: organizations genuinely adopting disclosure practices, and earlier definitions being replaced by broader ones that encompass more of what the same organizations were already doing. Separating these two effects requires coding each policy's specific language, which barnowl has now done for the full corpus.<a class="fn-ref" id="ref:1" href="#fn:1"><sup>1</sup></a></p>
+          <aside class="article-marginnote article-marginnote--figure" aria-label="Disclosure trend">
+            <div class="mn-fig" style="aspect-ratio:4/3;background:var(--surface-inset);display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:10px;color:var(--text-disabled);text-align:center;padding:var(--space-2);">Disclosure provisions 2022–26</span>
+            </div>
+            <span class="mn-caption">From 43% in 2022 to 61% in 2026. Growth rate is slowing as the pool of policy-publishing organizations approaches saturation. Breakdown by definition level: methodology appendix.</span>
+          </aside>
+        </div>
+
+        <blockquote class="article-pullquote">
+          "Fewer than a third of transparency provisions include any audit right or mechanism for verifying compliance. The policies describe what newsrooms intend to do. They rarely describe how anyone will confirm it's being done."
+          <cite>From the enforcement analysis, Section 4 below</cite>
+        </blockquote>
+
+        <h2>Vendor governance: the gap nobody talks about</h2>
+
+        <p>The most consequential underaddressed topic in the policy corpus is vendor governance — the rules, if any, that determine which AI tools a newsroom may adopt, under what contractual terms, and subject to what data-handling and intellectual-property constraints. Only <span class="stat-inline stat-inline--error">37%</span> of policies address this. The omission is not minor: <dfn title="Third-party AI providers whose tools are integrated into newsroom editorial workflows, often without being disclosed to audiences as distinct systems">AI vendors</dfn> are the primary mechanism through which AI capabilities enter the newsroom. A policy with detailed sign-off requirements and no vendor governance provisions has regulated the end of the pipeline and ignored the beginning — the point at which the tools are selected, integrated, and given access to newsroom data.</p>
+
+        <div class="article-mrow">
+          <p>The data-handling dimension is the sharpest concern in practice. Newsrooms routinely feed unpublished drafts, source communications, interview notes, and internal reporting memos into AI tools as part of editing and research workflows. The default terms for most commercial AI APIs include provisions allowing training on submitted inputs unless an enterprise agreement specifies otherwise. Fewer than <span class="stat-inline stat-inline--error">15%</span> of policies in the corpus address data-handling terms for AI tools used in production. The remaining 85% have no documented position on whether their unpublished source material, their reporters' working notes, or their pre-publication drafts may become training data for the commercial systems they use daily.</p>
+          <aside class="article-marginnote article-marginnote--def" aria-label="Definition">
+            <span class="mn-term">Data handling terms</span>
+            <span class="mn-body">Contractual provisions governing how a vendor may use data submitted to their AI systems. Most commercial APIs default to allowing training use. Enterprise agreements typically include opt-out provisions — but most newsrooms operate on standard, not enterprise, tiers.</span>
+          </aside>
+        </div>
+
+        <p>The intellectual-property dimension is comparably underaddressed. Only <span class="stat-inline stat-inline--error">22%</span> of policies address copyright questions for AI-generated content; fewer than <span class="stat-inline stat-inline--error">10%</span> address the ownership of AI outputs produced from a newsroom's proprietary data. When an AI system trained in part on a newsroom's archived reporting produces content in response to a query about that newsroom's coverage beat, who owns the output? The policies, with rare exceptions, do not say — because most organizations have not yet worked through the question.</p>
+
+        <h2>The full governance landscape</h2>
+
+        <figure class="article-figure article-full" style="margin-top:var(--space-8)">
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Governance dimension</th>
+                  <th class="col--num">% with provision</th>
+                  <th class="col--num">% with enforcement</th>
+                  <th class="col--num">% with audit</th>
+                  <th>Consensus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Editorial sign-off</td>
+                  <td class="col--num"><span class="stat-inline stat-inline--success">73%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--warning">31%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">18%</span></td>
+                  <td><span class="badge success">Strong</span></td>
+                </tr>
+                <tr>
+                  <td>Audience disclosure</td>
+                  <td class="col--num"><span class="stat-inline stat-inline--success">61%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">14%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">8%</span></td>
+                  <td><span class="badge warning">Contested</span></td>
+                </tr>
+                <tr>
+                  <td>Source transparency</td>
+                  <td class="col--num"><span class="stat-inline">54%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">19%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">11%</span></td>
+                  <td><span class="badge warning">Contested</span></td>
+                </tr>
+                <tr>
+                  <td>Prohibited use cases</td>
+                  <td class="col--num"><span class="stat-inline">49%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--warning">38%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">12%</span></td>
+                  <td><span class="badge neutral">Emerging</span></td>
+                </tr>
+                <tr>
+                  <td>Staff training requirements</td>
+                  <td class="col--num"><span class="stat-inline">41%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--warning">27%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">9%</span></td>
+                  <td><span class="badge neutral">Emerging</span></td>
+                </tr>
+                <tr>
+                  <td>Vendor governance</td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">37%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">11%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">4%</span></td>
+                  <td><span class="badge neutral">Emerging</span></td>
+                </tr>
+                <tr>
+                  <td>Data handling terms</td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">15%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">6%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">2%</span></td>
+                  <td><span class="badge error">Gap</span></td>
+                </tr>
+                <tr>
+                  <td>IP and copyright</td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">22%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">8%</span></td>
+                  <td class="col--num"><span class="stat-inline stat-inline--error">3%</span></td>
+                  <td><span class="badge error">Gap</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption class="article-figcaption" style="padding:var(--space-3) var(--space-3) var(--space-4);">
+            <strong>Table 1.</strong> AI governance provisions across 312 policies. "Provision" = topic is addressed. "Enforcement" = policy describes consequences for non-compliance. "Audit" = policy describes how compliance is verified. Consensus reflects both coverage and definitional consistency across documents.
+          </figcaption>
+        </figure>
+
+        <h2>The enforcement gap</h2>
+
+        <p>Table 1 makes the structural problem visible: across every governance dimension, the gap between provision coverage and enforcement coverage is large. Sign-off — the strongest provision in the corpus — has enforcement language in fewer than a third of policies that require it. Disclosure provisions, where they exist, are accompanied by enforcement language in fewer than one in seven cases. Vendor governance and data handling, the newest and most underaddressed areas, have enforcement language in fewer than one in eight policies that address them at all. The pattern is consistent: newsrooms write intentions and leave accountability to culture.</p>
+
+        <div class="article-mrow">
+          <p>The absence of enforcement is partly structural and partly cultural. Structurally, most newsrooms lack the institutional apparatus that enforcement requires: no compliance function, no systematic monitoring, no consequence framework for editorial policy violations beyond the informal accountability of a small team. The cultural dimension is subtler: journalism organizations have historically been resistant to bureaucratic compliance infrastructure, in part because that infrastructure has, at various points, been used to threaten editorial independence from within institutions. Applying compliance mechanisms to AI governance requires navigating that same wariness — building oversight without building a system that can later be used to control editorial decision-making rather than protect it.</p>
+          <aside class="article-marginnote article-marginnote--source" aria-label="Source">
+            <span class="mn-source-num">2</span>Keel evidence tiers applied to barnowl governance claims: of 247 enforcement-related claims, 31 rated "authoritative," 89 "high-quality," 114 "moderate," 13 "excluded." Only authoritative and high-quality claims contribute to aggregate percentages.
+          </aside>
+        </div>
+
+        <p>There is a chicken-and-egg problem at the center of the enforcement gap. Newsrooms that do not monitor AI use cannot know whether their policies are being followed. Newsrooms that do not know whether their policies are being followed have no basis for reporting accurately on their own AI governance practices. The opacity is self-reinforcing: without audit mechanisms, there is nothing to audit; without audit results, there is no pressure to build audit mechanisms. External pressure — from audiences, from funders, from peers — is the most likely catalyst for breaking the cycle. The barnowl policy corpus exists, in part, to create that pressure.</p>
+
+        <h2>The non-English newsroom gap in the corpus itself</h2>
+
+        <p>Barnowl's geographic and linguistic distribution data has a reflexive implication: the policy corpus almost certainly underrepresents the newsrooms that are most actively using AI. English-language outlets account for <span class="stat-inline">89%</span> of the 312 documents. Spanish-language outlets — which barnowl's implementation data identifies as the most AI-active non-English group globally — appear in fewer than <span class="stat-inline stat-inline--error">3%</span> of the corpus despite representing approximately 15% of all news organizations within the dataset's geographic scope.</p>
+
+        <p>Several factors explain the underrepresentation without fully accounting for it. This research is conducted in English and the search methodology is English-dominant, which creates a systematic bias toward finding English-language documentation. Governance culture may differ structurally: organizations that built on AI from operational necessity rather than deliberate strategy may be less likely to have produced formal policy documents that declare a governance position. And there may be a disclosure dynamic at work: publishing a governance policy invites scrutiny, and organizations whose governance is informal or underdeveloped have rational incentives not to publish.</p>
+
+        <div class="article-mrow">
+          <p>Whatever the explanation mix, the implication for the corpus is significant. If non-English newsrooms with active AI deployments and minimal governance are systematically underrepresented, the aggregate picture presented here — already concerning on enforcement and audit dimensions — is almost certainly more favorable than the actual state of practice across the full global journalism ecosystem. The 312 policies are a sample of documented, public governance positions. They are not a sample of governance as it exists across the full population of newsrooms using AI. Those are different things, and the gap between them is where the real risk concentrates.</p>
+          <aside class="article-marginnote article-marginnote--callout" aria-label="Key finding">
+            Non-English newsrooms represent ~15% of the dataset's geographic scope but fewer than 3% of the policy corpus. The documented governance picture is systematically more favorable than actual practice across the full ecosystem.
+          </aside>
+        </div>
+
+        <h2>What the gap hypotheses reveal about next steps</h2>
+
+        <p>Beyond the claim data, barnowl's methodology generates gap hypotheses — structured research questions surfaced by the absence of evidence where evidence would be expected if certain conditions held. The current corpus contains <span class="stat-inline">602</span> gap hypotheses across the full dataset. Three categories account for the majority, and each points toward a different kind of research and action.</p>
+
+        <p>The largest category, accounting for <span class="stat-inline">38%</span> of gap hypotheses, concerns implementation fidelity: policies exist but barnowl has found no evidence of whether they are being followed. These are not gaps in governance intention — the intention is documented — they are gaps in governance verification. They suggest that the most valuable next phase of research is not more policy collection, but observation of practice: what do newsrooms actually do with AI-assisted content, and how does that compare to what their policies say they will do? The answer, on current evidence, is unknown.</p>
+
+        <p>The second category, at <span class="stat-inline">27%</span> of gap hypotheses, concerns downstream effects: the impact of AI deployment on content quality, on source relationships, on audience trust, and on the broader information environment. Policies address process; very few address outcomes. The barnowl corpus has extensive evidence about what newsrooms say they will do with AI and limited evidence about what AI does to the journalism they produce. The outcome research is beginning to appear — the disclosure-and-trust findings in the companion piece are early examples — but it is substantially behind the governance documentation, and the gap is widening as deployment accelerates.</p>
+
+        <p>The third category, at <span class="stat-inline">19%</span> of gap hypotheses, is the international gap directly: organizations in the barnowl scope that have active AI implementations but no public governance documentation whatsoever. For these organizations, the implementation database knows what they are doing; it does not know how, if at all, they are governing it. Filling this gap requires primary research — direct engagement with newsrooms that are not yet part of the public governance conversation — that the current methodology cannot supply through document collection alone.</p>
+
+        <blockquote>
+          <p>"We didn't write a policy because we thought we needed one. We wrote a policy because a reporter asked us if we had one, and we realized we didn't know how to answer. That's probably not unusual."</p>
+          <cite>Managing editor, mid-size regional daily, interview March 2026. Organization asked not to be named.</cite>
+        </blockquote>
+
+        <p>This dynamic — policy as response to external inquiry rather than internal deliberation — recurred across multiple interviews during the research period. It is not, on reflection, a failure. Reactive governance is better than no governance, and external pressure is a legitimate and often effective catalyst for organizational change. But it means that a significant portion of the policy corpus reflects what organizations thought they were expected to say when asked directly, which is not the same as what they have decided to do independently, and may not be the same as what they are actually doing. Both distinctions matter for interpreting the data.</p>
+
+        <h2>What adequate governance requires</h2>
+
+        <p>The purpose of this analysis is not to rank newsrooms or assign blame. Most of the 312 organizations in this corpus are trying to act responsibly under conditions of genuine uncertainty, constrained resources, and technological change moving faster than deliberate governance can comfortably track. The purpose is to identify the structural gaps that responsible intentions cannot fill without deliberate action — and to name what that action looks like in practical terms.</p>
+
+        <p>The structural agenda that emerges from the data is specific. On sign-off: most newsrooms have the provision; fewer have the documentation. Moving from a sign-off culture to a sign-off record is achievable without significant infrastructure investment — the question is whether it gets prioritized. On disclosure: the definitional inconsistency is the primary problem; it requires industry-level definition work, not individual newsroom policy work, and cannot be solved by any single organization acting alone. On vendor governance: this is the largest unaddressed structural gap and the one with the clearest near-term leverage; newsrooms negotiating AI tool agreements without explicit data-handling and IP provisions are accepting risks they have not assessed, and those risks are growing as the tools become more deeply integrated into editorial workflows. On enforcement: this is the hardest, because it requires building something that journalism organizations are culturally resistant to and have historically had good reasons to resist. The alternative — policies without enforcement — is not meaningless, but it is substantially less than what the AI governance moment requires. The baseline for evaluation should not be "does a policy exist?" but "does the policy change what the newsroom does?" On that measure, the corpus of 312 has a long way to go, and the distance is not decreasing.</p>
+
+        <div class="article-note">
+          <p><strong>About this analysis:</strong> The barnowl AI policy corpus is updated quarterly. Figures reflect the v2.1 corpus as of April 10, 2026. All claim percentages represent share of documents containing the relevant provision — not share of AI implementations. Methodology documentation and the full corpus index are available on request. Claims rated "excluded" by the Keel evidence tier methodology do not contribute to aggregate percentages but are retained in the corpus with exclusion notes.</p>
+        </div>
+
+        <section class="article-footnotes" aria-label="Footnotes">
+          <ol>
+            <li id="fn:1"><a href="#ref:1" class="fn-back">↑</a> Disclosure provisions are coded at three specificity levels: broad (any AI use must be disclosed), medium (AI-generated text must be disclosed), and narrow (only fully autonomous publication requires disclosure). Growth since 2022 reflects all three combined. When separated: broad provisions grew from 18% to 31%; narrow provisions from 25% to 30%; medium-specificity provisions emerged as a category and grew to 11%. The aggregate growth figure is accurate but obscures the definitional fragmentation.</li>
+            <li id="fn:2"><a href="#ref:2" class="fn-back">↑</a> Keel evidence tier classifications are applied retrospectively to barnowl governance claims. "Authoritative" and "high-quality" tiers together constitute "verified" for aggregate reporting. Organizations in barnowl's dataset that are also Keel knowledge base subjects have higher-quality evidence records on average, introducing a potential selection bias that cannot be fully controlled without direct organization-level research.</li>
+          </ol>
+        </section>
+
+        <section class="article-references" aria-label="References">
+          <h2>References</h2>
+          <ol>
+            <li>Reuters Institute for the Study of Journalism. <em>Digital News Report 2025.</em> University of Oxford, 2025.</li>
+            <li>Barnowl Research Team. <em>AI Policy Corpus v2.1: Methodology and Codebook.</em> Internal documentation, April 2026.</li>
+            <li>Tern Community Research. <em>AI Readiness Framework for News Organizations.</em> v1.4, March 2026. Eight-dimension benchmark used for cross-reference on governance culture dimensions.</li>
+            <li>Keel Knowledge Platform. <em>Evidence Tier Methodology.</em> v2.0, January 2026. Classification framework applied to governance and enforcement claims.</li>
+            <li>Weaver Data Lab. <em>Visualization Principles for Uncertainty Communication.</em> March 2026. Error-bar and uncertainty disclosure methodology referenced throughout.</li>
+          </ol>
+        </section>
+
+      </article>
+    </div><!-- /art-3500 -->
+
+
+  </main>
+</div><!-- /.shell -->
+
+<script>
+const sections = document.querySelectorAll('.section[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navItems.forEach(n => n.classList.remove('active'));
+      const id = e.target.id;
+      const active = document.querySelector(`.nav-item[href="#${id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: `-48px 0px -60% 0px` });
+
+sections.forEach(s => observer.observe(s));
+
+const VARIANT_THEMES = ['carbon', 'slate', 'parchment'];
+
+function setTheme(value) {
+  const html = document.documentElement;
+  const link = document.getElementById('theme-variant-link');
+  html.removeAttribute('data-theme');
+  link.href = '';
+  if (value === 'light') {
+    html.dataset.theme = 'light';
+  } else if (value === 'dark') {
+    // default — no attribute needed
+  } else if (VARIANT_THEMES.includes(value)) {
+    link.href = `themes/${value}.css`;
+    html.dataset.theme = value;
+  }
+}
+</script>
+</body>
+</html>
