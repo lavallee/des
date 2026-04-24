@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Design System Showcase</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" id="theme-variant-link" href="">
 <style>
@@ -541,39 +541,8 @@
 .score-bar { background: var(--surface-raised); border-radius: var(--radius-sm); height: 6px; overflow: hidden; }
 .score-fill { height: 100%; border-radius: var(--radius-sm); background: var(--accent); transition: width var(--duration-slow) var(--ease-out); }
 
-/* ── Prose styles (for artifact-mode content) ──────────────────────── */
-.prose {
-  font-size: 16px;
-  line-height: var(--leading-relaxed);
-  color: var(--text);
-  max-width: var(--prose-max);
-}
-.prose h2 {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  font-weight: 400;
-  margin: var(--space-8) 0 var(--space-3);
-  color: var(--text);
-  font-style: italic;
-}
-.prose h3 { font-size: 17px; font-weight: var(--weight-semibold); margin: var(--space-6) 0 var(--space-2); }
-.prose p { margin: 0 0 var(--space-4); }
-.prose a { color: var(--accent-text); text-decoration: none; }
-.prose a:hover { text-decoration: underline; }
-.prose code {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  background: var(--surface-raised);
-  padding: 1px 6px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-}
-.prose blockquote {
-  border-left: 2px solid var(--accent);
-  padding-left: var(--space-4);
-  margin: 0 0 var(--space-4);
-  color: var(--text-muted);
-}
+/* ── Prose / Article (deferred to components.css) ──────────────────── */
+/* Inline overrides removed — handled by components.css .prose and .article */
 
 /* ── Two-column detail row ─────────────────────────────────────────── */
 .detail-row {
@@ -1338,18 +1307,204 @@
     <!-- ── PROSE ──────────────────────────────────────────────────── -->
     <section class="section" id="prose">
       <h2 class="section-title">Prose / Article Mode</h2>
-      <p class="section-desc">For barnowl governance summaries, weaver narratives, and any tool in artifact mode. 16px base, 1.65 line height, 680px max-width.</p>
+      <p class="section-desc">
+        Newsreader (serif, optical sizing) for body and narrative headings.
+        Geist Sans for structural dividers, kickers, bylines, and data labels.
+        Named CSS grid with breakout zones — default prose at 680px, figures step out to 940px, tables can go full-width.
+      </p>
 
-      <div class="demo">
-        <div class="prose">
-          <h2>Governance findings</h2>
-          <p>Based on 847 verified claims across 312 sources, the following guidance reflects the current state of practice in AI governance for news organizations. Claims marked <code>needs_review</code> are excluded.</p>
-          <h3>Editorial independence</h3>
-          <p>Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off. This principle appears in 73% of reviewed policies.</p>
-          <blockquote>
-            "The algorithm suggests; the editor decides." — three independent newsroom policy documents, 2025.
-          </blockquote>
-          <p>Implementation varies significantly: 42% of organizations have formal sign-off workflows; the remainder rely on cultural norms alone.</p>
+      <!-- ── Typography specimens ──────────────────────────── -->
+      <div class="demo" style="padding: var(--space-6);">
+        <div class="subsection-title" style="margin-bottom:var(--space-5)">Type scale</div>
+        <div style="display:flex;flex-direction:column;gap:var(--space-5);">
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">article-kicker · Geist 11px uppercase</div>
+            <span class="article-kicker" style="position:static;display:inline-block;">Governance · April 2026</span>
+          </div>
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">article-h1 · Newsreader 400 clamp(28–48px)</div>
+            <div style="font-family:var(--font-prose);font-optical-sizing:auto;font-size:clamp(28px,4vw,48px);font-weight:400;line-height:1.25;letter-spacing:-0.02em;color:var(--text);">AI Governance in Newsrooms: What the Evidence Shows</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">article-dek · Newsreader 400 19px muted</div>
+            <div style="font-family:var(--font-prose);font-optical-sizing:auto;font-size:19px;line-height:1.55;color:var(--text-muted);">A synthesis of 847 verified claims across 312 sources — what policies actually say, where the gaps are, and what's still contested.</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">article-byline · Geist 12px dim</div>
+            <div style="font-family:var(--font-sans);font-size:12px;color:var(--text-dim);">By Marc Lavallee <span style="color:var(--border-strong)">·</span> April 24, 2026 <span style="color:var(--border-strong)">·</span> barnowl v2.1</div>
+          </div>
+          <hr style="border:none;border-top:1px solid var(--border);margin:0;">
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">article h2 / section divider · Geist 11px uppercase</div>
+            <div style="font-family:var(--font-sans);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);border-top:1px solid var(--border);padding-top:var(--space-4);">Editorial Independence</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">article h3 · Newsreader 600 22px</div>
+            <div style="font-family:var(--font-prose);font-optical-sizing:auto;font-size:22px;font-weight:600;line-height:1.4;color:var(--text);">The human sign-off requirement</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">body · Newsreader 400 17px — lede vs. body</div>
+            <p style="font-family:var(--font-prose);font-optical-sizing:auto;font-size:19px;line-height:1.65;color:var(--text);margin:0 0 12px;">Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off.</p>
+            <p style="font-family:var(--font-prose);font-optical-sizing:auto;font-size:17px;line-height:1.65;color:var(--text);margin:0;">Implementation varies significantly: 42% of organizations have formal sign-off workflows; the remainder rely on cultural norms alone. This gap is most pronounced among organizations with fewer than 50 editorial staff.</p>
+          </div>
+          <div>
+            <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">pull quote · Newsreader italic clamp(20–26px)</div>
+            <div style="font-family:var(--font-prose);font-optical-sizing:auto;font-size:clamp(20px,2.5vw,26px);font-style:italic;line-height:1.45;color:var(--text);border-top:2px solid var(--accent);border-bottom:1px solid var(--border);padding:var(--space-6) 0 var(--space-5);">"The algorithm suggests; the editor decides."<cite style="display:block;font-family:var(--font-sans);font-size:12px;font-style:normal;color:var(--text-dim);margin-top:var(--space-3);">Three independent newsroom policy documents, 2025</cite></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Full article layout demo ──────────────────────── -->
+      <div class="demo" style="padding:0;overflow:hidden;border-radius:var(--radius-lg);">
+        <div style="padding:var(--space-4) var(--space-6);background:var(--surface-inset);border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:var(--text-sm);color:var(--text-dim);">
+          .article — named grid layout (prose 680px · breakout 940px · full)
+        </div>
+        <div style="padding: var(--space-10) 0; background: var(--surface);">
+          <article class="article">
+
+            <!-- header -->
+            <header class="article-header">
+              <span class="article-kicker">AI Governance · April 2026</span>
+              <h1 class="article-h1">What 312 Newsroom Policies Actually Say About AI</h1>
+              <p class="article-dek">A synthesis of verified claims from barnowl — where the consensus holds, where it fractures, and what the gaps reveal.</p>
+              <div class="article-byline">
+                <span>Marc Lavallee</span>
+                <span class="article-byline__sep">·</span>
+                <span>April 24, 2026</span>
+                <span class="article-byline__sep">·</span>
+                <span>barnowl v2.1 · 847 claims</span>
+              </div>
+            </header>
+
+            <!-- section break -->
+            <h2>Editorial Independence</h2>
+
+            <!-- lede -->
+            <p class="article-lede">Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off.</p>
+
+            <p>This principle appears in 73% of reviewed policies, making it the single most widely-held norm in the dataset. Implementation varies significantly: 42% of organizations have formal sign-off workflows; the remainder rely on cultural norms alone.</p>
+
+            <!-- breakout figure -->
+            <figure class="article-figure article-breakout">
+              <div style="padding:var(--space-6);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);">
+                <div class="stat-card"><div class="stat-card__value">73%</div><div class="stat-card__label">Require human sign-off</div></div>
+                <div class="stat-card"><div class="stat-card__value" style="color:var(--success)">42%</div><div class="stat-card__label">Formal workflow in place</div></div>
+                <div class="stat-card"><div class="stat-card__value" style="color:var(--warning)">31%</div><div class="stat-card__label">Norm-based only</div></div>
+                <div class="stat-card"><div class="stat-card__value" style="color:var(--error)">27%</div><div class="stat-card__label">No explicit policy</div></div>
+              </div>
+              <figcaption class="article-figcaption" style="padding:0 var(--space-3) var(--space-4);">
+                <strong>Figure 1.</strong> Editorial independence provisions across 312 reviewed policies. Percentages reflect proportion of total sample.
+              </figcaption>
+            </figure>
+
+            <h3>The consent gap</h3>
+
+            <p>Among organizations with sign-off requirements, consent documentation is inconsistent. Only 18% maintain auditable records of AI-assisted editorial decisions — a figure that likely understates the problem, since organizations without formal policies have no mechanism for tracking.</p>
+
+            <blockquote>
+              <p>"The algorithm suggests; the editor decides." This phrase, or close variants, appeared verbatim in three independent policy documents from newsrooms that had not coordinated on language.</p>
+              <cite>barnowl claim cluster C-2847, April 2026</cite>
+            </blockquote>
+
+            <p>The convergence on similar language suggests emerging professional consensus — or shared consulting influence. Further source tracing is needed to distinguish the two.</p>
+
+            <!-- inline note -->
+            <div class="article-note">
+              <p><strong>Methodology note:</strong> Claims marked <code>needs_review</code> are excluded from aggregate counts. 47 claims in this section were flagged for conflicting source interpretations; they are counted in the base but noted where they affect percentages by more than 2 points.</p>
+            </div>
+
+            <!-- section break -->
+            <h2>Transparency Requirements</h2>
+
+            <p>Disclosure requirements — telling audiences when AI was involved — are the second most common provision at 61%. But the definition of "disclosure" varies so widely that comparisons across policies are unreliable.</p>
+
+            <!-- pull quote -->
+            <blockquote class="article-pullquote">
+              "Disclosure requirements appear in 61% of policies, but fewer than a third define what constitutes meaningful disclosure to audiences."
+            </blockquote>
+
+            <p>Some policies require disclosure of AI involvement in any published content; others only require it for AI-generated text; still others limit it to autonomous publication with no human review. The practical implications differ substantially.</p>
+
+            <!-- full-width table -->
+            <figure class="article-figure article-full" style="margin-top:var(--space-8)">
+              <div style="overflow-x:auto;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Policy category</th>
+                      <th>% with provision</th>
+                      <th>% with enforcement mechanism</th>
+                      <th>Consensus level</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Human sign-off</td><td class="col--num">73%</td><td class="col--num">42%</td><td><span class="badge badge--success">Strong</span></td></tr>
+                    <tr><td>Audience disclosure</td><td class="col--num">61%</td><td class="col--num">28%</td><td><span class="badge badge--warning">Developing</span></td></tr>
+                    <tr><td>Staff training requirements</td><td class="col--num">44%</td><td class="col--num">19%</td><td><span class="badge badge--warning">Developing</span></td></tr>
+                    <tr><td>Vendor due diligence</td><td class="col--num">37%</td><td class="col--num">12%</td><td><span class="badge badge--neutral">Emerging</span></td></tr>
+                    <tr><td>Autonomous publication ban</td><td class="col--num">29%</td><td class="col--num">24%</td><td><span class="badge badge--neutral">Emerging</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <figcaption class="article-figcaption" style="padding: var(--space-3) var(--space-4) 0;">
+                <strong>Table 1.</strong> Prevalence and enforcement of major policy categories. Enforcement mechanism defined as any formal process, audit right, or stated consequence for non-compliance.
+              </figcaption>
+            </figure>
+
+          </article>
+        </div>
+      </div>
+
+      <!-- ── Split layout demo ──────────────────────────────── -->
+      <div style="margin-top:var(--space-8)">
+        <div class="subsection-title" style="margin-bottom:var(--space-4)">.article--split — prose + data panel</div>
+      </div>
+      <div class="demo" style="padding:0;overflow:hidden;border-radius:var(--radius-lg);">
+        <div style="padding:var(--space-4) var(--space-6);background:var(--surface-inset);border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:var(--text-sm);color:var(--text-dim);">
+          2fr prose · 1fr sticky data panel · responsive stack at 860px
+        </div>
+        <div style="background:var(--surface);padding:var(--space-8);">
+          <div class="article--split">
+            <!-- prose side -->
+            <div class="article-split-prose">
+              <article class="article">
+                <h2>Vendor due diligence</h2>
+                <p class="article-lede">Only 37% of reviewed policies address vendor relationships — the largest gap relative to the scale of the risk.</p>
+                <p>Organizations are outsourcing editorial AI decisions to vendors while retaining nominal editorial responsibility. This creates accountability gaps that disclosure requirements alone cannot close.</p>
+                <h3>The three criteria that matter</h3>
+                <p>Policies that do address vendors tend to converge on three provisions: training data disclosure, bias audit rights, and model change notification. Of these, only the last appears in a majority of vendor-aware policies.</p>
+              </article>
+            </div>
+            <!-- data panel side -->
+            <div class="article-split-data">
+              <div style="background:var(--surface-raised);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-5);">
+                <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:var(--space-4);">Vendor provisions — 37% of policies</div>
+                <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;font-family:var(--font-sans);color:var(--text-muted);">
+                      <span>Model change notification</span><span style="font-family:var(--font-mono)">58%</span>
+                    </div>
+                    <div class="score-bar"><div class="score-bar__fill score-bar__fill--mid" style="width:58%"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;font-family:var(--font-sans);color:var(--text-muted);">
+                      <span>Bias audit rights</span><span style="font-family:var(--font-mono)">41%</span>
+                    </div>
+                    <div class="score-bar"><div class="score-bar__fill score-bar__fill--lo" style="width:41%"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;font-family:var(--font-sans);color:var(--text-muted);">
+                      <span>Training data disclosure</span><span style="font-family:var(--font-mono)">29%</span>
+                    </div>
+                    <div class="score-bar"><div class="score-bar__fill score-bar__fill--lo" style="width:29%"></div></div>
+                  </div>
+                </div>
+                <div style="margin-top:var(--space-5);padding-top:var(--space-4);border-top:1px solid var(--border);font-family:var(--font-sans);font-size:11px;color:var(--text-dim);">
+                  Of 312 policies reviewed · excludes needs_review
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1362,7 +1517,7 @@
       <div class="demo">
         <div class="subsection-title">New tool — minimal setup</div>
         <div class="code">&lt;!-- 1. Fonts --&gt;
-&lt;link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&amp;display=swap" rel="stylesheet"&gt;
 
 &lt;!-- 2. Token layer (copy tokens.css to your project) --&gt;
 &lt;link rel="stylesheet" href="/css/tokens.css"&gt;

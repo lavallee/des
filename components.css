@@ -804,9 +804,395 @@
 }
 
 
-/* ─── 10. Prose / article content ───────────────────────────────────────── */
+/* ─── 10. Prose / Article layouts ───────────────────────────────────────── */
+/*
+ * Two layout systems:
+ *   .article          — narrative-first, named CSS grid with breakout zones
+ *   .article--split   — prose + data panel side by side
+ *
+ * Typography registers:
+ *   --font-prose (Newsreader) — body, narrative headings (h1, h3, lede, pullquote)
+ *   --font-sans  (Geist)      — structural h2 dividers, kickers, bylines, captions
+ *   --font-mono  (Geist Mono) — inline code, numeric data cells
+ */
+
+/* ── Article grid ─────────────────────────────────────────────────────────
+ *
+ *  [full-start] 1fr [breakout-start] gutter [prose-start] content [prose-end] gutter [breakout-end] 1fr [full-end]
+ *
+ *  All children default to the prose column.
+ *  .article-breakout → steps out to the wider breakout zone (~940px)
+ *  .article-full     → spans the full container
+ */
+
+.article {
+  display: grid;
+  grid-template-columns:
+    [full-start]
+    minmax(var(--space-5), 1fr)
+    [breakout-start]
+    minmax(0, calc((var(--prose-wide) - var(--prose-max)) / 2))
+    [prose-start]
+    minmax(0, var(--prose-max))
+    [prose-end]
+    minmax(0, calc((var(--prose-wide) - var(--prose-max)) / 2))
+    [breakout-end]
+    minmax(var(--space-5), 1fr)
+    [full-end];
+  row-gap: 0;
+  width: 100%;
+}
+
+.article > * {
+  grid-column: prose;
+}
+
+.article-breakout {
+  grid-column: breakout;
+}
+
+.article-full {
+  grid-column: full;
+}
+
+
+/* ── Article header ────────────────────────────────────────────────────── */
+
+.article-header {
+  padding-bottom: var(--space-8);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Small label above the headline: "GOVERNANCE · APR 2026" */
+.article-kicker {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--accent-text);
+  margin-bottom: var(--space-3);
+}
+
+.article-h1 {
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 var(--space-4);
+}
+
+/* Subtitle / standfirst — one or two sentences below h1 */
+.article-dek {
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-5);
+}
+
+.article-byline {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.article-byline__sep {
+  color: var(--border-strong);
+}
+
+
+/* ── Article body typography ───────────────────────────────────────────── */
+
+/* Base prose: all body text within .article uses --font-prose */
+.article p,
+.article li,
+.article dt,
+.article dd {
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
+  font-size: 17px;
+  line-height: var(--leading-relaxed);
+  color: var(--text);
+}
+
+/* First paragraph of article — slightly larger */
+.article-lede {
+  font-size: 19px !important;
+  color: var(--text) !important;
+}
+
+/* Structural section break — Geist Sans, acts as a visual chapter marker */
+.article h2,
+.article-section {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
+  margin: var(--space-12) 0 var(--space-6);
+}
+
+/* Narrative section heading — Newsreader, within a prose section */
+.article h3,
+.article-h3 {
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
+  font-size: 22px;
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text);
+  margin: var(--space-8) 0 var(--space-3);
+}
+
+.article h4,
+.article-h4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+  margin: var(--space-6) 0 var(--space-2);
+}
+
+.article p {
+  margin: 0 0 var(--space-5);
+}
+
+.article a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent-text) 40%, transparent);
+  text-underline-offset: 2px;
+}
+
+.article a:hover {
+  text-decoration-color: var(--accent-text);
+}
+
+.article strong {
+  font-weight: var(--weight-semibold);
+}
+
+.article em {
+  font-style: italic;
+}
+
+.article ul,
+.article ol {
+  margin: 0 0 var(--space-5);
+  padding-left: var(--space-6);
+}
+
+.article li {
+  margin-bottom: var(--space-2);
+}
+
+.article hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-10) 0;
+  grid-column: prose;
+}
+
+.article code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--surface-raised);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.article pre {
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  overflow-x: auto;
+  margin: 0 0 var(--space-5);
+}
+
+.article pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+}
+
+
+/* ── Blockquote ────────────────────────────────────────────────────────── */
+
+.article blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: var(--space-5);
+  margin: var(--space-6) 0;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.article blockquote p {
+  font-size: 17px;
+  color: inherit;
+}
+
+.article blockquote cite {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--text-dim);
+  margin-top: var(--space-2);
+}
+
+
+/* ── Pull quote ────────────────────────────────────────────────────────── */
+
+.article-pullquote {
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--text);
+  border-top: 2px solid var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-6) 0 var(--space-5);
+  margin: var(--space-8) 0;
+}
+
+.article-pullquote cite {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--text-dim);
+  margin-top: var(--space-3);
+}
+
+
+/* ── Figure / caption ──────────────────────────────────────────────────── */
+
+.article-figure {
+  margin: var(--space-8) 0;
+}
+
+.article-figure > :first-child {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--surface-inset);
+}
+
+.article-figcaption {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-top: var(--space-2);
+}
+
+.article-figcaption strong {
+  color: var(--text-muted);
+  font-weight: var(--weight-medium);
+}
+
+
+/* ── Inline note / aside ───────────────────────────────────────────────── */
+/* A callout block within the prose flow — not a sidebar */
+
+.article-note {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-5) 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.article-note p {
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-sm) !important;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+
+/* ── Split layout ──────────────────────────────────────────────────────── */
+/*
+ * Side-by-side prose + data panel.
+ * Use when the article is interpretation alongside structured data output.
+ * Responsive: stacks to single column below 860px.
+ */
+
+.article--split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-10);
+  align-items: start;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+.article-split-prose {
+  min-width: 0;
+}
+
+.article-split-data {
+  min-width: 0;
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-5));
+  /* Override grid column defaults that article sets */
+  grid-column: unset;
+}
+
+/* Inside the split prose column, override article grid to be single-column */
+.article-split-prose .article {
+  display: block;
+}
+
+.article-split-prose .article > * {
+  grid-column: unset;
+  max-width: var(--prose-max);
+}
+
+@media (max-width: 860px) {
+  .article--split {
+    grid-template-columns: 1fr;
+  }
+  .article-split-data {
+    position: static;
+  }
+}
+
+
+/* ── Legacy .prose class ───────────────────────────────────────────────── */
+/* Kept for backward compatibility — use .article for new work */
 
 .prose {
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
   font-size: 16px;
   line-height: var(--leading-relaxed);
   color: var(--text);
@@ -814,42 +1200,31 @@
 }
 
 .prose h2 {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  font-weight: 400;
-  font-style: italic;
-  margin: var(--space-8) 0 var(--space-3);
-  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
+  margin: var(--space-10) 0 var(--space-5);
 }
 
 .prose h3 {
-  font-size: 17px;
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
+  font-size: 20px;
   font-weight: var(--weight-semibold);
   margin: var(--space-6) 0 var(--space-2);
   color: var(--text);
 }
 
-.prose p {
-  margin: 0 0 var(--space-4);
-}
-
-.prose a {
-  color: var(--accent-text);
-  text-decoration: none;
-}
-
-.prose a:hover {
-  text-decoration: underline;
-}
-
-.prose strong {
-  font-weight: var(--weight-semibold);
-}
-
-.prose em {
-  font-style: italic;
-  color: var(--text-muted);
-}
+.prose p { margin: 0 0 var(--space-4); }
+.prose a { color: var(--accent-text); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent-text) 40%, transparent); text-underline-offset: 2px; }
+.prose a:hover { text-decoration-color: var(--accent-text); }
+.prose strong { font-weight: var(--weight-semibold); }
+.prose em { font-style: italic; }
 
 .prose code {
   font-family: var(--font-mono);
@@ -869,12 +1244,7 @@
   margin: 0 0 var(--space-4);
 }
 
-.prose pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 13px;
-}
+.prose pre code { background: none; border: none; padding: 0; font-size: 13px; }
 
 .prose blockquote {
   border-left: 2px solid var(--accent);
@@ -890,9 +1260,7 @@
   padding-left: var(--space-6);
 }
 
-.prose li {
-  margin-bottom: var(--space-1);
-}
+.prose li { margin-bottom: var(--space-1); }
 
 .prose table {
   width: 100%;
@@ -906,6 +1274,7 @@
   padding: var(--space-2) var(--space-3);
   border-bottom: 1px solid var(--border);
   font-weight: var(--weight-medium);
+  font-family: var(--font-sans);
   color: var(--text-dim);
   font-size: 11px;
   text-transform: uppercase;

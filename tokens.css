@@ -247,6 +247,7 @@
   /* Font families */
   --font-sans:  "Geist", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-prose: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono:  "Geist Mono", "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
 
   /* Type scale (fixed px values; use fluid clamp() for artifact/prose contexts) */
@@ -300,6 +301,7 @@
   --header-height:    48px;
   --content-max:      1400px;
   --prose-max:        680px;
+  --prose-wide:       940px;  /* Breakout figures — wider than prose, narrower than full */
 }
 
 
