@@ -1,0 +1,407 @@
+/*
+ * Design System Tokens
+ * Single source of truth for all color, type, spacing, and motion values.
+ *
+ * Structure:
+ *   1. Primitive palette (--p-* prefix, not for direct use in components)
+ *   2. Semantic tokens — dark theme default (:root)
+ *   3. Semantic tokens — light theme override ([data-theme="light"])
+ *   4. Typography
+ *   5. Spacing
+ *   6. Shape (border-radius, borders)
+ *   7. Shadow
+ *   8. Motion
+ *   9. Z-index
+ *
+ * Usage:
+ *   - Vanilla CSS / HTMX projects: link this file directly, use tokens in your CSS
+ *   - React + Tailwind v4 projects: wrap the semantic layer in @theme {} for Tailwind
+ *   - Never hardcode hex values in component CSS; always reference a token
+ */
+
+/* ─── 1. Primitives ─────────────────────────────────────────────────────────
+   These are the palette — all valid hue/lightness combinations.
+   Components never reference these directly. Semantic tokens do.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Zinc (neutral, dark surfaces) */
+  --p-zinc-950: #09090b;
+  --p-zinc-900: #18181b;
+  --p-zinc-800: #27272a;
+  --p-zinc-700: #3f3f46;
+  --p-zinc-600: #52525b;
+  --p-zinc-500: #71717a;
+  --p-zinc-400: #a1a1aa;
+  --p-zinc-300: #d4d4d8;
+  --p-zinc-200: #e4e4e7;
+  --p-zinc-100: #f4f4f5;
+  --p-zinc-50:  #fafafa;
+
+  /* Warm zinc (cream surfaces — light theme) */
+  --p-warm-950: #1a1a1a;
+  --p-warm-800: #444444;
+  --p-warm-500: #7a7a7a;
+  --p-warm-300: #b5b5b5;
+  --p-warm-100: #edede9;
+  --p-warm-50:  #fafaf7;
+  --p-warm-0:   #ffffff;
+
+  /* Indigo (primary accent) */
+  --p-indigo-700: #3730a3;
+  --p-indigo-600: #4f46e5;
+  --p-indigo-500: #6366f1;
+  --p-indigo-400: #818cf8;
+  --p-indigo-300: #a5b4fc;
+  --p-indigo-50:  rgba(99, 102, 241, 0.08);
+
+  /* Navy (primary accent, light theme) */
+  --p-navy-700: #0f2a5c;
+  --p-navy-600: #1a4480;
+  --p-navy-500: #2563a8;
+  --p-navy-100: #e9eef6;
+
+  /* Green */
+  --p-green-700: #15803d;
+  --p-green-600: #16a34a;
+  --p-green-500: #22c55e;
+  --p-green-900: #14532d;
+  --p-green-subtle-dark:  rgba(34, 197, 94, 0.10);
+  --p-green-subtle-light: #dfeee3;
+
+  /* Dark green (light theme positive) */
+  --p-dkgreen-600: #2b6a3c;
+  --p-dkgreen-100: #dfeee3;
+
+  /* Amber / orange */
+  --p-amber-500: #eab308;
+  --p-amber-600: #ca8a04;
+  --p-amber-subtle-dark:  rgba(234, 179, 8, 0.10);
+  --p-amber-subtle-light: #fef3c7;
+
+  /* Dark amber (light theme warning) */
+  --p-dkamber-600: #a04a00;
+  --p-dkamber-100: #fdf0e0;
+
+  /* Red */
+  --p-red-500: #ef4444;
+  --p-red-600: #dc2626;
+  --p-red-subtle-dark:  rgba(239, 68, 68, 0.10);
+  --p-red-subtle-light: #fee2e2;
+
+  /* Dark red (light theme error) */
+  --p-dkred-700: #8a1f2a;
+  --p-dkred-100: #f4dcdf;
+
+  /* Blue (info) */
+  --p-blue-500: #3b82f6;
+  --p-blue-400: #60a5fa;
+  --p-blue-subtle-dark:  rgba(59, 130, 246, 0.10);
+  --p-blue-subtle-light: #dbeafe;
+
+  /* Chart palette (perceptually weighted, colorblind-safe) */
+  --p-chart-1: #6366f1;   /* indigo */
+  --p-chart-2: #22d3ee;   /* cyan */
+  --p-chart-3: #a78bfa;   /* purple */
+  --p-chart-4: #f59e0b;   /* amber */
+  --p-chart-5: #34d399;   /* emerald */
+  --p-chart-6: #f87171;   /* rose */
+  --p-chart-7: #38bdf8;   /* sky */
+  --p-chart-8: #6b7280;   /* gray (unclassified) */
+}
+
+
+/* ─── 2. Semantic tokens — dark theme (default) ─────────────────────────────
+   Intent-named tokens. These are what components reference.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Surfaces — in order of elevation (darkest = base, lightest = most raised) */
+  --bg:             var(--p-zinc-950);   /* Page background */
+  --surface:        #111113;             /* Cards, panels (between 950 and 900) */
+  --surface-raised: var(--p-zinc-900);   /* Hover state, elevated content */
+  --surface-inset:  #0c0c0e;            /* Inset areas, code blocks */
+  --surface-overlay: rgba(9, 9, 11, 0.85); /* Modal backdrops */
+
+  /* Borders */
+  --border-subtle:  #161619;            /* Faintest — between cells, list items */
+  --border:         #1e1e24;            /* Default — card edges, sections */
+  --border-strong:  var(--p-zinc-700);  /* Emphasized — active states */
+  --border-focus:   var(--p-indigo-500); /* Focus rings */
+
+  /* Text */
+  --text:           #e4e4e8;            /* Primary — headings, body */
+  --text-muted:     var(--p-zinc-500);  /* Secondary — labels, descriptions */
+  --text-dim:       var(--p-zinc-600);  /* Tertiary — metadata, timestamps */
+  --text-disabled:  var(--p-zinc-700);  /* Disabled states */
+  --text-inverse:   var(--p-zinc-950);  /* Text on light backgrounds */
+
+  /* Interactive / accent */
+  --accent:         var(--p-indigo-500);
+  --accent-muted:   var(--p-indigo-600);
+  --accent-surface: var(--p-indigo-50);
+  --accent-text:    var(--p-indigo-300);  /* Accent-colored text (links in prose) */
+
+  /* Status — success */
+  --success:        var(--p-green-500);
+  --success-muted:  var(--p-green-700);
+  --success-subtle: var(--p-green-subtle-dark);
+
+  /* Status — warning */
+  --warning:        var(--p-amber-500);
+  --warning-muted:  var(--p-amber-600);
+  --warning-subtle: var(--p-amber-subtle-dark);
+
+  /* Status — error */
+  --error:          var(--p-red-500);
+  --error-muted:    var(--p-red-600);
+  --error-subtle:   var(--p-red-subtle-dark);
+
+  /* Status — info */
+  --info:           var(--p-blue-500);
+  --info-subtle:    var(--p-blue-subtle-dark);
+
+  /* Score bands (for continuous 0–1 range, bucketed into 3 states) */
+  --score-hi:       var(--p-green-500);
+  --score-hi-bg:    var(--p-green-subtle-dark);
+  --score-mid:      var(--p-amber-500);
+  --score-mid-bg:   var(--p-amber-subtle-dark);
+  --score-lo:       var(--p-red-500);
+  --score-lo-bg:    var(--p-red-subtle-dark);
+
+  /* Chart colors */
+  --chart-1: var(--p-chart-1);
+  --chart-2: var(--p-chart-2);
+  --chart-3: var(--p-chart-3);
+  --chart-4: var(--p-chart-4);
+  --chart-5: var(--p-chart-5);
+  --chart-6: var(--p-chart-6);
+  --chart-7: var(--p-chart-7);
+  --chart-8: var(--p-chart-8);
+}
+
+
+/* ─── 3. Semantic tokens — light theme ──────────────────────────────────────
+   Applied via [data-theme="light"] on <html> or <body>.
+   Follows the cream/warm aesthetic from steve.
+   ──────────────────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:             var(--p-warm-50);
+  --surface:        var(--p-warm-0);
+  --surface-raised: var(--p-warm-100);
+  --surface-inset:  #f0f0ec;
+  --surface-overlay: rgba(250, 250, 247, 0.90);
+
+  --border-subtle:  var(--p-warm-100);
+  --border:         #e4e4e0;
+  --border-strong:  #c8c8c4;
+  --border-focus:   var(--p-navy-600);
+
+  --text:           var(--p-warm-950);
+  --text-muted:     var(--p-warm-500);
+  --text-dim:       var(--p-warm-300);
+  --text-disabled:  #c8c8c4;
+  --text-inverse:   var(--p-warm-50);
+
+  --accent:         var(--p-navy-600);
+  --accent-muted:   var(--p-navy-700);
+  --accent-surface: var(--p-navy-100);
+  --accent-text:    var(--p-navy-500);
+
+  --success:        var(--p-dkgreen-600);
+  --success-muted:  #1e5230;
+  --success-subtle: var(--p-green-subtle-light);
+
+  --warning:        var(--p-dkamber-600);
+  --warning-muted:  #7a3800;
+  --warning-subtle: var(--p-amber-subtle-light);
+
+  --error:          var(--p-dkred-700);
+  --error-muted:    #6b1720;
+  --error-subtle:   var(--p-dkred-100);
+
+  --info:           var(--p-navy-600);
+  --info-subtle:    var(--p-blue-subtle-light);
+
+  --score-hi:       var(--p-dkgreen-600);
+  --score-hi-bg:    var(--p-green-subtle-light);
+  --score-mid:      var(--p-dkamber-600);
+  --score-mid-bg:   var(--p-amber-subtle-light);
+  --score-lo:       var(--p-dkred-700);
+  --score-lo-bg:    var(--p-dkred-100);
+
+  /* Chart colors shift slightly for light backgrounds */
+  --chart-1: var(--p-navy-600);
+  --chart-2: #2594a8;
+  --chart-3: #7a52d6;
+  --chart-4: #c07000;
+  --chart-5: #1a7a5c;
+  --chart-6: #c0362a;
+  --chart-7: #1a6499;
+  --chart-8: #6b7280;
+}
+
+
+/* ─── 4. Typography ─────────────────────────────────────────────────────────
+   Font families and the type scale.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Font families */
+  --font-sans:  "Geist", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono:  "Geist Mono", "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+
+  /* Type scale (fixed px values; use fluid clamp() for artifact/prose contexts) */
+  --text-xs:   10px;  /* Axis labels, badge text */
+  --text-sm:   12px;  /* Table metadata, captions */
+  --text-base: 13px;  /* Default UI, table body */
+  --text-md:   15px;  /* Detail prose, descriptions */
+  --text-lg:   18px;  /* Panel headings */
+  --text-xl:   22px;  /* Section headings */
+  --text-2xl:  28px;  /* Page title, brand */
+
+  /* Line heights */
+  --leading-tight:   1.25;  /* Headlines */
+  --leading-snug:    1.4;   /* Table rows, compact UI */
+  --leading-normal:  1.55;  /* Default UI body */
+  --leading-relaxed: 1.65;  /* Prose, article content */
+
+  /* Font weights */
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.05em;  /* Uppercase labels */
+  --tracking-widest:  0.1em;   /* Decorative uppercase */
+}
+
+
+/* ─── 5. Spacing ────────────────────────────────────────────────────────────
+   4px base grid. Use these stops; do not invent intermediate values.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Named layout values */
+  --sidebar-width:    220px;
+  --sidebar-width-lg: 280px;
+  --inspector-width:  360px;
+  --header-height:    48px;
+  --content-max:      1400px;
+  --prose-max:        680px;
+}
+
+
+/* ─── 6. Shape ──────────────────────────────────────────────────────────────
+   Border radius and default border widths.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  --radius-sm:   3px;   /* Score badges, inline code */
+  --radius-md:   6px;   /* Cards, panels, inputs */
+  --radius-lg:   10px;  /* Modals, command palette */
+  --radius-full: 9999px; /* Pills, chips */
+
+  --border-width: 1px;
+}
+
+
+/* ─── 7. Shadow ─────────────────────────────────────────────────────────────
+   Used sparingly. Prefer border-over-shadow for tools.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.5);
+  --shadow-overlay: 0 16px 48px rgba(0,0,0,0.6);
+}
+
+[data-theme="light"] {
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.12);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.16);
+  --shadow-overlay: 0 16px 48px rgba(0,0,0,0.2);
+}
+
+
+/* ─── 8. Motion ─────────────────────────────────────────────────────────────
+   Keep transitions fast. Data tools are instruments, not animations.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --duration-fast:    80ms;   /* Immediate feedback (button press) */
+  --duration-default: 150ms;  /* Most transitions (hover, show/hide) */
+  --duration-slow:    300ms;  /* Panel open/close, modal */
+  --duration-live:    200ms;  /* Live-update value flash */
+
+  /* Convenience shorthand for most uses */
+  --transition: var(--duration-default) var(--ease-default);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast:    0ms;
+    --duration-default: 0ms;
+    --duration-slow:    0ms;
+    --duration-live:    0ms;
+  }
+}
+
+
+/* ─── 9. Z-index scale ──────────────────────────────────────────────────────
+   Named layers. Never use arbitrary z-index values in components.
+   ──────────────────────────────────────────────────────────────────────── */
+:root {
+  --z-base:     0;
+  --z-raised:   1;
+  --z-sticky:   10;   /* Sticky headers, filter bars */
+  --z-fixed:    20;   /* Fixed sidebars */
+  --z-overlay:  30;   /* Right panel, inspector */
+  --z-dropdown: 40;   /* Dropdowns, select menus */
+  --z-modal:    50;   /* Modals, full-screen panels */
+  --z-palette:  60;   /* Command palette (on top of modals) */
+  --z-tooltip:  100;  /* Tooltips (always on top) */
+}
+
+
+/* ─── Base resets ────────────────────────────────────────────────────────────
+   Minimal normalization. Include this alongside tokens.css.
+   ──────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }

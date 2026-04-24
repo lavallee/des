@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" id="theme-variant-link" href="">
+<style>
+/* ── Layout shell ──────────────────────────────────────────────────── */
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--header-height) 1fr;
+  min-height: 100vh;
+}
+.shell-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-6);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}
+.shell-header .brand {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text);
+  margin-right: auto;
+}
+.shell-header .subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.shell-sidebar {
+  border-right: 1px solid var(--border);
+  padding: var(--space-4) 0;
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+}
+.shell-main {
+  padding: var(--space-8) var(--space-8);
+  max-width: 860px;
+}
+
+/* ── Sidebar nav ───────────────────────────────────────────────────── */
+.nav-section {
+  margin-bottom: var(--space-4);
+}
+.nav-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-dim);
+  padding: var(--space-1) var(--space-4);
+  margin-bottom: var(--space-1);
+}
+.nav-item {
+  display: block;
+  padding: 5px var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.nav-item:hover {
+  color: var(--text);
+  background: var(--surface-raised);
+}
+.nav-item.active {
+  color: var(--accent-text);
+  border-left-color: var(--accent);
+  background: var(--accent-surface);
+}
+
+/* ── Content sections ──────────────────────────────────────────────── */
+.section {
+  margin-bottom: var(--space-16);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+.section-title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+.section-desc {
+  font-size: var(--text-md);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-6);
+  line-height: var(--leading-relaxed);
+}
+.subsection {
+  margin-bottom: var(--space-8);
+}
+.subsection-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-dim);
+  margin: 0 0 var(--space-3);
+}
+
+/* ── Demo box ──────────────────────────────────────────────────────── */
+.demo {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  margin-bottom: var(--space-3);
+}
+.demo.dark-only { /* shows only on dark */ }
+.code {
+  background: var(--surface-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  overflow-x: auto;
+  margin-bottom: var(--space-6);
+  white-space: pre;
+}
+
+/* ── Theme toggle ──────────────────────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface-raised);
+  transition: background var(--transition);
+}
+.theme-toggle:hover { background: var(--surface-raised); color: var(--text); }
+
+/* ── Color swatches ────────────────────────────────────────────────── */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-2);
+}
+.swatch {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.swatch-color {
+  height: 40px;
+}
+.swatch-info {
+  padding: var(--space-2) var(--space-2);
+  background: var(--surface-raised);
+}
+.swatch-name {
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  color: var(--text);
+  display: block;
+}
+.swatch-value {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+/* ── Typography demo ───────────────────────────────────────────────── */
+.type-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.type-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-dim);
+}
+.type-sample { color: var(--text); }
+
+/* ── Stat cards ────────────────────────────────────────────────────── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: var(--space-2);
+}
+.stat-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  line-height: var(--leading-tight);
+  margin-bottom: 3px;
+}
+.stat-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+.stat-delta {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+.stat-delta.up   { color: var(--success); }
+.stat-delta.down { color: var(--error);   }
+
+/* ── Badges ────────────────────────────────────────────────────────── */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  border: 1px solid;
+  line-height: 1.6;
+}
+.badge.success  { color: var(--success); background: var(--success-subtle); border-color: var(--success-muted); }
+.badge.warning  { color: var(--warning); background: var(--warning-subtle); border-color: var(--warning-muted); }
+.badge.error    { color: var(--error);   background: var(--error-subtle);   border-color: var(--error-muted);   }
+.badge.info     { color: var(--info);    background: var(--info-subtle);    border-color: var(--info);           }
+.badge.neutral  { color: var(--text-muted); background: var(--surface-raised); border-color: var(--border); }
+.badge.accent   { color: var(--accent-text); background: var(--accent-surface); border-color: var(--accent-muted); }
+
+/* Tag (outline, secondary metadata) */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: transparent;
+}
+
+/* Score badges */
+.score {
+  display: inline-block;
+  min-width: 44px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.score.hi  { background: var(--score-hi-bg);  color: var(--score-hi);  }
+.score.mid { background: var(--score-mid-bg); color: var(--score-mid); }
+.score.lo  { background: var(--score-lo-bg);  color: var(--score-lo);  }
+.score.na  { background: var(--surface-raised); color: var(--text-muted); }
+
+/* ── Data table ────────────────────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+  font-weight: var(--weight-medium);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+.data-table th.num { text-align: right; }
+.data-table td {
+  font-size: var(--text-base);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+.data-table td.num {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+.data-table td.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.data-table tbody tr:hover { background: var(--surface-raised); }
+.data-table .row-title { font-weight: var(--weight-medium); color: var(--text); }
+.data-table .row-meta { font-size: var(--text-sm); color: var(--text-muted); }
+
+/* ── Filter bar ────────────────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+.filter-input {
+  padding: 5px var(--space-3);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  outline: none;
+  min-width: 180px;
+}
+.filter-input::placeholder { color: var(--text-dim); }
+.filter-input:focus { border-color: var(--border-focus); }
+.filter-select {
+  padding: 5px var(--space-3);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  outline: none;
+}
+.filter-select:focus { border-color: var(--border-focus); }
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: var(--accent-surface);
+  border: 1px solid var(--accent-muted);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  color: var(--accent-text);
+  cursor: pointer;
+}
+.filter-chip .remove {
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.7;
+}
+.filter-clear {
+  font-size: var(--text-xs);
+  color: var(--text-dim);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  margin-left: auto;
+}
+.filter-clear:hover { color: var(--text-muted); }
+
+/* ── Timeline ──────────────────────────────────────────────────────── */
+.timeline { display: flex; flex-direction: column; gap: var(--space-6); }
+.timeline-year {
+  border-left: 2px solid var(--accent);
+  padding-left: var(--space-4);
+}
+.timeline-year-label {
+  font-size: 22px;
+  font-weight: var(--weight-normal);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+  line-height: 1;
+}
+.timeline-items { margin: 0; padding: 0 0 0 var(--space-2); list-style: none; }
+.timeline-item {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-base);
+}
+.timeline-item:last-child { border-bottom: none; }
+.timeline-item .ti-source {
+  font-size: var(--text-xs);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  margin-left: var(--space-2);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────── */
+.btn-row { display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: center; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 6px var(--space-3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  border: 1px solid;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-muted);
+  border-color: var(--accent-muted);
+}
+.btn-secondary {
+  background: var(--surface-raised);
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-secondary:hover {
+  background: var(--border);
+  color: var(--text);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-muted);
+}
+.btn-ghost:hover {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+.btn-destructive {
+  background: var(--error-subtle);
+  border-color: var(--error-muted);
+  color: var(--error);
+}
+.btn-destructive:hover { opacity: 0.8; }
+.btn-sm {
+  padding: 3px var(--space-2);
+  font-size: var(--text-sm);
+}
+
+/* ── Keyboard shortcut pill ────────────────────────────────────────── */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 5px;
+  background: var(--surface-inset);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  gap: 2px;
+}
+
+/* ── Callout boxes ─────────────────────────────────────────────────── */
+.callout {
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--text-base);
+  margin-bottom: var(--space-3);
+}
+.callout.info    { background: var(--info-subtle);    border-color: var(--info);    color: var(--text); }
+.callout.warning { background: var(--warning-subtle); border-color: var(--warning); color: var(--text); }
+.callout.success { background: var(--success-subtle); border-color: var(--success); color: var(--text); }
+.callout.error   { background: var(--error-subtle);   border-color: var(--error);   color: var(--text); }
+
+/* ── Layout patterns demo ──────────────────────────────────────────── */
+.layout-demo {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-size: var(--text-sm);
+}
+.layout-demo-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-2) var(--space-4);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+.layout-demo-body {
+  display: grid;
+  grid-template-columns: 160px 1fr 240px;
+  min-height: 100px;
+}
+.layout-demo-body.two-col { grid-template-columns: 160px 1fr; }
+.layout-pane {
+  padding: var(--space-3);
+  color: var(--text-dim);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.layout-pane.sidebar { background: var(--surface); border-right: 1px solid var(--border); }
+.layout-pane.inspector { background: var(--surface); border-left: 1px solid var(--border); }
+.layout-pane.main { background: var(--bg); }
+
+/* ── Score bar ─────────────────────────────────────────────────────── */
+.score-bar { background: var(--surface-raised); border-radius: var(--radius-sm); height: 6px; overflow: hidden; }
+.score-fill { height: 100%; border-radius: var(--radius-sm); background: var(--accent); transition: width var(--duration-slow) var(--ease-out); }
+
+/* ── Prose styles (for artifact-mode content) ──────────────────────── */
+.prose {
+  font-size: 16px;
+  line-height: var(--leading-relaxed);
+  color: var(--text);
+  max-width: var(--prose-max);
+}
+.prose h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  margin: var(--space-8) 0 var(--space-3);
+  color: var(--text);
+  font-style: italic;
+}
+.prose h3 { font-size: 17px; font-weight: var(--weight-semibold); margin: var(--space-6) 0 var(--space-2); }
+.prose p { margin: 0 0 var(--space-4); }
+.prose a { color: var(--accent-text); text-decoration: none; }
+.prose a:hover { text-decoration: underline; }
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--surface-raised);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+.prose blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: var(--space-4);
+  margin: 0 0 var(--space-4);
+  color: var(--text-muted);
+}
+
+/* ── Two-column detail row ─────────────────────────────────────────── */
+.detail-row {
+  display: grid;
+  grid-template-columns: 1fr 120px 52px;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-base);
+}
+.detail-row:last-child { border-bottom: none; }
+.detail-row .dr-name { color: var(--text); }
+.detail-row .dr-meta { font-size: var(--text-sm); color: var(--text-muted); }
+.detail-row .dr-count { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ── Live pulse indicator ──────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.pulse-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ── Reading guide (for viz) ───────────────────────────────────────── */
+.reading-guide {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.reading-guide .col-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+.rg-label { font-weight: var(--weight-semibold); color: var(--text-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.08em; }
+
+/* ── Inline chart bar (for table cells) ───────────────────────────── */
+.table-bar-cell { position: relative; color: var(--accent-text); }
+.table-bar-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: var(--radius-sm);
+}
+.table-bar-val { position: relative; }
+
+/* ── Tooltip demo ──────────────────────────────────────────────────── */
+.tooltip-demo {
+  position: relative;
+  display: inline-block;
+}
+.tooltip-box {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text);
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  z-index: var(--z-tooltip);
+}
+
+/* ── Misc helpers for demo ─────────────────────────────────────────── */
+.row { display: flex; align-items: center; gap: var(--space-3); }
+.spacer { height: var(--space-4); }
+.dim  { color: var(--text-dim); font-size: var(--text-sm); }
+.mono { font-family: var(--font-mono); }
+
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- Header -->
+  <header class="shell-header">
+    <span class="brand">design system</span>
+    <span class="subtitle">tokens · components · patterns</span>
+    <select class="theme-toggle" onchange="setTheme(this.value)" id="theme-select" style="padding:4px 8px;cursor:pointer;">
+      <option value="dark">☾ dark</option>
+      <option value="carbon">◼ carbon</option>
+      <option value="slate">◈ slate</option>
+      <option value="parchment">◉ parchment</option>
+      <option value="light">☀ cream</option>
+    </select>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="shell-sidebar">
+    <div class="nav-section">
+      <div class="nav-label">Foundations</div>
+      <a class="nav-item" href="#colors">Color</a>
+      <a class="nav-item" href="#type">Typography</a>
+      <a class="nav-item" href="#spacing">Spacing</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Components</div>
+      <a class="nav-item" href="#stat-cards">Stat Cards</a>
+      <a class="nav-item" href="#badges">Badges &amp; Pills</a>
+      <a class="nav-item" href="#buttons">Buttons</a>
+      <a class="nav-item" href="#tables">Data Tables</a>
+      <a class="nav-item" href="#filters">Filter Bar</a>
+      <a class="nav-item" href="#callouts">Callouts</a>
+      <a class="nav-item" href="#timeline">Timeline</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Patterns</div>
+      <a class="nav-item" href="#layout">Layouts</a>
+      <a class="nav-item" href="#navigation">Navigation</a>
+      <a class="nav-item" href="#viz">Visualization</a>
+      <a class="nav-item" href="#prose">Prose / Articles</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="shell-main">
+
+    <!-- ── COLORS ─────────────────────────────────────────────────── -->
+    <section class="section" id="colors">
+      <h2 class="section-title">Color</h2>
+      <p class="section-desc">Two themes (dark default, light for artifacts). All components use semantic tokens — never reference primitive values directly.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">Surfaces</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-color" style="background:var(--bg);border:1px solid var(--border-subtle)"></div><div class="swatch-info"><span class="swatch-name">--bg</span><span class="swatch-value">#09090b</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--surface)"></div><div class="swatch-info"><span class="swatch-name">--surface</span><span class="swatch-value">#111113</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--surface-raised)"></div><div class="swatch-info"><span class="swatch-name">--surface-raised</span><span class="swatch-value">#18181b</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--surface-inset)"></div><div class="swatch-info"><span class="swatch-name">--surface-inset</span><span class="swatch-value">#0c0c0e</span></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Text</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-color" style="background:var(--text)"></div><div class="swatch-info"><span class="swatch-name">--text</span><span class="swatch-value">#e4e4e8</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--text-muted)"></div><div class="swatch-info"><span class="swatch-name">--text-muted</span><span class="swatch-value">#71717a</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--text-dim)"></div><div class="swatch-info"><span class="swatch-name">--text-dim</span><span class="swatch-value">#52525b</span></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Interactive</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-color" style="background:var(--accent)"></div><div class="swatch-info"><span class="swatch-name">--accent</span><span class="swatch-value">#6366f1</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--accent-surface)"></div><div class="swatch-info"><span class="swatch-name">--accent-surface</span><span class="swatch-value">rgba(indigo,0.08)</span></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Status</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-color" style="background:var(--success)"></div><div class="swatch-info"><span class="swatch-name">--success</span><span class="swatch-value">#22c55e</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--success-subtle)"></div><div class="swatch-info"><span class="swatch-name">--success-subtle</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--warning)"></div><div class="swatch-info"><span class="swatch-name">--warning</span><span class="swatch-value">#eab308</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--warning-subtle)"></div><div class="swatch-info"><span class="swatch-name">--warning-subtle</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--error)"></div><div class="swatch-info"><span class="swatch-name">--error</span><span class="swatch-value">#ef4444</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--error-subtle)"></div><div class="swatch-info"><span class="swatch-name">--error-subtle</span></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Chart palette</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-1)"></div><div class="swatch-info"><span class="swatch-name">--chart-1</span><span class="swatch-value">indigo</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-2)"></div><div class="swatch-info"><span class="swatch-name">--chart-2</span><span class="swatch-value">cyan</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-3)"></div><div class="swatch-info"><span class="swatch-name">--chart-3</span><span class="swatch-value">purple</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-4)"></div><div class="swatch-info"><span class="swatch-name">--chart-4</span><span class="swatch-value">amber</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-5)"></div><div class="swatch-info"><span class="swatch-name">--chart-5</span><span class="swatch-value">emerald</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-6)"></div><div class="swatch-info"><span class="swatch-name">--chart-6</span><span class="swatch-value">rose</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-7)"></div><div class="swatch-info"><span class="swatch-name">--chart-7</span><span class="swatch-value">sky</span></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--chart-8)"></div><div class="swatch-info"><span class="swatch-name">--chart-8</span><span class="swatch-value">gray</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TYPOGRAPHY ─────────────────────────────────────────────── -->
+    <section class="section" id="type">
+      <h2 class="section-title">Typography</h2>
+      <p class="section-desc">Three font roles: sans (UI), serif (brand/display), mono (data). Six size steps.</p>
+
+      <div class="demo">
+        <div class="type-row">
+          <div class="type-meta">--text-2xl<br>28px</div>
+          <div class="type-sample" style="font-size:28px;font-weight:400;font-family:var(--font-serif);font-style:italic;">Instrument Serif — Display</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">--text-xl<br>22px / 600</div>
+          <div class="type-sample" style="font-size:22px;font-weight:600;">Section Heading — Geist Semibold</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">--text-lg<br>18px / 600</div>
+          <div class="type-sample" style="font-size:18px;font-weight:600;">Panel Title — Geist Semibold</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">--text-md<br>15px / 400</div>
+          <div class="type-sample" style="font-size:15px;line-height:1.65;">Body prose — Geist Regular. The quick brown fox jumps over the lazy dog. Readable at 15–16px with 1.65 line height for long-form content.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">--text-base<br>13px / 400</div>
+          <div class="type-sample" style="font-size:13px;">Default UI text — table rows, labels, descriptions, filter controls.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">--text-sm<br>12px / 500</div>
+          <div class="type-sample" style="font-size:12px;font-weight:500;">Secondary metadata, captions, timestamps.</div>
+        </div>
+        <div class="type-row" style="border-bottom:none">
+          <div class="type-meta">--text-xs<br>10px / uppercase</div>
+          <div class="type-sample" style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;color:var(--text-muted);">COLUMN HEADER · SECTION LABEL</div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="type-row">
+          <div class="type-meta">mono numbers</div>
+          <div class="type-sample mono" style="font-size:20px;font-variant-numeric:tabular-nums;">9,592 &nbsp; 0.74 &nbsp; $82,500</div>
+        </div>
+        <div class="type-row" style="border-bottom:none">
+          <div class="type-meta">mono text</div>
+          <div class="type-sample mono" style="font-size:13px;color:var(--text-muted);">claim_id: abc-7f3 &nbsp;|&nbsp; status: verified &nbsp;|&nbsp; src: reuters.com</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SPACING ────────────────────────────────────────────────── -->
+    <section class="section" id="spacing">
+      <h2 class="section-title">Spacing</h2>
+      <p class="section-desc">4px base grid. Named stops from --space-1 (4px) to --space-16 (64px).</p>
+      <div class="demo">
+        <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <div style="width:100px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-dim);">--space-1 (4px)</div>
+            <div style="width:4px;height:4px;background:var(--accent);border-radius:1px"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <div style="width:100px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-dim);">--space-2 (8px)</div>
+            <div style="width:8px;height:8px;background:var(--accent);border-radius:1px"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <div style="width:100px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-dim);">--space-4 (16px)</div>
+            <div style="width:16px;height:16px;background:var(--accent);border-radius:2px"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <div style="width:100px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-dim);">--space-6 (24px)</div>
+            <div style="width:24px;height:24px;background:var(--accent);border-radius:3px"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <div style="width:100px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-dim);">--space-8 (32px)</div>
+            <div style="width:32px;height:32px;background:var(--accent);border-radius:4px"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <div style="width:100px;font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-dim);">--space-12 (48px)</div>
+            <div style="width:48px;height:48px;background:var(--accent);border-radius:4px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STAT CARDS ─────────────────────────────────────────────── -->
+    <section class="section" id="stat-cards">
+      <h2 class="section-title">Stat Cards</h2>
+      <p class="section-desc">Dashboard metric display. Used in barnowl overview, keel dashboard, tern geography panel.</p>
+
+      <div class="demo">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value">9,592</div>
+            <div class="stat-label">total claims</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--success)">5,732</div>
+            <div class="stat-label">verified</div>
+            <div class="stat-delta up">+142 this week</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--warning)">847</div>
+            <div class="stat-label">pending review</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" style="color:var(--error)">203</div>
+            <div class="stat-label">dropped</div>
+            <div class="stat-delta down">−12 vs prior</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">0.74</div>
+            <div class="stat-label">avg score</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">312</div>
+            <div class="stat-label">sources</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BADGES ─────────────────────────────────────────────────── -->
+    <section class="section" id="badges">
+      <h2 class="section-title">Badges &amp; Pills</h2>
+      <p class="section-desc">Status badges (strong signal), outline tags (metadata), score badges (continuous range), keyboard hints.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">Status badges</div>
+        <div class="demo">
+          <div class="badge-row">
+            <span class="badge success">verified</span>
+            <span class="badge warning">pending</span>
+            <span class="badge error">dropped</span>
+            <span class="badge info">in progress</span>
+            <span class="badge neutral">draft</span>
+            <span class="badge accent">active</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Outline tags (secondary metadata)</div>
+        <div class="demo">
+          <div class="badge-row">
+            <span class="tag">newspaper</span>
+            <span class="tag">digital</span>
+            <span class="tag">public radio</span>
+            <span class="tag">safety</span>
+            <span class="tag">health</span>
+            <span class="tag">housing</span>
+            <span class="tag">INN member</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Score badges (continuous range → 3 bands)</div>
+        <div class="demo">
+          <div class="badge-row">
+            <span class="score hi">0.84</span>
+            <span class="score hi">0.71</span>
+            <span class="score mid">0.58</span>
+            <span class="score mid">0.44</span>
+            <span class="score lo">0.31</span>
+            <span class="score lo">0.12</span>
+            <span class="score na">—</span>
+          </div>
+          <div class="spacer"></div>
+          <div class="dim">Thresholds: ≥ 0.70 = high · 0.40–0.70 = mid · &lt; 0.40 = low. Document thresholds in each tool — they are domain decisions.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Keyboard shortcut pills</div>
+        <div class="demo">
+          <div class="badge-row">
+            <span class="kbd">⌘K</span>
+            <span class="kbd">⌘/</span>
+            <span class="kbd">?</span>
+            <span class="kbd">j</span> <span class="dim">/</span> <span class="kbd">k</span>
+            <span class="kbd">[</span> <span class="dim">/</span> <span class="kbd">]</span>
+            <span class="kbd">Esc</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BUTTONS ────────────────────────────────────────────────── -->
+    <section class="section" id="buttons">
+      <h2 class="section-title">Buttons</h2>
+      <p class="section-desc">Four variants for four levels of visual prominence. Use primary sparingly — one per view maximum.</p>
+
+      <div class="demo">
+        <div class="btn-row">
+          <button class="btn btn-primary">Run analysis</button>
+          <button class="btn btn-secondary">Export</button>
+          <button class="btn btn-ghost">Cancel</button>
+          <button class="btn btn-destructive">Delete</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm">Run</button>
+          <button class="btn btn-secondary btn-sm">Export</button>
+          <button class="btn btn-ghost btn-sm">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DATA TABLES ────────────────────────────────────────────── -->
+    <section class="section" id="tables">
+      <h2 class="section-title">Data Tables</h2>
+      <p class="section-desc">The core display pattern. Uppercase headers, monospace numbers, score badges, hover states.</p>
+
+      <div class="demo" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="padding-left:var(--space-4)">Organization</th>
+              <th>Status</th>
+              <th>Beat</th>
+              <th class="num">Score</th>
+              <th class="num" style="padding-right:var(--space-4)">Mentions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding-left:var(--space-4)">
+                <div class="row-title">Reuters</div>
+                <div class="row-meta">Wire service · NYC</div>
+              </td>
+              <td><span class="badge success">verified</span></td>
+              <td><span class="tag">health</span></td>
+              <td class="num"><span class="score hi">0.84</span></td>
+              <td class="num" style="padding-right:var(--space-4)">
+                <div class="table-bar-cell">
+                  <div class="table-bar-bg" style="background:linear-gradient(to right,var(--accent-surface) 91%,transparent 91%)"></div>
+                  <span class="table-bar-val">2,571</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left:var(--space-4)">
+                <div class="row-title">ProPublica</div>
+                <div class="row-meta">Nonprofit · NYC</div>
+              </td>
+              <td><span class="badge success">verified</span></td>
+              <td><span class="tag">investigation</span></td>
+              <td class="num"><span class="score hi">0.79</span></td>
+              <td class="num" style="padding-right:var(--space-4)">
+                <div class="table-bar-cell">
+                  <div class="table-bar-bg" style="background:linear-gradient(to right,var(--accent-surface) 78%,transparent 78%)"></div>
+                  <span class="table-bar-val">1,983</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left:var(--space-4)">
+                <div class="row-title">WBUR Boston</div>
+                <div class="row-meta">Public radio · Boston</div>
+              </td>
+              <td><span class="badge warning">pending</span></td>
+              <td><span class="tag">civic</span></td>
+              <td class="num"><span class="score mid">0.54</span></td>
+              <td class="num" style="padding-right:var(--space-4)">
+                <div class="table-bar-cell">
+                  <div class="table-bar-bg" style="background:linear-gradient(to right,var(--accent-surface) 42%,transparent 42%)"></div>
+                  <span class="table-bar-val">1,063</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left:var(--space-4)">
+                <div class="row-title">Gothamist</div>
+                <div class="row-meta">Digital · NYC</div>
+              </td>
+              <td><span class="badge error">dropped</span></td>
+              <td><span class="tag">housing</span></td>
+              <td class="num"><span class="score lo">0.28</span></td>
+              <td class="num" style="padding-right:var(--space-4)">
+                <div class="table-bar-cell">
+                  <div class="table-bar-bg" style="background:linear-gradient(to right,var(--accent-surface) 18%,transparent 18%)"></div>
+                  <span class="table-bar-val">412</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── FILTER BAR ─────────────────────────────────────────────── -->
+    <section class="section" id="filters">
+      <h2 class="section-title">Filter Bar</h2>
+      <p class="section-desc">Horizontal toolbar for 2–4 filters. For 5+ filters, use a sidebar panel instead. Active filters shown as dismissible chips.</p>
+
+      <div class="demo">
+        <div class="filter-bar">
+          <input class="filter-input" type="text" placeholder="Search orgs, titles…">
+          <select class="filter-select">
+            <option value="">any status</option>
+            <option>verified</option>
+            <option>pending</option>
+            <option>dropped</option>
+          </select>
+          <select class="filter-select">
+            <option value="">any beat</option>
+            <option>health</option>
+            <option>civic</option>
+            <option>housing</option>
+          </select>
+          <span class="filter-chip">health <span class="remove">×</span></span>
+          <span class="filter-chip">NYC <span class="remove">×</span></span>
+          <button class="filter-clear">clear all</button>
+        </div>
+        <div class="dim">Debounce text inputs 300–400ms. Represent active filters as chips. Preserve filter state in URL query params.</div>
+      </div>
+    </section>
+
+    <!-- ── CALLOUTS ───────────────────────────────────────────────── -->
+    <section class="section" id="callouts">
+      <h2 class="section-title">Callouts</h2>
+      <p class="section-desc">Left-border callout boxes for contextual messages. Do not use for primary status — use badges for that.</p>
+
+      <div class="demo">
+        <div class="callout info">This source has 3 claims under review. Results may be incomplete until the review queue clears.</div>
+        <div class="callout success">Corpus updated 12 minutes ago. 142 new claims ingested from Reuters and AP.</div>
+        <div class="callout warning">Coverage gap detected: no claims from this source in the past 14 days.</div>
+        <div class="callout error">Ingest failed: connection refused at feeds.source.com. Last successful run 6h ago.</div>
+      </div>
+    </section>
+
+    <!-- ── TIMELINE ───────────────────────────────────────────────── -->
+    <section class="section" id="timeline">
+      <h2 class="section-title">Timeline</h2>
+      <p class="section-desc">Chronological data with accent-color spine. Year labels are navigation anchors, not headings.</p>
+
+      <div class="demo">
+        <div class="timeline">
+          <div class="timeline-year">
+            <div class="timeline-year-label">2026</div>
+            <ul class="timeline-items">
+              <li class="timeline-item">
+                <span class="badge success" style="vertical-align:middle;margin-right:6px">verified</span>
+                State and local governments are using AI to draft routine public communications.
+                <span class="ti-source">reuters.com</span>
+              </li>
+              <li class="timeline-item">
+                <span class="badge warning" style="vertical-align:middle;margin-right:6px">pending</span>
+                Three major wire services have announced formal AI content policies for newsrooms.
+                <span class="ti-source">ap.org</span>
+              </li>
+            </ul>
+          </div>
+          <div class="timeline-year">
+            <div class="timeline-year-label">2025</div>
+            <ul class="timeline-items">
+              <li class="timeline-item">
+                <span class="badge success" style="vertical-align:middle;margin-right:6px">verified</span>
+                47% of newsrooms surveyed have AI writing assistance tools deployed.
+                <span class="ti-source">pew.org</span>
+              </li>
+              <li class="timeline-item">
+                <span class="badge error" style="vertical-align:middle;margin-right:6px">dropped</span>
+                AI-generated content has fully replaced human reporters at several local papers.
+                <span class="ti-source">nieman.org</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LAYOUT PATTERNS ────────────────────────────────────────── -->
+    <section class="section" id="layout">
+      <h2 class="section-title">Layout Patterns</h2>
+      <p class="section-desc">Three layout patterns. Choose based on tool type, not personal preference.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">Three-column instrument (keel model)</div>
+        <div class="layout-demo">
+          <div class="layout-demo-header">220px sidebar · 1fr main · 360px inspector (conditional)</div>
+          <div class="layout-demo-body">
+            <div class="layout-pane sidebar">nav sidebar<br>220px</div>
+            <div class="layout-pane main">main content<br>1fr</div>
+            <div class="layout-pane inspector">inspector<br>360px</div>
+          </div>
+        </div>
+        <div class="dim">Use for: research tools with navigation, list, and detail panel. Keel, barnowl with split view.</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Two-column with filter sidebar (steve model)</div>
+        <div class="layout-demo">
+          <div class="layout-demo-header">240–280px filter panel · 1fr results</div>
+          <div class="layout-demo-body two-col">
+            <div class="layout-pane sidebar">filters<br>260px</div>
+            <div class="layout-pane main">results / content<br>1fr</div>
+          </div>
+        </div>
+        <div class="dim">Use for: list views with multiple filter dimensions. Steve, tern orgs view.</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Single column (weaver artifact)</div>
+        <div class="layout-demo">
+          <div class="layout-demo-header">max-width 1200px centered, full-bleed chart sections</div>
+          <div class="layout-demo-body" style="grid-template-columns:1fr">
+            <div class="layout-pane main" style="min-height:60px">centered content · chart blocks full-bleed</div>
+          </div>
+        </div>
+        <div class="dim">Use for: published artifacts, analysis documents, weaver visualization pages.</div>
+      </div>
+    </section>
+
+    <!-- ── NAVIGATION ─────────────────────────────────────────────── -->
+    <section class="section" id="navigation">
+      <h2 class="section-title">Navigation</h2>
+      <p class="section-desc">Header brand + nav links, sidebar section nav, breadcrumbs for deep pages.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">Header bar (standalone tool)</div>
+        <div class="demo" style="padding:0;overflow:hidden;background:var(--surface);">
+          <div style="background:var(--surface);border-bottom:1px solid var(--border);padding:0 var(--space-5);display:flex;align-items:center;height:var(--header-height);gap:0;">
+            <span style="font-family:var(--font-serif);font-style:italic;font-size:20px;color:var(--text);margin-right:auto;">barnowl</span>
+            <a href="#" style="display:inline-flex;align-items:center;height:48px;padding:0 var(--space-3);font-size:var(--text-sm);color:var(--text-dim);text-decoration:none;border-bottom:2px solid transparent;">Overview</a>
+            <a href="#" style="display:inline-flex;align-items:center;height:48px;padding:0 var(--space-3);font-size:var(--text-sm);color:var(--accent-text);text-decoration:none;border-bottom:2px solid var(--accent);">Claims</a>
+            <a href="#" style="display:inline-flex;align-items:center;height:48px;padding:0 var(--space-3);font-size:var(--text-sm);color:var(--text-dim);text-decoration:none;border-bottom:2px solid transparent;">Entities</a>
+            <a href="#" style="display:inline-flex;align-items:center;height:48px;padding:0 var(--space-3);font-size:var(--text-sm);color:var(--text-dim);text-decoration:none;border-bottom:2px solid transparent;">Sources</a>
+            <span style="margin-left:var(--space-4);display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-dim)"><span class="pulse-dot"></span>live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Breadcrumb</div>
+        <div class="demo">
+          <nav style="font-size:var(--text-sm);color:var(--text-dim);display:flex;align-items:center;gap:var(--space-2)">
+            <a href="#" style="color:var(--text-muted);text-decoration:none;">Claims</a>
+            <span>›</span>
+            <a href="#" style="color:var(--text-muted);text-decoration:none;">Health</a>
+            <span>›</span>
+            <span style="color:var(--text)">Reuters — AI hospital diagnostics</span>
+          </nav>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Command palette entry</div>
+        <div class="demo" style="position:relative;min-height:180px">
+          <div style="background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-overlay);max-width:480px;margin:0 auto">
+            <div style="padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:var(--space-2)">
+              <span style="color:var(--text-dim)">⌘</span>
+              <input style="flex:1;background:none;border:none;outline:none;color:var(--text);font-family:var(--font-sans);font-size:var(--text-md);" placeholder="Search or run a command…" value="claims">
+              <span class="kbd">Esc</span>
+            </div>
+            <div style="padding:var(--space-2) 0">
+              <div style="padding:var(--space-1) var(--space-4);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim);">Navigate</div>
+              <div style="padding:6px var(--space-4);display:flex;align-items:center;justify-content:space-between;background:var(--accent-surface);color:var(--text);">
+                <span style="font-size:var(--text-base)">→ Claims view</span>
+                <span class="kbd">Enter</span>
+              </div>
+              <div style="padding:6px var(--space-4);display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);">
+                <span style="font-size:var(--text-base)">→ Claims by source</span>
+              </div>
+              <div style="padding:var(--space-1) var(--space-4);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim);margin-top:4px">Actions</div>
+              <div style="padding:6px var(--space-4);display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);">
+                <span style="font-size:var(--text-base)">Export claims as CSV</span>
+                <span class="kbd">⌘E</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── VISUALIZATION ──────────────────────────────────────────── -->
+    <section class="section" id="viz">
+      <h2 class="section-title">Visualization Patterns</h2>
+      <p class="section-desc">Reading guides, chart color use, and the detail-row pattern for tabular score display.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">Reading guide</div>
+        <div class="demo">
+          <div class="reading-guide">
+            <span class="rg-label">How to read</span>
+            Each node is a segment of voters. Flow width = share of that segment.
+            <span><span class="col-swatch" style="background:var(--chart-1)"></span>Civic actives</span>
+            <span><span class="col-swatch" style="background:var(--chart-2)"></span>Habitual voters</span>
+            <span><span class="col-swatch" style="background:var(--chart-3)"></span>Selective engagers</span>
+            <span><span class="col-swatch" style="background:var(--chart-4)"></span>Aspirational</span>
+            <span style="color:var(--text-dim);font-size:var(--text-xs)">Click a node to isolate its flow.</span>
+          </div>
+          <div class="dim">Reading guides appear directly above novel chart types. They name the reading strategy, not the conclusion.</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Detail rows with score bars (for tabular axis display)</div>
+        <div class="demo">
+          <div class="detail-row">
+            <div>
+              <div class="row-title">Journalism-shapedness</div>
+              <div class="row-meta">Measures alignment with journalistic mission and reporting norms</div>
+            </div>
+            <div><span class="badge success">0.84</span></div>
+            <div class="dr-count">0.84</div>
+          </div>
+          <div class="detail-row">
+            <div>
+              <div class="row-title">Automation risk</div>
+              <div class="row-meta">Probability of partial or full AI substitution in 5 years</div>
+            </div>
+            <div><span class="badge warning">0.58</span></div>
+            <div class="dr-count">0.58</div>
+          </div>
+          <div class="detail-row">
+            <div>
+              <div class="row-title">Source diversity</div>
+              <div class="row-meta">Coverage of underrepresented communities and perspectives</div>
+            </div>
+            <div><span class="badge error">0.24</span></div>
+            <div class="dr-count">0.24</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Score bars (in-cell visual)</div>
+        <div class="demo">
+          <div style="display:flex;flex-direction:column;gap:var(--space-2);max-width:300px">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px"><span>Reuters</span><span class="mono">84%</span></div>
+              <div class="score-bar"><div class="score-fill" style="width:84%;background:var(--success)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px"><span>ProPublica</span><span class="mono">61%</span></div>
+              <div class="score-bar"><div class="score-fill" style="width:61%;background:var(--warning)"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px"><span>Gothamist</span><span class="mono">28%</span></div>
+              <div class="score-bar"><div class="score-fill" style="width:28%;background:var(--error)"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Chart color palette in context</div>
+        <div class="demo">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:var(--space-2)">
+            <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)"><span style="width:12px;height:12px;border-radius:2px;background:var(--chart-1);flex-shrink:0"></span>civic actives</div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)"><span style="width:12px;height:12px;border-radius:2px;background:var(--chart-2);flex-shrink:0"></span>habitual voters</div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)"><span style="width:12px;height:12px;border-radius:2px;background:var(--chart-3);flex-shrink:0"></span>selective</div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)"><span style="width:12px;height:12px;border-radius:2px;background:var(--chart-4);flex-shrink:0"></span>aspirational</div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)"><span style="width:12px;height:12px;border-radius:2px;background:var(--chart-5);flex-shrink:0"></span>disengaged</div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted)"><span style="width:12px;height:12px;border-radius:2px;background:var(--chart-8);flex-shrink:0"></span>unknown</div>
+          </div>
+          <div class="spacer"></div>
+          <div class="dim">6–8 categories maximum. No red/green as sole differentiator. Test in grayscale before shipping.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROSE ──────────────────────────────────────────────────── -->
+    <section class="section" id="prose">
+      <h2 class="section-title">Prose / Article Mode</h2>
+      <p class="section-desc">For barnowl governance summaries, weaver narratives, and any tool in artifact mode. 16px base, 1.65 line height, 680px max-width.</p>
+
+      <div class="demo">
+        <div class="prose">
+          <h2>Governance findings</h2>
+          <p>Based on 847 verified claims across 312 sources, the following guidance reflects the current state of practice in AI governance for news organizations. Claims marked <code>needs_review</code> are excluded.</p>
+          <h3>Editorial independence</h3>
+          <p>Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off. This principle appears in 73% of reviewed policies.</p>
+          <blockquote>
+            "The algorithm suggests; the editor decides." — three independent newsroom policy documents, 2025.
+          </blockquote>
+          <p>Implementation varies significantly: 42% of organizations have formal sign-off workflows; the remainder rely on cultural norms alone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ADOPTION ───────────────────────────────────────────────── -->
+    <section class="section" id="adoption" style="margin-bottom:var(--space-16)">
+      <h2 class="section-title">Adoption</h2>
+      <p class="section-desc">How to use this system in a new tool or when reskinning an existing one.</p>
+
+      <div class="demo">
+        <div class="subsection-title">New tool — minimal setup</div>
+        <div class="code">&lt;!-- 1. Fonts --&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet"&gt;
+
+&lt;!-- 2. Token layer (copy tokens.css to your project) --&gt;
+&lt;link rel="stylesheet" href="/css/tokens.css"&gt;
+
+&lt;!-- 3. Optional: copy components.css for shared component styles --&gt;
+&lt;link rel="stylesheet" href="/css/components.css"&gt;
+
+&lt;!-- 4. Tool-specific overrides only --&gt;
+&lt;link rel="stylesheet" href="/css/index.css"&gt;</div>
+        <div class="spacer"></div>
+        <div class="subsection-title">Reskinning an existing tool (compatibility shim)</div>
+        <div class="code">/* Drop at top of existing CSS to bridge old token names */
+:root {
+  /* steve ↔ system bridge */
+  --fg:          var(--text);
+  --fg-soft:     var(--text-muted);
+  --muted:       var(--text-dim);
+  --panel:       var(--surface);
+  --border-strong: var(--border);
+  --accent-soft: var(--accent-surface);
+  --good:        var(--success);
+  --warn:        var(--warning);
+
+  /* tern ↔ system bridge */
+  --green:  var(--success);
+  --yellow: var(--warning);
+  --red:    var(--error);
+  --dim:    var(--text-dim);
+}</div>
+      </div>
+    </section>
+
+  </main>
+</div><!-- .shell -->
+
+<script>
+// Active nav highlighting
+const sections = document.querySelectorAll('.section[id]');
+const navItems = document.querySelectorAll('.nav-item');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navItems.forEach(n => n.classList.remove('active'));
+      const active = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: `-${48}px 0px -60% 0px` });
+
+sections.forEach(s => observer.observe(s));
+
+// Theme switching
+const VARIANT_THEMES = ['carbon', 'slate', 'parchment'];
+
+function setTheme(value) {
+  const html = document.documentElement;
+  const link = document.getElementById('theme-variant-link');
+
+  // Clear previous state
+  html.removeAttribute('data-theme');
+  link.href = '';
+
+  if (value === 'light') {
+    html.dataset.theme = 'light';
+  } else if (value === 'dark') {
+    // default — no attribute needed
+  } else if (VARIANT_THEMES.includes(value)) {
+    link.href = `themes/${value}.css`;
+    html.dataset.theme = value;
+  }
+}
+</script>
+</body>
+</html>

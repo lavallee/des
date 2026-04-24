@@ -1,0 +1,69 @@
+/*
+ * Theme: Parchment
+ * Warm dark surfaces with amber/gold accent.
+ * Earthy and editorial — closer to print than screen.
+ * Best for: journalism tools, long-form reading interfaces, public-facing artifact views.
+ *
+ * Usage: load after tokens.css, apply [data-theme="parchment"] to <html>
+ */
+[data-theme="parchment"] {
+  --bg:             #0e0c09;
+  --surface:        #171410;
+  --surface-raised: #1f1c17;
+  --surface-inset:  #0a0906;
+  --surface-overlay: rgba(14, 12, 9, 0.88);
+
+  --border-subtle:  #201d18;
+  --border:         #2e2a23;
+  --border-strong:  #4a4438;
+  --border-focus:   #d97706;
+
+  --text:           #ede8df;
+  --text-muted:     #7a7060;
+  --text-dim:       #5a5248;
+  --text-disabled:  #3a3630;
+
+  --accent:         #d97706;   /* amber gold */
+  --accent-muted:   #b45309;
+  --accent-surface: rgba(217, 119, 6, 0.10);
+  --accent-text:    #fbbf24;
+
+  --success:        #4ade80;
+  --success-muted:  #22c55e;
+  --success-subtle: rgba(74, 222, 128, 0.08);
+
+  --warning:        #fb923c;
+  --warning-muted:  #f97316;
+  --warning-subtle: rgba(251, 146, 60, 0.10);
+
+  --error:          #f87171;
+  --error-muted:    #ef4444;
+  --error-subtle:   rgba(248, 113, 113, 0.08);
+
+  --info:           #60a5fa;
+  --info-subtle:    rgba(96, 165, 250, 0.08);
+
+  --score-hi:       #4ade80;
+  --score-hi-bg:    rgba(74, 222, 128, 0.08);
+  --score-mid:      #fb923c;
+  --score-mid-bg:   rgba(251, 146, 60, 0.10);
+  --score-lo:       #f87171;
+  --score-lo-bg:    rgba(248, 113, 113, 0.08);
+
+  --chart-1: #d97706;   /* amber — primary */
+  --chart-2: #4ade80;   /* green */
+  --chart-3: #fb923c;   /* orange */
+  --chart-4: #60a5fa;   /* blue */
+  --chart-5: #c084fc;   /* purple */
+  --chart-6: #f87171;   /* red */
+  --chart-7: #34d399;   /* emerald */
+  --chart-8: #7a7060;   /* warm gray */
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.6);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.7);
+  --shadow-overlay: 0 16px 48px rgba(0,0,0,0.85);
+
+  /* Serif headings feel more natural in parchment mode */
+  --font-serif: "Instrument Serif", "Georgia", serif;
+}

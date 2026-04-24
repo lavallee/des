@@ -1,0 +1,67 @@
+/*
+ * Theme: Slate
+ * Blue-shifted dark surfaces with cyan/teal accent.
+ * Technical and data-centric — appropriate for pipeline dashboards,
+ * map-heavy tools, and real-time monitoring views.
+ * Best for: tern, geographic tools, live feeds.
+ *
+ * Usage: load after tokens.css, apply [data-theme="slate"] to <html>
+ */
+[data-theme="slate"] {
+  --bg:             #080d14;
+  --surface:        #0e1520;
+  --surface-raised: #151e2d;
+  --surface-inset:  #050a0f;
+  --surface-overlay: rgba(8, 13, 20, 0.90);
+
+  --border-subtle:  #111c2c;
+  --border:         #1a2840;
+  --border-strong:  #2a3e5a;
+  --border-focus:   #0ea5e9;
+
+  --text:           #dce8f5;
+  --text-muted:     #5a7a9a;
+  --text-dim:       #3a5a78;
+  --text-disabled:  #1e3050;
+
+  --accent:         #0ea5e9;   /* sky/cyan */
+  --accent-muted:   #0284c7;
+  --accent-surface: rgba(14, 165, 233, 0.08);
+  --accent-text:    #7dd3fc;
+
+  --success:        #34d399;
+  --success-muted:  #10b981;
+  --success-subtle: rgba(52, 211, 153, 0.08);
+
+  --warning:        #fbbf24;
+  --warning-muted:  #f59e0b;
+  --warning-subtle: rgba(251, 191, 36, 0.08);
+
+  --error:          #f87171;
+  --error-muted:    #ef4444;
+  --error-subtle:   rgba(248, 113, 113, 0.08);
+
+  --info:           #0ea5e9;
+  --info-subtle:    rgba(14, 165, 233, 0.08);
+
+  --score-hi:       #34d399;
+  --score-hi-bg:    rgba(52, 211, 153, 0.08);
+  --score-mid:      #fbbf24;
+  --score-mid-bg:   rgba(251, 191, 36, 0.08);
+  --score-lo:       #f87171;
+  --score-lo-bg:    rgba(248, 113, 113, 0.08);
+
+  --chart-1: #0ea5e9;   /* sky — primary */
+  --chart-2: #34d399;   /* emerald */
+  --chart-3: #818cf8;   /* indigo */
+  --chart-4: #fbbf24;   /* amber */
+  --chart-5: #c084fc;   /* purple */
+  --chart-6: #f87171;   /* red */
+  --chart-7: #22d3ee;   /* cyan */
+  --chart-8: #5a7a9a;   /* slate gray */
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.6);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.7);
+  --shadow-overlay: 0 16px 48px rgba(0,0,0,0.85);
+}
