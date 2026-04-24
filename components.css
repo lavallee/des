@@ -1187,6 +1187,457 @@
 }
 
 
+/* ── Dateline ──────────────────────────────────────────────────────────── */
+/* AP-style location + date before first body paragraph */
+
+.article-dateline {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--text-dim);
+  margin-bottom: var(--space-4);
+}
+
+.article-dateline__location {
+  font-style: normal;
+  font-weight: var(--weight-medium);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+
+/* ── Summary / key-findings box ────────────────────────────────────────── */
+/* Short bulleted overview at article top — always visible or collapsible */
+
+.article-summary {
+  background: var(--accent-surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.article-summary__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--accent-text);
+  margin-bottom: var(--space-3);
+  display: block;
+}
+
+.article-summary ul {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.article-summary li {
+  font-family: var(--font-prose) !important;
+  font-optical-sizing: auto;
+  font-size: 16px !important;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+  line-height: 1.55;
+}
+
+.article-summary li:last-child {
+  margin-bottom: 0;
+}
+
+/* Collapsible variant via <details> */
+.article-summary details summary {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--accent-text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: 0;
+}
+
+.article-summary details[open] summary {
+  margin-bottom: var(--space-3);
+}
+
+.article-summary details summary::before {
+  content: '▶';
+  font-size: 9px;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.article-summary details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+
+/* ── Editor notices ────────────────────────────────────────────────────── */
+/* Correction and update banners — typically placed at article top or inline */
+
+.article-correction,
+.article-update {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.article-correction {
+  background: var(--error-subtle);
+  border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
+  border-left: 3px solid var(--error);
+  color: var(--text);
+}
+
+.article-update {
+  background: var(--warning-subtle);
+  border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
+  border-left: 3px solid var(--warning);
+  color: var(--text);
+}
+
+.article-correction__label,
+.article-update__label {
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+
+.article-correction__label { color: var(--error); }
+.article-update__label     { color: var(--warning); }
+
+.article-correction p,
+.article-update p {
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-sm) !important;
+  margin: 0;
+}
+
+.article-correction p + p,
+.article-update p + p {
+  margin-top: var(--space-1);
+}
+
+
+/* ── Sidenotes / margin notes ──────────────────────────────────────────── */
+/*
+ * Tufte-inspired: appears in the right margin on wide screens, inline on mobile.
+ * Usage:
+ *   <span class="sidenote-ref"><label for="sn-1">1</label></span>
+ *   <span class="sidenote" id="sn-1">Note content here.</span>
+ *
+ * The sidenote span should be placed immediately after the reference in the flow.
+ * It floats right into the margin at large widths; collapses inline at narrow.
+ */
+
+.sidenote-ref {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--accent-text);
+  vertical-align: super;
+  line-height: 0;
+  cursor: default;
+}
+
+.sidenote {
+  float: right;
+  clear: right;
+  width: 180px;
+  margin-right: calc(-180px - var(--space-8));
+  margin-left: var(--space-4);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  border-left: 2px solid var(--border);
+  padding-left: var(--space-3);
+  font-optical-sizing: auto;
+}
+
+/* Collapse to inline below breakout width */
+@media (max-width: 940px) {
+  .sidenote {
+    float: none;
+    width: auto;
+    margin: var(--space-2) 0;
+    padding: var(--space-2) var(--space-4);
+    border-left: 2px solid var(--border);
+    background: var(--surface-raised);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    display: block;
+  }
+}
+
+
+/* ── Footnote references (inline) ──────────────────────────────────────── */
+
+.article a.fn-ref,
+.prose a.fn-ref {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--accent-text);
+  text-decoration: none;
+  vertical-align: super;
+  line-height: 0;
+  padding: 0 1px;
+}
+
+.article a.fn-ref:hover,
+.prose a.fn-ref:hover {
+  text-decoration: underline;
+}
+
+
+/* ── Endnotes / footnote section ───────────────────────────────────────── */
+
+.article-footnotes {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+  grid-column: prose;
+}
+
+.article-footnotes__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-dim);
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+.article-footnotes ol {
+  margin: 0;
+  padding-left: var(--space-5);
+  counter-reset: none;
+}
+
+.article-footnotes li {
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-sm) !important;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+
+.article-footnotes li:target {
+  background: var(--accent-surface);
+  border-radius: var(--radius-sm);
+  outline: 1px solid var(--accent-muted);
+  outline-offset: 3px;
+}
+
+/* Back-link arrow */
+.article-footnotes .fn-back {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+  margin-left: var(--space-1);
+}
+
+.article-footnotes .fn-back:hover {
+  color: var(--accent-text);
+}
+
+
+/* ── References / bibliography ─────────────────────────────────────────── */
+
+.article-references {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.article-references__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-dim);
+  margin-bottom: var(--space-5);
+  display: block;
+}
+
+.article-references ol,
+.article-references ul {
+  margin: 0;
+  padding-left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.article-references li {
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-sm) !important;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.article-references li:target {
+  background: var(--accent-surface);
+  border-radius: var(--radius-sm);
+  outline: 1px solid var(--accent-muted);
+  outline-offset: 3px;
+}
+
+.article-references .ref-authors {
+  color: var(--text);
+}
+
+.article-references .ref-title {
+  font-style: italic;
+}
+
+.article-references .ref-source {
+  color: var(--text-dim);
+}
+
+
+/* ── Series navigation ─────────────────────────────────────────────────── */
+
+.article-series {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-8);
+}
+
+.article-series__label {
+  font-weight: var(--weight-medium);
+  color: var(--text-muted);
+}
+
+.article-series__nav {
+  display: flex;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.article-series__nav a {
+  color: var(--accent-text);
+  text-decoration: none;
+  font-weight: var(--weight-medium);
+}
+
+.article-series__nav a:hover {
+  text-decoration: underline;
+}
+
+.article-series__nav a[aria-disabled="true"] {
+  color: var(--text-disabled);
+  pointer-events: none;
+}
+
+
+/* ── Inline elements ────────────────────────────────────────────────────── */
+
+/* Term being defined */
+.article dfn,
+.prose dfn {
+  font-style: normal;
+  text-decoration: underline dotted var(--text-dim);
+  text-underline-offset: 2px;
+  cursor: help;
+}
+
+/* Abbreviation with title */
+.article abbr,
+.prose abbr {
+  text-decoration: underline dotted var(--text-dim);
+  text-underline-offset: 2px;
+  cursor: help;
+  font-variant: none;
+}
+
+/* Deleted / inserted text (corrections inline) */
+.article del {
+  color: var(--error);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--error) 70%, transparent);
+}
+
+.article ins {
+  color: var(--success);
+  text-decoration: none;
+  background: var(--success-subtle);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* Inline stat callout — large metric within prose */
+.article .stat-inline {
+  font-family: var(--font-prose);
+  font-optical-sizing: auto;
+  font-size: 1.2em;
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.article .stat-inline--accent { color: var(--accent-text); }
+.article .stat-inline--success { color: var(--success); }
+.article .stat-inline--warning { color: var(--warning); }
+.article .stat-inline--error   { color: var(--error); }
+
+
+/* ── Figure panel labels (A, B, C) ─────────────────────────────────────── */
+
+.article-figure--panels > :first-child {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.article-figure--panels-2 > :first-child { grid-template-columns: 1fr 1fr; }
+.article-figure--panels-3 > :first-child { grid-template-columns: 1fr 1fr 1fr; }
+
+.article-panel {
+  position: relative;
+  background: var(--surface-inset);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.article-panel__label {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  color: var(--text-muted);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1px 5px;
+  line-height: 1.4;
+}
+
+
 /* ── Legacy .prose class ───────────────────────────────────────────────── */
 /* Kept for backward compatibility — use .article for new work */
 

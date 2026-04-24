@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
 <link rel="stylesheet" id="theme-variant-link" href="">
 <style>
 /* ── Layout shell ──────────────────────────────────────────────────── */
@@ -1362,6 +1363,35 @@
         <div style="padding: var(--space-10) 0; background: var(--surface);">
           <article class="article">
 
+            <!-- series nav -->
+            <nav class="article-series">
+              <span class="article-series__label">Part 3 of 5 — AI Governance Series</span>
+              <div class="article-series__nav">
+                <a href="#">← Transparency</a>
+                <span style="color:var(--border-strong)">·</span>
+                <a href="#">Accountability →</a>
+              </div>
+            </nav>
+
+            <!-- correction notice -->
+            <aside class="article-correction" role="note">
+              <span class="article-correction__label">Correction</span>
+              <div>
+                <p>An earlier version of this article stated 38% of policies address vendor relationships. The correct figure is 37%. Updated April 25, 2026.</p>
+              </div>
+            </aside>
+
+            <!-- summary box -->
+            <div class="article-summary">
+              <span class="article-summary__label">Key findings</span>
+              <ul>
+                <li><span class="stat-inline stat-inline--success">73%</span> of newsroom AI policies require human sign-off on publication decisions</li>
+                <li>Formal enforcement mechanisms lag significantly — only <span class="stat-inline stat-inline--warning">28%</span> of transparency provisions include any audit right</li>
+                <li>Vendor due diligence is the largest gap: present in just <span class="stat-inline stat-inline--error">37%</span> of policies despite universal outsourcing</li>
+                <li>Language convergence across independent policies suggests emerging professional consensus or shared consulting influence</li>
+              </ul>
+            </div>
+
             <!-- header -->
             <header class="article-header">
               <span class="article-kicker">AI Governance · April 2026</span>
@@ -1379,10 +1409,14 @@
             <!-- section break -->
             <h2>Editorial Independence</h2>
 
+            <!-- dateline -->
+            <p class="article-dateline"><span class="article-dateline__location">New York</span> — April 24, 2026</p>
+
             <!-- lede -->
             <p class="article-lede">Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off.</p>
 
-            <p>This principle appears in 73% of reviewed policies, making it the single most widely-held norm in the dataset. Implementation varies significantly: 42% of organizations have formal sign-off workflows; the remainder rely on cultural norms alone.</p>
+            <!-- sidenote example -->
+            <p>This principle appears in <span class="stat-inline">73%</span> of reviewed policies, making it the single most widely-held norm in the dataset.<span class="sidenote-ref"><label for="sn-1">†</label></span><span class="sidenote" id="sn-1">Percentage calculated from policies with explicit editorial decision provisions. Policies addressing only AI-generated images were excluded from this count.</span> Implementation varies significantly: <span class="stat-inline stat-inline--success">42%</span> of organizations have formal sign-off workflows; the remainder rely on cultural norms alone.</p>
 
             <!-- breakout figure -->
             <figure class="article-figure article-breakout">
@@ -1399,14 +1433,15 @@
 
             <h3>The consent gap</h3>
 
-            <p>Among organizations with sign-off requirements, consent documentation is inconsistent. Only 18% maintain auditable records of AI-assisted editorial decisions — a figure that likely understates the problem, since organizations without formal policies have no mechanism for tracking.</p>
+            <p>Among organizations with sign-off requirements, consent documentation is inconsistent. Only <span class="stat-inline stat-inline--error">18%</span> maintain auditable records of AI-assisted editorial decisions<a class="fn-ref" id="ref:1" href="#fn:1"><sup>1</sup></a> — a figure that likely understates the problem, since organizations without formal policies have no mechanism for tracking.</p>
 
+            <!-- attributed blockquote (source quotation) -->
             <blockquote>
               <p>"The algorithm suggests; the editor decides." This phrase, or close variants, appeared verbatim in three independent policy documents from newsrooms that had not coordinated on language.</p>
-              <cite>barnowl claim cluster C-2847, April 2026</cite>
+              <cite>barnowl claim cluster C-2847, synthesis of <dfn title="Policies published or substantially revised between January 2024 and March 2026">recent policies</dfn>, April 2026</cite>
             </blockquote>
 
-            <p>The convergence on similar language suggests emerging professional consensus — or shared consulting influence. Further source tracing is needed to distinguish the two.</p>
+            <p>The convergence on similar language suggests emerging professional consensus — or shared consulting influence. Further source tracing is needed to distinguish the two. <abbr title="Natural Language Processing">NLP</abbr> similarity scoring across the corpus shows a coefficient of 0.74 for this specific phrase cluster.</p>
 
             <!-- inline note -->
             <div class="article-note">
@@ -1416,14 +1451,15 @@
             <!-- section break -->
             <h2>Transparency Requirements</h2>
 
-            <p>Disclosure requirements — telling audiences when AI was involved — are the second most common provision at 61%. But the definition of "disclosure" varies so widely that comparisons across policies are unreliable.</p>
+            <p>Disclosure requirements — telling audiences when AI was involved — are the second most common provision at 61%. But the definition of <dfn title="Any audience-facing communication about AI involvement in content production">"disclosure"</dfn> varies so widely that comparisons across policies are unreliable.<a class="fn-ref" id="ref:2" href="#fn:2"><sup>2</sup></a></p>
 
-            <!-- pull quote -->
+            <!-- pull quote (decorative excerpt — no attribution, distinct from blockquote) -->
             <blockquote class="article-pullquote">
-              "Disclosure requirements appear in 61% of policies, but fewer than a third define what constitutes meaningful disclosure to audiences."
+              "Fewer than a third of transparency provisions include any audit right or mechanism for verifying compliance."
+              <cite>From the transparency analysis below</cite>
             </blockquote>
 
-            <p>Some policies require disclosure of AI involvement in any published content; others only require it for AI-generated text; still others limit it to autonomous publication with no human review. The practical implications differ substantially.</p>
+            <p>Some policies require disclosure of AI involvement in any published content; others only require it for AI-generated text; still others limit it to <ins>fully autonomous</ins> publication with no human review. The original draft of this article <del>incorrectly conflated these categories</del>. The practical implications differ substantially.</p>
 
             <!-- full-width table -->
             <figure class="article-figure article-full" style="margin-top:var(--space-8)">
@@ -1432,24 +1468,61 @@
                   <thead>
                     <tr>
                       <th>Policy category</th>
-                      <th>% with provision</th>
-                      <th>% with enforcement mechanism</th>
-                      <th>Consensus level</th>
+                      <th class="col--num">% with provision</th>
+                      <th class="col--num">% with enforcement</th>
+                      <th>Consensus</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr><td>Human sign-off</td><td class="col--num">73%</td><td class="col--num">42%</td><td><span class="badge badge--success">Strong</span></td></tr>
                     <tr><td>Audience disclosure</td><td class="col--num">61%</td><td class="col--num">28%</td><td><span class="badge badge--warning">Developing</span></td></tr>
-                    <tr><td>Staff training requirements</td><td class="col--num">44%</td><td class="col--num">19%</td><td><span class="badge badge--warning">Developing</span></td></tr>
+                    <tr><td>Staff training</td><td class="col--num">44%</td><td class="col--num">19%</td><td><span class="badge badge--warning">Developing</span></td></tr>
                     <tr><td>Vendor due diligence</td><td class="col--num">37%</td><td class="col--num">12%</td><td><span class="badge badge--neutral">Emerging</span></td></tr>
                     <tr><td>Autonomous publication ban</td><td class="col--num">29%</td><td class="col--num">24%</td><td><span class="badge badge--neutral">Emerging</span></td></tr>
                   </tbody>
                 </table>
               </div>
               <figcaption class="article-figcaption" style="padding: var(--space-3) var(--space-4) 0;">
-                <strong>Table 1.</strong> Prevalence and enforcement of major policy categories. Enforcement mechanism defined as any formal process, audit right, or stated consequence for non-compliance.
+                <strong>Table 1.</strong> Prevalence and enforcement of major policy categories. Enforcement defined as any formal process, audit right, or stated consequence for non-compliance.
               </figcaption>
             </figure>
+
+            <!-- footnote section -->
+            <section class="article-footnotes" role="doc-endnotes">
+              <span class="article-footnotes__label">Notes</span>
+              <ol>
+                <li id="fn:1" role="doc-footnote">
+                  Auditable record defined as any structured log, review workflow artifact, or signed editorial decision form retained for ≥30 days. Oral sign-off not counted.
+                  <a class="fn-back" href="#ref:1" aria-label="Return to text">↩</a>
+                </li>
+                <li id="fn:2" role="doc-footnote">
+                  See also the <abbr title="Reuters Institute for the Study of Journalism">RISJ</abbr> 2025 disclosure taxonomy, which identifies seven distinct definitions of AI disclosure across European newsroom policies.
+                  <a class="fn-back" href="#ref:2" aria-label="Return to text">↩</a>
+                </li>
+              </ol>
+            </section>
+
+            <!-- references section -->
+            <section class="article-references">
+              <span class="article-references__label">Sources</span>
+              <ol>
+                <li id="ref-1">
+                  <span class="ref-authors">barnowl claim database v2.1</span> —
+                  <span class="ref-title">AI Governance Policy Corpus, 312 reviewed documents</span>.
+                  <span class="ref-source">Internal, April 2026.</span>
+                </li>
+                <li id="ref-2">
+                  <span class="ref-authors">Reuters Institute for the Study of Journalism</span> —
+                  <span class="ref-title">Digital News Report 2025: AI in the Newsroom</span>.
+                  <span class="ref-source">University of Oxford, 2025.</span>
+                </li>
+                <li id="ref-3">
+                  <span class="ref-authors">Diakopoulos, N.</span> —
+                  <span class="ref-title">Automating the News: How Algorithms Are Rewriting the Media</span>.
+                  <span class="ref-source">Harvard University Press, 2019.</span>
+                </li>
+              </ol>
+            </section>
 
           </article>
         </div>
