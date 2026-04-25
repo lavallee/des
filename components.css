@@ -847,15 +847,16 @@
  */
 
 .article {
-  --article-margin-gap:   var(--space-8);
-  --article-margin-width: 200px;
+  --article-margin-gap:    var(--space-8);
+  --article-margin-width:  200px;
+  --article-breakout-half: calc((var(--prose-wide) - var(--prose-max)) / 2);
 
   display: grid;
   grid-template-columns:
     [full-start]
     minmax(var(--space-5), 1fr)
     [breakout-start]
-    minmax(0, calc((var(--prose-wide) - var(--prose-max)) / 2))
+    minmax(0, var(--article-breakout-half))
     [prose-start]
     minmax(0, var(--prose-max))
     [prose-end]
@@ -992,8 +993,16 @@
   color: var(--text) !important;
 }
 
-/* Structural section break — Geist Sans, acts as a visual chapter marker */
-.article h2,
+/* Chapter-marker / metadata heading treatments — opt-in via class.
+ *
+ * The `.article-section`, `.article-h3`, `.article-h4` classes give
+ * a heading the small-uppercase metadata look (chapter dividers,
+ * caption-style sub-labels). Bare h2/h3/h4 inside .article get
+ * narrative typography from weaver/narrative.css (Newsreader heads
+ * that scale with the title). Conflating semantic h2 with a
+ * chapter-marker style was producing all-caps section heads in
+ * narrative articles.
+ */
 .article-section {
   font-family: var(--font-sans);
   font-size: 11px;
@@ -1006,8 +1015,6 @@
   margin: var(--space-12) 0 var(--space-6);
 }
 
-/* Narrative section heading — Newsreader, within a prose section */
-.article h3,
 .article-h3 {
   font-family: var(--font-prose);
   font-optical-sizing: auto;
@@ -1018,7 +1025,6 @@
   margin: var(--space-8) 0 var(--space-3);
 }
 
-.article h4,
 .article-h4 {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
@@ -1611,24 +1617,59 @@
   line-height: 1.4;
 }
 
-/* Collapse: at narrow widths, notes flow back into prose column */
+/* Collapse: at narrow widths, notes flow back into prose column, and
+ * the grid's margin track itself collapses to 0 so the prose column
+ * gets the full available width. Without the track-collapse, the grid
+ * still reserved up to 200px for an empty margin column, squeezing
+ * prose at tablet/mobile widths. */
 @media (max-width: 940px) {
-  .article-marginnote {
-    grid-column: prose;
-    background: var(--surface-raised);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--border-strong);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: var(--space-2) var(--space-3);
-    margin-bottom: var(--space-3);
-    /* reset variant borders that would double up */
-    border-left-width: 3px;
+  .article {
+    --article-margin-width: 0px;
+    --article-margin-gap: 0px;
+    --article-breakout-half: 0px;
   }
 
-  .article-marginnote--def,
-  .article-marginnote--source {
-    border-left: 3px solid var(--border-strong);
-    padding-left: var(--space-3);
+  /* Collapse the subgrid wrapper: at narrow widths the prose+margin
+   * pairing becomes a plain block stack. Without this, the subgrid
+   * rule `.article-mrow > .article-marginnote { grid-column: margin }`
+   * wins over the blanket `.article-marginnote { grid-column: prose }`
+   * by specificity and the note gets pushed into a zero-width margin
+   * track that then swells from content. */
+  .article-mrow {
+    display: block;
+    grid-column: prose;
+  }
+  .article-mrow > * {
+    grid-column: auto;
+  }
+  .article-mrow > .article-marginnote {
+    grid-column: auto;
+  }
+
+  .article-marginnote {
+    grid-column: prose;
+    /* Inline callout treatment at narrow widths — bigger type so it
+     * reads as part of the article flow, not as a footnote chip. */
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: var(--space-3) var(--space-4);
+    margin: var(--space-3) 0 var(--space-5);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .article-marginnote--def .mn-term,
+  .article-marginnote--source .mn-source-num {
+    font-size: 11px;
+  }
+
+  .article-marginnote--def .mn-body,
+  .article-marginnote .mn-body {
+    font-size: var(--text-base);
+    color: var(--text);
   }
 
   .article-marginnote--callout {
