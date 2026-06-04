@@ -383,3 +383,46 @@ For any new tool in this family, use this checklist:
 □ Verify: filter state goes in URL query params
 □ Verify: all interactive elements have :focus-visible styles (tokens.css provides defaults)
 ```
+
+---
+
+# Backfield — the consumer / feed register
+
+**Backfield** (the AI × media beat: the River feed, the Garden KB, the Atlas graph,
+the masthead) is the first *multi-author, public, feed-shaped* product on this system.
+It stretches des in three sanctioned ways. The reference implementation lives in
+`collagen/design/` (tokens + base + components, vendored into each surface).
+
+### 1. The system-font register
+
+Artifacts default to Newsreader/Geist; Backfield instead runs a **system-font body**
+register (`-apple-system, …`) for **instant first paint, no FOUT** on a scroll-heavy
+public feed. It still uses the des type *scale*, and keeps **Instrument Serif italic**
+for the brand wordmark/display (the one display gesture). Treat this as a register
+choice — same tokens, different `--font-sans` — not a fork.
+
+### 2. Per-voice accent (`--voice`)
+
+A multi-author feed needs a color *per author*, which collides with "one accent per
+tool." Resolution: the single navigational **`--accent` stays singular**; a feed sets
+**`--voice` inline** on each row/card (`style="--voice: <hex>"`) and components read
+`var(--voice, var(--accent))`. `--voice` now ships in `tokens.css` defaulting to
+`--accent`, so non-feed tools are unaffected. The tint recipe is named:
+`color-mix(--voice 15% surface)` fills, `… 55% transparent` rings, `… 12%` chips.
+
+### 3. Emoji avatars (the one no-emoji exception)
+
+The no-emoji rule holds **everywhere except the avatar of a social-feed voice**, where
+an emoji glyph carries per-author identity (the River's personas). Status markers,
+actions, topic glyphs, and nav stay typographic / Lucide. (e.g. the Garden's growth
+ramp moved 🌳🌿🌱 → `● ◐ ○`.)
+
+### Components contributed back
+
+The feed vocabulary des lacked, now reference-implemented for reuse by future
+feed-shaped tools: **`.avatar`** (tinted-ring glyph, 4 sizes), **`.card`** (flat,
+hairline-divided, avatar-left feed row), **`.linkcard` / `.linkcard--rich` /
+`.source-chip`** (the canonical external-link / citation box, favicon + OG hero +
+source-kind/grade), **`.badge`** (provenance pill, color-as-data via `--bcolor`), and
+**`.quote`** (quote-post embed). All obey the hard rules: no gradients, no shadows on
+cards (overlays only), border-over-shadow, status colors sacred.

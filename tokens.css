@@ -140,6 +140,12 @@
   --accent-surface: var(--p-indigo-50);
   --accent-text:    var(--p-indigo-300);  /* Accent-colored text (links in prose) */
 
+  /* Per-voice slot (Backfield register). The single navigational --accent above
+     stays singular ("one accent per tool"); a multi-author feed sets --voice
+     inline per row/card and components read var(--voice, var(--accent)). Defaults
+     to --accent so non-feed tools are unaffected. See MIGRATING.md > Backfield. */
+  --voice:          var(--accent);
+
   /* Status — success */
   --success:        var(--p-green-500);
   --success-muted:  var(--p-green-700);
