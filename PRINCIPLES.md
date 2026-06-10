@@ -89,6 +89,22 @@ One primary accent per tool. Use it for: interactive elements (links, buttons, a
 
 ---
 
+#### No colored side-border accents
+
+A colored `border-left`/`border-right` rule on a card, panel, quote, callout,
+or list item — as a category marker, emphasis, or decoration — is forbidden.
+It is the most recognizable template-kit tic, it doubles a signal that should
+live in content (a tag, a dot, a badge, a word), and it breaks down the moment
+two accents sit adjacent.
+
+Convey **category** with a tag chip or kind-dot, **status** with a badge,
+**emphasis** with type weight or surface tint. Neutral hairline separators
+(`var(--border)` / `--border-strong`) are structure, not accent — they're fine.
+The one tolerated colored side border is an active-state indicator inside a
+nav list; prefer background/weight there too. Existing violations are cleaned
+up whenever the component is next touched. (Decided 2026-06-10, prompted by
+atlas's kind-colored identity-card rule — removed same day across collagen.)
+
 ### Typography
 
 #### Three-role type system
