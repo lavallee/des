@@ -2564,6 +2564,12 @@ kbd,
 .uppercase    { text-transform: uppercase; letter-spacing: var(--tracking-wide); }
 .truncate     { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+/* Full-value token (ULID, branch, URL — anything the operator copies): mono,
+   wrapped, selectable. Never ellipsize a value someone needs whole (see
+   PATTERNS-ADMIN.md > truncation policy). `min-width: 0` is required on the
+   flex/grid parent too, or wrapping silently fails. */
+.token-full   { font-family: var(--font-mono); overflow-wrap: anywhere; min-width: 0; }
+
 /* Layout helpers */
 .row          { display: flex; align-items: center; }
 .row--gap-1   { gap: var(--space-1); }
