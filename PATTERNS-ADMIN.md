@@ -10,6 +10,35 @@ operator review of 2026-07-07.
 The one-line law: **flow is a feature.** Every violation below breaks the
 operator's flow at exactly the moment they are trying to act.
 
+## The four questions (task reasoning — read this before any rule below)
+
+At every screen, the operator silently asks: **what is this? why am I
+seeing it? what do I do? what happens next?** A surface that leaves any of
+the four unanswered is broken regardless of how many rules below it
+passes. The 2026-07-07 operator walkthrough
+(`george/docs/research/operator-walkthrough-2026-07-07.md`) is fifteen
+examples of craft-compliant screens failing these questions. Corollaries:
+
+- **Referents resolve.** A bare ULID/ID is machine food. Anywhere an entry
+  references another ("same as 01KVPN…"), render the referent's first line
+  and link it. If the system knows, the operator shouldn't have to.
+- **An object's page carries its verbs.** The page for a gate can resolve
+  it; a todo's page can shape/obviate it; a run's page links its PR with
+  its state. A detail page with no actions is a dead end.
+- **Queue items are actionable by their audience.** If the system can act
+  (or already has — merged PR, obviated todo), the item never reaches the
+  human queue. "Nothing for me to do here" discovered *after* reading is a
+  system lie.
+- **Machine drafts, human edits.** Never hand the operator a blank
+  textarea for work an agent can draft (criteria, scope, triage
+  rationale). The operator's verbs are approve / edit / redirect.
+- **Lists carry judgment.** Any list longer than a screenful arrives
+  ranked, with staleness and likely-obviated flags. "101 items, you
+  figure it out" outsources the system's job to the human.
+- **Links state their destination.** "PR #35 — merged", "packet (same
+  text, rendered)", not three unlabeled links that may or may not be the
+  same object.
+
 ## Decision surfaces
 
 A view that asks for a choice (approve/reject, bet/dismiss, pick-one) must
@@ -155,6 +184,12 @@ peer-to-peer, no exclamation marks.
 
 ## Pre-ship verification (every admin surface change)
 
+-1. **THE WALKTHROUGH IS THE GATE for flows.** When a change touches what
+   an operator *does* (not just how it looks), someone who is not the
+   author walks the affected flow against real data narrating the four
+   questions at each screen, and the PR quotes where they stalled. The
+   operator's own narrated walks are the calibration set; every stall
+   becomes a gallery entry.
 0. **SEEING IS THE GATE.** Render the changed surfaces against
    production-shaped data (the real vault or a fixture with real
    cardinalities — 60+ projects, 100-char titles, machine-generated
