@@ -39,6 +39,30 @@ examples of craft-compliant screens failing these questions. Corollaries:
   text, rendered)", not three unlabeled links that may or may not be the
   same object.
 
+## Built for an expert operator (density & speed)
+
+These are instruments for a trained daily operator, not consumer surfaces.
+Most "anti-slop" aesthetic advice (whitespace as virtue, restraint,
+"delight") is calibrated for marketing pages and does not apply here —
+adopt anti-slop *mechanisms* (token discipline, negative constraints),
+reject its *aesthetics*. What applies instead:
+
+- **Optimize value-per-pixel.** Density lives *inside* the table — tabular
+  numerals (`tnum`), tight rows, hover-reveal row actions — while page
+  chrome (margins, section headers, filter bars) stays generous. Dense
+  content in a composed frame reads as an instrument; dense chrome reads
+  as noise.
+- **Hierarchy via type scale, weight, and color — not whitespace alone.**
+  When everything is airy, nothing is scannable.
+- **Latency is a design property.** Interactions feel direct under
+  ~100ms; over ~200ms an action endpoint is a bug, not a fact of life.
+  Prefer instant + undo over spinner + confirm.
+- **The success metric is operator task speed**, measured by walking real
+  tasks — never "does it look designed."
+- Style anchor when taste is needed: the data-dense professional family
+  (ClickHouse, PostHog, Linear, Stripe dashboards) — steal that vibe, not
+  a landing page's.
+
 ## Decision surfaces
 
 A view that asks for a choice (approve/reject, bet/dismiss, pick-one) must
@@ -72,6 +96,32 @@ pass all five:
    undecided item focused, single-key actions, commit auto-advances.
    Split queues by decision type (go/no-go vs informational vs
    conflict-resolution) — never interleave unlike decisions.
+
+## Queue mechanics: bounded verbs, undo, rank
+
+The mechanics behind rule 5, learned from the tools that do triage best
+(Linear Triage, Superhuman, Gmail Priority Inbox):
+
+- **Every queue has a closed verb set (≤5 dispositions), each on a single
+  keystroke.** Accept / decline / merge-into / snooze — never a free-text
+  status field where a verb belongs. A `?` overlay lists the keys. The
+  queue holds only undecided items; deciding is instant and reversible.
+- **Undo, not confirm.** Reversible dispositions execute immediately with
+  a toast-undo window. Operators habituate through confirm modals; the
+  modal tax is paid on every action to guard the rare one. Reserve
+  confirmation for the genuinely irreversible.
+- **Snooze is a first-class verb**: hide until a chosen time *or* new
+  activity, whichever comes first. And the tail is bulk-clearable
+  ("snooze everything untouched >30 days") so effort concentrates on
+  what's live.
+- **Ranking is the system's job.** Closed priority taxonomy (≤5 levels);
+  unprioritized items sort *last*, never first; the operator's manual
+  reorder persists; everything below the ranked set sits in a collapsed
+  "everything else" fold. When the system suggests a priority/route, it
+  shows its reasoning inline so the operator validates instead of
+  re-deriving.
+- **Staleness is visible on the queue itself** ("oldest undecided: 6
+  days") — aging must be seen, not assumed away.
 
 ## Assertions carry actions
 
@@ -174,6 +224,15 @@ inputs are for one-line values.
 `--prose-max` (680px) regardless of panel width. "Full panel width" on a
 wide viewport is a crime with extra steps.
 
+## Never lose operator input
+
+Any form with more than one field of typing persists a draft — debounced
+on input and on blur, keyed to the specific record being edited, restored
+on load, cleared on successful submit. A page reload, back-navigation, or
+mid-form detour that eats typed text is a crime with a name (operator
+walkthrough #9). This is a shared-shell facility, not a per-form fix:
+forms opt in with an attribute, never reimplement.
+
 ## Microcopy
 
 Helper text must earn its place: empty states (what this is, what fills
@@ -190,13 +249,20 @@ peer-to-peer, no exclamation marks.
    questions at each screen, and the PR quotes where they stalled. The
    operator's own narrated walks are the calibration set; every stall
    becomes a gallery entry.
-0. **SEEING IS THE GATE.** Render the changed surfaces against
-   production-shaped data (the real vault or a fixture with real
-   cardinalities — 60+ projects, 100-char titles, machine-generated
-   content), capture screenshots at 1440/768/390 in both themes, and have
-   them REVIEWED — by the design-review skill or a human, never solely by
-   the change's author. Checklists passed on every entry in `crimes/`;
-   only eyes catch composition, walls, and dumps.
+0. **SEEING IS THE GATE — and the judge is independent.** Render the
+   changed surfaces against production-shaped data (the real vault or a
+   fixture with real cardinalities — 60+ projects, 100-char titles,
+   machine-generated content), capture screenshots at 1440/768/390 in both
+   themes, and have them REVIEWED — by the design-review skill or a human,
+   never solely by the change's author (same-session self-critique is
+   measurably weaker than an independent pass). Judge mechanics: smoke
+   first (does it render at all — nearly a fifth of generated UIs fail
+   here); findings are **region-anchored** ("this element, this issue"),
+   never free-text impressions; before/after comparisons run
+   **side-swapped and blind** (never tell the judge which is new); an LLM
+   pass is trusted to flag that issues *exist*, a human triages how bad
+   they are. Checklists passed on every entry in `crimes/`; only eyes
+   catch composition, walls, and dumps.
 1. Both themes rendered; new color pairs computed ≥4.5:1.
 2. 390px viewport walk — every action reachable, nothing overflowing.
 3. Every emitted CSS class exists in the shipped stylesheet (a mis-typed
