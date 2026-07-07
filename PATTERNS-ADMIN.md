@@ -15,10 +15,16 @@ operator's flow at exactly the moment they are trying to act.
 A view that asks for a choice (approve/reject, bet/dismiss, pick-one) must
 pass all five:
 
-1. **The deciding text is never truncated.** Show it in full, or one
-   keypress/tap reveals it inline (peek) — never "…" with no way to see
-   more before an irreversible action. Truncation is for scannable lists,
-   not for the field the decision hangs on.
+1. **The card shows decision context, never a raw dump and never a
+   truncated tease.** Decision context means: what happened, why it
+   matters, and what each action will do — written for a human, a
+   paragraph at most. Human-authored deciding text (a pitch, a blocker
+   reason) appears in full or one keypress away — never "…" with no way
+   to see more before an irreversible action. Machine artifacts (prompts,
+   logs, diffs, JSON payloads) are *evidence*, not deciding text: link
+   them one click away; pouring them into the card body is the same crime
+   as truncation, committed in the other direction (see
+   `crimes/2026-07-07-hand-prompt-dump.png`).
 2. **The logical default is the easy path.** One visually primary action
    per card (solid button); it is the keyboard default (Enter). Everything
    else renders ghost/outline. Decoration budget: ≤2 solid buttons, ≤2
@@ -91,6 +97,23 @@ implementations with eight different caps is how "unreadable" happens.
   with a selector; "duplicate then tweak" is the #1 documented cause of
   dashboard sprawl.
 
+## Cardinality
+
+Any set of like items — pills, chips, rows, cards — that can exceed ~12 in
+production MUST ship with its scaling behavior designed: grouping, a
+search/filter input, top-N + "show all", or progressive disclosure. A flat
+wrap of 60 pills is not a list, it is a wall
+(`crimes/2026-07-07-homepage-pill-wall.png`). Design for the production
+cardinality, not the fixture's.
+
+## Composition at width
+
+Instruments are designed at three widths, not poured into one. At wide
+viewports (≥1440px) content gets a max-width (`--content-max`) and
+deliberate column structure; a card floating in a half-empty viewport, or
+panels stretched edge-to-edge, means the page was never composed. Dead
+space is a finding, not a neutral.
+
 ## Theme durability
 
 - Both bundled themes (and any named theme) hold **WCAG AA (4.5:1)** for
@@ -117,6 +140,11 @@ that starts ≥6 rows and auto-grows (`field-sizing: content` where
 supported, JS fallback). `rows="2"` is for tags, not thinking. One-line
 inputs are for one-line values.
 
+**Inputs have a measure, exactly like prose.** A textarea wider than
+~72ch is harder to write in, not easier — cap writing surfaces at
+`--prose-max` (680px) regardless of panel width. "Full panel width" on a
+wide viewport is a crime with extra steps.
+
 ## Microcopy
 
 Helper text must earn its place: empty states (what this is, what fills
@@ -127,6 +155,13 @@ peer-to-peer, no exclamation marks.
 
 ## Pre-ship verification (every admin surface change)
 
+0. **SEEING IS THE GATE.** Render the changed surfaces against
+   production-shaped data (the real vault or a fixture with real
+   cardinalities — 60+ projects, 100-char titles, machine-generated
+   content), capture screenshots at 1440/768/390 in both themes, and have
+   them REVIEWED — by the design-review skill or a human, never solely by
+   the change's author. Checklists passed on every entry in `crimes/`;
+   only eyes catch composition, walls, and dumps.
 1. Both themes rendered; new color pairs computed ≥4.5:1.
 2. 390px viewport walk — every action reachable, nothing overflowing.
 3. Every emitted CSS class exists in the shipped stylesheet (a mis-typed
