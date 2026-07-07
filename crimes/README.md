@@ -10,7 +10,7 @@ shipped through a checklist that passed. The lesson of this gallery is that
 rules applied without *seeing* produce compliant crimes.
 
 ## 2026-07-07 — homepage pill wall
-`2026-07-07-homepage-pill-wall.png`
+`2026-07-07-homepage-pill-wall.png` → fixed: `…-FIXED.png` (top-12 chips + type-ahead + grouped disclosure)
 
 60+ project/concept pills rendered as a flat wrap filling half the viewport,
 mixing projects with concepts, most with counts of 1–2, no grouping, no
@@ -28,7 +28,7 @@ list had 3 entries. Production has 67 projects. Verification data must be
 production-shaped or it is theater.
 
 ## 2026-07-07 — hand review card dumps a machine prompt
-`2026-07-07-hand-prompt-dump.png`
+`2026-07-07-hand-prompt-dump.png` → fixed: `…-FIXED.png` (one-line context + labeled artifact disclosure)
 
 A review card's body is the entire groundskeeper *machine prompt* — hundreds
 of lines of curl commands and RULES — because the card renders "the full
