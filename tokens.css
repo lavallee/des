@@ -31,6 +31,7 @@
   --p-zinc-700: #3f3f46;
   --p-zinc-600: #52525b;
   --p-zinc-500: #71717a;
+  --p-zinc-450: #85858e;  /* half-step: dimmest text that clears WCAG AA (4.85:1) on --surface-raised */
   --p-zinc-400: #a1a1aa;
   --p-zinc-300: #d4d4d8;
   --p-zinc-200: #e4e4e7;
@@ -41,6 +42,7 @@
   --p-warm-950: #1a1a1a;
   --p-warm-800: #444444;
   --p-warm-500: #7a7a7a;
+  --p-warm-600: #6d6d6d;  /* darkest 'muted' that clears WCAG AA (4.95:1) on cream */
   --p-warm-300: #b5b5b5;
   --p-warm-100: #edede9;
   --p-warm-50:  #fafaf7;
@@ -130,7 +132,7 @@
   /* Text */
   --text:           #e4e4e8;            /* Primary — headings, body */
   --text-muted:     var(--p-zinc-400);  /* Secondary — labels, descriptions */
-  --text-dim:       var(--p-zinc-500);  /* Tertiary — metadata, timestamps */
+  --text-dim:       var(--p-zinc-450);  /* Tertiary — metadata, timestamps (AA-checked vs raised surface) */
   --text-disabled:  var(--p-zinc-700);  /* Disabled states */
   --text-inverse:   var(--p-zinc-950);  /* Text on light backgrounds */
 
@@ -202,7 +204,7 @@
   --border-focus:   var(--p-navy-600);
 
   --text:           var(--p-warm-950);
-  --text-muted:     var(--p-warm-500);
+  --text-muted:     var(--p-warm-600);  /* AA-checked vs cream + white */
   --text-dim:       var(--p-warm-800);
   --text-disabled:  #c8c8c4;
   --text-inverse:   var(--p-warm-50);

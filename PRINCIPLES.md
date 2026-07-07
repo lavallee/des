@@ -612,8 +612,8 @@ See `tokens.css` for the complete list. The most frequently used:
 | `--border` | `#1e1e24` | `#e4e4e0` | Main borders |
 | `--border-subtle` | `#161619` | `#edede9` | Subtle separators |
 | `--text` | `#e4e4e8` | `#1a1a1a` | Primary text |
-| `--text-muted` | `#71717a` | `#6b7280` | Secondary text |
-| `--text-dim` | `#52525b` | `#9ca3af` | Tertiary / metadata |
+| `--text-muted` | `#a1a1aa` | `#6d6d6d` | Secondary text (AA vs all surfaces) |
+| `--text-dim` | `#85858e` | `#444444` | Tertiary / metadata (AA vs all surfaces) |
 | `--accent` | `#6366f1` | `#1a4480` | Links, actions, data |
 | `--success` | `#22c55e` | `#2b6a3c` | Verified, positive |
 | `--warning` | `#eab308` | `#a04a00` | Pending, caution |

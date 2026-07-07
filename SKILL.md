@@ -11,9 +11,10 @@ You are working with the Lyra Forge design system. It serves two audiences in on
 
 1. **Read `README.md`** — the full system overview and file index. Always read it first.
 2. **Read `PRINCIPLES.md`** — the design philosophy and component guidance. Read before making non-obvious decisions (what to use for X, whether to add a modal, when a chart is justified).
-3. **Read `tokens.css` and `components.css`** — the actual source of truth. No hardcoded colors, spacing, or font values outside of these files.
-4. **Open `showcase.html` in a browser** — the canonical reference page; renders every component in both themes.
-5. **Browse `ui_kits/`** — five per-product recreations that show the system applied to real products. Match the one whose density + audience match your task.
+3. **Read `PATTERNS-ADMIN.md`** when the surface asks a human to decide anything (queues, review rails, run boards, triage) — decision-surface rules, truncation policy, live-log presentation, nav governance, theme durability, and the pre-ship verification checklist.
+4. **Read `tokens.css` and `components.css`** — the actual source of truth. No hardcoded colors, spacing, or font values outside of these files.
+5. **Open `showcase.html` in a browser** — the canonical reference page; renders every component in both themes.
+6. **Browse `ui_kits/`** — five per-product recreations that show the system applied to real products. Match the one whose density + audience match your task.
 
 ## Hard rules (never break)
 

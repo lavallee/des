@@ -1,0 +1,137 @@
+# Admin & Operator Surface Patterns
+
+Operational patterns for instruments that ask a human to decide things —
+work queues, review rails, run boards, triage lanes. `PRINCIPLES.md` covers
+the visual system; this covers what a decision surface owes its operator.
+Sources: the 2026-07 research set in `george/docs/research/`
+(`agent-admin-ux`, `admin-craft-fundamentals`, `admin-audit`) and the
+operator review of 2026-07-07.
+
+The one-line law: **flow is a feature.** Every violation below breaks the
+operator's flow at exactly the moment they are trying to act.
+
+## Decision surfaces
+
+A view that asks for a choice (approve/reject, bet/dismiss, pick-one) must
+pass all five:
+
+1. **The deciding text is never truncated.** Show it in full, or one
+   keypress/tap reveals it inline (peek) — never "…" with no way to see
+   more before an irreversible action. Truncation is for scannable lists,
+   not for the field the decision hangs on.
+2. **The logical default is the easy path.** One visually primary action
+   per card (solid button); it is the keyboard default (Enter). Everything
+   else renders ghost/outline. Decoration budget: ≤2 solid buttons, ≤2
+   accent colors per card — spend the freed weight on the decision text.
+3. **Everything needed to decide is on or one tap from the card**: the why
+   (source/lineage), the what (full text/diff stat), the consequences
+   (what happens on each action). If deciding requires opening three other
+   pages, the card is not done.
+4. **Offer the real trust levels, not a binary.** Run completion is
+   "merge / open for review / inspect locally", not approve-or-reject.
+   Classify actions: auto-apply (safe, reversible) / notify / block
+   (irreversible — explicit approval). Prefer act-now + toast-undo over
+   confirm modals for reversible actions; reserve confirmation for the
+   genuinely irreversible.
+5. **One decision at a time flows best.** Queue mechanics: single
+   undecided item focused, single-key actions, commit auto-advances.
+   Split queues by decision type (go/no-go vs informational vs
+   conflict-resolution) — never interleave unlike decisions.
+
+## Assertions carry actions
+
+If a surface asserts a problem ("AT RISK: 6 blockers on a choke-point"),
+it must attach the action path (open the blockers, park them, reassign).
+A label with no verb is a dead end; either wire the verb or don't render
+the alarm.
+
+## The truncation policy (three display tiers)
+
+- **Scannable list cell**: single-line ellipsis (`white-space: nowrap` +
+  `overflow: hidden` + `text-overflow: ellipsis` — all three) with the full
+  value reachable (peek, tooltip, or the row's detail view).
+- **Full-value token** (ULID, branch, URL — anything the operator copies):
+  mono, wrapped, selectable — `overflow-wrap: anywhere` (+ `min-width: 0`
+  on flex/grid children or wrapping silently fails). Never ellipsize a
+  value someone needs whole.
+- **Prose**: wrap at 45–75ch (66 target; 80 hard cap), `--leading-normal`+.
+  Never pour paragraphs into a narrow column because the grid happened to
+  be there.
+
+One shared truncation helper per codebase. Eleven independent `_short()`
+implementations with eight different caps is how "unreadable" happens.
+
+## Live activity & logs
+
+- **Narrate by default, raw one click away.** The default run view is a
+  plain-language chronological step list; raw JSON/terminal output lives in
+  a secondary tab. Operators do not speak JSON.
+- **Typed events, not a growing transcript**: tool-call / thought /
+  question / result / error each get their own compact renderer; past
+  steps collapsed to one line, current step expanded.
+- **Status is computed at read time from durable facts** — never stored as
+  a display string that can drift from reality.
+- **Never spin forever.** Unknown state renders as "unknown — stale since
+  ⟨time⟩", not an infinite spinner.
+- When raw logs must show: wrap lines, pretty-print JSON collapsed-by-
+  default, level colors, max-lines cap with "show all".
+
+## Nav & view governance
+
+- **One shell.** Header, nav, sidebar come from one shared layout module.
+  A surface never defines its own nav. (Nine hand-rolled sidebars across
+  twelve pages is the documented failure mode.)
+- **Workbench, not chatbot**: agent output attaches to the object it
+  changed (the todo, the PR, the idea) — not to a separate agent-only pane.
+- **Consolidate before adding a fourth place to check.** A new view must
+  name (a) the one question it answers, (b) which existing view answers it
+  today and why that's insufficient. If one job's information spans 3+
+  surfaces, the fix is one overview page with tabs — not view #4.
+- **Parametrize, don't clone.** Per-project/per-agent needs are one view
+  with a selector; "duplicate then tweak" is the #1 documented cause of
+  dashboard sprawl.
+
+## Theme durability
+
+- Both bundled themes (and any named theme) hold **WCAG AA (4.5:1)** for
+  every text tier on every surface it sits on — computed, not eyeballed
+  (`--text-dim`/`--text-muted` were re-derived 2026-07 for exactly this).
+- The theme toggle is part of the shared shell, present on **every** page:
+  `prefers-color-scheme` default → persisted user override
+  (localStorage) → applied by an inline `<head>` script before first paint
+  (no flash). A toggle that exists on some pages is worse than none.
+- New text/background pairings ship with their computed ratio in the PR.
+
+## Mobile scope line
+
+Instruments on a phone do **read, review, steer — never full edit**. The
+shell collapses to a single column with a priority nav; tables become
+cards or gain an explicit scroll affordance; decision cards remain fully
+usable (they're the point). Dense multi-pane workbenches may simply say
+"open on desktop" — honesty beats a broken squeeze. Test at 390px.
+
+## Inputs sized to the task
+
+If the operator is expected to write sentences, the input is a textarea
+that starts ≥6 rows and auto-grows (`field-sizing: content` where
+supported, JS fallback). `rows="2"` is for tags, not thinking. One-line
+inputs are for one-line values.
+
+## Microcopy
+
+Helper text must earn its place: empty states (what this is, what fills
+it, one action), first-run, and genuinely non-obvious consequences.
+Everything else — restating the button, describing the obvious, filler
+enthusiasm — dies in review. Voice per `PRINCIPLES.md`: precise,
+peer-to-peer, no exclamation marks.
+
+## Pre-ship verification (every admin surface change)
+
+1. Both themes rendered; new color pairs computed ≥4.5:1.
+2. 390px viewport walk — every action reachable, nothing overflowing.
+3. Every emitted CSS class exists in the shipped stylesheet (a mis-typed
+   `btn--danger` left the app's most destructive button unstyled).
+4. Decision-surface checklist above, if the view asks for choices.
+5. No new `<style>` block in a renderer; additions go to the shared
+   stylesheet. No hex outside `tokens.css`.
+6. Nav unchanged, or the view-governance questions answered in the PR.
