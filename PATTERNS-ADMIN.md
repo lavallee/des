@@ -10,6 +10,20 @@ operator review of 2026-07-07.
 The one-line law: **flow is a feature.** Every violation below breaks the
 operator's flow at exactly the moment they are trying to act.
 
+## The zeroth question: should this queue exist at this size?
+
+Before designing any queue's presentation, interrogate its existence.
+A queue whose count is far beyond what its audience can work is not a
+presentation problem — it is a system failure upstream (capture with no
+settlement, machine-minted items granted human-queue status, no dedup,
+no aging policy). The tell is the settlement ratio: a healthy system
+settles most items itself and hands the human a residue. "555 undecided,
+3 settled by the system" means the *system* is broken, and no hand-dealt
+UI, ranking, or honest count line fixes that — it decorates it. Ask
+first: what should have settled these, and why didn't it? (Learned
+2026-07-07: 447 of 564 "ideas" were reflect-minted write-only froth,
+never referenced by anything; 18 came from a human.)
+
 ## The four questions (task reasoning — read this before any rule below)
 
 At every screen, the operator silently asks: **what is this? why am I
