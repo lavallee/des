@@ -42,7 +42,16 @@ examples of craft-compliant screens failing these questions. Corollaries:
 - **Queue items are actionable by their audience.** If the system can act
   (or already has — merged PR, obviated todo), the item never reaches the
   human queue. "Nothing for me to do here" discovered *after* reading is a
-  system lie.
+  system lie. This is an **authority test, not a mechanics test**: the
+  question is not "is this undecided?" but "does deciding it require
+  human values?" — spend, irreversibility, public exposure, cross-project
+  priority, a claim on the operator's time, or an explicitly reserved
+  taste call. Routine engineering triage (promote/dismiss a deslop
+  candidate, a perf tweak, a refactor idea) is system food: decide,
+  act within the autonomy ceiling, and *narrate* it in the digest —
+  reversible and visible — instead of asking. A human queue where the
+  operator's honest reaction is "the system could decide all of these"
+  is the 2026-07-07 lesson applied twice.
 - **Machine drafts, human edits.** Never hand the operator a blank
   textarea for work an agent can draft (criteria, scope, triage
   rationale). The operator's verbs are approve / edit / redirect.
