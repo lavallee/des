@@ -258,6 +258,11 @@ forms opt in with an attribute, never reimplement.
 
 ## Microcopy
 
+**Plain words.** Surfaces and verbs use ordinary language: review,
+decisions, suggestions, notes, work, stale. Invented vocabulary (hands,
+dealing, riffs, betting, shaping) makes the operator learn the tool
+instead of using it — eradicated 2026-07-08 by operator order.
+
 Helper text must earn its place: empty states (what this is, what fills
 it, one action), first-run, and genuinely non-obvious consequences.
 Everything else — restating the button, describing the obvious, filler
