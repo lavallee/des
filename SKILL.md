@@ -1,5 +1,5 @@
 ---
-name: Lyra Forge Design System
+name: lyra-forge-design-system
 description: Design system for Lyra Forge — a product studio building tools at the intersection of Media + AI. Use when building or styling (a) professional-facing instruments — dense, keyboard-driven research tools for journalists/editors/analysts (think code editor, financial terminal) — or (b) consumer-facing artifacts — long-form articles, public summaries, data visualizations. Covers tokens (color, type, spacing, motion), components (shell, tables, filter bars, cards, badges, timelines, command palette, prose/article), four named themes (carbon, slate, parchment + default dark/light), and React (Radix + CVA) implementations. Source of truth is tokens.css + components.css.
 ---
 
@@ -10,11 +10,12 @@ You are working with the Lyra Forge design system. It serves two audiences in on
 ## Start here
 
 1. **Read `README.md`** — the full system overview and file index. Always read it first.
-2. **Read `PRINCIPLES.md`** — the design philosophy and component guidance. Read before making non-obvious decisions (what to use for X, whether to add a modal, when a chart is justified).
-3. **Read `PATTERNS-ADMIN.md`** when the surface asks a human to decide anything (queues, review rails, run boards, triage) — decision-surface rules, truncation policy, live-log presentation, nav governance, theme durability, and the pre-ship verification checklist.
-4. **Read `tokens.css` and `components.css`** — the actual source of truth. No hardcoded colors, spacing, or font values outside of these files.
-5. **Open `showcase.html` in a browser** — the canonical reference page; renders every component in both themes.
-6. **Browse `ui_kits/`** — five per-product recreations that show the system applied to real products. Match the one whose density + audience match your task.
+2. **Read `PRACTICE.md`** — the diagnosis-to-proof workflow. Use it for every review, redesign, or implemented UI change.
+3. **Read `PRINCIPLES.md`** — the design philosophy and component guidance. Read before making non-obvious decisions (what to use for X, whether to add a modal, when a chart is justified).
+4. **Read `PATTERNS-ADMIN.md`** when the surface asks a human to decide anything (queues, review rails, run boards, triage) — decision-surface rules, truncation policy, live-log presentation, nav governance, theme durability, and the pre-ship verification checklist.
+5. **Read `tokens.css` and `components.css`** — the actual source of truth. No hardcoded colors, spacing, or font values outside of these files.
+6. **Open `showcase.html` in a browser** — the canonical reference page; renders every component in both themes.
+7. **Browse `ui_kits/`** — five per-product recreations that show the system applied to real products. Match the one whose density + audience match your task.
 
 ## Hard rules (never break)
 
@@ -105,10 +106,12 @@ No bouncy easings. Tools do not bounce.
 
 ## When you're adding to an existing tool
 
-1. Open the relevant file in `ui_kits/` first. Match its density, theme, and component vocabulary.
-2. Reuse classes from `components.css`; do not fork.
-3. If a token doesn't exist, add it to `tokens.css` with a clear name and a comment — never hardcode.
-4. Consult `MIGRATING.md` if the tool is one of barnowl / keel / tern / steve / weaver / jay — it has tool-specific adoption notes.
+1. Follow `PRACTICE.md`: capture the real baseline and identify the lowest unresolved layer before changing the surface.
+2. Open the relevant file in `ui_kits/`. Match its density, theme, and component vocabulary.
+3. Reuse classes from `components.css`; do not fork.
+4. If a token doesn't exist, add it to `tokens.css` with a clear name and a comment — never hardcode.
+5. Consult `MIGRATING.md` if the tool is one of barnowl / keel / tern / steve / weaver / jay — it has tool-specific adoption notes.
+6. Render, walk, rescore, and leave the design receipt required by `PRACTICE.md`.
 
 ## When you're building something new
 

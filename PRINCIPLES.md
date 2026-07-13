@@ -579,11 +579,16 @@ Steve uses a different naming convention from keel/barnowl. Until steve is fully
 
 When exploring visual directions for a new tool or redesign:
 
-1. Start with `showcase.html` as the base
-2. Define a variant token file (e.g., `tokens-alt-1.css`) that overrides only the semantic layer
-3. Give Codex the variant brief: "Generate a version of showcase.html with [specific design direction]"
-4. Evaluate variants against the principles in this document — specifically: does it maintain token hierarchy, readability at density, and keyboard-navigable interaction?
-5. Record the winner and the criteria used — this becomes a project-level design decision log
+1. Follow `PRACTICE.md` and capture the current task before generating alternatives.
+2. Start with `showcase.html` and the nearest product kit as references.
+3. Define one named axis per variant: composition, density, type register, or interaction model. A token-only variant is appropriate only when the underlying flow is already sound.
+4. Give the agent the just-in-time design plan, including the existing system to preserve, the mechanism borrowed, and the proof required.
+5. Evaluate side-swapped renders against `RUBRIC.md`, task completion, readability at density, and keyboard interaction.
+6. Record the winner, requested and served model when known, and the criteria used in the design receipt.
+
+Do not ask for a generically "premium" or "modern" result. Visual references and
+falsifiable constraints carry more signal. A capable model is useful only when it
+also inspects and refines the rendered result.
 
 ### Pre-ship checklist (visual quality)
 

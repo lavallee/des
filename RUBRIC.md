@@ -38,6 +38,17 @@ At each screen, answerable without clicking away:
 4. **What happens next?** Each action states or implies its consequence;
    empty/idle states name what fills them or what's scheduled.
 
+## Gate 1.5 — flow and authority (pass/fail per task)
+
+- The representative task has a named entry, action, success state, and recovery
+  path; loading, empty, and error states are present where reachable.
+- The human is deciding something that requires human authority. The surface does
+  not expose an unbounded machine backlog as a mandatory review queue.
+- Queue eligibility is legible: freshness, confidence, ownership, and the reason
+  each item needs attention are visible or one disclosure away.
+- Surface changes do not conceal a weak concept model or broken flow. If the
+  lowest unresolved layer is below the surface, the verdict is `fails-gate`.
+
 ## Section 2 — composition & density (0–2 each)
 
 - **Composed at width**: at 1440 content has a max-width and deliberate
@@ -76,4 +87,7 @@ GATE 0: pass|fail (+findings)
 GATE 1: per-screen pass|fail, each failure = {region, question, evidence}
 SECTIONS 2–4: score + findings [{region, criterion, evidence, suggested fix}]
 VERDICT: ship | fix-then-reshoot | fails-gate
+RECEIPT: baseline revision/routes/screenshots, variant revision/screenshots,
+functional/a11y/console/overflow checks, requested/served model, independent judge,
+material delta, and deferred findings
 ```

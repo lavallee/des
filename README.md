@@ -27,7 +27,10 @@ The files here are a mix of **production-ready system code** and **design refere
 | `assets/` | Production | SVG icons, Lyra Forge wordmark. Drop in. |
 | `ui_kits/` | **Design reference** | HTML prototypes of each product. Not production code — study for layout, density, interaction patterns. |
 | `showcase.html` | **Design reference** | Canonical render of every component. Open in a browser and compare against your implementation. |
+| `PRACTICE.md` | Guidance | Diagnosis-to-proof workflow for reviews and implemented improvements. |
 | `PRINCIPLES.md` | Guidance | Design philosophy. Read before making non-obvious decisions. |
+| `PATTERNS-ADMIN.md` | Guidance | Queue, triage, review-rail, and decision-surface rules. |
+| `RUBRIC.md` | Evaluation | Rendered admin-surface gates and region-anchored scoring. |
 | `MIGRATING.md` | Guidance | Per-tool adoption guide. |
 | `SKILL.md` | Guidance | Condensed system brief — cross-compatible with Agent Skills, drop into Claude Code. |
 
@@ -159,7 +162,10 @@ Open each in a browser (or serve the handoff folder as static files) while imple
 ```
 design_handoff/
 ├── README.md                  # this file
+├── PRACTICE.md                # diagnosis-to-proof workflow
 ├── PRINCIPLES.md              # design philosophy and component guidance
+├── PATTERNS-ADMIN.md          # admin decision-surface patterns
+├── RUBRIC.md                  # rendered evaluator gates
 ├── MIGRATING.md               # per-tool adoption guide
 ├── SKILL.md                   # condensed brief for Agent Skills / Claude Code
 ├── tokens.css                 # primitive + semantic tokens (source of truth)
@@ -187,12 +193,12 @@ design_handoff/
 └── preview/                   # design-system specimen cards (type, color, spacing, etc.)
 ```
 
-## Recommended workflow with Claude Code
+## Recommended workflow with a coding agent
 
 1. Drop the handoff folder into your repo (e.g. `packages/design-system/`).
-2. Open Claude Code in that directory.
-3. Claude Code will pick up `SKILL.md` automatically — it's written in Agent Skills format.
-4. Point it at a specific product: "implement barnowl's article view using this design system; reference `ui_kits/barnowl.html`".
+2. Make the agent read `SKILL.md` and `PRACTICE.md` before it proposes changes.
+3. Point it at a specific product and representative task: "improve barnowl's article review flow using this design system; reference `ui_kits/barnowl.html`".
+4. Require the baseline, rendered task walk, after screenshots, and receipt described in `PRACTICE.md`.
 
 ## Questions it's reasonable to ask back
 
