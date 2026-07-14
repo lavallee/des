@@ -1,9 +1,16 @@
 {
   "name": "@lavallee/des",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Design system for the Lyra Forge tool family",
   "license": "MIT",
   "type": "module",
+  "bin": {
+    "des-audit": "scripts/des-audit.mjs"
+  },
+  "scripts": {
+    "audit:showcase": "node scripts/des-audit.mjs --url http://127.0.0.1:4173/showcase.html --task 'Find and inspect a system pattern' --surface 'DES component showcase' --out artifacts/design-receipts/showcase",
+    "test": "node --test"
+  },
   "exports": {
     "./tokens.css": "./tokens.css",
     "./components.css": "./components.css",
@@ -16,6 +23,14 @@
     "tokens.css",
     "components.css",
     "colors_and_type.css",
+    "README.md",
+    "PRACTICE.md",
+    "PRINCIPLES.md",
+    "PATTERNS-ADMIN.md",
+    "RUBRIC.md",
+    "SKILL.md",
+    "docs/",
+    "scripts/",
     "themes/",
     "assets/"
   ],
@@ -23,6 +38,14 @@
     "design-system",
     "css"
   ],
+  "peerDependencies": {
+    "agent-browser": ">=0.22.1"
+  },
+  "peerDependenciesMeta": {
+    "agent-browser": {
+      "optional": true
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lavallee/des.git"

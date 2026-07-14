@@ -1,7 +1,7 @@
 /*
  * Design System Tokens
  * Single source of truth for all color, type, spacing, and motion values.
- * Package: @lavallee/des 0.2.0
+ * Package: @lavallee/des 0.3.0
  *
  * Structure:
  *   1. Primitive palette (--p-* prefix, not for direct use in components)

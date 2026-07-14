@@ -16,6 +16,7 @@ You are working with the Lyra Forge design system. It serves two audiences in on
 5. **Read `tokens.css` and `components.css`** — the actual source of truth. No hardcoded colors, spacing, or font values outside of these files.
 6. **Open `showcase.html` in a browser** — the canonical reference page; renders every component in both themes.
 7. **Browse `ui_kits/`** — five per-product recreations that show the system applied to real products. Match the one whose density + audience match your task.
+8. **Read `docs/design-engineering-toolchain.md`** before choosing browser, reference, image-generation, or evaluation tools. Use `des-audit` for the deterministic before/after receipt when it is available.
 
 ## Hard rules (never break)
 

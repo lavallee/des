@@ -1,7 +1,7 @@
 /*
  * Design System Components
  * Reusable component styles. Requires tokens.css to be loaded first.
- * Package: @lavallee/des 0.2.0
+ * Package: @lavallee/des 0.3.0
  *
  * Sections:
  *   1.  Layout shell
@@ -630,7 +630,6 @@
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  outline: none;
   transition: border-color var(--transition);
 }
 
@@ -1091,7 +1090,10 @@
 }
 
 @media (max-width: 860px) {
-  .decision-header { align-items: flex-start; }
+  .decision-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
   .segmented-nav { width: 100%; }
   .segmented-nav__item { flex: 1; }
   .decision-layout { grid-template-columns: 1fr; }
@@ -2897,7 +2899,6 @@ kbd,
   flex: 1;
   background: none;
   border: none;
-  outline: none;
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--text-md);

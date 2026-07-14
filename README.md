@@ -31,6 +31,8 @@ The files here are a mix of **production-ready system code** and **design refere
 | `PRINCIPLES.md` | Guidance | Design philosophy. Read before making non-obvious decisions. |
 | `PATTERNS-ADMIN.md` | Guidance | Queue, triage, review-rail, and decision-surface rules. |
 | `RUBRIC.md` | Evaluation | Rendered admin-surface gates and region-anchored scoring. |
+| `docs/design-engineering-toolchain.md` | Guidance | Current browser, reference, image-generation, and evaluation tool roles. |
+| `scripts/des-audit.mjs` | Tooling | Reproducible 1440/768/390 screenshots, accessibility snapshots, browser checks, and JSON receipts. |
 | `evaluations/` | Evidence | Production calibrations that changed the system or practice. |
 | `MIGRATING.md` | Guidance | Per-tool adoption guide. |
 | `SKILL.md` | Guidance | Condensed system brief — cross-compatible with Agent Skills, drop into Claude Code. |
@@ -202,6 +204,20 @@ design_handoff/
 2. Make the agent read `SKILL.md` and `PRACTICE.md` before it proposes changes.
 3. Point it at a specific product and representative task: "improve barnowl's article review flow using this design system; reference `ui_kits/barnowl.html`".
 4. Require the baseline, rendered task walk, after screenshots, and receipt described in `PRACTICE.md`.
+
+For a consistent mechanical capture, serve the target app and run `des-audit`:
+
+```bash
+des-audit \
+  --url http://127.0.0.1:3000/dashboard/resources \
+  --task "Decide whether this resource belongs in the collection" \
+  --surface "Resource review queue" \
+  --arm baseline
+```
+
+See `docs/design-engineering-toolchain.md` for the boundary between deterministic
+receipts, exploratory browser control, performance diagnosis, references, and
+image-generated candidates.
 
 ## Questions it's reasonable to ask back
 
