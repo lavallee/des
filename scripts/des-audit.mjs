@@ -146,7 +146,19 @@ function browserCall(binary, session, args) {
 function browserAudit() {
   const visible = (element) => {
     const style = getComputedStyle(element);
-    return element.getClientRects().length > 0 && style.visibility !== "hidden" && style.display !== "none";
+    if (element.getClientRects().length === 0 || style.visibility === "hidden" || style.display === "none") {
+      return false;
+    }
+    // Chromium can retain client rects for descendants of a closed details
+    // element even though they cannot be reached or focused. Its direct
+    // summary remains visible; everything else in the closed disclosure is
+    // outside the current interaction surface.
+    const closedDetails = element.closest("details:not([open])");
+    if (closedDetails) {
+      const summary = closedDetails.querySelector(":scope > summary");
+      if (!summary?.contains(element)) return false;
+    }
+    return true;
   };
   const describe = (element) => {
     const id = element.id ? `#${element.id}` : "";
@@ -168,7 +180,7 @@ function browserAudit() {
   const imagesWithoutAlt = images.filter((image) => !image.hasAttribute("alt")).map(describe);
   const imagesFailed = images.filter((image) => !image.complete || image.naturalWidth === 0).map(describe);
   const tabbables = [...document.querySelectorAll(
-    "a[href],button,input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex='-1'])",
+    "a[href],button,summary,input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex='-1'])",
   )].filter((element) => visible(element) && !element.disabled).slice(0, 80);
   const focusWithoutIndicator = [];
   for (const element of tabbables) {

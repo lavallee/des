@@ -88,6 +88,7 @@ Key patterns:
 - **Score badge** — `.score-badge.is-hi/is-mid/is-lo` — three named bands, never a gradient. Thresholds: `≥0.70 / ≥0.40 / <0.40`.
 - **Filter bar** — `.filter-bar` with chips, not a sidebar of checkboxes. Active filter chips use `--accent-surface` + `--accent-text`.
 - **Decision workspace** — `.decision-header`, `.segmented-nav`, `.decision-layout`, `.decision-brief`, `.decision-list`, `.decision-card`, and `.decision-rationale`. Use for bounded queues and review rails so task entry, evidence, and action hierarchy do not require a product-local CSS system.
+- **Typed record list** — `.record-section`, `.record-list`, `.record-item`, and their marker/content/details/action regions. Use when one operational page mixes decisions, PRs, todos, blockers, observations, or outcomes. The shared alignment stays consistent while each object keeps type-specific evidence and verbs.
 - **Timeline** — vertical dotted rail, mono-timestamps on left, event body on right. See `ui_kits/barnowl.html`.
 - **Command palette** — 640px wide modal on `--surface-overlay`, mono input, grouped results with `⌘K` hint. See `ui_kits/keel.html`.
 - **Article/prose** — `.prose` wrapper; Newsreader 19px, h2 30px, figure captions uppercase 11px mono. See `ui_kits/weaver.html`.
@@ -118,6 +119,10 @@ No bouncy easings. Tools do not bounce.
    rendered surface after model or flow changes expose a new composition.
 8. Without an independent seeing pass or explicit human acceptance, report a
    visual result as `candidate`, never `ship`.
+9. On heterogeneous operational pages, audit each object type separately. A
+   decision without a visible decision path, a PR without readiness/checks, a
+   todo without state/ownership, or an observation styled like an action item is
+   a representation failure even when every row uses the same polished card.
 
 ## When you're building something new
 

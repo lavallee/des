@@ -146,6 +146,39 @@ the model and flow gates but looked under-styled; the repair improved hierarchy
 while drifting outside system rules. Promote the anatomy and hierarchy, not the
 incidental gradients, shadows, or prose typography.
 
+## Typed objects need typed representations
+
+An overview may legitimately place unlike records next to each other. That does
+not make them interchangeable. Audit each visible kind against the operator's
+actual question, not against a generic card template:
+
+| Object | Required deciding or reading context | Required path |
+|---|---|---|
+| Decision/gate | question, why human authority is needed, options or gated work | decide/resolve, with consequence |
+| PR | repo and number, draft/readiness, checks, mergeability, size | open the PR or owning review queue; merge only when authorized |
+| Todo | full task, state, owner/assignee, age, linked blocker/PR | inspect, shape, redirect, or obviate as allowed |
+| Blocker | full reason, blocked referent, age, settlement signal | unblock, escalate, or queue the needed decision |
+| Observation | evidence, source, time, linked referent | inspect source/detail; no invented primary action |
+| Outcome | intended change, criteria/progress, linked work | inspect or update the outcome |
+
+Use the shared `record-*` classes to align these objects without erasing their
+differences. A single strong title plus a kind badge and the same metadata row is
+not a typed representation.
+
+**Shortening must be a disclosure, not punctuation.** A bold/strong fragment
+followed by `…` with no `details`, inspector, tooltip, or explicit detail link is
+a failed representation. Do not emit an ellipsis merely because a helper hit a
+character cap. Either show the deciding text in full, make the whole row's detail
+destination obvious, or label a disclosure such as “Read full observation”. The
+operator should never have to guess whether hidden text exists.
+
+**Controls must read as controls before interaction.** Native inputs, selects,
+textareas, summaries, and buttons need the system font, semantic surface,
+border, radius, padding, focus indicator, disabled state, and a task-appropriate
+size. Styling only the submit button does not make a form usable. An unstyled
+white textarea in a dark instrument, a 20px-wide select, or a text-looking
+`summary` that secretly opens a form fails the perceptual gate.
+
 ## Queue mechanics: bounded verbs, undo, rank
 
 The mechanics behind rule 5, learned from the tools that do triage best

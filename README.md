@@ -139,6 +139,7 @@ Defined in `components.css`. Full render in `showcase.html`. Key classes:
 - `.score-badge.is-hi|is-mid|is-lo` — three named bands; thresholds `≥0.70 / ≥0.40 / <0.40`
 - `.filter-bar` with `.chip` — active chip uses `--accent-surface` + `--accent-text`
 - `.decision-header`, `.segmented-nav`, `.decision-layout`, `.decision-brief`, `.decision-list`, `.decision-card`, `.decision-rationale` — bounded queue/review composition
+- `.record-section`, `.record-list`, `.record-item` — typed heterogeneous operational records with full-text disclosure and optional action rails
 - `.timeline` — vertical dotted rail with mono timestamps
 - `.palette` — 640px modal on `--surface-overlay`, mono input, grouped results
 - `.prose` — Newsreader 19px, serif h2, mono figure captions

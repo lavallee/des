@@ -533,6 +533,71 @@ export function DecisionRationale({ label = 'Why here', copy, score }: { label?:
 }
 
 
+// ── Typed Record Lists ────────────────────────────────────────────────────
+
+export interface RecordSectionProps {
+  kicker?: string
+  title: React.ReactNode
+  description?: React.ReactNode
+  action?: React.ReactNode
+  children: React.ReactNode
+  className?: string
+}
+
+export function RecordSection({ kicker, title, description, action, children, className }: RecordSectionProps) {
+  return (
+    <section className={cn('record-section', className)}>
+      <header className="record-section__header">
+        <div className="record-section__copy">
+          {kicker && <div className="record-section__kicker">{kicker}</div>}
+          <h2 className="record-section__title">{title}</h2>
+          {description && <p className="record-section__description">{description}</p>}
+        </div>
+        {action}
+      </header>
+      <div className="record-list">{children}</div>
+    </section>
+  )
+}
+
+export interface RecordItemProps {
+  kind: React.ReactNode
+  state?: React.ReactNode
+  age?: React.ReactNode
+  title: React.ReactNode
+  children?: React.ReactNode
+  meta?: React.ReactNode
+  detailsLabel?: React.ReactNode
+  details?: React.ReactNode
+  actions?: React.ReactNode
+  className?: string
+}
+
+export function RecordItem({ kind, state, age, title, children, meta, detailsLabel, details, actions, className }: RecordItemProps) {
+  return (
+    <article className={cn('record-item', !actions && 'record-item--compact', className)}>
+      <div className="record-item__marker">
+        <span className="record-item__kind">{kind}</span>
+        {state && <span className="record-item__state">{state}</span>}
+        {age && <span className="record-item__age">{age}</span>}
+      </div>
+      <div className="record-item__content">
+        <h3 className="record-item__title">{title}</h3>
+        {children && <div className="record-item__summary">{children}</div>}
+        {details && (
+          <details className="record-item__details">
+            <summary>{detailsLabel || 'Read full record'}</summary>
+            <div className="record-item__details-body">{details}</div>
+          </details>
+        )}
+        {meta && <div className="record-item__meta">{meta}</div>}
+      </div>
+      {actions && <div className="record-item__actions">{actions}</div>}
+    </article>
+  )
+}
+
+
 // ── Breadcrumb ─────────────────────────────────────────────────────────────
 
 export interface BreadcrumbItem {

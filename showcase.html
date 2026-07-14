@@ -670,6 +670,7 @@
       <a class="nav-item" href="#tables">Data Tables</a>
       <a class="nav-item" href="#filters">Filter Bar</a>
       <a class="nav-item" href="#decision-workspace">Decision Workspace</a>
+      <a class="nav-item" href="#typed-records">Typed Record List</a>
       <a class="nav-item" href="#callouts">Callouts</a>
       <a class="nav-item" href="#timeline">Timeline</a>
     </div>
@@ -1130,6 +1131,56 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ── TYPED RECORD LIST ──────────────────────────────────────── -->
+    <section class="section" id="typed-records">
+      <h2 class="section-title">Typed Record List</h2>
+      <p class="section-desc">One aligned frame for heterogeneous operational objects. Decisions, PRs, todos, blockers, observations, and outcomes keep the evidence and verbs their type requires.</p>
+
+      <div class="demo">
+        <section class="record-section">
+          <header class="record-section__header">
+            <div class="record-section__copy">
+              <div class="record-section__kicker">Needs attention</div>
+              <h3 class="record-section__title">Current project signals</h3>
+              <p class="record-section__description">The shared frame aligns records without pretending they are the same object.</p>
+            </div>
+            <a class="record-section__link" href="#typed-records">Open full workspace →</a>
+          </header>
+          <div class="record-list">
+            <article class="record-item">
+              <div class="record-item__marker"><span class="record-item__kind">Decision</span><span class="record-item__state">open</span><span class="record-item__age">2h</span></div>
+              <div class="record-item__content">
+                <h3 class="record-item__title">Should branch protection cover the internal release repository?</h3>
+                <div class="record-item__summary">Human authority is needed because the choice changes repository visibility, cost, and release control.</div>
+                <div class="record-item__meta"><span>blocks release hardening</span><a href="#typed-records">decision record</a></div>
+              </div>
+              <div class="record-item__actions"><button class="btn btn--primary btn--sm" type="button">Decide <span aria-hidden="true">→</span></button><span class="record-item__action-note">Records the option and unblocks the gated work.</span></div>
+            </article>
+
+            <article class="record-item">
+              <div class="record-item__marker"><span class="record-item__kind">PR</span><span class="badge badge--warning">draft</span><span class="record-item__age">18m</span></div>
+              <div class="record-item__content">
+                <h3 class="record-item__title">#112 · Preserve wrapped plan bullets</h3>
+                <div class="record-item__summary">Ready checks are green, but the author has not marked the pull request ready for review.</div>
+                <div class="record-item__meta"><span>2 files · 41 LOC</span><span>CI: green</span><span>mergeable</span></div>
+              </div>
+              <div class="record-item__actions"><a class="btn btn--primary btn--sm" href="#typed-records">Open PR <span aria-hidden="true">↗</span></a><span class="record-item__action-note">Review becomes available after the draft is marked ready.</span></div>
+            </article>
+
+            <article class="record-item record-item--compact">
+              <div class="record-item__marker"><span class="record-item__kind">Observation</span><span class="record-item__age">6m</span></div>
+              <div class="record-item__content">
+                <h3 class="record-item__title">The production page exposes more than one hundred links in a single stream</h3>
+                <div class="record-item__summary">This is evidence, not a decision, so it stays readable without receiving an invented primary action.</div>
+                <details class="record-item__details"><summary>Read full observation</summary><div class="record-item__details-body">The full record remains reachable in place. The renderer never uses an inert ellipsis to imply hidden text.</div></details>
+                <div class="record-item__meta"><span>browser audit</span><a href="#typed-records">source record</a></div>
+              </div>
+            </article>
+          </div>
+        </section>
       </div>
     </section>
 
