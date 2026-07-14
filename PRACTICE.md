@@ -33,7 +33,8 @@ For consequential work, inspect the decision stack from the bottom up:
 
 Mark each layer `strong`, `partial`, `assumed`, or `weak`. Work on the lowest weak
 layer that blocks the task. Do not use surface polish to conceal an unresolved
-model or flow.
+model or flow. The lowest weak layer determines **repair order**, not the stopping
+point. After repairing it, rescan every higher layer through the rendered surface.
 
 ## 2. Capture the baseline
 
@@ -46,6 +47,9 @@ Before editing:
    focus failures, and unavailable actions.
 5. Score the baseline with `RUBRIC.md`. Findings must name a region and observable
    evidence.
+6. Name the closest composed system pattern. If the page is assembled only from
+   primitives (shell + generic cards + inputs), record that as a component gap,
+   not as successful design-system adoption.
 
 Do not review an empty mock when the production shape is a list of 50. Do not
 review source code as a substitute for the render.
@@ -62,12 +66,15 @@ selection. Keep it short enough to remain the strongest instruction in context.
 - Instrument or artifact:
 - Lowest unresolved layer:
 - Existing system to preserve:
+- Named system pattern or documented gap:
 - Reference and mechanism borrowed:
 - Anti-reference / behavior to avoid:
 - Flow and states (entry, action, success, empty, error, recovery):
 - Hierarchy and density:
+- Surface expression (task entry, grouping, decision, action):
 - Coherent slice to change:
 - Proof required:
+- Promotion authority (independent judge or human acceptance):
 ```
 
 A reference is evidence, not permission to copy a look. Name the mechanism being
@@ -93,6 +100,10 @@ page decoration into an instrument.
   large counts are design inputs.
 - Keep local styles in the stylesheet or component system, not inline in the
   rendered template.
+- Classify new local UI patterns as `specific`, `candidate-system`, or `system`.
+  When a pattern describes a reusable task region rather than product identity,
+  implement or nominate the shared component instead of leaving a large local
+  fork.
 
 When the request authorizes implementation, do not stop at a review document.
 Make the change, exercise the task, and reshoot it.
@@ -103,15 +114,26 @@ Run the changed task in the browser. Recheck the same route, state, data, widths
 and input method used for the baseline. Then:
 
 1. Apply `RUBRIC.md` from the seeing gate forward.
-2. Separate surface findings from concept-model and flow findings.
-3. Rank by user harm and task frequency, not ease of CSS repair.
-4. Fix the highest-impact coherent set.
-5. Repeat until no gate fails and the task is materially better.
+2. Run the **task pass**: model, authority, flow, state, and consequence.
+3. Run the **perceptual pass**: at thumbnail and full size, locate task entry,
+   decision set, evidence, and primary action without reading every label.
+4. Audit the implementation against the system's hard rules. A visually stronger
+   local variant is still a system failure if it depends on forbidden styling or
+   duplicates a generic component family.
+5. Separate surface findings from concept-model and flow findings.
+6. Rank by user harm and task frequency, not ease of CSS repair.
+7. Fix the highest-impact coherent set and repeat until no gate fails.
 
-If an independent judge is available, present side-swapped before/after images
-without identifying the candidate. The judge decides whether a criterion fails;
-the operator owns severity and promotion. If no independent judge is available,
-say so in the receipt instead of manufacturing confidence.
+Present side-swapped before/after images to an independent judge when available.
+The judge decides whether a criterion fails; the operator owns severity and
+promotion. Without an independent seeing pass or explicit human acceptance, the
+maximum visual verdict is `candidate`, not `ship`.
+
+Post-implementation feedback is part of evaluation. If the operator rejects the
+surface after a receipt says `ship`, reopen the receipt, preserve the original
+verdict, record the feedback verbatim, and treat the contradiction as evidence
+about both the surface and the review process. See
+`evaluations/magpie-resource-review-queue-2026-07.md`.
 
 ## 6. Leave a design receipt
 
@@ -139,7 +161,12 @@ evaluation:
   requested_model: "unknown"
   served_model: "unknown"
   independent_judge: false
+  promotion_authority: "none"
   material_delta: ""
+feedback:
+  status: "none"
+  observations: []
+  reopened_from_verdict: null
 deferred: []
 ```
 
@@ -152,4 +179,5 @@ successful bind or a polished screenshot proves availability, not efficacy.
 The work is done when the representative task completes, the render passes the
 gates at its supported widths, the changed states are exercised, and the receipt
 makes the before/after claim auditable. A list of recommendations is done only
-when the user asked for a review.
+when the user asked for a review. A visual change is a `candidate` until an
+independent seeing pass or explicit human acceptance promotes it.

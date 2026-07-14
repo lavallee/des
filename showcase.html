@@ -670,6 +670,7 @@
       <a class="nav-item" href="#buttons">Buttons</a>
       <a class="nav-item" href="#tables">Data Tables</a>
       <a class="nav-item" href="#filters">Filter Bar</a>
+      <a class="nav-item" href="#decision-workspace">Decision Workspace</a>
       <a class="nav-item" href="#callouts">Callouts</a>
       <a class="nav-item" href="#timeline">Timeline</a>
     </div>
@@ -1061,6 +1062,72 @@
           <button class="filter-clear">clear all</button>
         </div>
         <div class="dim">Debounce text inputs 300–400ms. Represent active filters as chips. Preserve filter state in URL query params.</div>
+      </div>
+    </section>
+
+    <!-- ── DECISION WORKSPACE ─────────────────────────────────────── -->
+    <section class="section" id="decision-workspace">
+      <h2 class="section-title">Decision Workspace</h2>
+      <p class="section-desc">Task-level composition for bounded queues and review rails. Flat surfaces and instrument typography make task entry, rationale, and action legible without a product-local visual system.</p>
+
+      <div class="demo">
+        <header class="decision-header">
+          <div class="decision-header__copy">
+            <div class="decision-header__kicker">Decision desk</div>
+            <h3 class="decision-header__title">Review queue</h3>
+            <p class="decision-header__lede">Decide which current, high-confidence resources should receive analysis.</p>
+          </div>
+          <nav class="segmented-nav" aria-label="Resource view">
+            <a class="segmented-nav__item is-active" href="#decision-workspace">Review queue <span class="segmented-nav__count">2</span></a>
+            <a class="segmented-nav__item" href="#decision-workspace">All inventory <span class="segmented-nav__count">55,832</span></a>
+          </nav>
+        </header>
+
+        <div class="decision-layout">
+          <aside class="decision-rail">
+            <section class="decision-brief">
+              <div class="decision-brief__kicker"><span class="decision-brief__index">01</span> Queue contract</div>
+              <h3 class="decision-brief__title">Why these items</h3>
+              <p class="decision-brief__copy">Each candidate is current, unsettled, and above the review threshold.</p>
+              <dl class="decision-brief__steps">
+                <div class="decision-brief__step"><dt class="decision-brief__term">Human decision</dt><dd class="decision-brief__description">Is this worth analysis now?</dd></div>
+                <div class="decision-brief__step"><dt class="decision-brief__term">Primary action</dt><dd class="decision-brief__description">Run deterministic analysis.</dd></div>
+                <div class="decision-brief__step"><dt class="decision-brief__term">After action</dt><dd class="decision-brief__description">The item leaves the queue.</dd></div>
+              </dl>
+            </section>
+            <form class="decision-panel filter-panel">
+              <div class="decision-panel__header"><span>Refine queue</span><button class="filter-clear" type="button">clear</button></div>
+              <div class="filter-panel__group"><label class="filter-panel__label" for="decision-search">Search queue</label><input class="filter-input" id="decision-search" placeholder="Title or excerpt…"></div>
+              <div class="filter-panel__group"><label class="filter-panel__label" for="decision-window">Discovered within</label><select class="filter-select" id="decision-window"><option>30 days</option></select></div>
+              <button class="btn btn--primary btn--sm" type="button">Apply</button>
+            </form>
+          </aside>
+
+          <div>
+            <div class="decision-list-header">
+              <div class="decision-list-header__primary"><span class="badge badge--success">Ready now</span><strong>2 current candidates</strong></div>
+              <span class="decision-list-header__note">Ranked by match quality</span>
+            </div>
+            <div class="decision-list">
+              <article class="decision-card">
+                <div class="decision-card__layout">
+                  <div class="decision-card__rail"><span class="decision-card__rank">01</span><input type="checkbox" aria-label="Select candidate"></div>
+                  <div class="decision-card__body">
+                    <div class="dim">NIEMAN LAB · 12 minutes ago</div>
+                    <h3 class="decision-card__title">Local newsrooms are testing smaller, inspectable language models</h3>
+                    <div class="decision-rationale"><span class="decision-rationale__label">Why here</span><span class="decision-rationale__copy">Matched the newsroom-infrastructure brief; no analysis yet.</span><span class="score score--hi">0.92</span></div>
+                    <p class="decision-card__excerpt">The deciding evidence stays readable at list density, while provenance and machine artifacts remain one step away.</p>
+                  </div>
+                  <div class="decision-card__action">
+                    <span class="decision-card__action-label">Primary action</span>
+                    <button class="btn btn--primary btn--sm" type="button">Run analysis <span aria-hidden="true">→</span></button>
+                    <span class="decision-card__action-note">Creates analysis and removes this item from the queue.</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 

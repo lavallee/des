@@ -31,6 +31,7 @@ The files here are a mix of **production-ready system code** and **design refere
 | `PRINCIPLES.md` | Guidance | Design philosophy. Read before making non-obvious decisions. |
 | `PATTERNS-ADMIN.md` | Guidance | Queue, triage, review-rail, and decision-surface rules. |
 | `RUBRIC.md` | Evaluation | Rendered admin-surface gates and region-anchored scoring. |
+| `evaluations/` | Evidence | Production calibrations that changed the system or practice. |
 | `MIGRATING.md` | Guidance | Per-tool adoption guide. |
 | `SKILL.md` | Guidance | Condensed system brief — cross-compatible with Agent Skills, drop into Claude Code. |
 
@@ -135,6 +136,7 @@ Defined in `components.css`. Full render in `showcase.html`. Key classes:
 - `.table` — tabular-nums, row hover `--surface-raised`, uppercase 11px header
 - `.score-badge.is-hi|is-mid|is-lo` — three named bands; thresholds `≥0.70 / ≥0.40 / <0.40`
 - `.filter-bar` with `.chip` — active chip uses `--accent-surface` + `--accent-text`
+- `.decision-header`, `.segmented-nav`, `.decision-layout`, `.decision-brief`, `.decision-list`, `.decision-card`, `.decision-rationale` — bounded queue/review composition
 - `.timeline` — vertical dotted rail with mono timestamps
 - `.palette` — 640px modal on `--surface-overlay`, mono input, grouped results
 - `.prose` — Newsreader 19px, serif h2, mono figure captions
@@ -166,6 +168,7 @@ design_handoff/
 ├── PRINCIPLES.md              # design philosophy and component guidance
 ├── PATTERNS-ADMIN.md          # admin decision-surface patterns
 ├── RUBRIC.md                  # rendered evaluator gates
+├── evaluations/               # production calibration cases
 ├── MIGRATING.md               # per-tool adoption guide
 ├── SKILL.md                   # condensed brief for Agent Skills / Claude Code
 ├── tokens.css                 # primitive + semantic tokens (source of truth)

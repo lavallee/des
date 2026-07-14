@@ -335,6 +335,24 @@ For list views with multiple filter dimensions. Two layouts:
 
 In both cases: debounce text inputs (300–400ms). Represent active filters as dismissible chips. Provide a "clear all" link. Preserve filter state in URL query params.
 
+### Decision workspaces
+
+Bounded queues and review rails need a composed task-level pattern, not merely a
+shell populated with generic cards. Use the shared `decision-*` family:
+
+1. `decision-header` names the task and carries the view switch;
+2. `decision-layout` separates contract/refinement from the result set;
+3. `decision-brief` explains eligibility and operator authority;
+4. `decision-list-header` exposes readiness, count, and ranking policy;
+5. `decision-card` separates rank, evidence, rationale, and the primary action;
+6. `decision-rationale` makes the system's reason and confidence scannable.
+
+This is hierarchy for task speed, not decoration. Use flat semantic surfaces,
+neutral rules, instrument typography, and existing score/status components. Do
+not add gradients, card shadows, decorative status colors, or prose serif to make
+the composition feel designed. Product CSS owns domain details; the shared
+family owns the reusable task anatomy.
+
 ---
 
 ### Command palette
@@ -586,6 +604,12 @@ When exploring visual directions for a new tool or redesign:
 5. Evaluate side-swapped renders against `RUBRIC.md`, task completion, readability at density, and keyboard interaction.
 6. Record the winner, requested and served model when known, and the criteria used in the design receipt.
 
+The lowest unresolved layer determines repair order, not the finish line. After
+a model or flow repair, rerun the seeing and perceptual-hierarchy gates on the
+new surface. Token compliance is necessary but not sufficient: a page can use
+every correct primitive and still fail to express task entry, grouping, evidence,
+and action.
+
 Do not ask for a generically "premium" or "modern" result. Visual references and
 falsifiable constraints carry more signal. A capable model is useful only when it
 also inspects and refines the rendered result.
@@ -602,6 +626,10 @@ Before shipping any tool's UI:
 - [ ] Mobile layout tested at 375px width — sidebar collapses, tables scroll horizontally
 - [ ] Filter state is preserved in URL query params
 - [ ] Loading states exist for all async data fetches
+- [ ] At thumbnail size, task entry, the decision set, evidence, and primary action remain locatable
+- [ ] The screen uses a named composed pattern or records a component gap; it is not only generic primitives
+- [ ] An independent seeing pass or explicit human acceptance owns visual promotion; otherwise the verdict is `candidate`
+- [ ] New product-local CSS is classified `specific`, `candidate-system`, or `system`; reusable task composition is promoted upstream
 
 ---
 

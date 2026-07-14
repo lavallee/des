@@ -49,6 +49,21 @@ At each screen, answerable without clicking away:
 - Surface changes do not conceal a weak concept model or broken flow. If the
   lowest unresolved layer is below the surface, the verdict is `fails-gate`.
 
+## Gate 1.75 — perceptual hierarchy and system expression (pass/fail per screen)
+
+- At thumbnail size or a quick squint, task entry, the decision set, evidence,
+  and the primary action remain locatable without reading every label.
+- At least three hierarchy tiers are perceptible through position, type scale,
+  weight, surface, or rule—not color alone and not a card around everything.
+- Controls read as interactive in their idle state; the primary action is not
+  distinguishable only by copy or hover.
+- The screen instantiates a named composed system pattern, or the receipt records
+  a component gap and a deliberate local exception. A shell filled with generic
+  cards and inputs is not system expression merely because it uses tokens.
+- New visual emphasis obeys the system's typography, color, elevation, and
+  decoration rules. A stronger screenshot that requires an unreviewed system
+  exception is `fix-then-reshoot`.
+
 ## Section 2 — composition & density (0–2 each)
 
 - **Composed at width**: at 1440 content has a max-width and deliberate
@@ -86,8 +101,12 @@ At each screen, answerable without clicking away:
 GATE 0: pass|fail (+findings)
 GATE 1: per-screen pass|fail, each failure = {region, question, evidence}
 SECTIONS 2–4: score + findings [{region, criterion, evidence, suggested fix}]
-VERDICT: ship | fix-then-reshoot | fails-gate
+VERDICT: ship | candidate | fix-then-reshoot | fails-gate
 RECEIPT: baseline revision/routes/screenshots, variant revision/screenshots,
 functional/a11y/console/overflow checks, requested/served model, independent judge,
-material delta, and deferred findings
+promotion authority, material delta, post-implementation feedback, and deferred
+findings
 ```
+
+`ship` for a visual change requires an independent seeing pass or explicit human
+acceptance. When every gate passes but neither exists, return `candidate`.

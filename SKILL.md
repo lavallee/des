@@ -86,6 +86,7 @@ Key patterns:
 - **Table** — `.table`, tabular-nums always, row hover → `--surface-raised`, header row uppercase 11px `--text-muted`.
 - **Score badge** — `.score-badge.is-hi/is-mid/is-lo` — three named bands, never a gradient. Thresholds: `≥0.70 / ≥0.40 / <0.40`.
 - **Filter bar** — `.filter-bar` with chips, not a sidebar of checkboxes. Active filter chips use `--accent-surface` + `--accent-text`.
+- **Decision workspace** — `.decision-header`, `.segmented-nav`, `.decision-layout`, `.decision-brief`, `.decision-list`, `.decision-card`, and `.decision-rationale`. Use for bounded queues and review rails so task entry, evidence, and action hierarchy do not require a product-local CSS system.
 - **Timeline** — vertical dotted rail, mono-timestamps on left, event body on right. See `ui_kits/barnowl.html`.
 - **Command palette** — 640px wide modal on `--surface-overlay`, mono input, grouped results with `⌘K` hint. See `ui_kits/keel.html`.
 - **Article/prose** — `.prose` wrapper; Newsreader 19px, h2 30px, figure captions uppercase 11px mono. See `ui_kits/weaver.html`.
@@ -112,6 +113,10 @@ No bouncy easings. Tools do not bounce.
 4. If a token doesn't exist, add it to `tokens.css` with a clear name and a comment — never hardcode.
 5. Consult `MIGRATING.md` if the tool is one of barnowl / keel / tern / steve / weaver / jay — it has tool-specific adoption notes.
 6. Render, walk, rescore, and leave the design receipt required by `PRACTICE.md`.
+7. Treat the lowest weak layer as repair order, not completion. Rescan the
+   rendered surface after model or flow changes expose a new composition.
+8. Without an independent seeing pass or explicit human acceptance, report a
+   visual result as `candidate`, never `ship`.
 
 ## When you're building something new
 

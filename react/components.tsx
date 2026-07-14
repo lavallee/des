@@ -409,6 +409,130 @@ export function FilterSelect(props: React.SelectHTMLAttributes<HTMLSelectElement
 }
 
 
+// ── Decision Workspace ────────────────────────────────────────────────────
+
+export interface DecisionHeaderProps {
+  kicker?: string
+  title: React.ReactNode
+  lede?: React.ReactNode
+  children?: React.ReactNode
+  className?: string
+}
+
+export function DecisionHeader({ kicker, title, lede, children, className }: DecisionHeaderProps) {
+  return (
+    <header className={cn('decision-header', className)}>
+      <div className="decision-header__copy">
+        {kicker && <div className="decision-header__kicker">{kicker}</div>}
+        <h1 className="decision-header__title">{title}</h1>
+        {lede && <p className="decision-header__lede">{lede}</p>}
+      </div>
+      {children}
+    </header>
+  )
+}
+
+export interface SegmentedNavItem {
+  label: string
+  href: string
+  count?: React.ReactNode
+  active?: boolean
+}
+
+export function SegmentedNav({ items, label }: { items: SegmentedNavItem[]; label: string }) {
+  return (
+    <nav className="segmented-nav" aria-label={label}>
+      {items.map((item) => (
+        <a key={item.href} href={item.href} className={cn('segmented-nav__item', item.active && 'is-active')}>
+          {item.label}
+          {item.count != null && <span className="segmented-nav__count">{item.count}</span>}
+        </a>
+      ))}
+    </nav>
+  )
+}
+
+export function DecisionLayout({ rail, children, className }: { rail: React.ReactNode; children: React.ReactNode; className?: string }) {
+  return (
+    <div className={cn('decision-layout', className)}>
+      <aside className="decision-rail">{rail}</aside>
+      <div>{children}</div>
+    </div>
+  )
+}
+
+export interface DecisionBriefStep {
+  term: string
+  description: React.ReactNode
+}
+
+export interface DecisionBriefProps {
+  index?: string
+  kicker: string
+  title: React.ReactNode
+  copy?: React.ReactNode
+  steps: DecisionBriefStep[]
+  className?: string
+}
+
+export function DecisionBrief({ index = '01', kicker, title, copy, steps, className }: DecisionBriefProps) {
+  return (
+    <section className={cn('decision-brief', className)}>
+      <div className="decision-brief__kicker"><span className="decision-brief__index">{index}</span>{kicker}</div>
+      <h2 className="decision-brief__title">{title}</h2>
+      {copy && <p className="decision-brief__copy">{copy}</p>}
+      <dl className="decision-brief__steps">
+        {steps.map((step) => (
+          <div className="decision-brief__step" key={step.term}>
+            <dt className="decision-brief__term">{step.term}</dt>
+            <dd className="decision-brief__description">{step.description}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+export function DecisionListHeader({ primary, note }: { primary: React.ReactNode; note?: React.ReactNode }) {
+  return (
+    <div className="decision-list-header">
+      <div className="decision-list-header__primary">{primary}</div>
+      {note && <span className="decision-list-header__note">{note}</span>}
+    </div>
+  )
+}
+
+export interface DecisionCardProps {
+  rank?: string
+  selection?: React.ReactNode
+  children: React.ReactNode
+  action?: React.ReactNode
+  className?: string
+}
+
+export function DecisionCard({ rank, selection, children, action, className }: DecisionCardProps) {
+  return (
+    <article className={cn('decision-card', className)}>
+      <div className="decision-card__layout">
+        {(rank || selection) && <div className="decision-card__rail">{rank && <span className="decision-card__rank">{rank}</span>}{selection}</div>}
+        <div className="decision-card__body">{children}</div>
+        {action && <div className="decision-card__action">{action}</div>}
+      </div>
+    </article>
+  )
+}
+
+export function DecisionRationale({ label = 'Why here', copy, score }: { label?: string; copy: React.ReactNode; score?: React.ReactNode }) {
+  return (
+    <div className="decision-rationale">
+      <span className="decision-rationale__label">{label}</span>
+      <span className="decision-rationale__copy">{copy}</span>
+      {score}
+    </div>
+  )
+}
+
+
 // ── Breadcrumb ─────────────────────────────────────────────────────────────
 
 export interface BreadcrumbItem {

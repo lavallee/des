@@ -120,6 +120,32 @@ pass all five:
    Split queues by decision type (go/no-go vs informational vs
    conflict-resolution) — never interleave unlike decisions.
 
+## Decision-workspace anatomy
+
+Correct queue semantics can still render as an undifferentiated admin page. A
+bounded decision surface uses five perceptible regions:
+
+1. **Task entry:** one title, one-sentence scope, and the switch to adjacent
+   views. It should remain identifiable at thumbnail size.
+2. **Contract:** why items qualify, what judgment belongs to the human, and what
+   settlement removes the item.
+3. **Result policy:** current count, readiness, and ranking/aging rule.
+4. **Decision item:** rank, identity, deciding evidence, rationale/confidence,
+   and secondary provenance.
+5. **Action rail:** one visually primary verb and its consequence, separated
+   from evidence by placement and a neutral rule.
+
+Des provides these as `decision-header`, `segmented-nav`, `decision-layout`,
+`decision-brief`, `decision-list-header`, `decision-card`, and
+`decision-rationale`. These classes are a task skeleton, not a skin: product CSS
+may add domain metadata but should not rebuild the composition or violate the
+system's flat-surface, status-color, and instrument-type rules.
+
+The Magpie queue calibration is the failure fixture: the first variant passed
+the model and flow gates but looked under-styled; the repair improved hierarchy
+while drifting outside system rules. Promote the anatomy and hierarchy, not the
+incidental gradients, shadows, or prose typography.
+
 ## Queue mechanics: bounded verbs, undo, rank
 
 The mechanics behind rule 5, learned from the tools that do triage best
@@ -291,6 +317,8 @@ peer-to-peer, no exclamation marks.
    pass is trusted to flag that issues *exist*, a human triages how bad
    they are. Checklists passed on every entry in `crimes/`; only eyes
    catch composition, walls, and dumps.
+   If no independent pass or explicit human acceptance is available, the maximum
+   visual verdict is `candidate`. Disclosure alone does not authorize `ship`.
 1. Both themes rendered; new color pairs computed ≥4.5:1.
 2. 390px viewport walk — every action reachable, nothing overflowing.
 3. Every emitted CSS class exists in the shipped stylesheet (a mis-typed
