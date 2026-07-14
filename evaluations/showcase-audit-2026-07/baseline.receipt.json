@@ -1,0 +1,554 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-14T14:33:40.270Z",
+  "task": "Find and inspect a system pattern",
+  "surface": "DES component showcase",
+  "url": "http://127.0.0.1:4174/showcase.html",
+  "arm": "baseline",
+  "revision": "e30f034",
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 3000,
+    "maxResources": 100,
+    "maxTransferKb": 2048
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "baseline/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "Design System Showcase",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 2,
+              "text": "Color"
+            },
+            {
+              "level": 2,
+              "text": "Typography"
+            },
+            {
+              "level": 2,
+              "text": "Spacing"
+            },
+            {
+              "level": 2,
+              "text": "Stat Cards"
+            },
+            {
+              "level": 2,
+              "text": "Badges & Pills"
+            },
+            {
+              "level": 2,
+              "text": "Buttons"
+            },
+            {
+              "level": 2,
+              "text": "Data Tables"
+            },
+            {
+              "level": 2,
+              "text": "Filter Bar"
+            },
+            {
+              "level": 2,
+              "text": "Decision Workspace"
+            },
+            {
+              "level": 3,
+              "text": "Review queue"
+            },
+            {
+              "level": 3,
+              "text": "Why these items"
+            },
+            {
+              "level": 3,
+              "text": "Local newsrooms are testing smaller, inspectable language models"
+            },
+            {
+              "level": 2,
+              "text": "Callouts"
+            },
+            {
+              "level": 2,
+              "text": "Timeline"
+            },
+            {
+              "level": 2,
+              "text": "Layout Patterns"
+            },
+            {
+              "level": 2,
+              "text": "Navigation"
+            },
+            {
+              "level": 2,
+              "text": "Visualization Patterns"
+            },
+            {
+              "level": 2,
+              "text": "Prose / Article Mode"
+            },
+            {
+              "level": 1,
+              "text": "What 312 Newsroom Policies Actually Say About AI"
+            },
+            {
+              "level": 2,
+              "text": "Editorial Independence"
+            },
+            {
+              "level": 3,
+              "text": "The consent gap"
+            },
+            {
+              "level": 2,
+              "text": "Transparency Requirements"
+            },
+            {
+              "level": 2,
+              "text": "Vendor due diligence"
+            },
+            {
+              "level": 3,
+              "text": "The three criteria that matter"
+            },
+            {
+              "level": 2,
+              "text": "Adoption"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1434,
+          "scrollWidth": 1434
+        },
+        "render": {
+          "styleSheetCount": 4,
+          "visibleGraphicCount": 1,
+          "visibleTextCharacters": 16350
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [
+            "input",
+            "select (any status verified pending dropped)",
+            "select (any beat health civic housing)",
+            "input#decision-search",
+            "select#decision-window (30 days)",
+            "input"
+          ],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 288,
+          "failedResources": [
+            {
+              "status": 404,
+              "url": "http://127.0.0.1:4174/favicon.ico"
+            }
+          ],
+          "loadMs": 401,
+          "paints": {
+            "first-paint": 308,
+            "first-contentful-paint": 308
+          },
+          "resourceCount": 4,
+          "transferKb": 92
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/wide.png",
+      "failures": [
+        "unnamed-interactive-controls",
+        "resource-load-failures"
+      ],
+      "unnamedInteractive": [
+        {
+          "ref": "e1",
+          "role": "combobox"
+        },
+        {
+          "ref": "e34",
+          "role": "combobox"
+        },
+        {
+          "ref": "e35",
+          "role": "combobox"
+        }
+      ],
+      "verdict": "fail"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "baseline/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "Design System Showcase",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 2,
+              "text": "Color"
+            },
+            {
+              "level": 2,
+              "text": "Typography"
+            },
+            {
+              "level": 2,
+              "text": "Spacing"
+            },
+            {
+              "level": 2,
+              "text": "Stat Cards"
+            },
+            {
+              "level": 2,
+              "text": "Badges & Pills"
+            },
+            {
+              "level": 2,
+              "text": "Buttons"
+            },
+            {
+              "level": 2,
+              "text": "Data Tables"
+            },
+            {
+              "level": 2,
+              "text": "Filter Bar"
+            },
+            {
+              "level": 2,
+              "text": "Decision Workspace"
+            },
+            {
+              "level": 3,
+              "text": "Review queue"
+            },
+            {
+              "level": 3,
+              "text": "Why these items"
+            },
+            {
+              "level": 3,
+              "text": "Local newsrooms are testing smaller, inspectable language models"
+            },
+            {
+              "level": 2,
+              "text": "Callouts"
+            },
+            {
+              "level": 2,
+              "text": "Timeline"
+            },
+            {
+              "level": 2,
+              "text": "Layout Patterns"
+            },
+            {
+              "level": 2,
+              "text": "Navigation"
+            },
+            {
+              "level": 2,
+              "text": "Visualization Patterns"
+            },
+            {
+              "level": 2,
+              "text": "Prose / Article Mode"
+            },
+            {
+              "level": 1,
+              "text": "What 312 Newsroom Policies Actually Say About AI"
+            },
+            {
+              "level": 2,
+              "text": "Editorial Independence"
+            },
+            {
+              "level": 3,
+              "text": "The consent gap"
+            },
+            {
+              "level": 2,
+              "text": "Transparency Requirements"
+            },
+            {
+              "level": 2,
+              "text": "Vendor due diligence"
+            },
+            {
+              "level": 3,
+              "text": "The three criteria that matter"
+            },
+            {
+              "level": 2,
+              "text": "Adoption"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 762,
+          "scrollWidth": 762
+        },
+        "render": {
+          "styleSheetCount": 4,
+          "visibleGraphicCount": 1,
+          "visibleTextCharacters": 16115
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [
+            "input",
+            "select (any status verified pending dropped)",
+            "select (any beat health civic housing)",
+            "input#decision-search",
+            "select#decision-window (30 days)",
+            "input"
+          ],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 278,
+          "failedResources": [
+            {
+              "status": 404,
+              "url": "http://127.0.0.1:4174/favicon.ico"
+            }
+          ],
+          "loadMs": 543,
+          "paints": {
+            "first-paint": 284,
+            "first-contentful-paint": 284
+          },
+          "resourceCount": 4,
+          "transferKb": 92
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/tablet.png",
+      "failures": [
+        "unnamed-interactive-controls",
+        "resource-load-failures"
+      ],
+      "unnamedInteractive": [
+        {
+          "ref": "e1",
+          "role": "combobox"
+        },
+        {
+          "ref": "e18",
+          "role": "combobox"
+        },
+        {
+          "ref": "e19",
+          "role": "combobox"
+        }
+      ],
+      "verdict": "fail"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "baseline/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "Design System Showcase",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 2,
+              "text": "Color"
+            },
+            {
+              "level": 2,
+              "text": "Typography"
+            },
+            {
+              "level": 2,
+              "text": "Spacing"
+            },
+            {
+              "level": 2,
+              "text": "Stat Cards"
+            },
+            {
+              "level": 2,
+              "text": "Badges & Pills"
+            },
+            {
+              "level": 2,
+              "text": "Buttons"
+            },
+            {
+              "level": 2,
+              "text": "Data Tables"
+            },
+            {
+              "level": 2,
+              "text": "Filter Bar"
+            },
+            {
+              "level": 2,
+              "text": "Decision Workspace"
+            },
+            {
+              "level": 3,
+              "text": "Review queue"
+            },
+            {
+              "level": 3,
+              "text": "Why these items"
+            },
+            {
+              "level": 3,
+              "text": "Local newsrooms are testing smaller, inspectable language models"
+            },
+            {
+              "level": 2,
+              "text": "Callouts"
+            },
+            {
+              "level": 2,
+              "text": "Timeline"
+            },
+            {
+              "level": 2,
+              "text": "Layout Patterns"
+            },
+            {
+              "level": 2,
+              "text": "Navigation"
+            },
+            {
+              "level": 2,
+              "text": "Visualization Patterns"
+            },
+            {
+              "level": 2,
+              "text": "Prose / Article Mode"
+            },
+            {
+              "level": 1,
+              "text": "What 312 Newsroom Policies Actually Say About AI"
+            },
+            {
+              "level": 2,
+              "text": "Editorial Independence"
+            },
+            {
+              "level": 3,
+              "text": "The consent gap"
+            },
+            {
+              "level": 2,
+              "text": "Transparency Requirements"
+            },
+            {
+              "level": 2,
+              "text": "Vendor due diligence"
+            },
+            {
+              "level": 3,
+              "text": "The three criteria that matter"
+            },
+            {
+              "level": 2,
+              "text": "Adoption"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 384,
+          "scrollWidth": 384
+        },
+        "render": {
+          "styleSheetCount": 4,
+          "visibleGraphicCount": 1,
+          "visibleTextCharacters": 16115
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [
+            "input",
+            "select (any status verified pending dropped)",
+            "select (any beat health civic housing)",
+            "input#decision-search",
+            "select#decision-window (30 days)",
+            "input"
+          ],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 265,
+          "failedResources": [
+            {
+              "status": 404,
+              "url": "http://127.0.0.1:4174/favicon.ico"
+            }
+          ],
+          "loadMs": 393,
+          "paints": {
+            "first-paint": 276,
+            "first-contentful-paint": 276
+          },
+          "resourceCount": 4,
+          "transferKb": 92
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/mobile.png",
+      "failures": [
+        "unnamed-interactive-controls",
+        "resource-load-failures"
+      ],
+      "unnamedInteractive": [
+        {
+          "ref": "e1",
+          "role": "combobox"
+        },
+        {
+          "ref": "e18",
+          "role": "combobox"
+        },
+        {
+          "ref": "e19",
+          "role": "combobox"
+        }
+      ],
+      "verdict": "fail"
+    }
+  ],
+  "verdict": "fail"
+}

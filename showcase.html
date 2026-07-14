@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Design System Showcase</title>
+<link rel="icon" href="assets/icons/circle.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
@@ -348,7 +349,6 @@
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  outline: none;
   min-width: 180px;
 }
 .filter-input::placeholder { color: var(--text-dim); }
@@ -361,7 +361,6 @@
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  outline: none;
 }
 .filter-select:focus { border-color: var(--border-focus); }
 .filter-chip {
@@ -646,7 +645,7 @@
   <header class="shell-header">
     <span class="brand">design system</span>
     <span class="subtitle">tokens · components · patterns</span>
-    <select class="theme-toggle" onchange="setTheme(this.value)" id="theme-select" style="padding:4px 8px;cursor:pointer;">
+    <select class="theme-toggle" onchange="setTheme(this.value)" id="theme-select" aria-label="Preview theme" style="padding:4px 8px;cursor:pointer;">
       <option value="dark">☾ dark</option>
       <option value="carbon">◼ carbon</option>
       <option value="slate">◈ slate</option>
@@ -1044,14 +1043,17 @@
 
       <div class="demo">
         <div class="filter-bar">
-          <input class="filter-input" type="text" placeholder="Search orgs, titles…">
-          <select class="filter-select">
+          <label class="sr-only" for="showcase-filter-search">Search organizations and titles</label>
+          <input class="filter-input" id="showcase-filter-search" type="text" placeholder="Search orgs, titles…">
+          <label class="sr-only" for="showcase-filter-status">Status</label>
+          <select class="filter-select" id="showcase-filter-status">
             <option value="">any status</option>
             <option>verified</option>
             <option>pending</option>
             <option>dropped</option>
           </select>
-          <select class="filter-select">
+          <label class="sr-only" for="showcase-filter-beat">Beat</label>
+          <select class="filter-select" id="showcase-filter-beat">
             <option value="">any beat</option>
             <option>health</option>
             <option>civic</option>
@@ -1262,10 +1264,10 @@
       <div class="subsection">
         <div class="subsection-title">Command palette entry</div>
         <div class="demo" style="position:relative;min-height:180px">
-          <div style="background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-overlay);max-width:480px;margin:0 auto">
-            <div style="padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:var(--space-2)">
+          <div class="command-palette" style="max-width:480px;margin:0 auto">
+            <div class="command-palette__input-row">
               <span style="color:var(--text-dim)">⌘</span>
-              <input style="flex:1;background:none;border:none;outline:none;color:var(--text);font-family:var(--font-sans);font-size:var(--text-md);" placeholder="Search or run a command…" value="claims">
+              <input class="command-palette__input" aria-label="Search commands" placeholder="Search or run a command…" value="claims">
               <span class="kbd">Esc</span>
             </div>
             <div style="padding:var(--space-2) 0">

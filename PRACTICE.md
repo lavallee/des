@@ -51,6 +51,11 @@ Before editing:
    primitives (shell + generic cards + inputs), record that as a component gap,
    not as successful design-system adoption.
 
+Use `des-audit` when available to make the three viewport captures, accessibility
+snapshot, console/page error check, overflow check, and performance budgets
+repeatable. The generated receipt is evidence for this step; it does not replace
+the pointer/keyboard task walk or the rendered judgment in step 5.
+
 Do not review an empty mock when the production shape is a list of 50. Do not
 review source code as a substitute for the render.
 
