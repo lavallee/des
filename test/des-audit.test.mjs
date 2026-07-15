@@ -1,7 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { DEFAULT_VIEWPORTS, assessCapture, parseArgs, parseViewport } from "../scripts/des-audit.mjs";
+import {
+  DEFAULT_VIEWPORTS,
+  FOCUSABLE_SELECTOR,
+  assessCapture,
+  hiddenByClosedDetails,
+  parseArgs,
+  parseViewport,
+} from "../scripts/des-audit.mjs";
 
 test("parseViewport accepts explicit dimensions", () => {
   assert.deepEqual(parseViewport("390x844"), { label: "390x844", width: 390, height: 844 });
@@ -12,6 +19,24 @@ test("parseArgs supplies the three design-practice viewports", () => {
   const options = parseArgs(["--url", "http://example.test", "--task", "Review a claim", "--surface", "Claim review"]);
   assert.deepEqual(options.viewports, DEFAULT_VIEWPORTS);
   assert.equal(options.arm, "variant");
+});
+
+test("focus audit includes native disclosure summaries", () => {
+  assert.match(FOCUSABLE_SELECTOR, /(^|,)summary(,|$)/);
+});
+
+test("closed disclosures hide descendants but not their direct summary", () => {
+  const summaryChild = {};
+  const hiddenChild = {};
+  const summary = { contains: (element) => element === summaryChild };
+  const closedDetails = { querySelector: () => summary };
+  const outerSummary = { contains: () => false };
+  const outerDetails = { querySelector: () => outerSummary };
+
+  assert.equal(hiddenByClosedDetails(null, hiddenChild), false);
+  assert.equal(hiddenByClosedDetails(closedDetails, summaryChild), false);
+  assert.equal(hiddenByClosedDetails(closedDetails, hiddenChild), true);
+  assert.equal(hiddenByClosedDetails([closedDetails, outerDetails], summaryChild), true);
 });
 
 test("assessCapture fails named deterministic gates", () => {

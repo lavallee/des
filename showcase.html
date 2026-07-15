@@ -635,6 +635,30 @@
 .dim  { color: var(--text-dim); font-size: var(--text-sm); }
 .mono { font-family: var(--font-mono); }
 
+@media (max-width: 720px) {
+  .shell {
+    display: block;
+  }
+  .shell-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    min-height: var(--header-height);
+    padding: 0 var(--space-4);
+  }
+  .shell-header .subtitle,
+  .shell-sidebar {
+    display: none;
+  }
+  .shell-main {
+    max-width: none;
+    padding: var(--space-6) var(--space-4);
+  }
+  .demo {
+    padding: var(--space-4);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -670,6 +694,8 @@
       <a class="nav-item" href="#tables">Data Tables</a>
       <a class="nav-item" href="#filters">Filter Bar</a>
       <a class="nav-item" href="#decision-workspace">Decision Workspace</a>
+      <a class="nav-item" href="#journey-briefing">Journey Briefing</a>
+      <a class="nav-item" href="#typed-records">Typed Record List</a>
       <a class="nav-item" href="#callouts">Callouts</a>
       <a class="nav-item" href="#timeline">Timeline</a>
     </div>
@@ -1130,6 +1156,154 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ── JOURNEY BRIEFING ──────────────────────────────────────── -->
+    <section class="section" id="journey-briefing">
+      <h2 class="section-title">Journey Briefing</h2>
+      <p class="section-desc">Intent-to-outcome composition for projects, missions, and initiatives. Authored outcomes lead; current proof, bounded attention, machine settlement, and complete inventory remain distinct.</p>
+
+      <div class="demo">
+        <header class="journey-header">
+          <div class="journey-header__copy">
+            <div class="journey-header__kicker">Project briefing</div>
+            <h3 class="journey-header__title">Atlas</h3>
+            <p class="journey-header__assessment">Source truth is moving. Release proof is still incomplete.</p>
+            <p class="journey-header__mission">Keep current editorial intent traceable through commissioned work, accepted evidence, and observed outcomes.</p>
+          </div>
+          <div class="journey-header__metric">
+            <span class="journey-header__metric-label">North-star metric</span>
+            <strong>Verified outcomes per review hour</strong>
+            <p>Derived weakness: two active commissions lack an accepted outcome edge.</p>
+          </div>
+        </header>
+
+        <section class="journey-section">
+          <header class="journey-section__header">
+            <div><div class="journey-section__kicker">Roadmap</div><h3 class="journey-section__title">State of the journey</h3></div>
+            <p class="journey-section__description">Authored outcomes are the spine. Derived state carries source freshness.</p>
+          </header>
+          <div class="journey-map">
+            <article class="journey-step is-current">
+              <div class="journey-step__header"><span class="journey-step__index">01</span><span class="badge badge--accent">current focus</span></div>
+              <h3 class="journey-step__title">Every projection is current enough to act on</h3>
+              <p class="journey-step__description">The source chain is represented; restart proof remains incomplete.</p>
+              <div class="journey-step__movement"><span class="journey-step__movement-mark is-moving"></span>moving · 3 source links</div>
+            </article>
+            <article class="journey-step">
+              <div class="journey-step__header"><span class="journey-step__index">02</span><span class="badge badge--warning">off contract</span></div>
+              <h3 class="journey-step__title">The operator sees decisions, not a feed</h3>
+              <p class="journey-step__description">Captured narration still exceeds the bounded-attention contract.</p>
+              <div class="journey-step__movement"><span class="journey-step__movement-mark is-warning"></span>stuck · eligibility defect</div>
+            </article>
+            <article class="journey-step">
+              <div class="journey-step__header"><span class="journey-step__index">03</span><span class="badge badge--info">in motion</span></div>
+              <h3 class="journey-step__title">Commissions are durable intent contracts</h3>
+              <p class="journey-step__description">Two proposed work links have not been accepted as canonical.</p>
+              <div class="journey-step__movement"><span class="journey-step__movement-mark is-moving"></span>moving · linkage proposed</div>
+            </article>
+            <article class="journey-step">
+              <div class="journey-step__header"><span class="journey-step__index">04</span><span class="badge badge--neutral">later</span></div>
+              <h3 class="journey-step__title">Released work teaches the next decision</h3>
+              <p class="journey-step__description">No post-disposition evidence is linked yet.</p>
+              <div class="journey-step__movement"><span class="journey-step__movement-mark"></span>not started</div>
+            </article>
+          </div>
+        </section>
+
+        <div class="journey-layout">
+          <section class="journey-panel">
+            <header class="journey-panel__header">
+              <div><div class="journey-panel__kicker">Current chapter · authored outcome 1</div><h3 class="journey-panel__title">Make truth trustworthy enough to prioritize</h3><p class="journey-panel__description">Graduation is evidence-based; missing proof remains missing.</p></div>
+              <a class="btn btn--secondary btn--sm" href="#journey-briefing">Open roadmap</a>
+            </header>
+            <div class="journey-focus">
+              <p class="journey-focus__question">Can a live commission be reconstructed from current intent through exact evidence and final disposition?</p>
+              <div class="journey-proof-grid">
+                <article class="journey-proof is-supported"><div class="journey-proof__state">supported</div><strong class="journey-proof__title">Unsafe source truncation fails closed</strong><p class="journey-proof__description">A reviewed change and receipt support this criterion.</p></article>
+                <article class="journey-proof is-partial"><div class="journey-proof__state">partial</div><strong class="journey-proof__title">Source coordinates survive the chain</strong><p class="journey-proof__description">One of three representative commissions is reconstructed.</p></article>
+                <article class="journey-proof is-missing"><div class="journey-proof__state">missing proof</div><strong class="journey-proof__title">External terminal facts self-correct</strong><p class="journey-proof__description">No restart receipt is attached to this outcome.</p></article>
+                <article class="journey-proof is-partial"><div class="journey-proof__state">partial</div><strong class="journey-proof__title">Broken joins are actionable</strong><p class="journey-proof__description">Freshness exists; the action path is not complete.</p></article>
+              </div>
+              <div class="journey-linkage"><span><strong>Proposed:</strong> two current work items resemble this outcome but carry no canonical edge.</span><a href="#journey-briefing">Review links →</a></div>
+            </div>
+          </section>
+
+          <aside class="journey-panel">
+            <header class="journey-panel__header"><div><div class="journey-panel__kicker">Needs you</div><h3 class="journey-panel__title">1 consequential decision</h3><p class="journey-panel__description">Deduplicated by decision coordinate.</p></div></header>
+            <div class="journey-attention">
+              <article class="journey-attention__item">
+                <div class="journey-attention__meta"><span class="badge badge--warning">expires in 2d</span><span>release authority</span></div>
+                <h3 class="journey-attention__title">Should the protected release path expand?</h3>
+                <p class="journey-attention__description">The choice changes who can publish and how emergency repair works.</p>
+                <div class="journey-attention__actions"><button class="btn btn--primary btn--sm" type="button">Decide</button><a class="btn btn--ghost btn--sm" href="#journey-briefing">Evidence</a></div>
+              </article>
+            </div>
+          </aside>
+        </div>
+
+        <section class="journey-system-work">
+          <div class="journey-system-work__intro"><div class="journey-panel__kicker">System work</div><h3 class="journey-system-work__title">The system reduces the backlog before projection</h3><p>Settlement and linkage work are not human queues.</p></div>
+          <article class="journey-system-work__item"><strong class="journey-system-work__value">75 → 8</strong><p>Captured signals after narration and settled state are removed.</p><a href="#journey-briefing">Inspect exceptions →</a></article>
+          <article class="journey-system-work__item"><strong class="journey-system-work__value">14</strong><p>Stale blockers proposed for obviation or merge.</p><a href="#journey-briefing">Settlement receipt →</a></article>
+          <article class="journey-system-work__item"><strong class="journey-system-work__value">20</strong><p>Loose work items; seven carry proposed outcome links.</p><a href="#journey-briefing">Review suggestions →</a></article>
+        </section>
+
+        <details class="journey-inventory">
+          <summary>Underlying inventory · grouped work · source evidence · 1,764 ledger records</summary>
+          <div class="journey-inventory__body text-muted">Products provide grouped, searchable drill-downs here. A raw high-cardinality list does not lead the briefing.</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ── TYPED RECORD LIST ──────────────────────────────────────── -->
+    <section class="section" id="typed-records">
+      <h2 class="section-title">Typed Record List</h2>
+      <p class="section-desc">One aligned frame for heterogeneous operational objects. Decisions, PRs, todos, blockers, observations, and outcomes keep the evidence and verbs their type requires.</p>
+
+      <div class="demo">
+        <section class="record-section">
+          <header class="record-section__header">
+            <div class="record-section__copy">
+              <div class="record-section__kicker">Needs attention</div>
+              <h3 class="record-section__title">Current project signals</h3>
+              <p class="record-section__description">The shared frame aligns records without pretending they are the same object.</p>
+            </div>
+            <a class="record-section__link" href="#typed-records">Open full workspace →</a>
+          </header>
+          <div class="record-list">
+            <article class="record-item">
+              <div class="record-item__marker"><span class="record-item__kind">Decision</span><span class="record-item__state">open</span><span class="record-item__age">2h</span></div>
+              <div class="record-item__content">
+                <h3 class="record-item__title">Should branch protection cover the internal release repository?</h3>
+                <div class="record-item__summary">Human authority is needed because the choice changes repository visibility, cost, and release control.</div>
+                <div class="record-item__meta"><span>blocks release hardening</span><a href="#typed-records">decision record</a></div>
+              </div>
+              <div class="record-item__actions"><button class="btn btn--primary btn--sm" type="button">Decide <span aria-hidden="true">→</span></button><span class="record-item__action-note">Records the option and unblocks the gated work.</span></div>
+            </article>
+
+            <article class="record-item">
+              <div class="record-item__marker"><span class="record-item__kind">PR</span><span class="badge badge--warning">draft</span><span class="record-item__age">18m</span></div>
+              <div class="record-item__content">
+                <h3 class="record-item__title">#112 · Preserve wrapped plan bullets</h3>
+                <div class="record-item__summary">Ready checks are green, but the author has not marked the pull request ready for review.</div>
+                <div class="record-item__meta"><span>2 files · 41 LOC</span><span>CI: green</span><span>mergeable</span></div>
+              </div>
+              <div class="record-item__actions"><a class="btn btn--primary btn--sm" href="#typed-records">Open PR <span aria-hidden="true">↗</span></a><span class="record-item__action-note">Review becomes available after the draft is marked ready.</span></div>
+            </article>
+
+            <article class="record-item record-item--compact">
+              <div class="record-item__marker"><span class="record-item__kind">Observation</span><span class="record-item__age">6m</span></div>
+              <div class="record-item__content">
+                <h3 class="record-item__title">The production page exposes more than one hundred links in a single stream</h3>
+                <div class="record-item__summary">This is evidence, not a decision, so it stays readable without receiving an invented primary action.</div>
+                <details class="record-item__details"><summary>Read full observation</summary><div class="record-item__details-body">The full record remains reachable in place. The renderer never uses an inert ellipsis to imply hidden text.</div></details>
+                <div class="record-item__meta"><span>browser audit</span><a href="#typed-records">source record</a></div>
+              </div>
+            </article>
+          </div>
+        </section>
       </div>
     </section>
 

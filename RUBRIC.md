@@ -57,9 +57,21 @@ At each screen, answerable without clicking away:
   weight, surface, or rule—not color alone and not a card around everything.
 - Controls read as interactive in their idle state; the primary action is not
   distinguishable only by copy or hover.
+- Heterogeneous records keep typed representations: decisions, PRs, todos,
+  blockers, observations, and outcomes expose different evidence and verbs.
+  A kind badge on one generic truncated card does not pass.
+- Any shortened deciding text has an obvious full-text path. A strong fragment
+  followed by an inert ellipsis is an immediate failure.
 - The screen instantiates a named composed system pattern, or the receipt records
   a component gap and a deliberate local exception. A shell filled with generic
   cards and inputs is not system expression merely because it uses tokens.
+- A strategic overview is organized by intent and authored outcomes, not record
+  kinds. Current focus, movement/proof, bounded attention, machine settlement,
+  and complete-inventory disclosure are perceptibly distinct. A typed record
+  stream does not pass as a journey briefing.
+- Authored, derived, and proposed claims are not visually or verbally
+  conflated. Missing proof is explicit; uncertainty is not expressed as a fake
+  completion percentage.
 - New visual emphasis obeys the system's typography, color, elevation, and
   decoration rules. A stronger screenshot that requires an unreviewed system
   exception is `fix-then-reshoot`.
@@ -76,6 +88,9 @@ At each screen, answerable without clicking away:
   top-N, search, or disclosure is present and the production count fits it.
 - **Measure held**: prose 45–75ch; textareas ≤ prose max; full-value
   tokens wrap rather than ellipsize.
+- **Controls hold**: text inputs, textareas, selects, buttons, and disclosure
+  summaries are visibly interactive, theme-safe, focusable, and sized to their
+  writing or selection task.
 
 ## Section 3 — decision surfaces (0–2 each; only if the page asks for choices)
 

@@ -353,6 +353,62 @@ not add gradients, card shadows, decorative status colors, or prose serif to mak
 the composition feel designed. Product CSS owns domain details; the shared
 family owns the reusable task anatomy.
 
+### Typed record lists
+
+A project overview or operational history often mixes decisions, PRs, todos,
+blockers, observations, and outcomes. These objects may share alignment and
+density, but they do not share a sufficient representation. Use the shared
+`record-*` family for the visual frame, then render the facts and verbs required
+by the object's type:
+
+- decisions show the question, why human authority is needed, options or gated
+  work, and the path to decide;
+- PRs show repository/number, draft or readiness state, checks, mergeability,
+  scope, and the review destination;
+- todos show work state, owner/assignee, age, linked blockers or PR, and the path
+  to inspect or steer the work;
+- blockers show what is blocked, why, age, and the unblock/escalation path;
+- observations show evidence, source, and time; they do not receive a fake
+  primary action merely to make the row symmetrical;
+- outcomes show the intended change, criteria/progress, and linked work.
+
+Do not reduce these differences to a badge on one generic title/excerpt card.
+The item kind determines content hierarchy and action authority. Shared CSS owns
+alignment, measure, disclosure, and action-rail placement; the product owns the
+domain facts.
+
+### Journey briefings
+
+A project, mission, initiative, or portfolio slice is not necessarily an
+inventory page. When the user's task is to understand whether intent is becoming
+an outcome, use the shared `journey-*` composition:
+
+1. durable intent and the current strategic assessment;
+2. sequenced authored outcomes or chapters;
+3. the current chapter's question and graduation evidence;
+4. only the bounded residue that requires human authority;
+5. machine settlement, reconciliation, and linkage work;
+6. recent evidence that changed confidence or consequence; and
+7. a collapsed route to complete inventory.
+
+The sequence is the meaning. A row of status counts above decisions, PRs, todos,
+and observations is still a database projection. Typed records can support a
+journey briefing one level down, but they do not define its top-level anatomy.
+
+Separate claim authority explicitly:
+
+- **authored** intent comes from the canonical vision, roadmap, or outcome;
+- **derived** state comes from current source facts and must carry freshness;
+- **proposed** associations are suggestions until accepted or encoded at the
+  source; and
+- **missing proof** stays missing. Do not turn absence of evidence into a fake
+  completion percentage.
+
+Movement should describe a meaningful scope, uncertainty, or proof obligation,
+not raw task throughput. A journey can be “moving” because a hard uncertainty
+was resolved while still failing graduation. It can be “off contract” because
+the system is producing human debt even while many tasks close.
+
 ---
 
 ### Command palette

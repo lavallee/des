@@ -11,6 +11,18 @@ export const DEFAULT_VIEWPORTS = [
   { label: "mobile", width: 390, height: 844 },
 ];
 
+export const FOCUSABLE_SELECTOR =
+  "a[href],button,summary,input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex='-1'])";
+
+export function hiddenByClosedDetails(closedDetails, element) {
+  if (!closedDetails) return false;
+  const ancestors = Array.isArray(closedDetails) ? closedDetails : [closedDetails];
+  return ancestors.some((details) => {
+    const summary = details.querySelector(":scope > summary");
+    return !summary?.contains(element);
+  });
+}
+
 const INTERACTIVE_ROLES = new Set([
   "button",
   "checkbox",
@@ -143,10 +155,22 @@ function browserCall(binary, session, args) {
   return payload.data;
 }
 
-function browserAudit() {
+function browserAudit(isHiddenByClosedDetails, focusableSelector) {
   const visible = (element) => {
     const style = getComputedStyle(element);
-    return element.getClientRects().length > 0 && style.visibility !== "hidden" && style.display !== "none";
+    if (element.getClientRects().length === 0 || style.visibility === "hidden" || style.display === "none") {
+      return false;
+    }
+    // Chromium can retain client rects for descendants of a closed details
+    // element even though they cannot be reached or focused. Its direct
+    // summary remains visible; everything else in the closed disclosure is
+    // outside the current interaction surface.
+    const closedDetails = [];
+    for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+      if (parent.matches("details:not([open])")) closedDetails.push(parent);
+    }
+    if (isHiddenByClosedDetails(closedDetails, element)) return false;
+    return true;
   };
   const describe = (element) => {
     const id = element.id ? `#${element.id}` : "";
@@ -167,9 +191,9 @@ function browserAudit() {
   const images = [...document.querySelectorAll("img")].filter(visible);
   const imagesWithoutAlt = images.filter((image) => !image.hasAttribute("alt")).map(describe);
   const imagesFailed = images.filter((image) => !image.complete || image.naturalWidth === 0).map(describe);
-  const tabbables = [...document.querySelectorAll(
-    "a[href],button,input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex='-1'])",
-  )].filter((element) => visible(element) && !element.disabled).slice(0, 80);
+  const tabbables = [...document.querySelectorAll(focusableSelector)]
+    .filter((element) => visible(element) && !element.disabled)
+    .slice(0, 80);
   const focusWithoutIndicator = [];
   for (const element of tabbables) {
     const before = getComputedStyle(element);
@@ -267,7 +291,10 @@ function captureViewport(options, viewport, version) {
     } catch {
       browserCall(options.browser, session, ["wait", "750"]);
     }
-    const auditResult = browserCall(options.browser, session, ["eval", `JSON.stringify((${browserAudit.toString()})())`]);
+    const auditExpression =
+      `JSON.stringify((${browserAudit.toString()})` +
+      `((${hiddenByClosedDetails.toString()}), ${JSON.stringify(FOCUSABLE_SELECTOR)}))`;
+    const auditResult = browserCall(options.browser, session, ["eval", auditExpression]);
     const audit = JSON.parse(auditResult.result);
     const snapshot = browserCall(options.browser, session, ["snapshot", "-c"]);
     const consoleEntries = browserCall(options.browser, session, ["console"]).entries || [];

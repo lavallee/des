@@ -533,6 +533,252 @@ export function DecisionRationale({ label = 'Why here', copy, score }: { label?:
 }
 
 
+// ── Journey Briefings ────────────────────────────────────────────────────
+
+export interface JourneyHeaderProps {
+  kicker?: React.ReactNode
+  title: React.ReactNode
+  assessment: React.ReactNode
+  mission?: React.ReactNode
+  metric?: React.ReactNode
+  metricLabel?: React.ReactNode
+  metricNote?: React.ReactNode
+  className?: string
+}
+
+export function JourneyHeader({
+  kicker,
+  title,
+  assessment,
+  mission,
+  metric,
+  metricLabel = 'North-star metric',
+  metricNote,
+  className,
+}: JourneyHeaderProps) {
+  return (
+    <header className={cn('journey-header', className)}>
+      <div className="journey-header__copy">
+        {kicker && <div className="journey-header__kicker">{kicker}</div>}
+        <h1 className="journey-header__title">{title}</h1>
+        <p className="journey-header__assessment">{assessment}</p>
+        {mission && <p className="journey-header__mission">{mission}</p>}
+      </div>
+      {metric && (
+        <div className="journey-header__metric">
+          <span className="journey-header__metric-label">{metricLabel}</span>
+          <strong>{metric}</strong>
+          {metricNote && <p>{metricNote}</p>}
+        </div>
+      )}
+    </header>
+  )
+}
+
+export function JourneySection({
+  kicker,
+  title,
+  description,
+  children,
+  className,
+}: {
+  kicker?: React.ReactNode
+  title: React.ReactNode
+  description?: React.ReactNode
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <section className={cn('journey-section', className)}>
+      <header className="journey-section__header">
+        <div>
+          {kicker && <div className="journey-section__kicker">{kicker}</div>}
+          <h2 className="journey-section__title">{title}</h2>
+        </div>
+        {description && <p className="journey-section__description">{description}</p>}
+      </header>
+      {children}
+    </section>
+  )
+}
+
+export function JourneyMap({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={cn('journey-map', className)}>{children}</div>
+}
+
+export interface JourneyStepProps {
+  index: React.ReactNode
+  state?: React.ReactNode
+  title: React.ReactNode
+  description?: React.ReactNode
+  movement?: React.ReactNode
+  movementIntent?: 'neutral' | 'moving' | 'warning'
+  current?: boolean
+  className?: string
+}
+
+export function JourneyStep({
+  index,
+  state,
+  title,
+  description,
+  movement,
+  movementIntent = 'neutral',
+  current = false,
+  className,
+}: JourneyStepProps) {
+  return (
+    <article className={cn('journey-step', current && 'is-current', className)}>
+      <div className="journey-step__header">
+        <span className="journey-step__index">{index}</span>
+        {state}
+      </div>
+      <h3 className="journey-step__title">{title}</h3>
+      {description && <p className="journey-step__description">{description}</p>}
+      {movement && (
+        <div className="journey-step__movement">
+          <span className={cn(
+            'journey-step__movement-mark',
+            movementIntent !== 'neutral' && `is-${movementIntent}`,
+          )} />
+          {movement}
+        </div>
+      )}
+    </article>
+  )
+}
+
+export function JourneyPanel({
+  kicker,
+  title,
+  description,
+  action,
+  children,
+  className,
+}: {
+  kicker?: React.ReactNode
+  title: React.ReactNode
+  description?: React.ReactNode
+  action?: React.ReactNode
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <section className={cn('journey-panel', className)}>
+      <header className="journey-panel__header">
+        <div>
+          {kicker && <div className="journey-panel__kicker">{kicker}</div>}
+          <h2 className="journey-panel__title">{title}</h2>
+          {description && <p className="journey-panel__description">{description}</p>}
+        </div>
+        {action}
+      </header>
+      {children}
+    </section>
+  )
+}
+
+export function JourneyProof({
+  state,
+  title,
+  children,
+}: {
+  state: 'supported' | 'partial' | 'missing'
+  title: React.ReactNode
+  children?: React.ReactNode
+}) {
+  return (
+    <article className={`journey-proof is-${state}`}>
+      <div className="journey-proof__state">{state === 'missing' ? 'missing proof' : state}</div>
+      <strong className="journey-proof__title">{title}</strong>
+      {children && <p className="journey-proof__description">{children}</p>}
+    </article>
+  )
+}
+
+export function JourneyInventory({
+  summary,
+  children,
+  className,
+}: {
+  summary: React.ReactNode
+  children?: React.ReactNode
+  className?: string
+}) {
+  return (
+    <details className={cn('journey-inventory', className)}>
+      <summary>{summary}</summary>
+      {children && <div className="journey-inventory__body">{children}</div>}
+    </details>
+  )
+}
+
+
+// ── Typed Record Lists ────────────────────────────────────────────────────
+
+export interface RecordSectionProps {
+  kicker?: string
+  title: React.ReactNode
+  description?: React.ReactNode
+  action?: React.ReactNode
+  children: React.ReactNode
+  className?: string
+}
+
+export function RecordSection({ kicker, title, description, action, children, className }: RecordSectionProps) {
+  return (
+    <section className={cn('record-section', className)}>
+      <header className="record-section__header">
+        <div className="record-section__copy">
+          {kicker && <div className="record-section__kicker">{kicker}</div>}
+          <h2 className="record-section__title">{title}</h2>
+          {description && <p className="record-section__description">{description}</p>}
+        </div>
+        {action}
+      </header>
+      <div className="record-list">{children}</div>
+    </section>
+  )
+}
+
+export interface RecordItemProps {
+  kind: React.ReactNode
+  state?: React.ReactNode
+  age?: React.ReactNode
+  title: React.ReactNode
+  children?: React.ReactNode
+  meta?: React.ReactNode
+  detailsLabel?: React.ReactNode
+  details?: React.ReactNode
+  actions?: React.ReactNode
+  className?: string
+}
+
+export function RecordItem({ kind, state, age, title, children, meta, detailsLabel, details, actions, className }: RecordItemProps) {
+  return (
+    <article className={cn('record-item', !actions && 'record-item--compact', className)}>
+      <div className="record-item__marker">
+        <span className="record-item__kind">{kind}</span>
+        {state && <span className="record-item__state">{state}</span>}
+        {age && <span className="record-item__age">{age}</span>}
+      </div>
+      <div className="record-item__content">
+        <h3 className="record-item__title">{title}</h3>
+        {children && <div className="record-item__summary">{children}</div>}
+        {details && (
+          <details className="record-item__details">
+            <summary>{detailsLabel || 'Read full record'}</summary>
+            <div className="record-item__details-body">{details}</div>
+          </details>
+        )}
+        {meta && <div className="record-item__meta">{meta}</div>}
+      </div>
+      {actions && <div className="record-item__actions">{actions}</div>}
+    </article>
+  )
+}
+
+
 // ── Breadcrumb ─────────────────────────────────────────────────────────────
 
 export interface BreadcrumbItem {
