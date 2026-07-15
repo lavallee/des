@@ -111,6 +111,11 @@ page decoration into an instrument.
   architecture merely because their renderers are reusable.
 - Include normal, loading, empty, error, success, and recovery states that the
   changed flow can actually reach.
+- Audit continuity as a state: an idle background update must preserve scroll,
+  focus, open disclosures, active filters, and draft input.
+- Read the surface once with every kicker/helper line removed. Restore only copy
+  whose absence makes eligibility, provenance, uncertainty, or consequence less
+  clear.
 - Use production-shaped content. Long titles, zero states, stale records, and
   large counts are design inputs.
 - Keep local styles in the stylesheet or component system, not inline in the

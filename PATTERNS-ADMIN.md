@@ -34,8 +34,10 @@ passes. The 2026-07-07 operator walkthrough
 examples of craft-compliant screens failing these questions. Corollaries:
 
 - **Referents resolve.** A bare ULID/ID is machine food. Anywhere an entry
-  references another ("same as 01KVPN…"), render the referent's first line
-  and link it. If the system knows, the operator shouldn't have to.
+  references another, render a human work reference (`FAB-63`), the referent's
+  identifying text, and a link. The full machine key can remain in storage and
+  form values; a chopped ULID is not an acceptable display name. If the system
+  knows, the operator shouldn't have to.
 - **An object's page carries its verbs.** The page for a gate can resolve
   it; a todo's page can shape/obviate it; a run's page links its PR with
   its state. A detail page with no actions is a dead end.
@@ -115,10 +117,12 @@ pass all five:
    (irreversible — explicit approval). Prefer act-now + toast-undo over
    confirm modals for reversible actions; reserve confirmation for the
    genuinely irreversible.
-5. **One decision at a time flows best.** Queue mechanics: single
-   undecided item focused, single-key actions, commit auto-advances.
-   Split queues by decision type (go/no-go vs informational vs
-   conflict-resolution) — never interleave unlike decisions.
+5. **Independent decisions remain independently selectable.** Default to an
+   inbox where the operator can scan and open any record; do not turn visual
+   order into a compulsory workflow. When a queue has a contractual sequence,
+   say so and then offer single-key actions and auto-advance. Split or filter by
+   decision type (go/no-go vs informational vs conflict-resolution) instead of
+   interleaving unlike decisions without a selection path.
 
 ## Decision-workspace anatomy
 
@@ -259,6 +263,24 @@ The mechanics behind rule 5, learned from the tools that do triage best
   re-deriving.
 - **Staleness is visible on the queue itself** ("oldest undecided: 6
   days") — aging must be seen, not assumed away.
+- **Queue intent is explicit.** `ready`, `claimed`, and `in progress` say
+  the system intends to move the work; `needs input` is stopped for a named
+  human answer; `blocked` is stopped on an external condition; `shaping` is
+  not yet queued. Do not collapse these into one ambiguous “open” count.
+
+## Action inboxes, not compulsory card decks
+
+When records are independently actionable, the default desktop composition is
+the familiar two-column inbox: persistent project/type/recency/search filters at
+left, independently expandable rows at right. Selection must preserve list
+position. The operator may pick the third record before the first; a visual deal
+order is not a workflow contract.
+
+The collapsed row answers “which thing is this?” with the actual task, question,
+or decision text. Generic headlines such as “needs a decision — fab” fail even
+when the full text appears after expansion. The expanded record carries the
+queue reason, evidence, consequences, and actions. Keyboard next/previous is a
+speed enhancement, never a mechanism that hides the rest of the list.
 
 ## Assertions carry actions
 
@@ -297,6 +319,16 @@ implementations with eight different caps is how "unreadable" happens.
   ⟨time⟩", not an infinite spinner.
 - When raw logs must show: wrap lines, pretty-print JSON collapsed-by-
   default, level colors, max-lines cap with "show all".
+
+## Time, refresh, and continuity
+
+- One formatter owns displayed time. It defaults to the operator's configured
+  timezone and pairs relative language with an exact `<time datetime>` value.
+- Near events get minute/hour precision; same-day events show a clock time;
+  older source activity shows date **and** time. `0d` is never useful copy.
+- Background freshness updates replace only the keyed status region. A timed
+  full-page reload or refresh meta tag is forbidden: it steals scroll, focus,
+  opened records, and draft state.
 
 ## Nav & view governance
 
@@ -382,6 +414,13 @@ it, one action), first-run, and genuinely non-obvious consequences.
 Everything else — restating the button, describing the obvious, filler
 enthusiasm — dies in review. Voice per `PRINCIPLES.md`: precise,
 peer-to-peer, no exclamation marks.
+
+**Kickers and labels have a furniture budget.** A kicker earns space only when
+it changes how the following content should be interpreted: scope, provenance,
+uncertainty, eligibility, or consequence. “Project briefing · authored intent +
+derived state” above a project briefing is decorative restatement. Put
+“authored” on the authored claim and “derived” beside the derived timestamp; do
+not narrate the existence of the layout.
 
 ## Pre-ship verification (every admin surface change)
 

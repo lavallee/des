@@ -29,7 +29,8 @@ produce.
 
 At each screen, answerable without clicking away:
 1. **What is this?** Every referent is resolved (no bare ULIDs/IDs); every
-   link states its destination and state ("PR #35 — merged").
+   work item has a human reference rather than a chopped machine ID; every link
+   states its destination and state ("PR #35 — merged").
 2. **Why am I seeing it?** The item says why it reached this queue/page;
    nothing the system already settled is shown as needing a human.
 3. **What do I do?** The page carries its object's verbs; one action is
@@ -46,6 +47,8 @@ At each screen, answerable without clicking away:
   not expose an unbounded machine backlog as a mandatory review queue.
 - Queue eligibility is legible: freshness, confidence, ownership, and the reason
   each item needs attention are visible or one disclosure away.
+- Work the system intends to move is visibly distinct from work stopped for
+  human input and work stalled on an external blocker.
 - Surface changes do not conceal a weak concept model or broken flow. If the
   lowest unresolved layer is below the surface, the verdict is `fails-gate`.
 
@@ -75,6 +78,9 @@ At each screen, answerable without clicking away:
 - New visual emphasis obeys the system's typography, color, elevation, and
   decoration rules. A stronger screenshot that requires an unreviewed system
   exception is `fix-then-reshoot`.
+- Every kicker, label, and guidance fragment adds distinct task information.
+  Decorative restatement of the page type, heading, or adjacent content is a
+  hierarchy failure, not harmless polish.
 
 ## Section 2 — composition & density (0–2 each)
 
@@ -109,6 +115,9 @@ At each screen, answerable without clicking away:
   desktop" is acceptable for dense workbenches.
 - Typed input survives a reload (draft layer present on multi-field
   forms).
+- Idle pages preserve scroll, focus, opened records, and drafts: no timed
+  whole-page refresh. Relative time avoids `0d`, exposes an exact timestamp,
+  and uses the configured operator timezone.
 
 ## Output format
 
