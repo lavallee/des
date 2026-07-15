@@ -696,6 +696,7 @@
       <a class="nav-item" href="#decision-workspace">Decision Workspace</a>
       <a class="nav-item" href="#journey-briefing">Journey Briefing</a>
       <a class="nav-item" href="#typed-records">Typed Record List</a>
+      <a class="nav-item" href="#action-inbox">Action Inbox</a>
       <a class="nav-item" href="#callouts">Callouts</a>
       <a class="nav-item" href="#timeline">Timeline</a>
     </div>
@@ -1307,7 +1308,42 @@
       </div>
     </section>
 
-    <!-- ── CALLOUTS ───────────────────────────────────────────────── -->
+    <!-- ── ACTION INBOX ───────────────────────────────────────────── -->
+    <section class="section" id="action-inbox">
+      <h2 class="section-title">Action Inbox</h2>
+      <p class="section-desc">For decisions, triage, reviews, and other queues that are too large or heterogeneous for sequential card processing. Filters stay beside the work; records open independently and retain full context.</p>
+
+      <div class="demo">
+        <div class="action-inbox">
+          <aside class="action-inbox__filters" aria-label="Filter actions">
+            <div class="action-inbox__filter-heading">Filter</div>
+            <label>Search<input type="search" placeholder="task, decision, project"></label>
+            <label>Project<select><option>All projects (28)</option><option>george (9)</option><option>fab (7)</option></select></label>
+            <label>Action type<select><option>All action types</option><option>Blocker</option><option>Decision</option><option>Pull request</option></select></label>
+            <label>Recency<select><option>Any time</option><option>Last 24 hours</option><option>Last 7 days</option></select></label>
+            <button class="btn btn--ghost btn--sm" type="button">Clear filters</button>
+            <p class="action-inbox__hint"><kbd class="kbd">/</kbd> focuses search. Preserve filter state in the URL.</p>
+          </aside>
+          <section class="action-inbox__results" aria-label="Action records">
+            <div class="action-inbox__results-heading"><span><b>28</b> shown</span><span>select any item</span></div>
+            <details class="action-record" open>
+              <summary><span class="action-record__summary-copy"><span class="action-record__title">Choose whether production releases require an independent approval</span><span class="action-record__summary-meta">george · blocks release automation · today at 10:42 AM</span></span><span class="badge badge--warning">decision</span></summary>
+              <div class="action-record__body">The current policy can merge internal changes automatically, but production deployment still changes a shared runtime. Decide where human authority begins.<div class="action-record__actions"><button class="btn btn--primary btn--sm" type="button">Review options</button></div></div>
+            </details>
+            <details class="action-record">
+              <summary><span class="action-record__summary-copy"><span class="action-record__title">Release cannot proceed because the deployment checkout is not on main</span><span class="action-record__summary-meta">fab · fresh blocker · 18 minutes ago</span></span><span class="badge badge--error">blocker</span></summary>
+              <div class="action-record__body">The full evidence and resolution controls appear here without navigating away or collapsing another record.</div>
+            </details>
+            <details class="action-record">
+              <summary><span class="action-record__summary-copy"><span class="action-record__title">Update roadmap ingestion to recognize authored milestones under docs</span><span class="action-record__summary-meta">george · ready to merge · yesterday at 4:08 PM</span></span><span class="badge badge--success">PR</span></summary>
+              <div class="action-record__body">CI and acceptance checks are green. The record exposes why it qualifies and keeps merge controls attached to the object.</div>
+            </details>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CALLOUTS ────────────────────────────────────────────────── -->
     <section class="section" id="callouts">
       <h2 class="section-title">Callouts</h2>
       <p class="section-desc">Left-border callout boxes for contextual messages. Do not use for primary status — use badges for that.</p>

@@ -153,6 +153,20 @@ Always use `font-variant-numeric: tabular-nums` on number cells. This prevents c
 
 Uppercase + letter-spacing is used for one thing: column headers, section category labels, and other low-hierarchy metadata that should not compete visually with content. Limit to 11–12px, 0.5–0.8px letter-spacing, `--text-muted` color. Do not use uppercase for navigation items or interactive elements.
 
+#### Interface copy earns space
+
+Every visible label must add information the adjacent type, position, or content
+does not already carry. A kicker such as “Project briefing · authored intent +
+derived state” above an unmistakable project briefing spends attention to
+restate the component. Keep “Project briefing” only when it orients the user;
+move claim authority to the exact authored or derived fact that needs it.
+
+This is an information-furniture budget, not a ban on guidance. Keep copy that
+explains eligibility, uncertainty, consequence, an unfamiliar control, or what
+fills an empty state. Delete copy that merely names the layout, repeats the
+heading, narrates an obvious button, or adds a fashionable-sounding fragment.
+When in doubt, remove it and test whether the task loses meaning.
+
 ---
 
 ### Spacing and density
@@ -353,6 +367,13 @@ not add gradients, card shadows, decorative status colors, or prose serif to mak
 the composition feel designed. Product CSS owns domain details; the shared
 family owns the reusable task anatomy.
 
+When the operator must choose among records instead of processing all of them in
+order, use the familiar **action inbox** form: a persistent filter column and a
+main list whose records expand independently in place. The collapsed row carries
+the actual decision or work text plus project, recency, and queue reason; the
+expanded foreground carries evidence and verbs. A sequential card deck is only
+appropriate when order itself is contractual.
+
 ### Typed record lists
 
 A project overview or operational history often mixes decisions, PRs, todos,
@@ -484,9 +505,28 @@ Never open a modal for information the user will want to read while also seeing 
 
 For tools with background processing (barnowl's ingestion pipeline, keel's thread creation):
 - Use `data-live="key"` attributes on elements that should update when the key changes
-- Poll a lightweight pulse endpoint every 30–60 seconds
+- Poll a lightweight pulse endpoint every 30–60 seconds only when the visible
+  region genuinely needs it; update that keyed region, never the whole document
 - Flash updated values with a brief color transition (200ms, accent color, then fade back)
 - Show a subtle activity indicator in the header (dot pulse, not a full loading spinner)
+- Never schedule `location.reload()` or a refresh meta tag on an operator page.
+  Whole-page polling steals scroll, focus, disclosure state, and typed input.
+
+### Human time and work references
+
+Time is decision context, not database decoration. Use one shared timezone-aware
+formatter. Near events get useful precision (`just now`, `18 min ago`, `today
+3:42 PM`); older events get a readable date and time. A relative value carries
+its absolute timestamp in a native `<time>` element or adjacent disclosure. `0d`,
+raw ISO slices, unexplained UTC, and date-only source activity are failures when
+time affects freshness or action.
+
+Machine identifiers remain canonical under the hood, but operational work gets a
+human reference such as `FAB-63`. One project shares one sequence across ideas,
+decisions, todos, and their lifecycle; descendants may use a beads-style suffix
+(`FAB-63.1`). Use a concise collision-aware project prefix, with an editorial
+override when the generated acronym is unclear. Do not present a chopped ULID as
+a user-facing identifier.
 
 ### Optimistic updates
 
