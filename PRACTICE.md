@@ -51,6 +51,13 @@ Before editing:
    primitives (shell + generic cards + inputs), record that as a component gap,
    not as successful design-system adoption.
 
+For a project, mission, initiative, or other strategic overview, test whether
+the user's task is to understand a journey rather than inspect inventory. If the
+task asks “where are we, what moved, what is uncertain, and what needs me?”, the
+baseline must record the authored outcomes, their sequence, the evidence that
+can grade them, and the size of the raw work sets. A cleaner list of object kinds
+does not repair a missing intent-to-outcome model.
+
 Use `des-audit` when available to make the three viewport captures, accessibility
 snapshot, console/page error check, overflow check, and performance budgets
 repeatable. The generated receipt is evidence for this step; it does not replace
@@ -99,6 +106,9 @@ page decoration into an instrument.
 - Fix the lowest unresolved layer first. A queue may need eligibility and
   freshness rules before it needs better cards.
 - Keep machine work with the machine and reserve human attention for judgment.
+- In a journey briefing, organize by authored outcome or chapter. Record kinds
+  are drill-down evidence; they do not become the top-level information
+  architecture merely because their renderers are reusable.
 - Include normal, loading, empty, error, success, and recovery states that the
   changed flow can actually reach.
 - Use production-shaped content. Long titles, zero states, stale records, and

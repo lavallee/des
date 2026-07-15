@@ -65,6 +65,13 @@ At each screen, answerable without clicking away:
 - The screen instantiates a named composed system pattern, or the receipt records
   a component gap and a deliberate local exception. A shell filled with generic
   cards and inputs is not system expression merely because it uses tokens.
+- A strategic overview is organized by intent and authored outcomes, not record
+  kinds. Current focus, movement/proof, bounded attention, machine settlement,
+  and complete-inventory disclosure are perceptibly distinct. A typed record
+  stream does not pass as a journey briefing.
+- Authored, derived, and proposed claims are not visually or verbally
+  conflated. Missing proof is explicit; uncertainty is not expressed as a fake
+  completion percentage.
 - New visual emphasis obeys the system's typography, color, elevation, and
   decoration rules. A stronger screenshot that requires an unreviewed system
   exception is `fix-then-reshoot`.

@@ -16,8 +16,11 @@ export const FOCUSABLE_SELECTOR =
 
 export function hiddenByClosedDetails(closedDetails, element) {
   if (!closedDetails) return false;
-  const summary = closedDetails.querySelector(":scope > summary");
-  return !summary?.contains(element);
+  const ancestors = Array.isArray(closedDetails) ? closedDetails : [closedDetails];
+  return ancestors.some((details) => {
+    const summary = details.querySelector(":scope > summary");
+    return !summary?.contains(element);
+  });
 }
 
 const INTERACTIVE_ROLES = new Set([
@@ -162,7 +165,10 @@ function browserAudit(isHiddenByClosedDetails, focusableSelector) {
     // element even though they cannot be reached or focused. Its direct
     // summary remains visible; everything else in the closed disclosure is
     // outside the current interaction surface.
-    const closedDetails = element.closest("details:not([open])");
+    const closedDetails = [];
+    for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+      if (parent.matches("details:not([open])")) closedDetails.push(parent);
+    }
     if (isHiddenByClosedDetails(closedDetails, element)) return false;
     return true;
   };

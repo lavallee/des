@@ -179,6 +179,61 @@ size. Styling only the submit button does not make a form usable. An unstyled
 white textarea in a dark instrument, a 20px-wide select, or a text-looking
 `summary` that secretly opens a form fails the perceptual gate.
 
+## Journey briefings: intent before inventory
+
+Use a journey briefing when the operator's question is “where are we in the
+strategy, what moved, and what needs me?” A project overview that leads with
+decisions, PRs, todos, blockers, observations, or a remit list is organized
+around storage, even when every object has a correct typed representation.
+
+The composed `journey-*` family has seven perceptible regions:
+
+1. **Intent and assessment** — canonical mission/north star plus one current,
+   evidence-backed strategic condition.
+2. **Journey map** — a bounded, authored sequence of outcomes or chapters. It is
+   not an automatically generated list of statuses.
+3. **Current focus** — the active outcome's unresolved question, graduation
+   criteria, and supporting or missing proof.
+4. **Attention residue** — only decisions requiring human values or authority,
+   deduplicated by their underlying decision coordinate before counting.
+5. **System work** — machine-owned settlement, reconciliation, duplicate
+   collapse, likely obviation, and proposed linkage. This region narrates what
+   the system is removing from human load.
+6. **Movement and evidence** — changes since the previous update that alter
+   confidence, consequence, or the next decision.
+7. **Inventory disclosure** — grouped/searchable access to the complete source
+   state, collapsed below the briefing.
+
+Three authority labels are mandatory when claims could be confused: `authored`,
+`derived`, and `proposed`. A proposed work-to-outcome association never renders
+as a canonical edge. A completion percentage is forbidden when the underlying
+question is uncertainty, proof, or outcome effect; show supported/partial/
+missing criteria instead.
+
+### Anticipatory backlog work
+
+Large captured sets never appear as human debt by default. Before projection,
+the product should apply the strongest safe operations it can support:
+
+- remove settled external state;
+- collapse records sharing a durable decision or work coordinate;
+- separate narration/progress from decisions;
+- group or merge likely duplicates;
+- mark stale and likely-obviated work;
+- propose outcome associations with visible reasoning; and
+- preserve the raw set behind a grouped, searchable disclosure.
+
+The system-work region reports this compression (“75 captured signals, 8
+unsettled exceptions”), its policy, and the route to inspect exceptions. It must
+not imply that recommendations were applied if they are only proposed.
+
+### Strategic relationships at high cardinality
+
+A remit, dependency set, or portfolio above twelve items must lead with the
+relationships that matter to the current outcome. Group the rest by role,
+health, consequence, or ownership and provide a graph/search route. A vertical
+list of every related project is never a strategic briefing.
+
 ## Queue mechanics: bounded verbs, undo, rank
 
 The mechanics behind rule 5, learned from the tools that do triage best

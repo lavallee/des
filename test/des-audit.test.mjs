@@ -30,10 +30,13 @@ test("closed disclosures hide descendants but not their direct summary", () => {
   const hiddenChild = {};
   const summary = { contains: (element) => element === summaryChild };
   const closedDetails = { querySelector: () => summary };
+  const outerSummary = { contains: () => false };
+  const outerDetails = { querySelector: () => outerSummary };
 
   assert.equal(hiddenByClosedDetails(null, hiddenChild), false);
   assert.equal(hiddenByClosedDetails(closedDetails, summaryChild), false);
   assert.equal(hiddenByClosedDetails(closedDetails, hiddenChild), true);
+  assert.equal(hiddenByClosedDetails([closedDetails, outerDetails], summaryChild), true);
 });
 
 test("assessCapture fails named deterministic gates", () => {
