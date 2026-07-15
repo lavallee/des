@@ -779,6 +779,62 @@ export function RecordItem({ kind, state, age, title, children, meta, detailsLab
 }
 
 
+// ── Action Inboxes ─────────────────────────────────────────────────────────
+
+export interface ActionInboxProps {
+  filters: React.ReactNode
+  count: React.ReactNode
+  children: React.ReactNode
+  resultLabel?: React.ReactNode
+  hint?: React.ReactNode
+  className?: string
+}
+
+export function ActionInbox({ filters, count, children, resultLabel = 'shown', hint, className }: ActionInboxProps) {
+  return (
+    <div className={cn('action-inbox', className)}>
+      <aside className="action-inbox__filters" aria-label="Filter actions">
+        <div className="action-inbox__filter-heading">Filter</div>
+        {filters}
+        {hint && <p className="action-inbox__hint">{hint}</p>}
+      </aside>
+      <section className="action-inbox__results" aria-label="Action records">
+        <div className="action-inbox__results-heading">
+          <span><b>{count}</b> {resultLabel}</span>
+          <span>select any item</span>
+        </div>
+        {children}
+      </section>
+    </div>
+  )
+}
+
+export interface ActionRecordProps extends React.DetailsHTMLAttributes<HTMLDetailsElement> {
+  title: React.ReactNode
+  meta?: React.ReactNode
+  badge?: React.ReactNode
+  actions?: React.ReactNode
+}
+
+export function ActionRecord({ title, meta, badge, actions, children, className, ...props }: ActionRecordProps) {
+  return (
+    <details className={cn('action-record', className)} {...props}>
+      <summary>
+        <span className="action-record__summary-copy">
+          <span className="action-record__title">{title}</span>
+          {meta && <span className="action-record__summary-meta">{meta}</span>}
+        </span>
+        {badge}
+      </summary>
+      <div className="action-record__body">
+        {children}
+        {actions && <div className="action-record__actions">{actions}</div>}
+      </div>
+    </details>
+  )
+}
+
+
 // ── Breadcrumb ─────────────────────────────────────────────────────────────
 
 export interface BreadcrumbItem {
