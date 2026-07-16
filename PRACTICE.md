@@ -51,9 +51,13 @@ Before editing:
 6. Name the closest composed system pattern. If the page is assembled only from
    primitives (shell + generic cards + inputs), record that as a component gap,
    not as successful design-system adoption.
-7. In the first task region, locate scope, operator task, current state/proof,
-   and next move/consequence. Record any missing fact; do not infer it from the
-   route name or source code.
+7. If the first task region is hard to orient to, use scope, operator task,
+   current state/proof, and next move/consequence as a diagnostic checklist.
+   Record the concrete confusion; do not fail a familiar expert workflow merely
+   because it does not restate every item.
+8. Record the readiness of the closest DES family: documented, visually
+   demonstrated, behaviorally complete, or production-proven. Inspect actual
+   task behavior before recommending adoption.
 
 For a project, mission, initiative, or other strategic overview, test whether
 the user's task is to understand a journey rather than inspect inventory. If the
@@ -83,7 +87,8 @@ selection. Keep it short enough to remain the strongest instruction in context.
 - Lowest unresolved layer:
 - Existing system to preserve:
 - Named system pattern or documented gap:
-- Page-entry proof (scope, task, state/proof, next move/consequence):
+- Page-entry diagnosis, when relevant (scope, task, state/proof, next move/consequence):
+- Existing pattern readiness and missing behavior:
 - Reference and mechanism borrowed:
 - Anti-reference / behavior to avoid:
 - Flow and states (entry, action, success, empty, error, recovery):
@@ -111,9 +116,13 @@ page decoration into an instrument.
 - Fix the lowest unresolved layer first. A queue may need eligibility and
   freshness rules before it needs better cards.
 - Keep machine work with the machine and reserve human attention for judgment.
-- Preserve the shared page-entry grammar without forcing unlike archetypes into
-  one header or panel layout. Journey, attention, operations, and configuration
-  should expose the same four entry facts through their own composed patterns.
+- Use the page-entry checklist only when it explains an observed orientation
+  failure. Do not force unlike archetypes to expose the same four facts or use
+  one header/panel layout.
+- Do not treat a documented or visually demonstrated component family as
+  functional. If the task needs action, state transition, recovery, undo, or
+  continuity that the shared reference cannot perform, finish that behavior or
+  record a deliberate product-local contract before claiming adoption.
 - In a journey briefing, organize by authored outcome or chapter. Record kinds
   are drill-down evidence; they do not become the top-level information
   architecture merely because their renderers are reusable.

@@ -64,10 +64,10 @@ examples of craft-compliant screens failing these questions. Corollaries:
   text, rendered)", not three unlabeled links that may or may not be the
   same object.
 
-## Shared page-entry grammar, not one generic header
+## Page-entry diagnostic, not one generic header
 
-Consistency begins in the first viewport, before the operator encounters the
-surface's local composition. Every admin route exposes four entry facts:
+When an operator cannot orient to a route's first task region, diagnose four
+possible missing facts:
 
 1. **Scope:** the object, queue, time window, environment, or policy being
    inspected.
@@ -78,8 +78,10 @@ surface's local composition. Every admin route exposes four entry facts:
 4. **Next move and consequence:** the primary route into work, including what a
    successful action changes and where recovery lives.
 
-This is a grammar, not a `PageHeader` component. Unlike tasks must remain
-visibly unlike:
+This is a situational checklist, not a universal acceptance contract and not a
+`PageHeader` component. A familiar or deliberately terse expert workflow may
+answer the four questions through its local composition without restating all
+four facts at the top. Unlike tasks must remain visibly unlike:
 
 | Surface archetype | Entry emphasis | Named DES pattern or rule |
 |---|---|---|
@@ -88,19 +90,48 @@ visibly unlike:
 | Operations / run monitoring | live versus settled state, evidence freshness, error or blocker, recovery path | `record-*` renderers plus **Live activity & logs**; keep lifecycle boards local |
 | Configuration / policy | current value, effective scope, validation, consequence, safe apply and revert | compose system controls locally until a repeated settings family is proven |
 
-A shell breadcrumb plus `h1` and a descriptive sentence does not satisfy this
-contract. Neither does copying the same hero, stat row, or card grid onto every
-route. Products may distribute the four facts across a journey header, queue
-contract, state band, inspector, or persistent apply rail, but all four must be
-locatable without scrolling past the first task region.
+A shell breadcrumb plus `h1` and a descriptive sentence does not repair a real
+orientation failure. Neither does copying the same hero, stat row, or card grid
+onto every route. Products may distribute relevant facts across a journey
+header, queue contract, state band, inspector, or persistent apply rail. Absence
+of one checklist item is not itself a failure when the representative task and
+consequence remain clear.
 
-This rule was promoted after the July 2026 George admin-family audit found the
-same entry failure on seven production routes spanning attention, operations,
-and configuration. That evidence supports a shared rule. It does **not** support
-a new operations or settings component family: the existing `journey-*`,
-`decision-*`, `action-inbox`, and `record-*` families cover the repeated anatomy,
-while board lanes and configuration transactions still carry product-specific
-state and verbs.
+The July 2026 George admin-family audit found entry failures on several routes
+spanning attention, operations, and configuration. That evidence supports a
+shared diagnostic vocabulary. It does **not** establish that every route needs
+the same entry contract, nor that the existing `journey-*`, `decision-*`,
+`action-inbox`, and `record-*` families are functionally complete. Board lanes
+and configuration transactions still carry product-specific state and verbs.
+
+## Component readiness is an evidence ladder
+
+A selector, React signature, static specimen, or screenshot proves availability,
+not a working component. Record the highest level actually demonstrated:
+
+1. **Documented** — anatomy, intended task, states, and boundaries are written.
+2. **Visually demonstrated** — a representative specimen renders across themes
+   and supported widths with real content shape.
+3. **Behaviorally complete** — the reference can perform the named task through
+   entry, action, loading, success, empty, error, and recovery states. Actions
+   produce visible consequences; reversible actions expose undo; selection,
+   focus, filters, open state, and drafts persist where the contract requires.
+4. **Production-proven** — a consuming product completes the same task with
+   production-shaped data and reachable edge states, with functional and visual
+   receipts tied to a revision.
+
+Do not say a family “covers,” “solves,” or is ready to “adopt” for a workflow
+above its demonstrated level. CSS-only families are not behaviorally complete.
+Product-local behavior does not automatically prove the shared reference. A
+renderer such as `record-*` may intentionally stop at visual representation; in
+that case call it a renderer, not a workflow component.
+
+When an existing family has the right anatomy but is below the needed readiness
+level, finish and prove it before inventing a parallel family. For decision
+work, this includes real selection/open behavior, authority and consequence,
+resolution, post-action state, error/recovery, undo where safe, and continuity
+after refresh. A decision card whose buttons do not complete a decision is not a
+functional decision component.
 
 ## Built for an expert operator (density & speed)
 

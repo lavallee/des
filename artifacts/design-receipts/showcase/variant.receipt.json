@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-07-16T13:40:44.861Z",
+  "capturedAt": "2026-07-16T14:12:47.786Z",
   "task": "Find and inspect a system pattern",
   "surface": "DES component showcase",
   "url": "http://127.0.0.1:4173/showcase.html",
   "arm": "variant",
-  "revision": "c7c916d+dirty",
+  "revision": "5f57106+dirty",
   "tool": {
     "agentBrowser": "agent-browser 0.22.1"
   },
@@ -61,7 +61,7 @@
             },
             {
               "level": 2,
-              "text": "Admin Page Entry Grammar"
+              "text": "Admin Page Entry Diagnostic"
             },
             {
               "level": 2,
@@ -209,7 +209,7 @@
         "render": {
           "styleSheetCount": 4,
           "visibleGraphicCount": 1,
-          "visibleTextCharacters": 22622
+          "visibleTextCharacters": 22697
         },
         "accessibility": {
           "duplicateIds": [],
@@ -219,12 +219,12 @@
           "imagesWithoutAlt": []
         },
         "performance": {
-          "domContentLoadedMs": 360,
+          "domContentLoadedMs": 385,
           "failedResources": [],
-          "loadMs": 1060,
+          "loadMs": 519,
           "paints": {
-            "first-paint": 368,
-            "first-contentful-paint": 368
+            "first-paint": 396,
+            "first-contentful-paint": 396
           },
           "resourceCount": 4,
           "transferKb": 114
@@ -283,7 +283,7 @@
             },
             {
               "level": 2,
-              "text": "Admin Page Entry Grammar"
+              "text": "Admin Page Entry Diagnostic"
             },
             {
               "level": 2,
@@ -431,7 +431,7 @@
         "render": {
           "styleSheetCount": 4,
           "visibleGraphicCount": 1,
-          "visibleTextCharacters": 22322
+          "visibleTextCharacters": 22397
         },
         "accessibility": {
           "duplicateIds": [],
@@ -441,12 +441,12 @@
           "imagesWithoutAlt": []
         },
         "performance": {
-          "domContentLoadedMs": 372,
+          "domContentLoadedMs": 488,
           "failedResources": [],
-          "loadMs": 528,
+          "loadMs": 651,
           "paints": {
-            "first-paint": 376,
-            "first-contentful-paint": 376
+            "first-paint": 500,
+            "first-contentful-paint": 500
           },
           "resourceCount": 4,
           "transferKb": 114
@@ -505,7 +505,7 @@
             },
             {
               "level": 2,
-              "text": "Admin Page Entry Grammar"
+              "text": "Admin Page Entry Diagnostic"
             },
             {
               "level": 2,
@@ -653,7 +653,7 @@
         "render": {
           "styleSheetCount": 4,
           "visibleGraphicCount": 1,
-          "visibleTextCharacters": 22291
+          "visibleTextCharacters": 22366
         },
         "accessibility": {
           "duplicateIds": [],
@@ -663,12 +663,12 @@
           "imagesWithoutAlt": []
         },
         "performance": {
-          "domContentLoadedMs": 1775,
+          "domContentLoadedMs": 500,
           "failedResources": [],
-          "loadMs": 1912,
+          "loadMs": 654,
           "paints": {
-            "first-paint": 1780,
-            "first-contentful-paint": 1780
+            "first-paint": 508,
+            "first-contentful-paint": 508
           },
           "resourceCount": 4,
           "transferKb": 114

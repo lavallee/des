@@ -9,11 +9,21 @@ DES branch: `fab/mobbin-admin-consistency-audit`
 ## Commission result
 
 George already has one shell and several strong task-specific compositions. The
-family does not need a wholesale restyle or a universal page layout. It needs a
-shared first-viewport contract: scope, operator task, current state/proof, and
-next move/consequence. That gap repeats on seven of the ten audited routes and
-applies beyond George, so this PR promotes **page-entry grammar** as a DES rule.
-It deliberately does not add an operations or settings component family.
+family does not need a wholesale restyle or a universal page layout. Several
+routes have first-task-region orientation failures that can be diagnosed through
+scope, operator task, current state/proof, and next move/consequence. This PR
+records that as a situational DES checklist, not a universally enforced page
+contract. It deliberately does not add an operations or settings component
+family.
+
+The audit also found that DES was crediting documented CSS and static showcase
+specimens as if they were working components. They are not. In particular,
+`decision-*` and `action-inbox` demonstrate useful anatomy but do not themselves
+complete selection, resolution, post-action consequence, error/recovery, undo,
+or persistence. The corrected DES guidance therefore distinguishes documented,
+visually demonstrated, behaviorally complete, and production-proven patterns.
+Functional completion of existing families precedes new component families and
+precedes claims that a George route has “adopted” them.
 
 The most urgent George problem is upstream of presentation. `/triage` renders 76
 records and repeats the branch-protection decision across many entries; the
@@ -23,6 +33,19 @@ production HTML contains 32 `branch-protection` mentions. `/projects` renders
 39,686 px mobile capture. Pagination would hide these defects, not repair them.
 
 No George files were edited.
+
+## Operator review correction
+
+The initial candidate was reviewed by the operator on 2026-07-16. Accepted:
+`/p/george` as the journey reference; triage eligibility/deduplication before
+visual refinement; bounded inventory instead of raw database projection; and no
+new component family on this evidence. Rejected: making the four-part page-entry
+checklist a universal DES contract, and treating existing visual families as
+ready for adoption when their behavior does not work end to end. The operator's
+concrete example was that the decision cards do not actually complete decisions.
+
+This revision incorporates that feedback. It does not convert the operator's
+acceptance of the diagnosis into acceptance of future implementation.
 
 ## Evidence contract and coordinates
 
@@ -77,15 +100,15 @@ Severity describes operator harm and frequency, not implementation effort.
 
 | Route | Operator task | Archetype | Current DES pattern | Repeated anatomy | Region-anchored finding | Severity | Shared fix or deliberate exception |
 |---|---|---|---|---|---|---|---|
-| `/` | Orient to portfolio state and choose the next operator task | orientation + attention digest | shared shell; local state band and attention lanes | entry state, bounded attention, destination links | **Needs you / Triage lane:** 76 items are represented as a normal work count even though the queue contains repeated filings of the same branch-protection decision. The digest faithfully reflects a broken eligibility contract. | high | Apply shared page-entry grammar; keep the multi-lane home composition local. Change the triage count only after upstream settlement is fixed. |
-| `/projects` | Find a project, understand portfolio state, open the right workspace | orientation / inventory | shared shell, stats, filters, dense table; no composed journey or inbox | state summary, filter set, inventory rows | **Open work table:** 203,231 visible characters and a 100,448 px mobile document expose the 1,308-item work set as one reading surface. Search and status filters do not substitute for grouping, top-N disclosure, or settlement. | critical | Keep the portfolio inventory distinct from `/p/{project}`. Add entry grammar and grouped project-first results; expose raw work behind explicit disclosure. Do not paginate the defect. |
+| `/` | Orient to portfolio state and choose the next operator task | orientation + attention digest | shared shell; local state band and attention lanes | entry state, bounded attention, destination links | **Needs you / Triage lane:** 76 items are represented as a normal work count even though the queue contains repeated filings of the same branch-protection decision. The digest faithfully reflects a broken eligibility contract. | high | Keep the multi-lane home composition local. Change the triage count only after upstream settlement is fixed; use the page-entry diagnostic only for remaining orientation confusion. |
+| `/projects` | Find a project, understand portfolio state, open the right workspace | orientation / inventory | shared shell, stats, filters, dense table; no composed journey or inbox | state summary, filter set, inventory rows | **Open work table:** 203,231 visible characters and a 100,448 px mobile document expose the 1,308-item work set as one reading surface. Search and status filters do not substitute for grouping, top-N disclosure, or settlement. | critical | Keep the portfolio inventory distinct from `/p/{project}`. Add grouped project-first results and use the entry diagnostic only for a remaining orientation failure; expose raw work behind explicit disclosure. Do not paginate the defect. |
 | `/p/george` | Understand progress, proof, uncertainty, and the next bounded action | orientation / strategic overview | `journey-*` plus typed evidence and bounded attention | intent, authored outcomes, current focus, proof, attention, system work | **Project briefing and State of the journey:** task entry, authored outcome spine, missing proof, movement, and bounded decisions remain visually distinct at all widths. | low | Preserve as the reference journey composition. Deliberate exception: typed records remain drill-down evidence, not top-level navigation. |
 | `/decisions` | Select a human-authority decision and resolve or defer it safely | attention / bounded decisions | `action-inbox`-like filter rail and independently openable records | filter, count, collapsed question, detail/actions | **First task region:** “30 things need you” states count but not the eligibility contract or settlement consequence. **Collapsed rows:** the question is legible, but why this requires human authority is deferred until open. | medium | Use existing `decision-*` contract/result-policy anatomy inside the action inbox. Preserve independent selection; do not add batch resolution to unlike consequential decisions. |
 | `/triage` | Filter fresh signals, settle independent items, recover from a mistake | attention / high-volume triage | `action-inbox` shell without queue mechanics | filter rail, count, independent details | **Results list:** 76 records include repeated branch-protection formulations (32 HTML mentions), while the live surface exposes no checkbox selection, bulk settlement, or snooze. **Entry:** the count does not disclose the 93-source-to-76 eligibility/settlement defect as a defect. | critical | First fix dedupe, eligibility, and settlement receipts. Then add bounded verbs, independent multi-select, bulk settlement, snooze, and instant undo using the existing action-inbox composition. |
-| `/board` | Monitor queued, moving, blocked, and finished work | operations / lifecycle monitor | local lane board; shared state language | state counts, lanes, record cards, action/detail paths | **Wide lane grid:** eight narrow columns make titles and evidence read as miniature cards; 79 work cards create 11,332 px of vertical document despite a wide viewport. State taxonomy is strong, but evidence and recovery compete with lane scanning. | high | Keep lifecycle lanes as a deliberate local exception. Add shared entry grammar, cap each lane with ranked exceptions, and route complete inventory to `/projects` or a filtered view. Do not convert the board to generic records. |
+| `/board` | Monitor queued, moving, blocked, and finished work | operations / lifecycle monitor | local lane board; shared state language | state counts, lanes, record cards, action/detail paths | **Wide lane grid:** eight narrow columns make titles and evidence read as miniature cards; 79 work cards create 11,332 px of vertical document despite a wide viewport. State taxonomy is strong, but evidence and recovery compete with lane scanning. | high | Keep lifecycle lanes as a deliberate local exception. Diagnose missing task entry only if it remains confusing, cap each lane with ranked exceptions, and route complete inventory to `/projects` or a filtered view. Do not convert the board to generic records. |
 | `/prs` | Review readiness, evidence, and the next safe PR action | attention + operations | `action-inbox` plus compact open-PR table | filter, one attention record, cache freshness, inventory | **Action record:** “draft — author hasn't marked it ready” clearly explains why no merge action exists. **Page entry:** count, task, state, and cache freshness are present; the record disclosure carries consequence. | low | Preserve. Migrate record body to the typed PR renderer when touched; keep the compact all-PR table as inventory. |
 | `/runs` | Inspect run status, evidence, history, errors, and recovery | operations / activity monitor | live-activity rules with local run articles; record-like facts | active/settled grouping, durable status, next step, evidence links | **Active run cards:** computed state and `NEXT` copy are strong; failed/blocked work links evidence. **Mobile history:** 45 articles produce an 11,515 px document with no bounded history disclosure. | medium | Keep active/settled composition local. Use `record-*` anatomy for typed run evidence, add a top error/recovery summary, and collapse settled history by day/status. |
-| `/admin/clusters` | Inspect scope and safely assign or register project configuration | configuration | shared controls and table; local inline forms | current scope, filter, current value, per-row apply | **Potential projects table:** 145 independent forms render at once; mobile grows to 39,686 px. **Per-row action:** save/register is adjacent to fields, but consequence, validation state, pending change, and revert are absent. | critical | Apply configuration entry grammar and a selected-row inspector or bounded change tray. Keep project kind/owner/cluster typed controls local; no DES settings component is justified by this audit alone. |
+| `/admin/clusters` | Inspect scope and safely assign or register project configuration | configuration | shared controls and table; local inline forms | current scope, filter, current value, per-row apply | **Potential projects table:** 145 independent forms render at once; mobile grows to 39,686 px. **Per-row action:** save/register is adjacent to fields, but consequence, validation state, pending change, and revert are absent. | critical | Build a selected-row inspector or bounded change tray and use the entry diagnostic only for missing scope/task context. Keep project kind/owner/cluster typed controls local; no DES settings component is justified by this audit alone. |
 | `/policy` | Understand the effective auto-merge policy and safely propose or reverse a change | configuration / policy summary | shared stats/table/empty state; no composed settings pattern | current values, provenance, outcome evidence | **Current policy:** values and “guardrails are fixed in code” make scope clear. **Empty proposal state:** there is no path to the policy decision, apply/reset endpoints, consequence, or recovery evidence, so “what do I do?” is unanswered in the baseline state. | high | Preserve code-owned guardrails as a deliberate no-inline-edit exception. Link to the owning decision/change path and show apply/reset receipts when proposals exist; do not fabricate editable controls. |
 
 ## Task-based rubric
@@ -177,23 +200,47 @@ copying product branding, pale consumer styling, card shells, or navigation.
 
 ## Existing DES pattern reconciliation
 
-| Existing family | Routes tested | Finding | Decision |
+Readiness levels are cumulative only when the evidence supports them:
+documented → visually demonstrated → behaviorally complete → production-proven.
+
+| Existing family | Routes tested | Highest demonstrated readiness | Missing behavior / corrected decision |
 |---|---|---|---|
-| `journey-*` | `/p/george`, compared with `/` and `/projects` | correctly distinguishes authored outcomes, proof, attention residue, system work, and inventory | keep; use `/p/george` as the George orientation reference |
-| `decision-*` | `/decisions`, `/triage`, `/prs` | contract, result policy, rationale, and consequence anatomy are reusable; the live routes vary in how much they instantiate | migrate missing anatomy into existing inbox compositions; no second queue family |
-| `action-inbox` | `/decisions`, `/triage`, `/prs` | independent selection, persistent filters, and list-position continuity fit all three | keep; extend George behavior locally for selection/bulk/snooze/undo after eligibility repair |
-| `record-*` | `/p/george`, `/prs`, `/runs`, `/board` | typed evidence and verbs fit PR/run/detail records without flattening them | reuse for run/PR evidence; do not replace lifecycle lanes or journey outcomes with generic records |
+| `journey-*` | `/p/george`, compared with `/` and `/projects` | production-proven for the orientation/reading task on `/p/george` | keep as the journey reference; product-local actions remain separately tested and it is not a generic workflow shell |
+| `decision-*` | `/decisions`, `/triage`, `/prs` | visually demonstrated | anatomy is useful, but the shared reference does not complete selection, resolve/defer, consequence, success, error/recovery, undo, or persistence; finish behavior before recommending adoption |
+| `action-inbox` | `/decisions`, `/triage`, `/prs` | visually demonstrated | filters and independent rows are shown, not behaviorally proven; add runnable selection/open/action/post-action/continuity behavior, then prove it in one production route |
+| `record-*` | `/p/george`, `/prs`, `/runs`, `/board` | visually demonstrated renderer | retain as typed representation; do not call it a workflow component or infer working verbs from static action slots |
 
 No new component clears the evidence bar. Operations repeat across `/board`,
 `/prs`, and `/runs`, but their actual tasks remain lifecycle scanning, review
 attention, and event diagnosis. Configuration appears only on `/admin/clusters`
-and `/policy`, with different mutability. The repeated, cross-archetype gap is
-the page-entry proof contract, so DES changes guidance, rubric, practice,
-showcase, and tests rather than manufacturing another family.
+and `/policy`, with different mutability. No new family is justified. DES instead
+adds the readiness evidence ladder, records page-entry as a situational
+diagnostic, and prioritizes functional completion of existing decision anatomy.
 
 ## Prioritized George migration map
 
-This is the exact follow-up plan. It is not implemented in this DES PR.
+This is the exact follow-up plan. It is not implemented in this DES PR. Two
+bounded first moves may run in parallel: DES decision-component readiness and
+George triage eligibility. Broader visual consistency waits for both where it
+depends on them.
+
+### DES track A — make existing decision components functional
+
+- Target: DES `decision-*` and `action-inbox`, then one George `/decisions`
+  production proof slice after the DES contract lands.
+- Current readiness: visually demonstrated, not behaviorally complete.
+- Behavior/state change: provide a runnable reference for independent
+  selection/open, authority reason, full deciding evidence, primary and
+  secondary consequence, resolve/defer, loading, success, empty, error and retry,
+  safe undo, and persistence of filters/list position/open record across action
+  and refresh.
+- Acceptance evidence: browser tests exercise the actual transitions rather
+  than searching CSS; showcase receipts cover all reachable states at supported
+  widths; the George reference route completes a real decision and reflects its
+  durable state after refresh.
+- Boundary: DES supplies task anatomy, state/behavior contract, and a runnable
+  reference. George owns endpoints, authority rules, durable storage, and domain
+  language. Do not manufacture a new family.
 
 ### Slice 0 — fix triage eligibility and settlement before UI expansion
 
@@ -211,7 +258,7 @@ This is the exact follow-up plan. It is not implemented in this DES PR.
 - Intentional exception: raw signals remain reachable in an audit disclosure,
   not in the active queue.
 
-### Slice 1 — add the shared page-entry contract per archetype
+### Slice 1 — use the page-entry diagnostic where evidence warrants it
 
 - Routes: `/`, `/projects`, `/decisions`, `/triage`, `/board`, `/prs`, `/runs`,
   `/admin/clusters`, `/policy`; preserve `/p/george` as the reference.
@@ -219,13 +266,14 @@ This is the exact follow-up plan. It is not implemented in this DES PR.
   `project_journey.py`, `decisions.py`, `triage.py`, `board.py`, `prs.py`,
   `runs.py`, `clusters.py`, and `policy.py`; add route assertions to their
   matching tests rather than a generic shell helper that dictates layout.
-- DES pattern: **Shared page-entry grammar**.
-- Behavior/state change: each first task region makes scope, operator task,
-  state/proof, and next move/consequence explicit. Keep journey, inbox, board,
-  activity, and configuration compositions distinct.
-- Acceptance evidence: route-specific tests assert the four facts; first
-  viewport contact sheet makes them locatable at thumbnail size; no decorative
-  kicker restates the route.
+- DES pattern: **Page-entry diagnostic**.
+- Behavior/state change: only routes with an observed orientation failure add
+  the missing task facts. Keep journey, inbox, board, activity, and configuration
+  compositions distinct; do not require every route to restate all four.
+- Acceptance evidence: route-specific tests assert the repaired task confusion,
+  not the presence of generic header copy; first-viewport contact sheets make
+  the task and next consequential move locatable; no decorative kicker restates
+  the route.
 - Intentional exception: shared shell/breadcrumb remain infrastructure, not the
   page-entry composition.
 
@@ -233,7 +281,7 @@ This is the exact follow-up plan. It is not implemented in this DES PR.
 
 - Routes: `/projects`; link through to `/p/{project}` and filtered `/board`.
 - George files: `george_service/dashboard.py`, `tests/test_dashboard.py`.
-- DES pattern: page-entry grammar + table/cardinality guidance; `journey-*` stays
+- DES pattern: page-entry diagnostic + table/cardinality guidance; `journey-*` stays
   on individual project pages.
 - Behavior/state change: lead with project rows and portfolio state; group or
   top-N the work evidence per project; expose full raw work through an explicit,
@@ -250,8 +298,9 @@ This is the exact follow-up plan. It is not implemented in this DES PR.
 - Routes: `/decisions`, `/triage`, `/prs`.
 - George files: `decisions.py`, `triage.py`, `prs.py`, their route tests, and
   state-changing endpoints in `app.py`.
-- DES pattern: `decision-*` contract/result policy inside `action-inbox`; typed
-  decision/PR records.
+- DES pattern: behaviorally complete `decision-*` contract/result policy inside
+  `action-inbox`; typed decision/PR records. Do not begin adoption from a static
+  specimen.
 - Behavior/state change: decisions expose human-authority reason and consequence
   in the collapsed/first-open state; triage gains independent checkboxes,
   bounded bulk dispositions, snooze until time or new activity, post-action
@@ -267,7 +316,7 @@ This is the exact follow-up plan. It is not implemented in this DES PR.
 - Routes: `/board`, `/runs`, with `/prs` as a review handoff.
 - George files: `board.py`, `runs.py`, `prs.py`, `tests/test_board.py`,
   `tests/test_board_audit.py`, `tests/test_runs.py`, `tests/test_prs.py`.
-- DES pattern: page-entry grammar, `record-*`, and live-activity rules.
+- DES pattern: page-entry diagnostic where needed, `record-*`, and live-activity rules.
 - Behavior/state change: board lanes show ranked exceptions/top-N with full lane
   disclosure; runs lead with active errors/recovery and collapse settled history
   by time/status; typed event evidence and raw trace stay distinct.
@@ -282,7 +331,7 @@ This is the exact follow-up plan. It is not implemented in this DES PR.
 - Routes: `/admin/clusters`, `/policy`.
 - George files: `clusters.py`, `policy.py`, relevant routes in `app.py`,
   `tests/test_clusters.py`, and policy coverage in `tests/test_pages.py`.
-- DES pattern: configuration branch of page-entry grammar plus existing fields,
+- DES pattern: configuration use of the page-entry diagnostic plus existing fields,
   buttons, callouts, and typed records; no new settings family yet.
 - Behavior/state change: clusters move from 145 live forms to a selected-row
   inspector/change tray with current value, validation, consequence, pending
@@ -315,19 +364,21 @@ This is the exact follow-up plan. It is not implemented in this DES PR.
 
 The DES change adds no component and no product CSS. It:
 
-- documents page-entry grammar in `PATTERNS-ADMIN.md` with archetype-specific
-  composition guidance and the seven-route evidence bar;
-- adds page-entry capture and proof steps to `PRACTICE.md`;
-- adds a falsifiable first-task-region criterion and receipt fields to
-  `RUBRIC.md`;
+- documents a situational page-entry diagnostic in `PATTERNS-ADMIN.md` without
+  imposing it as a universal route contract;
+- adds the four-level component-readiness evidence ladder and explicitly marks
+  decision cards/inboxes as visually demonstrated but behaviorally incomplete;
+- adds readiness inspection and relevant page-entry diagnosis to `PRACTICE.md`;
+- adds readiness-aware task and receipt criteria to `RUBRIC.md`;
 - demonstrates all four archetypes in `showcase.html` using existing table and
   overflow primitives; and
-- adds `test/admin-page-entry.test.mjs`, including a guard against manufacturing
-  `AdminPageHeader` or `PageEntry` React components.
+- adds `test/admin-page-entry.test.mjs`, including guards against manufacturing
+  `AdminPageHeader`/`PageEntry` components or equating static specimens with
+  working behavior.
 
 Validation:
 
-- `npm test`: 18/18 tests passed, including both page-entry regression tests and
+- `npm test`: 19/19 tests passed, including page-entry/readiness regression tests and
   the existing journey, action-inbox, typed-record, continuity, and audit suites.
 - `npm run audit:showcase`: pass at 1440x1000, 768x1024, and 390x844. The receipt
   is `artifacts/design-receipts/showcase/variant.receipt.json`.
@@ -344,8 +395,12 @@ Requested model: `opus` (commission launch request).
 Served model: `unknown` (the bridge and DES audit receipt do not expose it).
 Independent judge: `false`.
 Promotion authority: `none`.
-Material delta: guidance/showcase/test contract only; no George change and no
-new DES component family.
+Material delta: corrected guidance/showcase/test contract only; no George change
+and no new DES component family. Existing decision behavior remains explicitly
+commissioned follow-up work, not a claim of this PR.
 
-Verdict: `candidate` pending an independent seeing pass or explicit human
-acceptance.
+Verdict: `candidate`. The operator accepted the audit's core diagnoses and
+migration priorities, rejected universal enforcement of page-entry grammar, and
+identified nonfunctional existing decision components. This revision records
+that feedback; future behavioral and George visual changes remain separately
+reviewable.
