@@ -39,10 +39,18 @@ At each screen, answerable without clicking away:
 4. **What happens next?** Each action states or implies its consequence;
    empty/idle states name what fills them or what's scheduled.
 
+When the four questions reveal an orientation failure, diagnose whether scope,
+operator task, current state/proof, or next move/consequence is missing. This is
+not a universal header checklist: a familiar expert workflow does not fail for
+omitting a restatement when its task and consequence are otherwise clear.
+
 ## Gate 1.5 — flow and authority (pass/fail per task)
 
 - The representative task has a named entry, action, success state, and recovery
   path; loading, empty, and error states are present where reachable.
+- A named DES family is credited only to its demonstrated readiness level:
+  documented, visually demonstrated, behaviorally complete, or
+  production-proven. Static classes/specimens do not prove working actions.
 - The human is deciding something that requires human authority. The surface does
   not expose an unbounded machine backlog as a mandatory review queue.
 - Queue eligibility is legible: freshness, confidence, ownership, and the reason
@@ -127,9 +135,10 @@ GATE 1: per-screen pass|fail, each failure = {region, question, evidence}
 SECTIONS 2–4: score + findings [{region, criterion, evidence, suggested fix}]
 VERDICT: ship | candidate | fix-then-reshoot | fails-gate
 RECEIPT: baseline revision/routes/screenshots, variant revision/screenshots,
-functional/a11y/console/overflow checks, requested/served model, independent judge,
-promotion authority, material delta, post-implementation feedback, and deferred
-findings
+surface archetype, relevant page-entry diagnosis, pattern readiness and missing
+behavior, functional/a11y/console/overflow checks, requested/served model,
+independent judge, promotion authority, material delta, post-implementation
+feedback, and deferred findings
 ```
 
 `ship` for a visual change requires an independent seeing pass or explicit human

@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-16T13:26:01.576Z",
+  "task": "Review pull request readiness, evidence, and the next safe action",
+  "surface": "George pull requests",
+  "url": "http://dash-main:7879/prs?theme=dark",
+  "arm": "baseline",
+  "revision": "dash-main:7879@0.0.1",
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 10000,
+    "maxResources": 200,
+    "maxTransferKb": 4096
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "baseline/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "prs · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "prs"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1440,
+          "scrollWidth": 1440
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1145
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 410,
+          "failedResources": [],
+          "loadMs": 508,
+          "paints": {
+            "first-paint": 432,
+            "first-contentful-paint": 432
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/wide.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "baseline/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "prs · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "prs"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 768,
+          "scrollWidth": 768
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1035
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 396,
+          "failedResources": [],
+          "loadMs": 485,
+          "paints": {
+            "first-paint": 416,
+            "first-contentful-paint": 416
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/tablet.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "baseline/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "prs · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "prs"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 384,
+          "scrollWidth": 384
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1035
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 419,
+          "failedResources": [],
+          "loadMs": 584,
+          "paints": {
+            "first-paint": 432,
+            "first-contentful-paint": 432
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/mobile.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "verdict": "pass"
+}

@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-16T13:25:37.543Z",
+  "task": "Filter the attention queue, select independent items, settle them in bulk, and recover from a mistaken action",
+  "surface": "George triage queue",
+  "url": "http://dash-main:7879/triage?theme=dark",
+  "arm": "baseline",
+  "revision": "dash-main:7879@0.0.1",
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 10000,
+    "maxResources": 200,
+    "maxTransferKb": 4096
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "baseline/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "triage · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "triage"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1434,
+          "scrollWidth": 1434
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 13455
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 489,
+          "failedResources": [],
+          "loadMs": 567,
+          "paints": {
+            "first-paint": 504,
+            "first-contentful-paint": 504
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/wide.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "baseline/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "triage · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "triage"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 762,
+          "scrollWidth": 762
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 13342
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 515,
+          "failedResources": [],
+          "loadMs": 605,
+          "paints": {
+            "first-paint": 532,
+            "first-contentful-paint": 532
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/tablet.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "baseline/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "triage · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "triage"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 384,
+          "scrollWidth": 384
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 13342
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 503,
+          "failedResources": [],
+          "loadMs": 592,
+          "paints": {
+            "first-paint": 516,
+            "first-contentful-paint": 516
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/mobile.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "verdict": "pass"
+}

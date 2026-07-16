@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-16T13:24:23.711Z",
+  "task": "Orient to portfolio state and choose the next operator task",
+  "surface": "George home orientation",
+  "url": "http://dash-main:7879/?theme=dark",
+  "arm": "baseline",
+  "revision": "dash-main:7879@0.0.1",
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 10000,
+    "maxResources": 200,
+    "maxTransferKb": 4096
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "baseline/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "home · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "system state"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1434,
+          "scrollWidth": 1434
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 2914
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 763,
+          "failedResources": [],
+          "loadMs": 806,
+          "paints": {
+            "first-paint": 912,
+            "first-contentful-paint": 912
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/wide.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "baseline/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "home · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "system state"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 762,
+          "scrollWidth": 762
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 2803
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 768,
+          "failedResources": [],
+          "loadMs": 820,
+          "paints": {
+            "first-paint": 940,
+            "first-contentful-paint": 940
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/tablet.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "baseline/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "home · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "system state"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 384,
+          "scrollWidth": 384
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 2803
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 821,
+          "failedResources": [],
+          "loadMs": 872,
+          "paints": {
+            "first-paint": 964,
+            "first-contentful-paint": 964
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/mobile.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "verdict": "pass"
+}
