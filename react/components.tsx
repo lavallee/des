@@ -411,6 +411,21 @@ export function FilterSelect(props: React.SelectHTMLAttributes<HTMLSelectElement
 
 // ── Decision Workspace ────────────────────────────────────────────────────
 
+/** Framework adapter for the controller exported at @lavallee/des/decision-workspace. */
+export interface DecisionWorkspaceControllerLike<TState> {
+  getState(): TState
+  subscribe(listener: (state: TState, event: { type: string }) => void): () => void
+}
+
+export function useDecisionWorkspace<TState>(controller: DecisionWorkspaceControllerLike<TState>): TState {
+  const subscribe = React.useCallback(
+    (listener: () => void) => controller.subscribe(listener),
+    [controller],
+  )
+  const getSnapshot = React.useCallback(() => controller.getState(), [controller])
+  return React.useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
+}
+
 export interface DecisionHeaderProps {
   kicker?: string
   title: React.ReactNode
@@ -813,16 +828,23 @@ export interface ActionRecordProps extends React.DetailsHTMLAttributes<HTMLDetai
   title: React.ReactNode
   meta?: React.ReactNode
   badge?: React.ReactNode
+  authorityReason?: React.ReactNode
+  selection?: React.ReactNode
   actions?: React.ReactNode
 }
 
-export function ActionRecord({ title, meta, badge, actions, children, className, ...props }: ActionRecordProps) {
-  return (
+export function ActionRecord({ title, meta, badge, authorityReason, selection, actions, children, className, ...props }: ActionRecordProps) {
+  const record = (
     <details className={cn('action-record', className)} {...props}>
       <summary>
         <span className="action-record__summary-copy">
           <span className="action-record__title">{title}</span>
           {meta && <span className="action-record__summary-meta">{meta}</span>}
+          {authorityReason && (
+            <span className="action-record__authority">
+              <strong>Why human authority is required:</strong> {authorityReason}
+            </span>
+          )}
         </span>
         {badge}
       </summary>
@@ -831,6 +853,13 @@ export function ActionRecord({ title, meta, badge, actions, children, className,
         {actions && <div className="action-record__actions">{actions}</div>}
       </div>
     </details>
+  )
+  if (!selection) return record
+  return (
+    <div className="action-record-row">
+      <div className="action-record__selection">{selection}</div>
+      {record}
+    </div>
   )
 }
 

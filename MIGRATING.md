@@ -2,6 +2,15 @@
 
 Per-tool instructions for adopting the design system. Each section is self-contained — go straight to the tool you're migrating.
 
+## 0.5 decision behavior addition
+
+Version 0.5 is additive. Existing CSS exports, class names, and React component
+props remain valid. The new `@lavallee/des/decision-workspace` export supplies
+behavior that static decision/action-inbox consumers previously implemented
+locally. `ActionRecord` gains optional `authorityReason` and `selection` props,
+and the React reference gains `useDecisionWorkspace`; no existing prop is
+removed or renamed.
+
 ---
 
 ## General approach
@@ -13,6 +22,21 @@ Per-tool instructions for adopting the design system. Each section is self-conta
 5. Remove hardcoded hex values once the migration is complete
 
 Never try to do a full reskin in one commit. One component at a time is more reliable and reviewable.
+
+### Decision and action-inbox behavior
+
+Do not migrate a static `decision-*` or `action-inbox` specimen as if its buttons
+were functional. Adopt `decision-workspace.js` as the smallest shared behavior
+boundary, then inject the product's own eligibility, persistence, authorization,
+and telemetry adapters. The controller preserves filters, open/selection state,
+list position, and drafts while coordinating resolve, defer, retry, undo, and
+refresh reconciliation. The full contract is
+`docs/decision-workspace-contract.md`; the runnable reference is
+`decision-workspace-showcase.html`.
+
+This adoption can prove the shared family behaviorally complete. Record a
+production-proven claim only after the product completes the real task against
+durable data and supplies live refresh and edge-state evidence.
 
 ---
 

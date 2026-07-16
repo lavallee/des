@@ -1,0 +1,54 @@
+- banner
+  - link "design system" [ref=e1]
+  - StaticText "functional decision workspace · candidate"
+  - LabelText
+    - StaticText "Theme"
+  - combobox "Theme" [expanded=false, ref=e2]: Light theme
+    - MenuListPopup
+      - option "Dark theme" [ref=e8]
+- main
+  - sectionheader
+    - StaticText "EXISTING DECISION-* + ACTION-INBOX FAMILIES"
+    - heading "Bounded decision workspace" [level=1, ref=e4]
+    - paragraph
+      - StaticText "Open a decision without selecting it for a bulk operation, inspect the full deciding record, then resolve or defer it through real loading, success, retry, and undo states."
+    - StaticText "Runnable reference"
+  - region "Decision inbox scenario" [ref=e3]
+    - heading "Decision inbox scenario" [level=2, ref=e5]
+    - button "Refresh product data" [ref=e6]
+    - button "Reset deterministic scenario" [ref=e7]
+    - StaticText "1 stable event"
+    - complementary "Filter decisions"
+      - StaticText "Queue contract"
+      - paragraph
+        - StaticText "Every row is fresh, unsettled, evidence-backed, and stopped on a choice reserved for human authority."
+      - LabelText
+        - StaticText "Search"
+        - searchbox "Search" [ref=e12]
+      - LabelText
+        - StaticText "Status"
+        - combobox "Status" [expanded=false, ref=e13]: All statuses
+          - MenuListPopup
+            - option "Pending" [ref=e22]
+            - option "Ready" [ref=e23]
+      - button "Clear filters" [ref=e11]
+      - paragraph
+        - StaticText "/ focuses search. Filters are reflected in the URL; continuity is persisted by this showcase adapter."
+    - region "Decision records" [ref=e10]
+      - StaticText "2"
+      - StaticText " shown"
+      - StaticText "0 selected independently"
+      - generic
+        - checkbox "Select Choose the retention window for completed operational records for a separate bounded bulk operation" [checked=false, ref=e14]
+        - group
+          - DisclosureTriangle "Choose the retention window for completed operational records pending · complete record available in place Why human authority is required: Automation cannot choose the acceptable tradeoff between auditability, storage cost, and deletion obligations. pending" [expanded=true]
+          - region "FULL DECIDING TEXT" [ref=e16]
+          - region "DECIDING EVIDENCE" [ref=e17]
+          - region "HISTORY" [ref=e18]
+          - generic
+            - textbox "IN-PROGRESS NOTE" [ref=e24]
+          - button "Resolve at 90 days" [ref=e19]
+          - button "Defer for evidence" [ref=e20]
+        - checkbox "Select Authorize publication of the signed interoperability decision for a separate bounded bulk operation" [checked=false, ref=e15]
+        - group
+          - DisclosureTriangle "Authorize publication of the signed interoperability decision ready · complete record available in place Why human authority is required: Publication creates an external commitment under the accountable owner's name and cannot be made by the system. ready" [expanded=false]

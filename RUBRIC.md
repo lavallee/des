@@ -48,6 +48,8 @@ omitting a restatement when its task and consequence are otherwise clear.
 
 - The representative task has a named entry, action, success state, and recovery
   path; loading, empty, and error states are present where reachable.
+- Decision rows explain in their collapsed state why human authority is needed;
+  opening a row is independent from any bulk selection state.
 - A named DES family is credited only to its demonstrated readiness level:
   documented, visually demonstrated, behaviorally complete, or
   production-proven. Static classes/specimens do not prove working actions.
@@ -59,6 +61,13 @@ omitting a restatement when its task and consequence are otherwise clear.
   human input and work stalled on an external blocker.
 - Surface changes do not conceal a weak concept model or broken flow. If the
   lowest unresolved layer is below the surface, the verdict is `fails-gate`.
+- Resolve/defer failures retain the item and offer retry. Reversible results bind
+  working undo; irreversible results state the exact reason recovery is
+  unavailable. Refresh reconciliation preserves filters, list position, open
+  item, selection, focus, and in-progress notes.
+- Stable persistence and telemetry hooks exist without placing product data
+  access in DES. A fixture-bound controller may prove behaviorally complete;
+  production-proven requires live consumer evidence.
 
 ## Gate 1.75 — perceptual hierarchy and system expression (pass/fail per screen)
 

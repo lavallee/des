@@ -21,12 +21,14 @@ The files here are a mix of **production-ready system code** and **design refere
 |---|---|---|
 | `tokens.css` | Production | Drop in as-is. Single source of truth for all design values. |
 | `components.css` | Production | Drop in as-is. Vanilla CSS — framework-agnostic. |
+| `decision-workspace.js` | Production | Framework-neutral state/transition contract for the existing decision and action-inbox families. Bind product persistence through callbacks. |
 | `themes/` | Production | Drop in as-is. Applied via `[data-theme="…"]` on any ancestor. |
 | `react/` | Production reference | Radix + CVA React implementations. Port to your stack (React, Vue, SwiftUI) using the same token names and behavior. |
 | `fonts.html` snippet | Production | Copy the `<link>` tag into your `<head>`. |
 | `assets/` | Production | SVG icons, Lyra Forge wordmark. Drop in. |
 | `ui_kits/` | **Design reference** | HTML prototypes of each product. Not production code — study for layout, density, interaction patterns. |
 | `showcase.html` | **Design reference** | Canonical render of every component. Open in a browser and compare against your implementation. |
+| `decision-workspace-showcase.html` | **Runnable reference** | Product-agnostic decision/action-inbox scenario with loading, retry, undo, refresh, and continuity. |
 | `PRACTICE.md` | Guidance | Diagnosis-to-proof workflow for reviews and implemented improvements. |
 | `PRINCIPLES.md` | Guidance | Design philosophy. Read before making non-obvious decisions. |
 | `PATTERNS-ADMIN.md` | Guidance | Queue, triage, review-rail, and decision-surface rules. |
@@ -52,6 +54,9 @@ The files here are a mix of **production-ready system code** and **design refere
 3. Wrap your app root in `<html data-theme="dark">` (or `light`, `carbon`, `slate`, `parchment`).
 4. If you want a named theme beyond dark/light, also import the theme file: `themes/carbon.css`, `themes/slate.css`, or `themes/parchment.css`.
 5. Use the component classes directly, or re-export them as your framework's components (see React reference).
+6. For a decision/action-inbox task, create the controller from
+   `@lavallee/des/decision-workspace` and inject product-owned resolve, defer,
+   and undo handlers. See `docs/decision-workspace-contract.md`.
 
 ### React / TypeScript integration
 
@@ -61,6 +66,10 @@ Files in `react/` are the reference:
 - `react/table.tsx` — Tanstack-table integration + sort/filter state
 - `react/radix.tsx` — Radix primitives (Dialog, DropdownMenu, Tooltip, Popover) styled to the system
 - `react/radix.css` — styles for the Radix primitives
+
+`react/components.tsx` also exports `useDecisionWorkspace(controller)`, a thin
+subscription adapter for the framework-neutral controller. Fetching,
+authorization, persistence, and telemetry delivery stay in the product.
 
 These are CVA-based. Port the class mappings to your own component library if you already have one; do not run two component libraries in parallel.
 
@@ -139,6 +148,7 @@ Defined in `components.css`. Full render in `showcase.html`. Key classes:
 - `.score-badge.is-hi|is-mid|is-lo` — three named bands; thresholds `≥0.70 / ≥0.40 / <0.40`
 - `.filter-bar` with `.chip` — active chip uses `--accent-surface` + `--accent-text`
 - `.decision-header`, `.segmented-nav`, `.decision-layout`, `.decision-brief`, `.decision-list`, `.decision-card`, `.decision-rationale` — bounded queue/review composition
+- `.action-inbox`, `.action-record` — independently openable decision records with collapsed authority reason, full evidence/history, transition receipts, retry, and undo; behavior comes from `decision-workspace.js`
 - `.journey-header`, `.journey-map`, `.journey-focus`, `.journey-proof`, `.journey-attention`, `.journey-system-work`, `.journey-inventory` — intent-to-outcome briefing with bounded attention and machine settlement
 - `.record-section`, `.record-list`, `.record-item` — typed heterogeneous operational records with full-text disclosure and optional action rails
 - `.timeline` — vertical dotted rail with mono timestamps
@@ -177,8 +187,11 @@ design_handoff/
 ├── SKILL.md                   # condensed brief for Agent Skills / Claude Code
 ├── tokens.css                 # primitive + semantic tokens (source of truth)
 ├── components.css             # component styles
+├── decision-workspace.js      # framework-neutral decision/action-inbox controller
+├── decision-workspace.d.ts    # public controller and item contract types
 ├── colors_and_type.css        # light re-export of the token vars
 ├── showcase.html              # canonical component reference — open in a browser
+├── decision-workspace-showcase.html # runnable bounded-decision scenario
 ├── playground.html            # token override sandbox
 ├── themes/
 │   ├── carbon.css

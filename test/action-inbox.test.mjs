@@ -39,3 +39,21 @@ test("action inbox example carries meaningful records and durable filters", () =
   assert.match(section, /Release cannot proceed because the deployment checkout is not on main/);
   assert.doesNotMatch(section, /card \d+ of \d+|next card|press j\/k/i);
 });
+
+test("decision and action-inbox behavior ships through the existing family boundary", () => {
+  const contract = read("docs/decision-workspace-contract.md");
+  const packageJson = JSON.parse(read("package.json"));
+  const react = read("react/components.tsx");
+  const showcase = read("decision-workspace-showcase.html");
+
+  assert.deepEqual(packageJson.exports["./decision-workspace"], {
+    types: "./decision-workspace.d.ts",
+    default: "./decision-workspace.js",
+  });
+  assert.match(react, /export function useDecisionWorkspace/);
+  assert.match(react, /Why human authority is required/);
+  assert.match(contract, /DES never calls a product endpoint/);
+  assert.match(contract, /behaviorally complete[\s\S]*production proof still required/i);
+  assert.match(showcase, /Existing decision-\* \+ action-inbox families/);
+  assert.doesNotMatch(showcase, /George|george/);
+});
