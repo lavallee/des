@@ -57,7 +57,9 @@ Before editing:
    because it does not restate every item.
 8. Record the readiness of the closest DES family: documented, visually
    demonstrated, behaviorally complete, or production-proven. Inspect actual
-   task behavior before recommending adoption.
+   task behavior before recommending adoption. A behaviorally complete DES
+   fixture still needs live product persistence evidence before the consumer or
+   family can be called production-proven.
 
 For a project, mission, initiative, or other strategic overview, test whether
 the user's task is to understand a journey rather than inspect inventory. If the
@@ -123,6 +125,10 @@ page decoration into an instrument.
   functional. If the task needs action, state transition, recovery, undo, or
   continuity that the shared reference cannot perform, finish that behavior or
   record a deliberate product-local contract before claiming adoption.
+- For `decision-*` and `action-inbox`, start from
+  `docs/decision-workspace-contract.md` and bind product persistence through its
+  stable handlers/events. Do not copy the showcase's in-memory adapter into a
+  product or fork controller state into route-local behavior.
 - In a journey briefing, organize by authored outcome or chapter. Record kinds
   are drill-down evidence; they do not become the top-level information
   architecture merely because their renderers are reusable.
@@ -217,4 +223,7 @@ The work is done when the representative task completes, the render passes the
 gates at its supported widths, the changed states are exercised, and the receipt
 makes the before/after claim auditable. A list of recommendations is done only
 when the user asked for a review. A visual change is a `candidate` until an
-independent seeing pass or explicit human acceptance promotes it.
+independent seeing pass or explicit human acceptance promotes it. A shared
+behavioral reference is production-proven only after a real consuming route
+supplies live persistence and refresh evidence; DES fixture success alone stops
+at behaviorally complete.

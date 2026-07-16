@@ -100,9 +100,11 @@ consequence remain clear.
 The July 2026 George admin-family audit found entry failures on several routes
 spanning attention, operations, and configuration. That evidence supports a
 shared diagnostic vocabulary. It does **not** establish that every route needs
-the same entry contract, nor that the existing `journey-*`, `decision-*`,
-`action-inbox`, and `record-*` families are functionally complete. Board lanes
-and configuration transactions still carry product-specific state and verbs.
+the same entry contract. At the time of that audit, `decision-*` and
+`action-inbox` were only visually demonstrated; the framework-neutral contract
+and runnable reference now complete their shared behavior without changing the
+product-owned authority, eligibility, or persistence boundary. Board lanes and
+configuration transactions still carry product-specific state and verbs.
 
 ## Component readiness is an evidence ladder
 
@@ -132,6 +134,14 @@ work, this includes real selection/open behavior, authority and consequence,
 resolution, post-action state, error/recovery, undo where safe, and continuity
 after refresh. A decision card whose buttons do not complete a decision is not a
 functional decision component.
+
+The current `decision-*` and `action-inbox` reference is **behaviorally
+complete** in DES. Evidence is the public `decision-workspace.js` controller,
+the React `useDecisionWorkspace` adapter, deterministic transition/callback
+tests, the runnable `decision-workspace-showcase.html`, and dark/light receipts
+at 1440/768/390. See `docs/decision-workspace-contract.md`. This is not a
+production-proven claim: no consuming product's eligibility, authorization,
+endpoint, or durable refresh behavior is exercised by those DES fixtures.
 
 ## Built for an expert operator (density & speed)
 
@@ -213,6 +223,13 @@ Des provides these as `decision-header`, `segmented-nav`, `decision-layout`,
 `decision-rationale`. These classes are a task skeleton, not a skin: product CSS
 may add domain metadata but should not rebuild the composition or violate the
 system's flat-surface, status-color, and instrument-type rules.
+
+`decision-workspace.js` supplies the matching behavior contract for this anatomy
+and for `action-inbox`. It stores interaction continuity and coordinates
+transitions; a product injects resolve/defer/undo handlers and reconciles its own
+refresh results. The stable event stream lets products persist URL/draft state
+and bind telemetry without forking DES. React references subscribe through
+`useDecisionWorkspace`; other frameworks use the controller directly.
 
 The Magpie queue calibration is the failure fixture: the first variant passed
 the model and flow gates but looked under-styled; the repair improved hierarchy
@@ -346,10 +363,19 @@ position. The operator may pick the third record before the first; a visual deal
 order is not a workflow contract.
 
 The collapsed row answers “which thing is this?” with the actual task, question,
-or decision text. Generic headlines such as “needs a decision — fab” fail even
-when the full text appears after expansion. The expanded record carries the
-queue reason, evidence, consequences, and actions. Keyboard next/previous is a
-speed enhancement, never a mechanism that hides the rest of the list.
+or decision text **and why human authority is required**. Generic headlines such
+as “needs a decision — fab” fail even when the full text appears after expansion.
+The expanded record carries the complete deciding text, evidence, history,
+consequences, draft/note, and actions. Keyboard next/previous is a speed
+enhancement, never a mechanism that hides the rest of the list.
+
+Opening and selection are separate state. Opening a record must not check it;
+checking a record for an independently authorized homogeneous bulk operation
+must not open or close it. Resolve and defer expose loading and visible outcome
+states. Failures keep the item and offer retry. Reversible outcomes offer a real
+undo callback; irreversible outcomes state why undo is unavailable. Product
+refresh replaces data through reconciliation without clearing filters, list
+position, the open item, selection, or in-progress notes.
 
 ## Assertions carry actions
 

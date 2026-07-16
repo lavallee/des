@@ -16,14 +16,15 @@ records that as a situational DES checklist, not a universally enforced page
 contract. It deliberately does not add an operations or settings component
 family.
 
-The audit also found that DES was crediting documented CSS and static showcase
-specimens as if they were working components. They are not. In particular,
-`decision-*` and `action-inbox` demonstrate useful anatomy but do not themselves
-complete selection, resolution, post-action consequence, error/recovery, undo,
-or persistence. The corrected DES guidance therefore distinguishes documented,
-visually demonstrated, behaviorally complete, and production-proven patterns.
-Functional completion of existing families precedes new component families and
-precedes claims that a George route has “adopted” them.
+At the readiness-correction baseline, the audit also found that DES was crediting
+documented CSS and static showcase specimens as if they were working components.
+They were not. In particular, `decision-*` and `action-inbox` demonstrated useful
+anatomy but did not themselves complete selection, resolution, post-action
+consequence, error/recovery, undo, or persistence. The corrected DES guidance
+therefore distinguishes documented, visually demonstrated, behaviorally
+complete, and production-proven patterns. Functional completion of existing
+families precedes new component families and precedes claims that a George route
+has “adopted” them; the follow-up section below records the later DES completion.
 
 The most urgent George problem is upstream of presentation. `/triage` renders 76
 records and repeats the branch-protection decision across many entries; the
@@ -46,6 +47,31 @@ concrete example was that the decision cards do not actually complete decisions.
 
 This revision incorporates that feedback. It does not convert the operator's
 acceptance of the diagnosis into acceptance of future implementation.
+
+## DES functional-completion follow-up
+
+The follow-up on branch `fab/functional-decision-workspace` completes the shared
+behavior for the existing `decision-*` and `action-inbox` families without
+editing George or adding a component family. DES now publishes a
+framework-neutral controller, composes it through the existing React references,
+and binds a runnable showcase to an in-memory product adapter. Product
+eligibility, authorization, storage, refresh, and telemetry delivery remain
+outside DES.
+
+The controller and behavior tests exercise independent open/selection state,
+resolve, defer, loading, success, empty, failure/retry, reversible undo,
+non-reversible explanation, refresh reconciliation, and continuity for filters,
+list position, open item, selection, and notes. Deterministic dark/light showcase
+receipts cover 1440, 768, and 390 with focus-indicator, accessibility, console,
+page-error, failed-resource, and overflow checks. The exact public contract and
+evidence coordinates are recorded in `docs/decision-workspace-contract.md` and
+`artifacts/design-receipts/decision-workspace/`.
+
+This raises the DES reference to **behaviorally complete**. George routes remain
+at their evidence level from this audit; no live George decision was completed
+or refreshed by this PR. **Production-proven remains unclaimed.** Visual/design
+verdict remains `candidate` because there is no independent seeing pass or new
+explicit human acceptance for the follow-up.
 
 ## Evidence contract and coordinates
 
@@ -206,8 +232,8 @@ documented → visually demonstrated → behaviorally complete → production-pr
 | Existing family | Routes tested | Highest demonstrated readiness | Missing behavior / corrected decision |
 |---|---|---|---|
 | `journey-*` | `/p/george`, compared with `/` and `/projects` | production-proven for the orientation/reading task on `/p/george` | keep as the journey reference; product-local actions remain separately tested and it is not a generic workflow shell |
-| `decision-*` | `/decisions`, `/triage`, `/prs` | visually demonstrated | anatomy is useful, but the shared reference does not complete selection, resolve/defer, consequence, success, error/recovery, undo, or persistence; finish behavior before recommending adoption |
-| `action-inbox` | `/decisions`, `/triage`, `/prs` | visually demonstrated | filters and independent rows are shown, not behaviorally proven; add runnable selection/open/action/post-action/continuity behavior, then prove it in one production route |
+| `decision-*` | DES runnable reference; `/decisions`, `/triage`, `/prs` | behaviorally complete in DES; George routes remain visually demonstrated | shared selection, resolve/defer, consequence, success, error/retry, undo, and continuity now have deterministic evidence; complete a real George decision and refresh before claiming production proof |
+| `action-inbox` | DES runnable reference; `/decisions`, `/triage`, `/prs` | behaviorally complete in DES; George routes remain visually demonstrated | framework-neutral controller and showcase prove independent rows, filters, transitions, and continuity; durable George eligibility, persistence, and telemetry still need live evidence |
 | `record-*` | `/p/george`, `/prs`, `/runs`, `/board` | visually demonstrated renderer | retain as typed representation; do not call it a workflow component or infer working verbs from static action slots |
 
 No new component clears the evidence bar. Operations repeat across `/board`,
@@ -228,16 +254,17 @@ depends on them.
 
 - Target: DES `decision-*` and `action-inbox`, then one George `/decisions`
   production proof slice after the DES contract lands.
-- Current readiness: visually demonstrated, not behaviorally complete.
+- Current readiness: behaviorally complete in DES after the functional follow-up;
+  not production-proven in George.
 - Behavior/state change: provide a runnable reference for independent
   selection/open, authority reason, full deciding evidence, primary and
   secondary consequence, resolve/defer, loading, success, empty, error and retry,
   safe undo, and persistence of filters/list position/open record across action
   and refresh.
-- Acceptance evidence: browser tests exercise the actual transitions rather
-  than searching CSS; showcase receipts cover all reachable states at supported
-  widths; the George reference route completes a real decision and reflects its
-  durable state after refresh.
+- Acceptance evidence: DES behavior tests now exercise actual transitions and
+  callbacks rather than searching CSS; showcase receipts cover both themes at
+  supported widths. Remaining George evidence: a reference route completes a
+  real decision and reflects its durable state after refresh.
 - Boundary: DES supplies task anatomy, state/behavior contract, and a runnable
   reference. George owns endpoints, authority rules, durable storage, and domain
   language. Do not manufacture a new family.
@@ -360,7 +387,7 @@ depends on them.
 - Intentional exception: automated checks may establish `candidate`, never
   `ship` without independent seeing or explicit human acceptance.
 
-## DES material delta and receipt
+## Readiness-correction material delta and receipt (PR #4)
 
 The DES change adds no component and no product CSS. It:
 
@@ -395,12 +422,13 @@ Requested model: `opus` (commission launch request).
 Served model: `unknown` (the bridge and DES audit receipt do not expose it).
 Independent judge: `false`.
 Promotion authority: `none`.
-Material delta: corrected guidance/showcase/test contract only; no George change
-and no new DES component family. Existing decision behavior remains explicitly
-commissioned follow-up work, not a claim of this PR.
+Material delta for PR #4: corrected guidance/showcase/test contract only; no
+George change and no new DES component family. Decision behavior was explicitly
+commissioned follow-up work at that revision; the functional-completion section
+above records its later DES evidence without rewriting this historical receipt.
 
 Verdict: `candidate`. The operator accepted the audit's core diagnoses and
 migration priorities, rejected universal enforcement of page-entry grammar, and
 identified nonfunctional existing decision components. This revision records
-that feedback; future behavioral and George visual changes remain separately
-reviewable.
+that feedback. The DES behavioral follow-up remains separately reviewable from
+any George adoption or visual change.

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-07-16T14:12:47.786Z",
+  "capturedAt": "2026-07-16T14:46:26.862Z",
   "task": "Find and inspect a system pattern",
   "surface": "DES component showcase",
   "url": "http://127.0.0.1:4173/showcase.html",
   "arm": "variant",
-  "revision": "5f57106+dirty",
+  "revision": "a260f80+dirty",
   "tool": {
     "agentBrowser": "agent-browser 0.22.1"
   },
@@ -209,7 +209,7 @@
         "render": {
           "styleSheetCount": 4,
           "visibleGraphicCount": 1,
-          "visibleTextCharacters": 22697
+          "visibleTextCharacters": 22846
         },
         "accessibility": {
           "duplicateIds": [],
@@ -219,15 +219,15 @@
           "imagesWithoutAlt": []
         },
         "performance": {
-          "domContentLoadedMs": 385,
+          "domContentLoadedMs": 334,
           "failedResources": [],
-          "loadMs": 519,
+          "loadMs": 459,
           "paints": {
-            "first-paint": 396,
-            "first-contentful-paint": 396
+            "first-paint": 352,
+            "first-contentful-paint": 352
           },
           "resourceCount": 4,
-          "transferKb": 114
+          "transferKb": 119
         }
       },
       "consoleEntries": [],
@@ -431,7 +431,7 @@
         "render": {
           "styleSheetCount": 4,
           "visibleGraphicCount": 1,
-          "visibleTextCharacters": 22397
+          "visibleTextCharacters": 22546
         },
         "accessibility": {
           "duplicateIds": [],
@@ -441,15 +441,15 @@
           "imagesWithoutAlt": []
         },
         "performance": {
-          "domContentLoadedMs": 488,
+          "domContentLoadedMs": 332,
           "failedResources": [],
-          "loadMs": 651,
+          "loadMs": 439,
           "paints": {
-            "first-paint": 500,
-            "first-contentful-paint": 500
+            "first-paint": 340,
+            "first-contentful-paint": 340
           },
           "resourceCount": 4,
-          "transferKb": 114
+          "transferKb": 119
         }
       },
       "consoleEntries": [],
@@ -653,7 +653,7 @@
         "render": {
           "styleSheetCount": 4,
           "visibleGraphicCount": 1,
-          "visibleTextCharacters": 22366
+          "visibleTextCharacters": 22515
         },
         "accessibility": {
           "duplicateIds": [],
@@ -663,15 +663,15 @@
           "imagesWithoutAlt": []
         },
         "performance": {
-          "domContentLoadedMs": 500,
+          "domContentLoadedMs": 404,
           "failedResources": [],
-          "loadMs": 654,
+          "loadMs": 574,
           "paints": {
-            "first-paint": 508,
-            "first-contentful-paint": 508
+            "first-paint": 416,
+            "first-contentful-paint": 416
           },
           "resourceCount": 4,
-          "transferKb": 114
+          "transferKb": 119
         }
       },
       "consoleEntries": [],

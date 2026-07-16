@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DES functional decision workspace</title>
+  <link rel="icon" href="data:,">
+  <script>
+    const requestedTheme = new URLSearchParams(location.search).get('theme');
+    if (requestedTheme === 'light') document.documentElement.dataset.theme = 'light';
+  </script>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+</head>
+<body>
+  <div class="shell shell--single">
+    <header class="shell-header">
+      <a class="shell-header__brand" href="showcase.html#action-inbox">design system</a>
+      <span class="shell-header__meta">functional decision workspace · candidate</span>
+      <label class="sr-only" for="scenario-theme">Theme</label>
+      <select class="filter-select" id="scenario-theme">
+        <option value="dark">Dark theme</option>
+        <option value="light">Light theme</option>
+      </select>
+    </header>
+
+    <main class="shell-main">
+      <div class="content-wrap">
+        <header class="decision-header">
+          <div class="decision-header__copy">
+            <div class="decision-header__kicker">Existing decision-* + action-inbox families</div>
+            <h1 class="decision-header__title">Bounded decision workspace</h1>
+            <p class="decision-header__lede">Open a decision without selecting it for a bulk operation, inspect the full deciding record, then resolve or defer it through real loading, success, retry, and undo states.</p>
+          </div>
+          <span class="badge badge--accent">Runnable reference</span>
+        </header>
+
+        <section aria-labelledby="scenario-heading">
+          <h2 class="sr-only" id="scenario-heading">Decision inbox scenario</h2>
+          <div class="action-inbox__scenario-controls">
+            <button class="btn btn--secondary btn--sm" id="refresh-workspace" type="button">Refresh product data</button>
+            <button class="btn btn--ghost btn--sm" id="reset-workspace" type="button">Reset deterministic scenario</button>
+            <span class="badge badge--neutral" id="event-count">0 stable events</span>
+          </div>
+          <div id="decision-workspace-demo"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="decision-workspace-showcase.js"></script>
+</body>
+</html>

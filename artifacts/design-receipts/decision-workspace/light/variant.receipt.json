@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-16T14:46:12.967Z",
+  "task": "Inspect a human-authority decision, act, and understand recovery",
+  "surface": "DES functional decision workspace (light)",
+  "url": "http://127.0.0.1:4549/decision-workspace-showcase.html?theme=light&audit=1",
+  "arm": "variant",
+  "revision": "a260f80+dirty",
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 3000,
+    "maxResources": 100,
+    "maxTransferKb": 2048
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "variant/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "DES functional decision workspace",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Bounded decision workspace"
+            },
+            {
+              "level": 2,
+              "text": "Decision inbox scenario"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1434,
+          "scrollWidth": 1434
+        },
+        "render": {
+          "styleSheetCount": 2,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 2340
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 72,
+          "failedResources": [],
+          "loadMs": 74,
+          "paints": {
+            "first-paint": 68,
+            "first-contentful-paint": 68
+          },
+          "resourceCount": 4,
+          "transferKb": 150
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/wide.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "variant/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "DES functional decision workspace",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Bounded decision workspace"
+            },
+            {
+              "level": 2,
+              "text": "Decision inbox scenario"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 762,
+          "scrollWidth": 762
+        },
+        "render": {
+          "styleSheetCount": 2,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 2340
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 75,
+          "failedResources": [],
+          "loadMs": 77,
+          "paints": {
+            "first-paint": 72,
+            "first-contentful-paint": 72
+          },
+          "resourceCount": 4,
+          "transferKb": 150
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/tablet.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "variant/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "DES functional decision workspace",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Bounded decision workspace"
+            },
+            {
+              "level": 2,
+              "text": "Decision inbox scenario"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 384,
+          "scrollWidth": 384
+        },
+        "render": {
+          "styleSheetCount": 2,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 2340
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 74,
+          "failedResources": [],
+          "loadMs": 77,
+          "paints": {
+            "first-paint": 60,
+            "first-contentful-paint": 60
+          },
+          "resourceCount": 4,
+          "transferKb": 150
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/mobile.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "verdict": "pass"
+}

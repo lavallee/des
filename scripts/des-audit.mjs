@@ -156,6 +156,7 @@ function browserCall(binary, session, args) {
 }
 
 function browserAudit(isHiddenByClosedDetails, focusableSelector) {
+  const initialScroll = { left: window.scrollX, top: window.scrollY };
   const visible = (element) => {
     const style = getComputedStyle(element);
     if (element.getClientRects().length === 0 || style.visibility === "hidden" || style.display === "none") {
@@ -216,6 +217,10 @@ function browserAudit(isHiddenByClosedDetails, focusableSelector) {
     if (!outline && !shadow && !changed) focusWithoutIndicator.push(describe(element));
   }
   document.activeElement?.blur?.();
+  // Focusing every control is necessary for the indicator audit, but it can
+  // scroll the page and displace sticky chrome in the full-page receipt. Put
+  // the page back at its task-entry coordinate before capture.
+  window.scrollTo(initialScroll);
 
   const navigation = performance.getEntriesByType("navigation")[0];
   const resources = performance.getEntriesByType("resource");

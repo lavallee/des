@@ -1,6 +1,6 @@
 {
   "name": "@lavallee/des",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Design system for the Lyra Forge tool family",
   "license": "MIT",
   "type": "module",
@@ -8,10 +8,15 @@
     "des-audit": "scripts/des-audit.mjs"
   },
   "scripts": {
+    "audit:decision-workspace": "node scripts/audit-decision-showcase.mjs",
     "audit:showcase": "node scripts/des-audit.mjs --url http://127.0.0.1:4173/showcase.html --task 'Find and inspect a system pattern' --surface 'DES component showcase' --out artifacts/design-receipts/showcase",
     "test": "node --test"
   },
   "exports": {
+    "./decision-workspace": {
+      "types": "./decision-workspace.d.ts",
+      "default": "./decision-workspace.js"
+    },
     "./tokens.css": "./tokens.css",
     "./components.css": "./components.css",
     "./colors_and_type.css": "./colors_and_type.css",
@@ -20,6 +25,10 @@
     "./themes/parchment.css": "./themes/parchment.css"
   },
   "files": [
+    "decision-workspace.js",
+    "decision-workspace.d.ts",
+    "decision-workspace-showcase.html",
+    "decision-workspace-showcase.js",
     "tokens.css",
     "components.css",
     "colors_and_type.css",
