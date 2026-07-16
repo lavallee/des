@@ -41,7 +41,8 @@ point. After repairing it, rescan every higher layer through the rendered surfac
 Before editing:
 
 1. Name one representative task in the user's words.
-2. Record the route, state, production-shaped data, and current result count.
+2. Record the route, surface archetype (orientation, attention, operations, or
+   configuration), state, production-shaped data, and current result count.
 3. Capture 1440, 768, and 390 px renders when the surface supports them.
 4. Walk the task with keyboard and pointer; record console errors, overflow,
    focus failures, and unavailable actions.
@@ -50,6 +51,9 @@ Before editing:
 6. Name the closest composed system pattern. If the page is assembled only from
    primitives (shell + generic cards + inputs), record that as a component gap,
    not as successful design-system adoption.
+7. In the first task region, locate scope, operator task, current state/proof,
+   and next move/consequence. Record any missing fact; do not infer it from the
+   route name or source code.
 
 For a project, mission, initiative, or other strategic overview, test whether
 the user's task is to understand a journey rather than inspect inventory. If the
@@ -79,6 +83,7 @@ selection. Keep it short enough to remain the strongest instruction in context.
 - Lowest unresolved layer:
 - Existing system to preserve:
 - Named system pattern or documented gap:
+- Page-entry proof (scope, task, state/proof, next move/consequence):
 - Reference and mechanism borrowed:
 - Anti-reference / behavior to avoid:
 - Flow and states (entry, action, success, empty, error, recovery):
@@ -106,6 +111,9 @@ page decoration into an instrument.
 - Fix the lowest unresolved layer first. A queue may need eligibility and
   freshness rules before it needs better cards.
 - Keep machine work with the machine and reserve human attention for judgment.
+- Preserve the shared page-entry grammar without forcing unlike archetypes into
+  one header or panel layout. Journey, attention, operations, and configuration
+  should expose the same four entry facts through their own composed patterns.
 - In a journey briefing, organize by authored outcome or chapter. Record kinds
   are drill-down evidence; they do not become the top-level information
   architecture merely because their renderers are reusable.

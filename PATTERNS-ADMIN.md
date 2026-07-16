@@ -64,6 +64,44 @@ examples of craft-compliant screens failing these questions. Corollaries:
   text, rendered)", not three unlabeled links that may or may not be the
   same object.
 
+## Shared page-entry grammar, not one generic header
+
+Consistency begins in the first viewport, before the operator encounters the
+surface's local composition. Every admin route exposes four entry facts:
+
+1. **Scope:** the object, queue, time window, environment, or policy being
+   inspected.
+2. **Operator task:** the judgment, monitoring question, or configuration
+   responsibility this route supports.
+3. **Current state and proof:** the smallest state summary that changes what the
+   operator should do, with freshness or evidence where state can drift.
+4. **Next move and consequence:** the primary route into work, including what a
+   successful action changes and where recovery lives.
+
+This is a grammar, not a `PageHeader` component. Unlike tasks must remain
+visibly unlike:
+
+| Surface archetype | Entry emphasis | Named DES pattern or rule |
+|---|---|---|
+| Orientation / strategic overview | authored intent, evidence-backed assessment, movement, bounded attention | `journey-*` briefing |
+| Attention / bounded decisions | eligibility, result count, ranking or aging, independent selection, settlement consequence | `decision-*` workspace or `action-inbox` |
+| Operations / run monitoring | live versus settled state, evidence freshness, error or blocker, recovery path | `record-*` renderers plus **Live activity & logs**; keep lifecycle boards local |
+| Configuration / policy | current value, effective scope, validation, consequence, safe apply and revert | compose system controls locally until a repeated settings family is proven |
+
+A shell breadcrumb plus `h1` and a descriptive sentence does not satisfy this
+contract. Neither does copying the same hero, stat row, or card grid onto every
+route. Products may distribute the four facts across a journey header, queue
+contract, state band, inspector, or persistent apply rail, but all four must be
+locatable without scrolling past the first task region.
+
+This rule was promoted after the July 2026 George admin-family audit found the
+same entry failure on seven production routes spanning attention, operations,
+and configuration. That evidence supports a shared rule. It does **not** support
+a new operations or settings component family: the existing `journey-*`,
+`decision-*`, `action-inbox`, and `record-*` families cover the repeated anatomy,
+while board lanes and configuration transactions still carry product-specific
+state and verbs.
+
 ## Built for an expert operator (density & speed)
 
 These are instruments for a trained daily operator, not consumer surfaces.

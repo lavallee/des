@@ -702,6 +702,7 @@
     </div>
     <div class="nav-section">
       <div class="nav-label">Patterns</div>
+      <a class="nav-item" href="#admin-page-entry">Admin Page Entry</a>
       <a class="nav-item" href="#layout">Layouts</a>
       <a class="nav-item" href="#navigation">Navigation</a>
       <a class="nav-item" href="#viz">Visualization</a>
@@ -1091,6 +1092,59 @@
           <button class="filter-clear">clear all</button>
         </div>
         <div class="dim">Debounce text inputs 300–400ms. Represent active filters as chips. Preserve filter state in URL query params.</div>
+      </div>
+    </section>
+
+    <!-- ── ADMIN PAGE ENTRY ───────────────────────────────────────── -->
+    <section class="section" id="admin-page-entry" data-des-rule="page-entry-grammar">
+      <h2 class="section-title">Admin Page Entry Grammar</h2>
+      <p class="section-desc">One first-viewport proof contract across the admin family: scope, operator task, current state and proof, then the next move and consequence. The composition stays specific to the task.</p>
+
+      <div class="demo">
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Archetype</th>
+                <th>Scope + operator task</th>
+                <th>Current state + proof</th>
+                <th>Next move + consequence</th>
+                <th>Named pattern</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-page-entry-archetype="orientation">
+                <td><strong>Orientation</strong></td>
+                <td>Authored mission and the strategic question for this review.</td>
+                <td>Evidence-backed assessment, movement, and missing proof.</td>
+                <td>Open the current focus; resolve bounded attention without turning inventory into the journey.</td>
+                <td><code>journey-*</code></td>
+              </tr>
+              <tr data-page-entry-archetype="attention">
+                <td><strong>Attention</strong></td>
+                <td>Eligibility contract and the human judgment the queue reserves.</td>
+                <td>Ready count, ranking or aging rule, and why each item remains unsettled.</td>
+                <td>Open any item or apply a bounded disposition; state removal and undo behavior.</td>
+                <td><code>decision-*</code> / <code>action-inbox</code></td>
+              </tr>
+              <tr data-page-entry-archetype="operations">
+                <td><strong>Operations</strong></td>
+                <td>Run set, environment, and monitoring question.</td>
+                <td>Live versus settled status, freshness, evidence, and error or blocker.</td>
+                <td>Inspect evidence, recover or rerun, and show the resulting state transition.</td>
+                <td><code>record-*</code> + live-activity rules</td>
+              </tr>
+              <tr data-page-entry-archetype="configuration">
+                <td><strong>Configuration</strong></td>
+                <td>Effective scope and the setting or policy being changed.</td>
+                <td>Current value, provenance, validation, and pending draft state.</td>
+                <td>Apply safely, state the consequence, and keep cancel or revert adjacent.</td>
+                <td>Local composition until a repeated family is proven</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="dim">This rule deliberately does not ship a universal page-header component. Journey briefings, attention queues, operational monitors, and settings workbenches keep distinct hierarchy, density, state, and verbs.</p>
       </div>
     </section>
 

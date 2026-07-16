@@ -39,6 +39,12 @@ At each screen, answerable without clicking away:
 4. **What happens next?** Each action states or implies its consequence;
    empty/idle states name what fills them or what's scheduled.
 
+The first task region must make scope, operator task, current state/proof, and
+next move/consequence locatable without reading the entire page. A breadcrumb,
+route title, and generic description do not pass as page entry. This is a shared
+grammar, not a requirement that orientation, attention, operations, and
+configuration use the same header component.
+
 ## Gate 1.5 — flow and authority (pass/fail per task)
 
 - The representative task has a named entry, action, success state, and recovery
@@ -127,9 +133,9 @@ GATE 1: per-screen pass|fail, each failure = {region, question, evidence}
 SECTIONS 2–4: score + findings [{region, criterion, evidence, suggested fix}]
 VERDICT: ship | candidate | fix-then-reshoot | fails-gate
 RECEIPT: baseline revision/routes/screenshots, variant revision/screenshots,
-functional/a11y/console/overflow checks, requested/served model, independent judge,
-promotion authority, material delta, post-implementation feedback, and deferred
-findings
+surface archetype and page-entry proof, functional/a11y/console/overflow checks,
+requested/served model, independent judge, promotion authority, material delta,
+post-implementation feedback, and deferred findings
 ```
 
 `ship` for a visual change requires an independent seeing pass or explicit human

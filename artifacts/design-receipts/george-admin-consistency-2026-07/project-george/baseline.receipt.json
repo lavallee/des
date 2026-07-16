@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-16T13:25:13.316Z",
+  "task": "Understand George progress, proof, uncertainty, and the next bounded action",
+  "surface": "George project overview",
+  "url": "http://dash-main:7879/p/george?theme=dark",
+  "arm": "baseline",
+  "revision": "dash-main:7879@0.0.1",
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 10000,
+    "maxResources": 200,
+    "maxTransferKb": 4096
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "baseline/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "george · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "george"
+            },
+            {
+              "level": 2,
+              "text": "State of the journey"
+            },
+            {
+              "level": 3,
+              "text": "every projection is current enough to act on"
+            },
+            {
+              "level": 3,
+              "text": "the operator hand contains decisions, not a feed"
+            },
+            {
+              "level": 3,
+              "text": "commissions are durable intent contracts"
+            },
+            {
+              "level": 3,
+              "text": "released work teaches the next decision"
+            },
+            {
+              "level": 2,
+              "text": "every projection is current enough to act on"
+            },
+            {
+              "level": 2,
+              "text": "9 unique decisions"
+            },
+            {
+              "level": 3,
+              "text": "should the 2026-07-07 keyboard-verb proposal be adapted to George's current shared-deck architecture or retired?"
+            },
+            {
+              "level": 3,
+              "text": "should system-proposed ideas ever change the work lane automatically now that george PR #85 deliberately demotes machine"
+            },
+            {
+              "level": 3,
+              "text": "when should George generate machine-authored scope and acceptance-criteria drafts for shaping forms, and where should th"
+            },
+            {
+              "level": 2,
+              "text": "Reduce the backlog before asking for attention"
+            },
+            {
+              "level": 2,
+              "text": "Boundary before portfolio"
+            },
+            {
+              "level": 2,
+              "text": "Latest source activity"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1434,
+          "scrollWidth": 1434
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 5540
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 406,
+          "failedResources": [],
+          "loadMs": 458,
+          "paints": {
+            "first-paint": 560,
+            "first-contentful-paint": 560
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/wide.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "baseline/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "george · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "george"
+            },
+            {
+              "level": 2,
+              "text": "State of the journey"
+            },
+            {
+              "level": 3,
+              "text": "every projection is current enough to act on"
+            },
+            {
+              "level": 3,
+              "text": "the operator hand contains decisions, not a feed"
+            },
+            {
+              "level": 3,
+              "text": "commissions are durable intent contracts"
+            },
+            {
+              "level": 3,
+              "text": "released work teaches the next decision"
+            },
+            {
+              "level": 2,
+              "text": "every projection is current enough to act on"
+            },
+            {
+              "level": 2,
+              "text": "9 unique decisions"
+            },
+            {
+              "level": 3,
+              "text": "should the 2026-07-07 keyboard-verb proposal be adapted to George's current shared-deck architecture or retired?"
+            },
+            {
+              "level": 3,
+              "text": "should system-proposed ideas ever change the work lane automatically now that george PR #85 deliberately demotes machine"
+            },
+            {
+              "level": 3,
+              "text": "when should George generate machine-authored scope and acceptance-criteria drafts for shaping forms, and where should th"
+            },
+            {
+              "level": 2,
+              "text": "Reduce the backlog before asking for attention"
+            },
+            {
+              "level": 2,
+              "text": "Boundary before portfolio"
+            },
+            {
+              "level": 2,
+              "text": "Latest source activity"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 762,
+          "scrollWidth": 762
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 5409
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 417,
+          "failedResources": [],
+          "loadMs": 457,
+          "paints": {
+            "first-paint": 548,
+            "first-contentful-paint": 548
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/tablet.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "baseline/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "george · george",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "george"
+            },
+            {
+              "level": 2,
+              "text": "State of the journey"
+            },
+            {
+              "level": 3,
+              "text": "every projection is current enough to act on"
+            },
+            {
+              "level": 3,
+              "text": "the operator hand contains decisions, not a feed"
+            },
+            {
+              "level": 3,
+              "text": "commissions are durable intent contracts"
+            },
+            {
+              "level": 3,
+              "text": "released work teaches the next decision"
+            },
+            {
+              "level": 2,
+              "text": "every projection is current enough to act on"
+            },
+            {
+              "level": 2,
+              "text": "9 unique decisions"
+            },
+            {
+              "level": 3,
+              "text": "should the 2026-07-07 keyboard-verb proposal be adapted to George's current shared-deck architecture or retired?"
+            },
+            {
+              "level": 3,
+              "text": "should system-proposed ideas ever change the work lane automatically now that george PR #85 deliberately demotes machine"
+            },
+            {
+              "level": 3,
+              "text": "when should George generate machine-authored scope and acceptance-criteria drafts for shaping forms, and where should th"
+            },
+            {
+              "level": 2,
+              "text": "Reduce the backlog before asking for attention"
+            },
+            {
+              "level": 2,
+              "text": "Boundary before portfolio"
+            },
+            {
+              "level": 2,
+              "text": "Latest source activity"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 384,
+          "scrollWidth": 384
+        },
+        "render": {
+          "styleSheetCount": 7,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 5409
+        },
+        "accessibility": {
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 402,
+          "failedResources": [],
+          "loadMs": 455,
+          "paints": {
+            "first-paint": 540,
+            "first-contentful-paint": 540
+          },
+          "resourceCount": 7,
+          "transferKb": 120
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "baseline/mobile.png",
+      "failures": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "verdict": "pass"
+}
