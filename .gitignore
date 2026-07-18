@@ -2,3 +2,11 @@
 .somm
 *.zip
 *.png
+website/site/assets/
+website/site/data/
+website/site/themes/
+website/site/ui-kits/
+website/site/colors_and_type.css
+website/site/components.css
+website/site/showcase.html
+website/site/tokens.css

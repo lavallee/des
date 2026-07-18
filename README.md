@@ -1,8 +1,10 @@
-# Handoff: Lyra Forge Design System
+# DES — audience-aware design practice
 
 ## Overview
 
-This bundle contains **DES**, an audience-aware design practice plus the Lyra
+**[Explore the public documentation →](https://lavallee.github.io/des/)**
+
+DES is an audience-aware design practice plus the Lyra
 Forge production vocabulary. It is not one visual personality for every site.
 The shared floor covers task clarity, accessibility, evidence honesty, semantic
 tokens, responsive behavior, and rendered proof; the selected surface mode owns
@@ -23,7 +25,11 @@ Read `modes/README.md` and the selected mode before choosing a visual direction.
 Mode defaults and the independent variance, density, motion, type, and imagery
 dials prevent both accidental sameness and random style changes.
 
-The tool family that originally motivated the system: **barnowl** (claims research), **keel** (dashboard / reference impl), **tern** (geographic live-feed), **steve** (public claim records), **weaver** (data-viz publishing).
+The Lyra Forge tool family is the worked example: **barnowl** (claims research),
+**keel** (dashboard / reference implementation), **tern** (geographic
+live-feed), **steve** (public claim records), and **weaver** (data-viz
+publishing). Other teams should preserve the audience/task contract while
+replacing Lyra’s nouns, states, references, and visual identity with their own.
 
 ## About the files in this bundle
 
@@ -35,7 +41,7 @@ The files here are a mix of **production-ready system code** and **design refere
 | `components.css` | Production | Drop in as-is. Vanilla CSS — framework-agnostic. |
 | `themes/` | Production | Drop in as-is. Applied via `[data-theme="…"]` on any ancestor. |
 | `react/` | Production reference | Radix + CVA React implementations. Port to your stack (React, Vue, SwiftUI) using the same token names and behavior. |
-| `fonts.html` snippet | Production | Copy the `<link>` tag into your `<head>`. |
+| `colors_and_type.css` | Production | Optional Lyra Forge color and typography roles. Import only when that vocabulary fits. |
 | `assets/` | Production | SVG icons, Lyra Forge wordmark. Drop in. |
 | `ui-kits/` | **Design reference** | HTML prototypes of each product and mode. Not production code — study for layout, density, interaction patterns. |
 | `showcase.html` | **Design reference** | Canonical render of every component. Open in a browser and compare against your implementation. |
@@ -66,7 +72,8 @@ being forced through the operator system.
 ### Minimum viable integration (any web stack)
 
 1. Copy `tokens.css` and `components.css` into your stylesheet pipeline.
-2. Add the Google Fonts `<link>` to your document `<head>` (see `fonts.html`).
+2. If you use the Lyra Forge vocabulary, load the families listed under
+   “Shipped Lyra Forge typography,” or map those roles to your own local fonts.
 3. Wrap your app root in `<html data-theme="dark">` (or `light`, `carbon`, `slate`, `parchment`).
 4. If you want a named theme beyond dark/light, also import the theme file: `themes/carbon.css`, `themes/slate.css`, or `themes/parchment.css`.
 5. Use the component classes directly, or re-export them as your framework's components (see React reference).

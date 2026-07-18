@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-surface-mode="public-data">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build a deterministic DES profile for a surface mode, harness, model tier, and declared capabilities.">
+  <meta name="theme-color" content="#f4f0e7">
+  <title>DES profile builder</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111111'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='30' font-weight='700' fill='white'%3ED%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../lib/artoo-kit/tokens.css"><link rel="stylesheet" href="../lib/artoo-kit/base.css"><link rel="stylesheet" href="../site.css">
+  <script src="../app.js" defer></script>
+</head>
+<body data-base="../" data-page="profile">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <a class="site-brand" href="../" aria-label="DES home"><span>D</span> DES</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span>Menu</span><span aria-hidden="true">↘</span></button>
+    <nav class="site-navigation" id="site-navigation" aria-label="Primary">
+      <a href="../start/">Start</a><a href="../modes/">Modes</a><a href="../profile/" aria-current="page">Profile builder</a><a href="../practice/">Practice</a><a href="../examples/">Examples</a><a class="nav-github" href="https://github.com/lavallee/des">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main class="doc-main" id="content">
+    <header class="doc-hero">
+      <div class="doc-hero-aside"><p class="doc-label">Profile builder<br>Self-declared tuple</p></div>
+      <div class="doc-hero-copy">
+        <p class="page-kicker">Mode × model × harness × capability</p>
+        <h1>Name the conditions.</h1>
+        <p class="doc-dek">A design result is only meaningful in the context that produced and inspected it. Generate the exact DES contract before implementation.</p>
+      </div>
+    </header>
+
+    <section class="doc-section" aria-labelledby="builder-title">
+      <header><p class="doc-label">01<br>Configure</p></header>
+      <div class="doc-content">
+        <h2 id="builder-title">Build the semantic profile.</h2>
+        <p>The browser builder mirrors the CLI’s canonical payload and 12-character digest. Run the emitted command in the repository to create the authoritative Markdown or JSON profile.</p>
+        <div class="profile-builder">
+          <form class="profile-form" id="profile-builder-form">
+            <div class="profile-field">
+              <label for="profile-mode">Surface mode</label>
+              <select id="profile-mode" name="mode">
+                <option value="operator">Operator</option>
+                <option value="public-data" selected>Public data</option>
+                <option value="editorial">Editorial</option>
+                <option value="marketing">Marketing</option>
+              </select>
+            </div>
+            <div class="profile-field-row">
+              <div class="profile-field">
+                <label for="profile-harness">Harness</label>
+                <select id="profile-harness" name="harness">
+                  <option value="codex">Codex</option>
+                  <option value="claude-code">Claude Code</option>
+                  <option value="cursor">Cursor</option>
+                  <option value="generic">Generic</option>
+                </select>
+              </div>
+              <div class="profile-field">
+                <label for="profile-tier">Model tier</label>
+                <select id="profile-tier" name="modelTier">
+                  <option value="frontier">Frontier</option>
+                  <option value="standard">Standard</option>
+                  <option value="compact">Compact</option>
+                </select>
+              </div>
+            </div>
+            <div class="profile-field-row">
+              <div class="profile-field">
+                <label for="profile-requested">Requested model</label>
+                <input id="profile-requested" name="requestedModel" value="gpt-5" autocomplete="off">
+              </div>
+              <div class="profile-field">
+                <label for="profile-served">Served model</label>
+                <input id="profile-served" name="servedModel" value="gpt-5" autocomplete="off">
+              </div>
+            </div>
+            <fieldset class="profile-field">
+              <legend class="doc-label">Declared capabilities</legend>
+              <div class="capability-list">
+                <label><input type="checkbox" name="capabilities" value="browser" checked> Browser execution</label>
+                <label><input type="checkbox" name="capabilities" value="visual-input" checked> Visual input</label>
+                <label><input type="checkbox" name="capabilities" value="image-generation"> Image generation</label>
+              </div>
+            </fieldset>
+          </form>
+
+          <section class="profile-output" aria-live="polite" aria-labelledby="profile-output-title">
+            <p class="page-kicker">Generated contract</p>
+            <h2 id="profile-output-title">Your profile</h2>
+            <p class="profile-id" data-profile-id>des-public-data-frontier-c936737aee21</p>
+            <pre><code id="profile-command" data-profile-command>des-profile \
+  --mode public-data \
+  --harness codex \
+  --requested-model 'gpt-5' \
+  --served-model 'gpt-5' \
+  --model-tier frontier \
+  --capability browser \
+  --capability visual-input \
+  --format markdown</code></pre>
+            <button class="copy-button" type="button" data-copy-target="#profile-command">Copy command</button>
+            <dl class="profile-contracts">
+              <div><dt>Surface objective</dt><dd data-profile-objective>Make comparison, uncertainty, provenance, and the path from overview to detail legible</dd></div>
+              <div><dt>Context strategy</dt><dd data-profile-context>Load the shared floor and selected mode, then use references only for unresolved decisions.</dd></div>
+              <div><dt>Harness contract</dt><dd data-profile-harness>Inspect the owning surface and attach browser evidence.</dd></div>
+              <div><dt>Proof ceiling</dt><dd data-profile-proof>Browser evidence and independent seeing are required; the maximum autonomous verdict is candidate.</dd></div>
+            </dl>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" aria-labelledby="meaning-title">
+      <header><p class="doc-label">02<br>Interpret</p></header>
+      <div class="doc-content">
+        <h2 id="meaning-title">What changes—and what cannot.</h2>
+        <div class="doc-grid">
+          <article><h3>Mode</h3><p>Changes the audience, objective, default style range, closest reference, and mode-specific proof questions.</p></article>
+          <article><h3>Model tier</h3><p>Changes context size, instruction explicitness, reference loading, variation strategy, and the need for external seeing.</p></article>
+          <article><h3>Harness</h3><p>Changes how context is supplied, which tools can be exercised, and how browser or provider evidence is attached.</p></article>
+          <article><h3>Capabilities</h3><p>Set the proof ceiling. A model that cannot render or see must not claim rendered or perceptual correctness.</p></article>
+        </div>
+        <aside class="doc-callout"><strong>Never tuned by the profile</strong><p>The tuple does not assign a visual style to a model. It must not force a theme, motion library, conversion formula, stock imagery, or hidden overflow to compensate for presumed model behavior.</p></aside>
+      </div>
+    </section>
+
+    <section class="doc-section" aria-labelledby="attestation-title">
+      <header><p class="doc-label">03<br>Limit</p></header>
+      <div class="doc-content">
+        <h2 id="attestation-title">A digest is not provider telemetry.</h2>
+        <p>The profile ID hashes the declarations in this form. It proves that the tuple stayed stable between the profile and its receipt. It does not prove which provider served the call or which capabilities were actually exercised.</p>
+        <p>When routing, fallback, or provider identity affects promotion, attach a provider or evaluation-runner receipt that corroborates the requested and served model.</p>
+        <p><a class="button button-primary" href="../practice/">Continue to the practice <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <div><a class="site-brand footer-brand" href="../"><span>D</span> DES</a><p>Bind the design claim to the conditions that produced it.</p></div>
+    <div><p class="footer-label">Next</p><a href="../practice/">Practice</a><a href="../examples/">Examples</a><a href="../start/">CLI start</a></div>
+    <div><p class="footer-label">Source</p><a href="https://github.com/lavallee/des/blob/main/scripts/des-profile.mjs">Profile source</a><a href="https://github.com/lavallee/des/blob/main/test/des-profile.test.mjs">Tests</a><a href="https://github.com/lavallee/des/blob/main/LICENSE">MIT license</a></div>
+    <p class="footer-colophon">Browser-generated IDs require Web Crypto. The CLI remains the authoritative contract generator.</p>
+  </footer>
+</body>
+</html>

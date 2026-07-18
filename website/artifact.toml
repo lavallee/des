@@ -1,0 +1,26 @@
+[artifact]
+slug = "des-docs"
+title = "DES — design for the audience in front of you"
+description = "Audience-aware design practice for agents and the teams who work with them."
+kind = "reference-guide"
+status = "live"
+created = "2026-07-18"
+updated = "2026-07-18"
+
+[build]
+commands = ["node build.mjs"]
+
+[[libraries]]
+name = "artoo-kit"
+version = "0.2.0"
+sha256 = "0836d1de83a3eb38be1f5c06ee708a510ddf6628dd65f70a4c901b526a640702"
+
+[deploy]
+target = "github-pages"
+
+[deploy.github-pages]
+commit = false
+mode = "workflow"
+own_root = true
+publish_dir = "website/site"
+subpath = ""
