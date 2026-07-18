@@ -11,8 +11,14 @@ help with judgment, but it does not replace the receipt.
 
 Classify the work:
 
-- **Instrument or artifact?** Instruments optimize repeated professional work;
-  artifacts optimize reading and understanding.
+- **Which surface mode?** Select `operator`, `public-data`, `editorial`, or
+  `marketing` from `modes/README.md`. If a product mixes modes, bound the task to
+  one route or region instead of averaging their constraints.
+- **Which style dials?** Record variance, density, motion, type register, and
+  imagery role. Start from the mode defaults and justify any override.
+- **Which execution profile?** Record harness, requested model, served model when
+  known, model tier, and capabilities. Generate it with `des-profile` when
+  available.
 - **Planned or implemented?** A plan can be reviewed from flows and states. An
   implementation must be reviewed in the browser.
 - **Diagnose or improve?** A review stops with findings. An improvement continues
@@ -66,10 +72,11 @@ baseline must record the authored outcomes, their sequence, the evidence that
 can grade them, and the size of the raw work sets. A cleaner list of object kinds
 does not repair a missing intent-to-outcome model.
 
-Use `des-audit` when available to make the three viewport captures, accessibility
-snapshot, console/page error check, overflow check, and performance budgets
-repeatable. The generated receipt is evidence for this step; it does not replace
-the pointer/keyboard task walk or the rendered judgment in step 5.
+Use `des-audit` when available to make viewport and full-page captures at three
+widths, accessibility snapshots, console/page error checks, overflow checks, and
+performance budgets repeatable. Supply the same mode and execution profile used
+for implementation. The generated receipt is evidence for this step; it does
+not replace the pointer/keyboard task walk or the rendered judgment in step 5.
 
 Do not review an empty mock when the production shape is a list of 50. Do not
 review source code as a substitute for the render.
@@ -83,7 +90,10 @@ selection. Keep it short enough to remain the strongest instruction in context.
 ## Design plan
 
 - User and task:
-- Instrument or artifact:
+- Surface mode:
+- Style dials (variance, density, motion, type, imagery):
+- Structural fingerprint:
+- Harness / requested model / served model / tier / capabilities:
 - Lowest unresolved layer:
 - Existing system to preserve:
 - Named system pattern or documented gap:
@@ -105,9 +115,11 @@ flow, or a baseline/variant receipt. Record the source URL or local artifact and
 when possible, a revision.
 
 For new visual directions, generate genuinely different candidates by changing
-one named axis at a time—composition, density, type register, or interaction
-model. Do not randomize an admin tool's personality, and do not import landing-
-page decoration into an instrument.
+one named dial at a time. Do not randomize an operator tool's task anatomy, and
+do not import marketing-page decoration into operator work. Across unrelated
+expressive projects, check recent structural fingerprints so the harness does
+not repeat one hero, card grid, and call-to-action. Within one product, preserve
+the design DNA unless the task changes.
 
 ## 4. Build the smallest coherent slice
 
@@ -136,7 +148,8 @@ page decoration into an instrument.
 - Use production-shaped content. Long titles, zero states, stale records, and
   large counts are design inputs.
 - Keep local styles in the stylesheet or component system, not inline in the
-  rendered template.
+  rendered template. Data-driven SVG geometry or a CSS custom property carrying
+  one measured value may remain near its datum; it is content, not local styling.
 - Classify new local UI patterns as `specific`, `candidate-system`, or `system`.
   When a pattern describes a reusable task region rather than product identity,
   implement or nominate the shared component instead of leaving a large local
@@ -195,6 +208,11 @@ checks:
   console_errors: 0
   body_overflow: false
 evaluation:
+  profile_id: ""
+  surface_mode: ""
+  harness: "unknown"
+  model_tier: "unknown"
+  capabilities: []
   requested_model: "unknown"
   served_model: "unknown"
   independent_judge: false
@@ -210,6 +228,9 @@ deferred: []
 Record requested and served model separately when known. Do not attribute an
 outcome to a model family, skill, or reference without a same-task baseline. A
 successful bind or a polished screenshot proves availability, not efficacy.
+The DES profile is a self-declared harness attestation unless a provider or
+evaluation receipt corroborates it; its digest prevents silent tuple drift but
+does not discover the actual served model.
 
 ## Definition of done
 

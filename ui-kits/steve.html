@@ -2,6 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>steve — UI kit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,6 +63,23 @@
   .src__score.mid { color: var(--warning); }
   .src__score.lo { color: var(--error); }
   .src__date { font-family: var(--font-mono); color: var(--text-muted); font-size: 11px; text-align: right; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .score-card { position: static; }
+    .breakout { max-width: none; margin-left: 0; }
+    .meta { flex-wrap: wrap; }
+    .meta span:last-child { margin-left: 0 !important; }
+  }
+
+  @media (max-width: 620px) {
+    .hdr__wrap, .page { padding-inline: 18px; }
+    .hdr__nav { gap: 12px; }
+    .page { padding-top: 32px; }
+    .src { grid-template-columns: 22px minmax(0, 1fr) 58px; }
+    .src__date { grid-column: 2 / -1; text-align: left; }
+    .breakout { padding: 16px 12px; }
+  }
 </style>
 </head>
 <body>
@@ -76,8 +94,8 @@
   </div>
 </header>
 
-<div class="page">
-  <p class="kicker">Published · 2026-04-22 · MENA desk</p>
+<main class="page">
+  <p class="kicker">Reference fixture · synthetic editorial record</p>
   <h1 class="masthead-title">The claim aged out of verifiability.</h1>
   <p class="deck">How a qualifier disappeared between Ankara, a wire desk, and the third paper that ran the number — and what it cost the record.</p>
   <div class="meta">
@@ -139,6 +157,6 @@
     <div class="src"><span class="src__n">03</span><span class="src__t">Reuters wire desk — Updated summary pulled 13:52Z <em>· wire</em></span><span class="src__score mid">0.72</span><span class="src__date">2026-04-22</span></div>
     <div class="src"><span class="src__n">04</span><span class="src__t">Bloomberg terminal extract — GDP revision context <em>· corroborating</em></span><span class="src__score hi">0.84</span><span class="src__date">2026-04-22</span></div>
   </section>
-</div>
+</main>
 </body>
 </html>

@@ -438,13 +438,13 @@
   white-space: nowrap;
 }
 .btn-primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-muted);
+  border-color: var(--accent-muted);
   color: #fff;
 }
 .btn-primary:hover {
-  background: var(--accent-muted);
-  border-color: var(--accent-muted);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 .btn-secondary {
   background: var(--surface-raised);
@@ -1087,8 +1087,8 @@
             <option>civic</option>
             <option>housing</option>
           </select>
-          <span class="filter-chip">health <span class="remove">×</span></span>
-          <span class="filter-chip">NYC <span class="remove">×</span></span>
+          <button class="filter-chip" type="button">health <span class="filter-chip__remove" aria-hidden="true">×</span><span class="sr-only">Remove health filter</span></button>
+          <button class="filter-chip" type="button">NYC <span class="filter-chip__remove" aria-hidden="true">×</span><span class="sr-only">Remove NYC filter</span></button>
           <button class="filter-clear">clear all</button>
         </div>
         <div class="dim">Debounce text inputs 300–400ms. Represent active filters as chips. Preserve filter state in URL query params.</div>
@@ -1669,7 +1669,7 @@
           </div>
           <div>
             <div style="font-family:var(--font-sans);font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-widest);color:var(--text-dim);margin-bottom:6px;">article-byline · Geist 12px dim</div>
-            <div style="font-family:var(--font-sans);font-size:12px;color:var(--text-dim);">By Marc Lavallee <span style="color:var(--border-strong)">·</span> April 24, 2026 <span style="color:var(--border-strong)">·</span> barnowl v2.1</div>
+            <div style="font-family:var(--font-sans);font-size:12px;color:var(--text-dim);">By Marc Lavallee <span aria-hidden="true" style="color:var(--border-strong)">·</span> April 24, 2026 <span aria-hidden="true" style="color:var(--border-strong)">·</span> barnowl v2.1</div>
           </div>
           <hr style="border:none;border-top:1px solid var(--border);margin:0;">
           <div>
@@ -1705,7 +1705,7 @@
               <span class="article-series__label">Part 3 of 5 — AI Governance Series</span>
               <div class="article-series__nav">
                 <a href="#">← Transparency</a>
-                <span style="color:var(--border-strong)">·</span>
+                <span aria-hidden="true" style="color:var(--border-strong)">·</span>
                 <a href="#">Accountability →</a>
               </div>
             </nav>
@@ -1736,9 +1736,9 @@
               <p class="article-dek">A synthesis of verified claims from barnowl — where the consensus holds, where it fractures, and what the gaps reveal.</p>
               <div class="article-byline">
                 <span>Marc Lavallee</span>
-                <span class="article-byline__sep">·</span>
+                <span class="article-byline__sep" aria-hidden="true">·</span>
                 <span>April 24, 2026</span>
-                <span class="article-byline__sep">·</span>
+                <span class="article-byline__sep" aria-hidden="true">·</span>
                 <span>barnowl v2.1 · 847 claims</span>
               </div>
             </header>
@@ -1836,7 +1836,7 @@
               </p>
               <aside class="article-marginnote article-marginnote--figure" aria-label="Related chart">
                 <div class="mn-fig" style="aspect-ratio:4/3;background:var(--surface-inset);">
-                  <span style="font-size:10px;color:var(--text-disabled);text-align:center;padding:var(--space-2);">trend 2022–2026</span>
+                  <span style="font-size:10px;color:var(--text-muted);text-align:center;padding:var(--space-2);">trend 2022–2026</span>
                 </div>
                 <span class="mn-caption">Disclosure requirement prevalence has grown 18pp since 2022. See Figure 3.</span>
               </aside>
@@ -2034,6 +2034,14 @@ const observer = new IntersectionObserver((entries) => {
 }, { rootMargin: `-${48}px 0px -60% 0px` });
 
 sections.forEach(s => observer.observe(s));
+
+document.addEventListener('click', (event) => {
+  const chip = event.target.closest('.filter-chip');
+  if (chip) chip.remove();
+  if (event.target.closest('.filter-clear')) {
+    document.querySelectorAll('.filter-chip').forEach((item) => item.remove());
+  }
+});
 
 // Theme switching
 const VARIANT_THEMES = ['carbon', 'slate', 'parchment'];

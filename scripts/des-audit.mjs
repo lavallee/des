@@ -5,6 +5,8 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
+import { resolveDesignProfile } from "./des-profile.mjs";
+
 export const DEFAULT_VIEWPORTS = [
   { label: "wide", width: 1440, height: 1000 },
   { label: "tablet", width: 768, height: 1024 },
@@ -45,6 +47,7 @@ Required:
   --url <url>             Fully qualified route to inspect
   --task <task>           Representative user task in the user's words
   --surface <surface>     Stable name for the product surface
+  --mode <mode>           operator, public-data, editorial, or marketing
 
 Options:
   --out <directory>       Receipt directory (default: artifacts/design-receipts/<surface>)
@@ -56,6 +59,11 @@ Options:
   --max-transfer-kb <n>   Transferred-resource budget (default: 2048)
   --max-resources <n>     Resource-count budget (default: 100)
   --browser <path>        agent-browser executable (default: agent-browser)
+  --harness <name>        Harness recorded in the profile (default: generic)
+  --model-tier <tier>     frontier, standard, or compact (default: standard)
+  --requested-model <id>  Requested model (default: unknown)
+  --served-model <id>     Served model when known (default: unknown)
+  --capability <name>     Repeat: browser, visual-input, image-generation
   --help                  Show this message
 `;
 }
@@ -73,9 +81,14 @@ export function parseArgs(argv) {
   const options = {
     arm: "variant",
     browser: "agent-browser",
+    capabilities: [],
+    harness: "generic",
     maxLoadMs: 3000,
     maxResources: 100,
     maxTransferKb: 2048,
+    modelTier: "standard",
+    requestedModel: "unknown",
+    servedModel: "unknown",
     viewports: [],
     waitFor: "body",
   };
@@ -90,11 +103,17 @@ export function parseArgs(argv) {
     else if (flag === "--url") options.url = take(index++, flag);
     else if (flag === "--task") options.task = take(index++, flag);
     else if (flag === "--surface") options.surface = take(index++, flag);
+    else if (flag === "--mode") options.mode = take(index++, flag);
     else if (flag === "--out") options.out = take(index++, flag);
     else if (flag === "--arm") options.arm = take(index++, flag);
     else if (flag === "--revision") options.revision = take(index++, flag);
     else if (flag === "--wait-for") options.waitFor = take(index++, flag);
     else if (flag === "--browser") options.browser = take(index++, flag);
+    else if (flag === "--harness") options.harness = take(index++, flag);
+    else if (flag === "--model-tier") options.modelTier = take(index++, flag);
+    else if (flag === "--requested-model") options.requestedModel = take(index++, flag);
+    else if (flag === "--served-model") options.servedModel = take(index++, flag);
+    else if (flag === "--capability") options.capabilities.push(take(index++, flag));
     else if (flag === "--viewport") options.viewports.push(parseViewport(take(index++, flag)));
     else if (flag === "--max-load-ms") options.maxLoadMs = Number(take(index++, flag));
     else if (flag === "--max-transfer-kb") options.maxTransferKb = Number(take(index++, flag));
@@ -102,7 +121,7 @@ export function parseArgs(argv) {
     else throw new Error(`unknown option '${flag}'`);
   }
   if (options.help) return options;
-  for (const field of ["url", "task", "surface"]) {
+  for (const field of ["url", "task", "surface", "mode"]) {
     if (!options[field]) throw new Error(`--${field} is required`);
   }
   if (!new Set(["baseline", "variant"]).has(options.arm)) {
@@ -114,6 +133,10 @@ export function parseArgs(argv) {
     }
   }
   options.viewports = options.viewports.length ? options.viewports : DEFAULT_VIEWPORTS;
+  options.designProfile = resolveDesignProfile(options);
+  if (!options.designProfile.capabilities.includes("browser")) {
+    throw new Error("des-audit requires --capability browser because it drives a browser");
+  }
   const slug = options.surface.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   options.out = resolve(options.out || `artifacts/design-receipts/${slug || "surface"}`);
   return options;
@@ -177,6 +200,50 @@ function browserAudit(isHiddenByClosedDetails, focusableSelector) {
     const text = (element.getAttribute("aria-label") || element.textContent || "").trim().replace(/\s+/g, " ");
     return `${element.tagName.toLowerCase()}${id}${text ? ` (${text.slice(0, 48)})` : ""}`;
   };
+  const parseColor = (value) => {
+    const match = /^rgba?\(\s*([\d.]+)[, ]+\s*([\d.]+)[, ]+\s*([\d.]+)(?:\s*[,/]\s*([\d.]+))?\s*\)$/.exec(value);
+    if (!match) return null;
+    return {
+      r: Number(match[1]),
+      g: Number(match[2]),
+      b: Number(match[3]),
+      a: match[4] === undefined ? 1 : Number(match[4]),
+    };
+  };
+  const composite = (foreground, background) => {
+    const alpha = foreground.a + background.a * (1 - foreground.a);
+    if (!alpha) return { r: 255, g: 255, b: 255, a: 1 };
+    return {
+      r: (foreground.r * foreground.a + background.r * background.a * (1 - foreground.a)) / alpha,
+      g: (foreground.g * foreground.a + background.g * background.a * (1 - foreground.a)) / alpha,
+      b: (foreground.b * foreground.a + background.b * background.a * (1 - foreground.a)) / alpha,
+      a: alpha,
+    };
+  };
+  const backgroundFor = (element) => {
+    const layers = [];
+    for (let current = element; current; current = current.parentElement) {
+      const style = getComputedStyle(current);
+      if (style.backgroundImage !== "none") return null;
+      const color = parseColor(style.backgroundColor);
+      if (color?.a) layers.push(color);
+    }
+    let result = { r: 255, g: 255, b: 255, a: 1 };
+    for (const layer of layers.reverse()) result = composite(layer, result);
+    return result;
+  };
+  const relativeLuminance = (color) => {
+    const channel = (value) => {
+      const normalized = value / 255;
+      return normalized <= 0.04045 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
+    };
+    return 0.2126 * channel(color.r) + 0.7152 * channel(color.g) + 0.0722 * channel(color.b);
+  };
+  const contrastRatio = (first, second) => {
+    const lighter = Math.max(relativeLuminance(first), relativeLuminance(second));
+    const darker = Math.min(relativeLuminance(first), relativeLuminance(second));
+    return (lighter + 0.05) / (darker + 0.05);
+  };
   const headings = [...document.querySelectorAll("h1,h2,h3,h4,h5,h6")].filter(visible);
   const headingSkips = [];
   headings.forEach((heading, index) => {
@@ -191,9 +258,54 @@ function browserAudit(isHiddenByClosedDetails, focusableSelector) {
   const images = [...document.querySelectorAll("img")].filter(visible);
   const imagesWithoutAlt = images.filter((image) => !image.hasAttribute("alt")).map(describe);
   const imagesFailed = images.filter((image) => !image.complete || image.naturalWidth === 0).map(describe);
+  const visibleElements = [...document.body.querySelectorAll("*")].filter(visible);
+  const interactiveSelector =
+    "a[href],button,input,select,textarea,summary,[role=button],[role=link],[role=checkbox],[role=radio],[role=switch],[role=tab]";
+  const nativeOrDeclaredInteractive = (element) => element.matches(interactiveSelector);
+  const deadAffordances = visibleElements
+    .filter((element) => element.matches("a:not([href])") || (
+      getComputedStyle(element).cursor === "pointer" &&
+      !nativeOrDeclaredInteractive(element) &&
+      !element.closest(interactiveSelector)
+    ))
+    .slice(0, 40)
+    .map(describe);
+  const contrastFailures = [];
+  const contrastUnmeasured = [];
+  for (const element of visibleElements) {
+    if (contrastFailures.length >= 40) break;
+    if (element.closest("[aria-hidden='true']")) continue;
+    if (![...element.childNodes].some((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim())) continue;
+    const style = getComputedStyle(element);
+    const foreground = parseColor(style.color);
+    const background = backgroundFor(element);
+    if (!foreground) continue;
+    if (!background) {
+      contrastUnmeasured.push({ element: describe(element), reason: "background-image" });
+      continue;
+    }
+    let opacity = foreground.a;
+    for (let current = element; current; current = current.parentElement) {
+      opacity *= Number.parseFloat(getComputedStyle(current).opacity) || 1;
+    }
+    const renderedForeground = composite({ ...foreground, a: opacity }, background);
+    const ratio = contrastRatio(renderedForeground, background);
+    const fontSize = Number.parseFloat(style.fontSize);
+    const fontWeight = Number.parseInt(style.fontWeight, 10) || 400;
+    const largeText = fontSize >= 24 || (fontSize >= 18.66 && fontWeight >= 700);
+    const required = largeText ? 3 : 4.5;
+    if (ratio < required) {
+      contrastFailures.push({
+        element: describe(element),
+        ratio: Number(ratio.toFixed(2)),
+        required,
+      });
+    }
+  }
   const tabbables = [...document.querySelectorAll(focusableSelector)]
     .filter((element) => visible(element) && !element.disabled)
     .slice(0, 80);
+  const scrollPosition = { x: window.scrollX, y: window.scrollY };
   const focusWithoutIndicator = [];
   for (const element of tabbables) {
     const before = getComputedStyle(element);
@@ -207,7 +319,7 @@ function browserAudit(isHiddenByClosedDetails, focusableSelector) {
     };
     // Chromium's focusVisible option forces keyboard-modality focus so
     // :focus-visible styles are exercised without synthesizing 80 Tab presses.
-    element.focus({ focusVisible: true });
+    element.focus({ focusVisible: true, preventScroll: true });
     const after = getComputedStyle(element);
     const outline = after.outlineStyle !== "none" && Number.parseFloat(after.outlineWidth) >= 1;
     const shadow = after.boxShadow !== "none";
@@ -216,9 +328,20 @@ function browserAudit(isHiddenByClosedDetails, focusableSelector) {
     if (!outline && !shadow && !changed) focusWithoutIndicator.push(describe(element));
   }
   document.activeElement?.blur?.();
+  window.scrollTo(scrollPosition.x, scrollPosition.y);
 
   const navigation = performance.getEntriesByType("navigation")[0];
   const resources = performance.getEntriesByType("resource");
+  const meaningfulResourceFailure = (entry) => {
+    if (Number(entry.responseStatus) < 400) return false;
+    try {
+      // Chromium requests /favicon.ico even when the page declares no icon.
+      // Its absence does not affect the inspected task surface.
+      return new URL(entry.name).pathname !== "/favicon.ico";
+    } catch {
+      return true;
+    }
+  };
   const paints = Object.fromEntries(performance.getEntriesByType("paint").map((entry) => [entry.name, Math.round(entry.startTime)]));
   return {
     document: {
@@ -237,11 +360,20 @@ function browserAudit(isHiddenByClosedDetails, focusableSelector) {
       visibleGraphicCount: [...document.querySelectorAll("img,svg,canvas,video")].filter(visible).length,
       visibleTextCharacters: (document.body.innerText || "").replace(/\s+/g, " ").trim().length,
     },
-    accessibility: { duplicateIds, focusWithoutIndicator, headingSkips, imagesFailed, imagesWithoutAlt },
+    accessibility: {
+      contrastFailures,
+      contrastUnmeasured,
+      deadAffordances,
+      duplicateIds,
+      focusWithoutIndicator,
+      headingSkips,
+      imagesFailed,
+      imagesWithoutAlt,
+    },
     performance: {
       domContentLoadedMs: navigation ? Math.round(navigation.domContentLoadedEventEnd) : null,
       failedResources: resources
-        .filter((entry) => Number(entry.responseStatus) >= 400)
+        .filter(meaningfulResourceFailure)
         .map((entry) => ({ status: entry.responseStatus, url: entry.name })),
       loadMs: navigation ? Math.round(navigation.loadEventEnd || navigation.duration) : null,
       paints,
@@ -256,12 +388,16 @@ export function assessCapture({ audit, consoleEntries, pageErrors, snapshotRefs,
     .filter(([, value]) => INTERACTIVE_ROLES.has(value.role) && !(value.name || "").trim())
     .map(([ref, value]) => ({ ref, role: value.role }));
   const failures = [];
+  const warnings = [];
   if (audit.render.visibleTextCharacters < 10 && audit.render.visibleGraphicCount === 0) failures.push("blank-render");
   if (audit.layout.bodyOverflow) failures.push("body-overflow");
   if (!audit.document.title.trim()) failures.push("missing-title");
   if (!audit.document.lang.trim()) failures.push("missing-document-language");
   if (audit.document.mainLandmarks !== 1) failures.push("main-landmark-count");
   if (audit.accessibility.duplicateIds.length) failures.push("duplicate-ids");
+  if (audit.accessibility.contrastFailures?.length) failures.push("text-contrast");
+  if (audit.accessibility.contrastUnmeasured?.length) warnings.push("contrast-unmeasured");
+  if (audit.accessibility.deadAffordances?.length) failures.push("dead-affordances");
   if (audit.accessibility.focusWithoutIndicator?.length) failures.push("missing-focus-indicators");
   if (audit.accessibility.headingSkips.length) failures.push("heading-level-skips");
   if (audit.accessibility.imagesFailed?.length) failures.push("images-failed-to-load");
@@ -273,7 +409,7 @@ export function assessCapture({ audit, consoleEntries, pageErrors, snapshotRefs,
   if (audit.performance.loadMs !== null && audit.performance.loadMs > budgets.maxLoadMs) failures.push("load-budget");
   if (audit.performance.transferKb > budgets.maxTransferKb) failures.push("transfer-budget");
   if (audit.performance.resourceCount > budgets.maxResources) failures.push("resource-budget");
-  return { failures, unnamedInteractive, verdict: failures.length ? "fail" : "pass" };
+  return { failures, warnings, unnamedInteractive, verdict: failures.length ? "fail" : "pass" };
 }
 
 function captureViewport(options, viewport, version) {
@@ -281,6 +417,7 @@ function captureViewport(options, viewport, version) {
   mkdirSync(directory, { recursive: true });
   const session = `des-${process.pid}-${viewport.width}`;
   const screenshot = resolve(directory, `${viewport.label}.png`);
+  const fullPageScreenshot = resolve(directory, `${viewport.label}.full.png`);
   const snapshotPath = resolve(directory, `${viewport.label}.accessibility.txt`);
   try {
     browserCall(options.browser, session, ["set", "viewport", String(viewport.width), String(viewport.height)]);
@@ -291,6 +428,15 @@ function captureViewport(options, viewport, version) {
     } catch {
       browserCall(options.browser, session, ["wait", "750"]);
     }
+    // Chromium's focus-visible modality can leak from the shared browser
+    // process into a fresh agent-browser session. Establish keyboard modality
+    // before programmatic focus checks so the first viewport is not a false
+    // negative while later viewports pass.
+    browserCall(options.browser, session, ["press", "Tab"]);
+    browserCall(options.browser, session, [
+      "eval",
+      "document.activeElement?.blur?.(); window.scrollTo(0, 0); true",
+    ]);
     const auditExpression =
       `JSON.stringify((${browserAudit.toString()})` +
       `((${hiddenByClosedDetails.toString()}), ${JSON.stringify(FOCUSABLE_SELECTOR)}))`;
@@ -299,7 +445,8 @@ function captureViewport(options, viewport, version) {
     const snapshot = browserCall(options.browser, session, ["snapshot", "-c"]);
     const consoleEntries = browserCall(options.browser, session, ["console"]).entries || [];
     const pageErrors = browserCall(options.browser, session, ["errors"]).errors || [];
-    browserCall(options.browser, session, ["screenshot", screenshot, "--full"]);
+    browserCall(options.browser, session, ["screenshot", screenshot]);
+    browserCall(options.browser, session, ["screenshot", fullPageScreenshot, "--full"]);
     writeFileSync(snapshotPath, `${snapshot.snapshot || ""}\n`, "utf8");
     const assessment = assessCapture({
       audit,
@@ -316,6 +463,7 @@ function captureViewport(options, viewport, version) {
       consoleEntries,
       pageErrors,
       screenshot: relative(options.out, screenshot),
+      fullPageScreenshot: relative(options.out, fullPageScreenshot),
       ...assessment,
     };
   } finally {
@@ -327,13 +475,15 @@ export function run(options) {
   const version = browserVersion(options.browser);
   const captures = options.viewports.map((viewport) => captureViewport(options, viewport, version));
   const receipt = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     capturedAt: new Date().toISOString(),
     task: options.task,
     surface: options.surface,
     url: options.url,
     arm: options.arm,
     revision: options.revision || gitRevision(),
+    profileAttestation: "self-declared by the invoking harness; not independently verified",
+    designProfile: options.designProfile,
     tool: { agentBrowser: version },
     budgets: {
       maxLoadMs: options.maxLoadMs,
@@ -341,6 +491,7 @@ export function run(options) {
       maxTransferKb: options.maxTransferKb,
     },
     captures,
+    warnings: [...new Set(captures.flatMap((capture) => capture.warnings || []))],
     verdict: captures.every((capture) => capture.verdict === "pass") ? "pass" : "fail",
   };
   mkdirSync(options.out, { recursive: true });
@@ -359,7 +510,8 @@ function main() {
     const { receipt, receiptPath } = run(options);
     for (const capture of receipt.captures) {
       const detail = capture.failures.length ? ` (${capture.failures.join(", ")})` : "";
-      process.stdout.write(`${capture.label}: ${capture.verdict}${detail}\n`);
+      const warning = capture.warnings?.length ? ` (warning: ${capture.warnings.join(", ")})` : "";
+      process.stdout.write(`${capture.label}: ${capture.verdict}${detail}${warning}\n`);
     }
     process.stdout.write(`${receipt.verdict}: ${receiptPath}\n`);
     if (receipt.verdict !== "pass") process.exitCode = 1;

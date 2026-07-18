@@ -2,14 +2,26 @@
 
 ## Overview
 
-This bundle contains the **Lyra Forge design system** — a unified design vocabulary for a family of Media + AI tools. It is not a single-feature design; it is a complete system with tokens, components, themes, and reference product implementations ready to be vendored into a real codebase.
+This bundle contains **DES**, an audience-aware design practice plus the Lyra
+Forge production vocabulary. It is not one visual personality for every site.
+The shared floor covers task clarity, accessibility, evidence honesty, semantic
+tokens, responsive behavior, and rendered proof; the selected surface mode owns
+density, structure, typography, imagery, motion, and expressive range.
 
-The system serves two audiences in one vocabulary:
+DES has four primary modes:
 
-1. **Instruments** — professional-facing internal tools for journalists, editors, analysts. Dense, keyboard-driven, data-heavy. Mental model: a code editor or financial terminal.
-2. **Artifacts** — consumer-facing surfaces. Articles, public claim records, data visualizations, editorial layouts.
+1. **Operator** — repeated professional work in admin tools, queues, and
+   workbenches. Stable, compact, keyboard-safe, and state-rich.
+2. **Public data** — public exploration, comparison, and explanation. Provenance,
+   uncertainty, exact values, and overview-to-detail movement are first-class.
+3. **Editorial** — sustained reading, argument, and documented records. Reading
+   rhythm, figures, claims, citations, and source custody lead.
+4. **Marketing** — product distinction, credibility, and action. Greater
+   structural and visual range is allowed when it supports an honest argument.
 
-Same tokens power both; density, type register, and layout differ.
+Read `modes/README.md` and the selected mode before choosing a visual direction.
+Mode defaults and the independent variance, density, motion, type, and imagery
+dials prevent both accidental sameness and random style changes.
 
 The tool family that originally motivated the system: **barnowl** (claims research), **keel** (dashboard / reference impl), **tern** (geographic live-feed), **steve** (public claim records), **weaver** (data-viz publishing).
 
@@ -25,14 +37,16 @@ The files here are a mix of **production-ready system code** and **design refere
 | `react/` | Production reference | Radix + CVA React implementations. Port to your stack (React, Vue, SwiftUI) using the same token names and behavior. |
 | `fonts.html` snippet | Production | Copy the `<link>` tag into your `<head>`. |
 | `assets/` | Production | SVG icons, Lyra Forge wordmark. Drop in. |
-| `ui_kits/` | **Design reference** | HTML prototypes of each product. Not production code — study for layout, density, interaction patterns. |
+| `ui-kits/` | **Design reference** | HTML prototypes of each product and mode. Not production code — study for layout, density, interaction patterns. |
 | `showcase.html` | **Design reference** | Canonical render of every component. Open in a browser and compare against your implementation. |
 | `PRACTICE.md` | Guidance | Diagnosis-to-proof workflow for reviews and implemented improvements. |
+| `modes/` | Guidance | Shared floor, surface router, style dials, and mode-specific contracts. |
 | `PRINCIPLES.md` | Guidance | Design philosophy. Read before making non-obvious decisions. |
 | `PATTERNS-ADMIN.md` | Guidance | Queue, triage, review-rail, and decision-surface rules. |
 | `RUBRIC.md` | Evaluation | Rendered admin-surface gates and region-anchored scoring. |
 | `docs/design-engineering-toolchain.md` | Guidance | Current browser, reference, image-generation, and evaluation tool roles. |
 | `scripts/des-audit.mjs` | Tooling | Reproducible 1440/768/390 screenshots, accessibility snapshots, browser checks, and JSON receipts. |
+| `scripts/des-profile.mjs` | Tooling | Deterministic surface/model/harness/capability profile for prompts and receipts. |
 | `evaluations/` | Evidence | Production calibrations that changed the system or practice. |
 | `MIGRATING.md` | Guidance | Per-tool adoption guide. |
 | `SKILL.md` | Guidance | Condensed system brief — cross-compatible with Agent Skills, drop into Claude Code. |
@@ -41,7 +55,11 @@ The files here are a mix of **production-ready system code** and **design refere
 
 ## Fidelity
 
-**High-fidelity.** Every color, spacing, typography, and interaction value is finalized and lives in `tokens.css`. Recreate pixel-perfectly in your framework using the tokens.
+**High-fidelity within the shipped Lyra Forge vocabulary.** Its colors, spacing,
+typography, and interaction values live in `tokens.css`. Recreate those assets
+faithfully when the selected surface uses this vocabulary. Marketing, editorial,
+or public-data work may establish a different tokenized identity rather than
+being forced through the operator system.
 
 ## How to vendor this into a codebase
 
@@ -72,7 +90,7 @@ The `.css` files are framework-agnostic — classes are BEM-ish and scoped. Vue,
 
 Take the tokens from `tokens.css` and port them to your native color / spacing / typography system. `PRINCIPLES.md` is the authoritative reference for *behavior* — motion timing, density rules, interaction states.
 
-## Themes
+## Shipped Lyra Forge themes
 
 - **dark** (default) — zinc neutrals, indigo accent. Instrument default.
 - **light** — warm off-white ("cream"), navy accent. Artifact default.
@@ -80,20 +98,27 @@ Take the tokens from `tokens.css` and port them to your native color / spacing /
 - **slate** — blue-shifted dark, cyan accent. Geographic / live-feed.
 - **parchment** — warm dark, amber accent. Long-form reading.
 
-Apply via `<html data-theme="…">`. **Do not mix themes inside a single tool.**
+Apply via `<html data-theme="…">`. These are available identities, not the only
+allowed directions. Within one route or product, keep a coherent design DNA and
+make theme transitions deliberate rather than mixing arbitrary treatments.
 
-## Hard rules (enforce in code review)
+## Shared rules (enforce in code review)
 
-- **No emoji.** Anywhere. Iconography is typographic (`→ › · ▲ ▼ ⇅`) or stroke SVG (Lucide). Use the set in `assets/icons/`.
-- **No hardcoded hex values** outside `tokens.css`. Every color comes from a semantic token.
-- **No gradients** on backgrounds, buttons, or cards. Flat surfaces only.
-- **No shadows on cards or buttons.** Shadows exist (`--shadow-sm/md/lg/overlay`) but are reserved for tooltips, modals, and the command palette.
-- **Status colors are sacred** — `--success` / `--warning` / `--error` / `--info` carry meaning. Never decorative.
-- **Sentence case** for headings, buttons, nav. Uppercase + letter-spacing only for low-hierarchy metadata labels.
-- **Tabular numerals** on every numeric column: `font-variant-numeric: tabular-nums`.
-- **The brand mark is always Instrument Serif italic** at ~20px. There is no bug, logo, or monogram.
+- **No fabricated proof.** Do not invent metrics, customers, testimonials,
+  citations, capabilities, or urgency.
+- **No scattered visual constants.** Reusable component colors and dimensions
+  come from semantic tokens. A new identity may define a new token set.
+- **Status colors are semantic** — success, warning, error, and info carry
+  meaning and are not decoration.
+- **Keyboard focus, contrast, semantic structure, reduced motion, and responsive
+  behavior hold in every selected mode.**
+- **Tabular numerals** on numeric comparison columns.
+- **Expression is mode-specific.** Operator work prefers flat surfaces,
+  functional motion, restrained imagery, and stable structure. Public-data,
+  editorial, and marketing work may use gradients, elevation, expressive type,
+  imagery, and greater variance when each choice has a stated job.
 
-## Typography
+## Shipped Lyra Forge typography
 
 Load from Google Fonts:
 
@@ -117,9 +142,9 @@ Type scale (in `tokens.css`): `--text-xs` 10px · `--text-sm` 12px · `--text-ba
 
 Layout tokens: `--sidebar-width` 220px · `--sidebar-width-lg` 280px · `--inspector-width` 360px · `--header-height` 48px · `--content-max` 1400px · `--prose-max` 680px · `--prose-wide` 940px.
 
-## Motion
+## Motion in the shipped operator vocabulary
 
-Fast, functional. Durations:
+Fast and functional. Durations:
 - `--duration-fast` 80ms (button press)
 - `--duration-default` 150ms (hover, toggle)
 - `--duration-slow` 300ms (panel open, modal)
@@ -127,7 +152,8 @@ Fast, functional. Durations:
 
 Easing: `--ease-out` `cubic-bezier(.16,1,.3,1)` for entrances. `prefers-reduced-motion` zeroes all durations (already handled in `tokens.css`).
 
-No bouncy easings. Tools do not bounce.
+Operator tools do not bounce. Other modes may use explanatory or expressive
+motion under their mode contract and still provide a reduced-motion equivalent.
 
 ## Component catalog
 
@@ -155,11 +181,13 @@ Study these before building or migrating the corresponding tool:
 
 | UI kit | Product | Theme | Pattern |
 |---|---|---|---|
-| `ui_kits/barnowl.html` | barnowl | dark | Split view · article + inspector · timeline · score badges |
-| `ui_kits/keel.html` | keel | dark | Shell · stat cards · filter bar · table · command palette |
-| `ui_kits/tern.html` | tern | slate | Geographic live feed · stylized map · event stream |
-| `ui_kits/steve.html` | steve | parchment | Public claim record · scoring · bibliography |
-| `ui_kits/weaver.html` | weaver | light | Long-form data publishing · sankey + horizon charts · prose |
+| `ui-kits/barnowl.html` | barnowl | dark | Split view · article + inspector · timeline · score badges |
+| `ui-kits/keel.html` | keel | dark | Operator shell · metrics · service table · pipeline |
+| `ui-kits/tern.html` | tern | slate | Geographic live feed · stylized map · event stream |
+| `ui-kits/steve.html` | steve | light | Editorial claim record · scoring · bibliography |
+| `ui-kits/weaver.html` | weaver | light | Editorial-data narrative · figures · reading sequence |
+| `ui-kits/public-data.html` | Qualifier Observatory | custom | Public-data explorer · filters · shareable scope · exact values |
+| `ui-kits/des-marketing.html` | DES | custom | Marketing argument · expressive identity · tuple-bound proof |
 
 Open each in a browser (or serve the handoff folder as static files) while implementing.
 
@@ -172,6 +200,7 @@ design_handoff/
 ├── PRINCIPLES.md              # design philosophy and component guidance
 ├── PATTERNS-ADMIN.md          # admin decision-surface patterns
 ├── RUBRIC.md                  # rendered evaluator gates
+├── modes/                     # surface router + four audience/task contracts
 ├── evaluations/               # production calibration cases
 ├── MIGRATING.md               # per-tool adoption guide
 ├── SKILL.md                   # condensed brief for Agent Skills / Claude Code
@@ -180,6 +209,9 @@ design_handoff/
 ├── colors_and_type.css        # light re-export of the token vars
 ├── showcase.html              # canonical component reference — open in a browser
 ├── playground.html            # token override sandbox
+├── scripts/
+│   ├── des-profile.mjs        # deterministic design execution profile
+│   └── des-audit.mjs          # tuple-bound browser evidence receipt
 ├── themes/
 │   ├── carbon.css
 │   ├── slate.css
@@ -191,7 +223,7 @@ design_handoff/
 │   └── radix.css
 ├── assets/
 │   ├── (SVG icons + wordmark)
-├── ui_kits/                   # per-product design references (HTML prototypes)
+├── ui-kits/                   # per-product and per-mode design references
 │   ├── barnowl.html
 │   ├── keel.html
 │   ├── tern.html
@@ -203,9 +235,12 @@ design_handoff/
 ## Recommended workflow with a coding agent
 
 1. Drop the handoff folder into your repo (e.g. `packages/design-system/`).
-2. Make the agent read `SKILL.md` and `PRACTICE.md` before it proposes changes.
-3. Point it at a specific product and representative task: "improve barnowl's article review flow using this design system; reference `ui_kits/barnowl.html`".
-4. Require the baseline, rendered task walk, after screenshots, and receipt described in `PRACTICE.md`.
+2. Make the agent read `SKILL.md`, `PRACTICE.md`, `modes/README.md`, and the
+   selected surface mode before it proposes changes.
+3. Generate a DES profile for the actual model, harness, and available seeing or
+   browser capabilities.
+4. Point it at a specific product and representative task: "improve barnowl's article review flow using operator mode; reference `ui-kits/barnowl.html`".
+5. Require the baseline, rendered task walk, after screenshots, and receipt described in `PRACTICE.md`.
 
 For a consistent mechanical capture, serve the target app and run `des-audit`:
 
@@ -214,6 +249,13 @@ des-audit \
   --url http://127.0.0.1:3000/dashboard/resources \
   --task "Decide whether this resource belongs in the collection" \
   --surface "Resource review queue" \
+  --mode operator \
+  --harness codex \
+  --model-tier frontier \
+  --requested-model gpt-5 \
+  --served-model gpt-5 \
+  --capability browser \
+  --capability visual-input \
   --arm baseline
 ```
 

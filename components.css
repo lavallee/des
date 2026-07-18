@@ -430,13 +430,13 @@
 }
 
 .btn--primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-muted);
+  border-color: var(--accent-muted);
   color: #fff;
 }
 .btn--primary:hover {
-  background: var(--accent-muted);
-  border-color: var(--accent-muted);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 .btn--secondary {
@@ -669,6 +669,7 @@
   cursor: pointer;
   white-space: nowrap;
   transition: opacity var(--transition);
+  font-family: var(--font-sans);
 }
 
 .filter-chip:hover {

@@ -2,6 +2,7 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>weaver — UI kit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
@@ -58,22 +59,22 @@
   <div class="hdr__wrap">
     <a class="hdr__brand" href="#">weaver</a>
     <nav class="hdr__nav">
-      <a class="is-active">Stories</a>
-      <a>Data</a>
-      <a>About</a>
+      <a class="is-active" href="#story">Story</a>
+      <a href="#figures">Figures</a>
+      <a href="#methodology">Methodology</a>
     </nav>
     <span class="hdr__right">Issue 17 · Spring 2026</span>
   </div>
 </header>
 
-<div class="page">
-  <p class="kicker">Data narrative · 2026-04-18</p>
+<main class="page" id="story">
+  <p class="kicker">Reference fixture · synthetic editorial-data narrative</p>
   <h1 class="title">Where the qualifier goes.</h1>
   <p class="deck">Eighty-three claims followed from wire to rewrite to re-rewrite. We traced which caveats survived the journey.</p>
   <div class="meta">
     <span>T. Ogunsola</span>
     <span>14 min read</span>
-    <span>Methodology · <span style="color:var(--accent-text);text-transform:none;letter-spacing:0;">download ↓</span></span>
+    <span><a href="#methodology">Methodology ↓</a></span>
     <span style="margin-left:auto;">confidence · 0.89</span>
   </div>
 
@@ -81,9 +82,9 @@
     <p>Across 83 news events tracked in March, <em>every single one</em> shed at least one qualifier between its original publication and its third re-publication. The figures below disaggregate what went missing and where.</p>
   </article>
 
-  <figure class="figure">
+  <figure class="figure" id="figures">
     <div class="figure__cap">Fig. 1 · Flow of 83 claims across publication tiers</div>
-    <h3 class="figure__title">The qualifier drop-off</h3>
+    <h2 class="figure__title">The qualifier drop-off</h2>
     <p class="figure__deck">Primary source → wire → re-publication. Bar height encodes claim count; color encodes qualifier survival.</p>
     <div class="figure__frame">
       <svg class="sankey" viewBox="0 0 900 320" preserveAspectRatio="xMidYMid meet">
@@ -122,7 +123,7 @@
         <text x="616" y="92" fill="#2b6a3c">caveat kept · 32</text>
         <text x="616" y="252" fill="#a04a00">caveat lost · 42</text>
       </svg>
-      <div class="figure__note">N = 83 · March 2026 · Source: barnowl trace · see methodology</div>
+      <div class="figure__note" id="methodology">N = 83 · synthetic March 2026 fixture · source and method are illustrative</div>
     </div>
   </figure>
 
@@ -143,7 +144,7 @@
     </div>
   </figure>
 
-  <div class="endnote">The dataset behind this piece is open. You can read the methodology, re-run the extraction locally, or contest a specific classification from the interface — <span style="color: var(--accent-text);">every claim links back to its barnowl record.</span></div>
-</div>
+  <div class="endnote">In production, the dataset and method would be open and every claim would link to its source record. This fixture demonstrates the editorial sequence without presenting synthetic values as real evidence.</div>
+</main>
 </body>
 </html>

@@ -16,9 +16,35 @@ test("parseViewport accepts explicit dimensions", () => {
 });
 
 test("parseArgs supplies the three design-practice viewports", () => {
-  const options = parseArgs(["--url", "http://example.test", "--task", "Review a claim", "--surface", "Claim review"]);
+  const options = parseArgs([
+    "--url", "http://example.test",
+    "--task", "Review a claim",
+    "--surface", "Claim review",
+    "--mode", "operator",
+    "--capability", "browser",
+  ]);
   assert.deepEqual(options.viewports, DEFAULT_VIEWPORTS);
   assert.equal(options.arm, "variant");
+  assert.equal(options.designProfile.mode, "operator");
+});
+
+test("parseArgs requires an explicit surface mode", () => {
+  assert.throws(
+    () => parseArgs(["--url", "http://example.test", "--task", "Read", "--surface", "Story"]),
+    /--mode is required/,
+  );
+});
+
+test("parseArgs requires the browser capability it exercises", () => {
+  assert.throws(
+    () => parseArgs([
+      "--url", "http://example.test",
+      "--task", "Read",
+      "--surface", "Story",
+      "--mode", "editorial",
+    ]),
+    /requires --capability browser/,
+  );
 });
 
 test("focus audit includes native disclosure summaries", () => {
@@ -73,6 +99,7 @@ test("assessCapture passes a clean capture", () => {
   });
   assert.equal(assessment.verdict, "pass");
   assert.deepEqual(assessment.failures, []);
+  assert.deepEqual(assessment.warnings, []);
 });
 
 test("assessCapture rejects a blank viewport", () => {
@@ -113,4 +140,56 @@ test("assessCapture fails keyboard focus with no visible indicator", () => {
   });
 
   assert.deepEqual(assessment.failures, ["missing-focus-indicators"]);
+});
+
+test("assessCapture fails dead affordances and computed text contrast", () => {
+  const assessment = assessCapture({
+    audit: {
+      accessibility: {
+        contrastFailures: [{ element: "span (Download)", ratio: 2.8, required: 4.5 }],
+        deadAffordances: ["a (Data)"],
+        duplicateIds: [],
+        focusWithoutIndicator: [],
+        headingSkips: [],
+        imagesWithoutAlt: [],
+      },
+      document: { lang: "en", mainLandmarks: 1, title: "Explorer" },
+      layout: { bodyOverflow: false },
+      performance: { loadMs: 250, resourceCount: 2, transferKb: 4 },
+      render: { visibleGraphicCount: 0, visibleTextCharacters: 120 },
+    },
+    budgets: { maxLoadMs: 3000, maxResources: 100, maxTransferKb: 2048 },
+    consoleEntries: [],
+    pageErrors: [],
+    snapshotRefs: {},
+  });
+
+  assert.deepEqual(assessment.failures, ["text-contrast", "dead-affordances"]);
+});
+
+test("assessCapture surfaces unmeasured gradient contrast without inventing a pass", () => {
+  const assessment = assessCapture({
+    audit: {
+      accessibility: {
+        contrastFailures: [],
+        contrastUnmeasured: [{ element: "h1 (Launch)", reason: "background-image" }],
+        deadAffordances: [],
+        duplicateIds: [],
+        focusWithoutIndicator: [],
+        headingSkips: [],
+        imagesWithoutAlt: [],
+      },
+      document: { lang: "en", mainLandmarks: 1, title: "Launch" },
+      layout: { bodyOverflow: false },
+      performance: { loadMs: 250, resourceCount: 2, transferKb: 4 },
+      render: { visibleGraphicCount: 0, visibleTextCharacters: 120 },
+    },
+    budgets: { maxLoadMs: 3000, maxResources: 100, maxTransferKb: 2048 },
+    consoleEntries: [],
+    pageErrors: [],
+    snapshotRefs: {},
+  });
+
+  assert.equal(assessment.verdict, "pass");
+  assert.deepEqual(assessment.warnings, ["contrast-unmeasured"]);
 });

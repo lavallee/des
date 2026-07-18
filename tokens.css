@@ -140,6 +140,7 @@
   /* Interactive / accent */
   --accent:         var(--p-indigo-500);
   --accent-muted:   var(--p-indigo-600);
+  --accent-strong:  var(--p-indigo-700);
   --accent-surface: var(--p-indigo-50);
   --accent-text:    var(--p-indigo-300);  /* Accent-colored text (links in prose) */
 
@@ -212,6 +213,7 @@
 
   --accent:         var(--p-navy-600);
   --accent-muted:   var(--p-navy-700);
+  --accent-strong:  var(--p-navy-700);
   --accent-surface: var(--p-navy-100);
   --accent-text:    var(--p-navy-500);
 

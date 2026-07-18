@@ -1,8 +1,13 @@
 # Design System Principles
 
-Working guidelines for tools in this project family: barnowl, keel, tern, steve, weaver, malo, and tools built after them.
+Working guidelines for the shipped Lyra Forge operator and editorial-data
+vocabulary: barnowl, keel, tern, steve, weaver, malo, and related tools.
 
-These are principles, not a style guide. They explain *why* decisions were made so future tools can make good contextual choices instead of blindly copying patterns that don't fit.
+These are principles, not a universal style guide. They explain *why* decisions
+were made so related tools can make contextual choices instead of blindly
+copying patterns. Read `modes/README.md` and the selected surface mode first.
+Mode-specific guidance wins when this operator-centered document does not fit
+the audience or task.
 
 Organized by concern: [Foundations](#foundations) → [Visual Design](#visual-design) → [Components](#components) → [Interaction](#interaction) → [Visualization](#visualization) → [Architecture](#architecture) → [Process](#process).
 
@@ -10,21 +15,22 @@ Organized by concern: [Foundations](#foundations) → [Visual Design](#visual-de
 
 ## Foundations
 
-### What this system is for
+### What this vocabulary is for
 
-This is a design system for **internal research and analysis tools** — tools used by practitioners who are deeply familiar with their domain and need to move quickly through large amounts of structured and semi-structured information.
+The shipped component vocabulary began with **internal research and analysis
+tools** used by practitioners who need to move quickly through structured and
+semi-structured information.
 
-These tools are not consumer products. They are instruments. The appropriate mental model is closer to a well-designed code editor or financial terminal than to a consumer app. Density, speed, and power-user ergonomics matter more than visual novelty or first-run experience.
+In `operator` mode, the appropriate mental model is closer to a well-designed
+code editor or financial terminal than to a consumer app. Density, speed, and
+power-user ergonomics matter more than visual novelty. That constraint does not
+transfer unchanged to public-data, editorial, or marketing work.
 
-### Two design intents
+### Surface modes
 
-Distinguish the intent of a tool before applying patterns:
-
-**Instrument:** Used repeatedly by someone who becomes expert with it. Optimize for density, keyboard shortcuts, and efficiency over time. Barnowl, keel, tern are instruments.
-
-**Artifact:** Produced once, read by someone without training. Optimize for cold-reader comprehension, progressive disclosure, and self-documentation. Weaver visualization outputs, published barnowl summaries are artifacts.
-
-Some tools contain both (a weaver project has an exploratory instrument stage and a publishable artifact stage). Name which mode you're in — the applicable patterns differ.
+Distinguish `operator`, `public-data`, `editorial`, and `marketing` before
+applying patterns. A single product may contain multiple modes, but each route or
+bounded region should have one primary audience and job. See `modes/README.md`.
 
 ### Generate variants, select after
 
@@ -38,13 +44,15 @@ The practical implication: design system components must make variant generation
 
 ### Color
 
-#### Two canonical themes
+#### Two canonical Lyra Forge themes
 
 **Dark (default):** Zinc surface scale, indigo accent. Used for instruments. Reduces eye strain in extended use. Established in keel; carried through barnowl, tern.
 
 **Cream (light):** Warm off-white surface, navy accent. Used for readable artifacts and public-facing output. Established in steve.
 
-Do not mix themes within a tool. Pick one. Mixing dark surfaces with light panels creates visual noise that erodes both legibility and perceived quality.
+Within this shipped vocabulary, pick one coherent theme for a route. A different
+product identity may define a different semantic token set; do not force all DES
+work through these two themes.
 
 #### Token hierarchy
 
@@ -107,9 +115,9 @@ atlas's kind-colored identity-card rule — removed same day across collagen.)
 
 ### Typography
 
-#### Three-role type system
+#### Three-role Lyra Forge type system
 
-Every tool uses exactly three typeface roles:
+Related Lyra Forge tools use three typeface roles:
 
 | Role | Use | Canonical choice |
 |------|-----|-----------------|
@@ -119,7 +127,8 @@ Every tool uses exactly three typeface roles:
 
 Sans is the workhorse. Serif appears sparingly — primarily for the tool's name/brand in the header, and in artifact-mode prose headings. Mono is for data that benefits from alignment.
 
-Never use more than these three roles in a single tool.
+Do not add more roles to this product family without a demonstrated need. Other
+surface identities may choose a different small role set under their mode.
 
 #### Font loading
 

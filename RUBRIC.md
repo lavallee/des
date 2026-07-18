@@ -1,4 +1,4 @@
-# The judge rubric — scoring an admin surface
+# The judge rubric — scoring a selected surface mode
 
 For the independent evaluator pass (seeing gate, step 0). The judge scores
 rendered screenshots + the live page, never source alone, and returns
@@ -6,6 +6,12 @@ rendered screenshots + the live page, never source alone, and returns
 row on the second card", "the submit button in the pitch form"), the
 criterion it fails, and what the fix would look like. Free-text overall
 impressions are not findings.
+
+Before scoring, read the receipt's explicit `surface_mode` and the matching file
+under `modes/`. Gates 0 and the relevant parts of gate 1 apply everywhere.
+Sections 2–4 below are the detailed `operator` rubric. A public-data, editorial,
+or marketing surface is not penalized merely for using expression that operator
+mode intentionally forbids; score it against its mode section instead.
 
 Protocol: gates run in order — a failed gate stops scoring (a page that
 doesn't render has no typography). Before/after comparisons are
@@ -43,6 +49,19 @@ When the four questions reveal an orientation failure, diagnose whether scope,
 operator task, current state/proof, or next move/consequence is missing. This is
 not a universal header checklist: a familiar expert workflow does not fail for
 omitting a restatement when its task and consequence are otherwise clear.
+
+Translate the four questions by mode rather than importing queue language:
+
+- **Operator:** object and scope; why it needs attention; available verb and
+  authority; resulting state, continuity, and recovery.
+- **Public data:** question, population, and filter scope; why this evidence is
+  relevant; how to compare or reach exact values; what the selected scope changes
+  and how to share or reset it.
+- **Editorial:** subject and claim; why it matters and who attributes it; how to
+  follow evidence, figures, notes, and corrections; where the argument or record
+  continues.
+- **Marketing:** audience tension and product distinction; why the proof is
+  credible; what action is available; where that action leads and what it commits.
 
 ## Gate 1.5 — flow and authority (pass/fail per task)
 
@@ -90,7 +109,7 @@ omitting a restatement when its task and consequence are otherwise clear.
   Decorative restatement of the page type, heading, or adjacent content is a
   hierarchy failure, not harmless polish.
 
-## Section 2 — composition & density (0–2 each)
+## Operator section 2 — composition & density (0–2 each)
 
 - **Composed at width**: at 1440 content has a max-width and deliberate
   column structure; no panel poured edge-to-edge; no card floating in
@@ -106,7 +125,7 @@ omitting a restatement when its task and consequence are otherwise clear.
   summaries are visibly interactive, theme-safe, focusable, and sized to their
   writing or selection task.
 
-## Section 3 — decision surfaces (0–2 each; only if the page asks for choices)
+## Operator section 3 — decision surfaces (0–2 each; only if the page asks for choices)
 
 - Card body is decision context (what happened / why it matters / what
   each verb does) — not a raw artifact dump, not a truncated tease.
@@ -115,7 +134,7 @@ omitting a restatement when its task and consequence are otherwise clear.
 - Disposition is instant-with-undo for reversible verbs; confirmation
   appears only for the irreversible.
 
-## Section 4 — durability (0–2 each)
+## Operator section 4 — durability (0–2 each)
 
 - Both themes hold: no unthemed control (the white-textarea-in-dark-mode
   class of bug); text tiers ≥4.5:1 computed.
@@ -127,16 +146,66 @@ omitting a restatement when its task and consequence are otherwise clear.
   whole-page refresh. Relative time avoids `0d`, exposes an exact timestamp,
   and uses the configured operator timezone.
 
+## Public-data mode (0–2 each)
+
+- **Question and scope:** the opening establishes the question, population, time
+  basis, units, and current filter scope without requiring domain fluency.
+- **Overview to exact value:** the reader can move from the main pattern to a
+  comparison, underlying value, and relevant record without losing context.
+- **Encoding integrity:** legends, axes, denominators, missingness, uncertainty,
+  and scale choices prevent the visual from implying a stronger claim than the
+  data supports. Color is not the only carrier of meaning.
+- **Provenance at interpretation:** source, update cadence, methodology, and
+  qualifications appear where they affect the claim, not only in a remote
+  footer.
+- **Filter and share durability:** filters announce their effect, empty results
+  explain absence, and the meaningful view can be linked or reconstructed.
+- **Responsive explanation:** narrow layouts recompose comparisons and retain an
+  exact-value route; they do not merely shrink a desktop chart.
+
+## Editorial mode (0–2 each)
+
+- **Reading sequence:** headline, deck, byline, body, sections, figures, notes,
+  and citations create a legible path without panelizing every paragraph.
+- **Measure and rhythm:** body measure, line height, section spacing, and figure
+  placement support sustained reading at narrow and wide widths.
+- **Claim custody:** observed fact, attributed claim, analysis, and recommendation
+  remain distinguishable; citations and corrections resolve to exact material.
+- **Figure purpose:** each image, chart, pull quote, or side note advances the
+  narrative or evidence and carries the required caption, source, and alt text.
+- **Navigation and return:** long documents provide position and linkable
+  sections without interrupting the reading flow.
+- **Editorial identity:** expressive type, color, texture, and layout form one
+  coherent voice rather than a collection of unrelated effects.
+
+## Marketing mode (0–2 each)
+
+- **Product argument:** the first sequence makes the audience tension, product
+  distinction, and next action concrete without relying on generic superlatives.
+- **Honest proof:** interface demonstrations, outputs, customers, metrics,
+  testimonials, and urgency are real, sourced, or explicitly marked as
+  placeholders. Decorative chrome does not pass as product evidence.
+- **Structural fingerprint:** the page uses a named macrostructure suited to its
+  argument instead of defaulting without reason to hero, logo strip, three-card
+  grid, testimonial wall, and CTA.
+- **Coherent identity:** typography, imagery, geometry, color, and motion share a
+  small design DNA. Greater variance does not become multiple visual systems.
+- **Purposeful expression:** each gradient, shadow, asymmetry, image, or motion
+  choice improves hierarchy, identity, comprehension, or emotional register.
+- **Action and mobile:** calls to action state destination or consequence, and
+  mobile recomposes the argument rather than clipping or stacking every block.
+
 ## Output format
 
 ```
 GATE 0: pass|fail (+findings)
 GATE 1: per-screen pass|fail, each failure = {region, question, evidence}
-SECTIONS 2–4: score + findings [{region, criterion, evidence, suggested fix}]
+MODE SECTION: score + findings [{region, criterion, evidence, suggested fix}]
 VERDICT: ship | candidate | fix-then-reshoot | fails-gate
 RECEIPT: baseline revision/routes/screenshots, variant revision/screenshots,
-surface archetype, relevant page-entry diagnosis, pattern readiness and missing
-behavior, functional/a11y/console/overflow checks, requested/served model,
+surface mode and style dials, structural fingerprint, relevant page-entry
+diagnosis, pattern readiness and missing behavior, functional/a11y/console/
+overflow checks, profile id, harness, requested/served model, tier, capabilities,
 independent judge, promotion authority, material delta, post-implementation
 feedback, and deferred findings
 ```

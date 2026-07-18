@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qualifier Observatory — public-data reference</title>
+<style>
+  :root {
+    --ink: #10233f;
+    --muted: #4d6078;
+    --faint: #53687f;
+    --paper: #f4f7fb;
+    --white: #ffffff;
+    --blue: #005bd6;
+    --blue-dark: #003f99;
+    --cyan: #bdebf3;
+    --amber: #f2b134;
+    --line: #bdc9d8;
+    --line-soft: #dce4ed;
+    --nav-text: #e7eef8;
+    --track: #e5ebf3;
+    --sans: Inter, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+  a { color: var(--blue-dark); text-underline-offset: 3px; }
+  :is(a, button, select):focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+  button, select { font: inherit; }
+  .site-header { min-height: 62px; background: var(--ink); color: white; display: flex; align-items: center; gap: 26px; padding: 0 max(24px, calc((100vw - 1240px) / 2)); }
+  .brand { color: white; font-size: 16px; font-weight: 800; text-decoration: none; letter-spacing: -.02em; }
+  .brand span { display: inline-block; width: 10px; height: 10px; margin-right: 9px; background: var(--cyan); border-radius: 50%; }
+  .site-nav { display: flex; gap: 18px; margin-left: auto; }
+  .site-nav a { color: var(--nav-text); font-size: 13px; white-space: nowrap; }
+
+  .page { max-width: 1240px; margin: 0 auto; padding: 44px 24px 90px; }
+  .fixture-note { margin: 0 0 28px; color: var(--muted); font: 11px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .question { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(300px, .55fr); gap: 64px; align-items: end; padding-bottom: 38px; border-bottom: 2px solid var(--ink); }
+  .question h1 { max-width: 16ch; margin: 0; font-size: clamp(44px, 6vw, 76px); line-height: .98; letter-spacing: -.055em; }
+  .question-copy { margin: 22px 0 0; max-width: 64ch; color: var(--muted); font-size: 18px; line-height: 1.5; }
+  .scope-facts { margin: 0; border-top: 1px solid var(--ink); }
+  .scope-facts div { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .scope-facts dt { color: var(--faint); font: 10px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .scope-facts dd { margin: 0; font-size: 13px; }
+
+  .controls { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 18px; align-items: end; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .control-group { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .control-label, .control-group legend { display: block; margin-bottom: 7px; color: var(--muted); font: 10px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .07em; }
+  .scope-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+  .scope-buttons button, .share-button, .reset-button { min-height: 38px; border: 1px solid var(--ink); background: var(--white); color: var(--ink); padding: 0 13px; cursor: pointer; font-size: 13px; font-weight: 650; }
+  .scope-buttons button[aria-pressed="true"] { background: var(--blue); color: white; border-color: var(--blue); }
+  select { min-height: 38px; border: 1px solid var(--ink); background: var(--white); color: var(--ink); padding: 0 34px 0 10px; }
+  .share-button { background: var(--ink); color: white; }
+  .view-status { grid-column: 1 / -1; min-height: 18px; margin: -5px 0 0; color: var(--muted); font-size: 13px; }
+
+  .summary { padding: 38px 0 32px; }
+  .summary-head { display: flex; justify-content: space-between; gap: 24px; align-items: baseline; margin-bottom: 20px; }
+  .summary h2 { margin: 0; font-size: 26px; letter-spacing: -.025em; }
+  .summary-head a { font-size: 13px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .stat { padding: 20px 18px 22px 0; border-right: 1px solid var(--line); }
+  .stat + .stat { padding-left: 18px; }
+  .stat:last-child { border-right: 0; }
+  .stat-label { color: var(--muted); font: 10px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .07em; }
+  .stat-value { margin-top: 8px; font: 700 clamp(34px, 4vw, 54px)/1 var(--mono); letter-spacing: -.06em; }
+  .stat-note { margin-top: 7px; color: var(--muted); font-size: 12px; }
+
+  .data-layout { display: grid; grid-template-columns: minmax(300px, .7fr) minmax(0, 1.3fr); gap: 48px; align-items: start; }
+  .chart-panel h2, .table-panel h2, .method h2 { margin: 0 0 9px; font-size: 22px; letter-spacing: -.02em; }
+  .section-deck { margin: 0 0 22px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+  .bars { border-top: 1px solid var(--ink); }
+  .bar-row { display: grid; grid-template-columns: minmax(120px, 1fr) 1.5fr 48px; gap: 12px; align-items: center; min-height: 60px; border-bottom: 1px solid var(--line-soft); }
+  .bar-label { font-size: 13px; line-height: 1.25; }
+  .bar-track { height: 18px; background: var(--track); position: relative; }
+  .bar-fill { display: block; width: calc(var(--rate) * 1%); height: 100%; background: var(--blue); }
+  .bar-value { text-align: right; font: 700 13px/1 var(--mono); }
+
+  .exact-table { width: 100%; border-collapse: collapse; background: var(--white); border-top: 2px solid var(--ink); }
+  .exact-table th { padding: 10px 12px; color: var(--muted); font: 10px/1.3 var(--mono); text-align: left; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--ink); }
+  .exact-table th:not(:first-child), .exact-table td:not(:first-child) { text-align: right; }
+  .exact-table td { padding: 13px 12px; border-bottom: 1px solid var(--line-soft); font-size: 13px; }
+  .exact-table td:not(:first-child) { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .exact-table tr[hidden] { display: none; }
+  .phrase { display: block; font-weight: 700; }
+  .category { display: block; margin-top: 4px; color: var(--muted); font: 10px/1.3 var(--mono); text-transform: uppercase; }
+
+  .empty { padding: 36px; border: 2px solid var(--blue); background: var(--white); }
+  .empty h2 { margin: 0 0 8px; font-size: 24px; }
+  .empty p { margin: 0 0 18px; color: var(--muted); line-height: 1.45; }
+  .reset-button { background: var(--blue); color: white; border-color: var(--blue); }
+  [hidden] { display: none !important; }
+
+  .method { margin-top: 64px; padding-top: 26px; border-top: 2px solid var(--ink); display: grid; grid-template-columns: .7fr 1.3fr; gap: 48px; }
+  .method p { margin: 0 0 12px; max-width: 70ch; color: var(--muted); font-size: 14px; line-height: 1.55; }
+  .method code { color: var(--ink); font-family: var(--mono); }
+
+  @media (max-width: 860px) {
+    .question, .data-layout, .method { grid-template-columns: 1fr; gap: 30px; }
+    .controls { grid-template-columns: 1fr 1fr; }
+    .control-group:first-child { grid-column: 1 / -1; }
+    .share-button { width: 100%; }
+  }
+  @media (max-width: 560px) {
+    .site-header { padding-inline: 18px; }
+    .site-nav { gap: 10px; }
+    .page { padding: 32px 18px 70px; }
+    .question h1 { font-size: 46px; }
+    .controls { grid-template-columns: 1fr; }
+    .control-group:first-child { grid-column: auto; }
+    .view-status { grid-column: auto; }
+    .stats { grid-template-columns: 1fr; }
+    .stat, .stat + .stat { padding: 16px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+    .stat:last-child { border-bottom: 0; }
+    .bar-row { grid-template-columns: 1fr 50px; padding: 12px 0; }
+    .bar-track { grid-column: 1 / -1; grid-row: 2; }
+    .exact-table th:nth-child(2), .exact-table td:nth-child(2) { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#top"><span aria-hidden="true"></span>Qualifier Observatory</a>
+  <nav class="site-nav" aria-label="Page"><a href="#overview">Overview</a><a href="#exact-values">Exact values</a><a href="#method">Method</a></nav>
+</header>
+
+<main class="page" id="top">
+  <p class="fixture-note">Public-data reference · synthetic dataset · interactions are functional</p>
+  <section class="question" aria-labelledby="page-title">
+    <div>
+      <h1 id="page-title">Where do qualifiers disappear?</h1>
+      <p class="question-copy">Explore how often caveats survived re-publication in a synthetic set of traced claims. Filters change every count and remain encoded in the URL.</p>
+    </div>
+    <dl class="scope-facts">
+      <div><dt>Population</dt><dd>Synthetic traced claims</dd></div>
+      <div><dt>Period</dt><dd id="scope-period">March 2026</dd></div>
+      <div><dt>Unit</dt><dd>Claim-phrase occurrences</dd></div>
+      <div><dt>Updated</dt><dd>Fixture revision 1</dd></div>
+    </dl>
+  </section>
+
+  <form class="controls" id="controls">
+    <fieldset class="control-group">
+      <legend>Source scope</legend>
+      <div class="scope-buttons">
+        <button type="button" data-scope="all" aria-pressed="true">All sources</button>
+        <button type="button" data-scope="briefing" aria-pressed="false">Briefings</button>
+        <button type="button" data-scope="wire" aria-pressed="false">Wire desks</button>
+        <button type="button" data-scope="community" aria-pressed="false">Community reports</button>
+      </div>
+    </fieldset>
+    <label><span class="control-label">Period</span><select id="period"><option value="2026-03">March 2026</option><option value="2026-02">February 2026</option></select></label>
+    <button class="share-button" type="button" id="share-view">Encode shareable view</button>
+    <p class="view-status" id="view-status" role="status" aria-live="polite">Showing all 83 synthetic claim occurrences from March 2026.</p>
+  </form>
+
+  <div id="data-view">
+    <section class="summary" id="overview" aria-labelledby="summary-title">
+      <header class="summary-head"><h2 id="summary-title">March 2026 at a glance</h2><a href="#exact-values">Jump to exact values</a></header>
+      <div class="stats">
+        <div class="stat"><div class="stat-label">Tracked occurrences</div><div class="stat-value" id="tracked-value">83</div><div class="stat-note">Current filter scope</div></div>
+        <div class="stat"><div class="stat-label">Qualifier lost</div><div class="stat-value" id="lost-value">42</div><div class="stat-note">Before third publication</div></div>
+        <div class="stat"><div class="stat-label">Loss rate</div><div class="stat-value" id="rate-value">51%</div><div class="stat-note">Lost ÷ tracked</div></div>
+      </div>
+    </section>
+
+    <section class="data-layout" aria-label="Comparison and exact values">
+      <div class="chart-panel">
+        <h2>Loss rate by phrase</h2>
+        <p class="section-deck">Bar length encodes the share lost. The adjacent table supplies every exact value.</p>
+        <div class="bars" id="bars" aria-label="Qualifier loss rate comparison">
+          <div class="bar-row" data-category="briefing" data-tracked="42" data-lost="31"><span class="bar-label">Internal estimate, pending publication</span><span class="bar-track"><span class="bar-fill" style="--rate:74"></span></span><span class="bar-value">74%</span></div>
+          <div class="bar-row" data-category="wire" data-tracked="20" data-lost="9"><span class="bar-label">Officials familiar with the matter</span><span class="bar-track"><span class="bar-fill" style="--rate:45"></span></span><span class="bar-value">45%</span></div>
+          <div class="bar-row" data-category="briefing" data-tracked="13" data-lost="2"><span class="bar-label">Subject to revision</span><span class="bar-track"><span class="bar-fill" style="--rate:15"></span></span><span class="bar-value">15%</span></div>
+          <div class="bar-row" data-category="wire" data-tracked="8" data-lost="0"><span class="bar-label">Declined to confirm</span><span class="bar-track"><span class="bar-fill" style="--rate:0"></span></span><span class="bar-value">0%</span></div>
+        </div>
+      </div>
+
+      <div class="table-panel" id="exact-values">
+        <h2>Exact values</h2>
+        <p class="section-deck">Counts are synthetic and exist only to demonstrate the public-data interaction contract.</p>
+        <table class="exact-table">
+          <thead><tr><th scope="col">Qualifier phrase</th><th scope="col">Tracked</th><th scope="col">Lost</th><th scope="col">Rate</th></tr></thead>
+          <tbody>
+            <tr data-category="briefing" data-tracked="42" data-lost="31"><td><span class="phrase">Internal estimate, pending publication</span><span class="category">Briefing</span></td><td>42</td><td>31</td><td>74%</td></tr>
+            <tr data-category="wire" data-tracked="20" data-lost="9"><td><span class="phrase">Officials familiar with the matter</span><span class="category">Wire desk</span></td><td>20</td><td>9</td><td>45%</td></tr>
+            <tr data-category="briefing" data-tracked="13" data-lost="2"><td><span class="phrase">Subject to revision</span><span class="category">Briefing</span></td><td>13</td><td>2</td><td>15%</td></tr>
+            <tr data-category="wire" data-tracked="8" data-lost="0"><td><span class="phrase">Declined to confirm</span><span class="category">Wire desk</span></td><td>8</td><td>0</td><td>0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <section class="empty" id="empty-state" hidden aria-labelledby="empty-title">
+    <h2 id="empty-title">No records match this view.</h2>
+    <p>The synthetic fixture contains no community-report records or February observations. This is absence in the selected scope, not evidence that the event never occurred.</p>
+    <button class="reset-button" type="button" id="reset-view">Reset to all March records</button>
+  </section>
+
+  <section class="method" id="method" aria-labelledby="method-title">
+    <h2 id="method-title">Method and provenance</h2>
+    <div><p>This page uses a clearly labeled synthetic dataset so the reference can demonstrate filters, exact values, missingness, and shareable state without fabricating real-world evidence.</p><p>A production version would link each row to its canonical record, publish denominators and classification rules, expose corrections, and replace <code>fixture revision 1</code> with a dated source snapshot.</p></div>
+  </section>
+</main>
+
+<script>
+  const scopeButtons = [...document.querySelectorAll("[data-scope]")];
+  const periodSelect = document.querySelector("#period");
+  const rows = [...document.querySelectorAll(".exact-table tbody tr")];
+  const bars = [...document.querySelectorAll(".bar-row")];
+  const dataView = document.querySelector("#data-view");
+  const emptyState = document.querySelector("#empty-state");
+  const status = document.querySelector("#view-status");
+  const summaryTitle = document.querySelector("#summary-title");
+
+  function currentScope() {
+    return scopeButtons.find((button) => button.getAttribute("aria-pressed") === "true")?.dataset.scope || "all";
+  }
+
+  function applyView(scope = "all", period = "2026-03", announce = true) {
+    const hasPeriod = period === "2026-03";
+    const visible = rows.filter((row) => hasPeriod && (scope === "all" || row.dataset.category === scope));
+    rows.forEach((row) => { row.hidden = !visible.includes(row); });
+    bars.forEach((bar) => { bar.hidden = !hasPeriod || (scope !== "all" && bar.dataset.category !== scope); });
+    scopeButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.scope === scope)));
+    periodSelect.value = period;
+    const tracked = visible.reduce((total, row) => total + Number(row.dataset.tracked), 0);
+    const lost = visible.reduce((total, row) => total + Number(row.dataset.lost), 0);
+    const rate = tracked ? Math.round((lost / tracked) * 100) : 0;
+    document.querySelector("#tracked-value").textContent = tracked;
+    document.querySelector("#lost-value").textContent = lost;
+    document.querySelector("#rate-value").textContent = `${rate}%`;
+    document.querySelector("#scope-period").textContent = period === "2026-03" ? "March 2026" : "February 2026";
+    summaryTitle.textContent = `${period === "2026-03" ? "March" : "February"} 2026 at a glance`;
+    dataView.hidden = visible.length === 0;
+    emptyState.hidden = visible.length !== 0;
+    const scopeName = scopeButtons.find((button) => button.dataset.scope === scope)?.textContent || "Selected";
+    if (announce) status.textContent = visible.length ? `Showing ${scopeName.toLowerCase()}: ${tracked} synthetic claim occurrences, ${lost} lost.` : `No synthetic records match ${scopeName.toLowerCase()} in ${period === "2026-03" ? "March" : "February"} 2026.`;
+    const url = new URL(location.href);
+    url.searchParams.set("scope", scope);
+    url.searchParams.set("period", period);
+    history.replaceState(null, "", url);
+  }
+
+  scopeButtons.forEach((button) => button.addEventListener("click", () => applyView(button.dataset.scope, periodSelect.value)));
+  periodSelect.addEventListener("change", () => applyView(currentScope(), periodSelect.value));
+  document.querySelector("#share-view").addEventListener("click", () => {
+    applyView(currentScope(), periodSelect.value, false);
+    status.textContent = "This filter scope is now encoded in the page URL and can be copied from the address bar.";
+  });
+  document.querySelector("#reset-view").addEventListener("click", () => applyView("all", "2026-03"));
+
+  const initial = new URL(location.href).searchParams;
+  const initialScope = scopeButtons.some((button) => button.dataset.scope === initial.get("scope")) ? initial.get("scope") : "all";
+  const initialPeriod = ["2026-03", "2026-02"].includes(initial.get("period")) ? initial.get("period") : "2026-03";
+  applyView(initialScope, initialPeriod, false);
+</script>
+</body>
+</html>
