@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" data-surface-mode="operator">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose among DES operator, public-data, editorial, and marketing surface modes.">
+  <meta name="theme-color" content="#f4f0e7">
+  <title>DES surface modes</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111111'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial' font-size='30' font-weight='700' fill='white'%3ED%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../lib/artoo-kit/tokens.css"><link rel="stylesheet" href="../lib/artoo-kit/base.css"><link rel="stylesheet" href="../site.css">
+  <script src="../app.js" defer></script>
+</head>
+<body data-base="../" data-page="modes">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <a class="site-brand" href="../" aria-label="DES home"><span>D</span> DES</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span>Menu</span><span aria-hidden="true">↘</span></button>
+    <nav class="site-navigation" id="site-navigation" aria-label="Primary">
+      <a href="../start/">Start</a><a href="../modes/" aria-current="page">Modes</a><a href="../profile/">Profile builder</a><a href="../practice/">Practice</a><a href="../examples/">Examples</a><a class="nav-github" href="https://github.com/lavallee/des">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main class="doc-main" id="content">
+    <header class="doc-hero">
+      <div class="doc-hero-aside"><p class="doc-label">Surface modes<br>Four choices</p></div>
+      <div class="doc-hero-copy">
+        <p class="page-kicker">Audience before aesthetic</p>
+        <h1>Begin with the job.</h1>
+        <p class="doc-dek">A mode selects the task contract and default range. Style dials remain independent, and the shared floor remains non-negotiable.</p>
+      </div>
+    </header>
+
+    <section class="doc-section mode-lab" aria-labelledby="chooser-title">
+      <header><p class="doc-label">01<br>Choose</p></header>
+      <div class="doc-content">
+        <h2 id="chooser-title">Who is doing what?</h2>
+        <div class="chooser">
+          <div class="field">
+            <label for="mode-recommendation">The primary reader or user needs to…</label>
+            <select id="mode-recommendation" data-mode-recommend>
+              <option value="operator">Complete repeated, consequential work</option>
+              <option value="public-data">Explore evidence without assumed fluency</option>
+              <option value="editorial">Follow a sustained argument or record</option>
+              <option value="marketing">Judge a product’s distinction and credibility</option>
+            </select>
+          </div>
+          <button class="button" type="button" data-choose-mode>Show this mode <span aria-hidden="true">→</span></button>
+        </div>
+
+        <div class="mode-tabs" role="group" aria-label="Surface modes">
+          <button type="button" data-mode-select="operator" aria-pressed="true">Operator</button>
+          <button type="button" data-mode-select="public-data" aria-pressed="false">Public data</button>
+          <button type="button" data-mode-select="editorial" aria-pressed="false">Editorial</button>
+          <button type="button" data-mode-select="marketing" aria-pressed="false">Marketing</button>
+        </div>
+        <div class="mode-detail">
+          <article class="mode-detail-copy">
+            <p class="page-kicker"><span data-mode-field="number">01 / 04</span> · selected contract</p>
+            <h2 data-mode-field="label">Operator</h2>
+            <p class="mode-objective" data-mode-field="objective">Reduce decision time and error without hiding state, authority, or consequence</p>
+            <p><strong>Audience:</strong> <span data-mode-field="audience">A practiced operator completing repeated, consequential work</span>.</p>
+            <dl class="mode-dials">
+              <div><dt>Variance</dt><dd data-mode-field="variance">Low</dd></div>
+              <div><dt>Density</dt><dd data-mode-field="density">Compact</dd></div>
+              <div><dt>Motion</dt><dd data-mode-field="motion">Functional</dd></div>
+              <div><dt>Type</dt><dd data-mode-field="type">Interface</dd></div>
+              <div><dt>Imagery</dt><dd data-mode-field="imagery">Evidence only</dd></div>
+            </dl>
+            <p><a class="text-link" data-mode-example href="../showcase.html">Open the full reference <span aria-hidden="true">↗</span></a></p>
+          </article>
+          <div class="mode-preview"><iframe data-mode-frame src="../showcase.html" title="Operator DES reference" loading="lazy"></iframe></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" aria-labelledby="comparison-title">
+      <header><p class="doc-label">02<br>Compare</p></header>
+      <div class="doc-content">
+        <h2 id="comparison-title">Different defaults, equal standing.</h2>
+        <p>Read across a row to compare one design decision. Do not read down a column as a progression from basic to advanced.</p>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Decision</th><th>Operator</th><th>Public data</th><th>Editorial</th><th>Marketing</th></tr></thead>
+            <tbody>
+              <tr><th>Primary job</th><td>Repeated action</td><td>Evidence exploration</td><td>Sustained reading</td><td>Product judgment</td></tr>
+              <tr><th>Task anatomy</th><td>Queue + inspector</td><td>Overview → exact values</td><td>Claim → figure → source</td><td>Argument → proof → action</td></tr>
+              <tr><th>Variance</th><td>Low</td><td>Medium</td><td>Medium</td><td>High</td></tr>
+              <tr><th>Density</th><td>Compact</td><td>Balanced</td><td>Relaxed</td><td>Relaxed</td></tr>
+              <tr><th>Motion</th><td>Functional</td><td>Explanatory</td><td>Quiet</td><td>Expressive</td></tr>
+              <tr><th>Type register</th><td>Interface</td><td>Editorial data</td><td>Editorial</td><td>Branded</td></tr>
+              <tr><th>Proof emphasis</th><td>State + consequence</td><td>Provenance + exactness</td><td>Claim + source custody</td><td>Credibility + honest action</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="doc-callout"><strong>Mixed products</strong><p>Classify each route or bounded region. A public-data story may contain an operator-like filter workbench; a marketing site may link to an editorial case study. Do not average them into one vague middle.</p></aside>
+      </div>
+    </section>
+
+    <section class="doc-section" aria-labelledby="floor-title">
+      <header><p class="doc-label">03<br>Shared floor</p></header>
+      <div class="doc-content">
+        <h2 id="floor-title">Expression changes. Responsibility does not.</h2>
+        <div class="doc-grid">
+          <article><h3>Honest proof</h3><p>No invented people, customers, metrics, testimonials, citations, or capabilities. Unknowns and fixtures are labeled.</p></article>
+          <article><h3>Reachable states</h3><p>Controls work. Loading, empty, error, success, and recovery states match the real flow.</p></article>
+          <article><h3>Accessible structure</h3><p>Semantics, focus, contrast, reduced motion, and supported widths are part of the implementation—not review polish.</p></article>
+          <article><h3>Evidence custody</h3><p>Claims, observations, synthesis, recommendations, actions, and outcomes remain distinct and linked.</p></article>
+        </div>
+        <p><a class="button button-primary" href="../profile/">Build a mode-aware profile <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <div><a class="site-brand footer-brand" href="../"><span>D</span> DES</a><p>Four categorical contracts. No universal house style.</p></div>
+    <div><p class="footer-label">Next</p><a href="../profile/">Profile builder</a><a href="../practice/">Practice</a><a href="../examples/">Examples</a></div>
+    <div><p class="footer-label">Source</p><a href="https://github.com/lavallee/des/tree/main/modes">Mode files</a><a href="https://github.com/lavallee/des/blob/main/RUBRIC.md">Rubric</a><a href="https://github.com/lavallee/des/blob/main/LICENSE">MIT license</a></div>
+    <p class="footer-colophon">The chooser maps a named job to a starting contract. It does not score the product or replace task research.</p>
+  </footer>
+</body>
+</html>

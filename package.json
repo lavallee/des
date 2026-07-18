@@ -1,7 +1,8 @@
 {
   "name": "@lavallee/des",
   "version": "0.5.0",
-  "description": "Design system for the Lyra Forge tool family",
+  "description": "Audience-aware design practice and CSS system for agents and product teams",
+  "homepage": "https://lavallee.github.io/des/",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -10,7 +11,8 @@
   },
   "scripts": {
     "audit:showcase": "node scripts/des-audit.mjs --url http://127.0.0.1:4173/showcase.html --task 'Find and inspect a system pattern' --surface 'DES component showcase' --mode operator --harness local-cli --model-tier standard --requested-model unknown --served-model unknown --capability browser --out artifacts/design-receipts/showcase",
-    "test": "node --test"
+    "build:docs": "node website/build.mjs",
+    "test": "node website/build.mjs && node --test"
   },
   "exports": {
     "./tokens.css": "./tokens.css",
@@ -39,8 +41,12 @@
     "assets/"
   ],
   "keywords": [
+    "agent-skill",
+    "audience-aware",
     "design-system",
-    "css"
+    "design-engineering",
+    "css",
+    "ui"
   ],
   "peerDependencies": {
     "agent-browser": ">=0.22.1"
