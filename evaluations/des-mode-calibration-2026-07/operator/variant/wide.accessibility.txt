@@ -1,0 +1,977 @@
+- banner
+  - StaticText "design system"
+  - StaticText "tokens · components · patterns"
+  - combobox "Preview theme" [expanded=false, ref=e1]: ☾ dark
+    - MenuListPopup
+      - option "◼ carbon" [ref=e61]
+      - option "◈ slate" [ref=e62]
+      - option "◉ parchment" [ref=e63]
+      - option "☀ cream" [ref=e64]
+- navigation
+  - link "Color" [ref=e2]
+  - link "Typography" [ref=e3]
+  - link "Spacing" [ref=e4]
+  - link "Stat Cards" [ref=e5]
+  - link "Badges & Pills" [ref=e6]
+  - link "Buttons" [ref=e7]
+  - link "Data Tables" [ref=e8]
+  - link "Filter Bar" [ref=e9]
+  - link "Decision Workspace" [ref=e10]
+  - link "Journey Briefing" [ref=e11]
+  - link "Typed Record List" [ref=e12]
+  - link "Action Inbox" [ref=e13]
+  - link "Callouts" [ref=e14]
+  - link "Timeline" [ref=e15]
+  - link "Admin Page Entry" [ref=e16]
+  - link "Layouts" [ref=e17]
+  - link "Navigation" [ref=e18]
+  - link "Visualization" [ref=e19]
+  - link "Prose / Articles" [ref=e20]
+  - link "→ Article layout tests" [ref=e21]
+- main
+  - generic
+    - heading "Color" [level=2, ref=e22]
+    - paragraph
+      - StaticText "Two themes (dark default, light for artifacts). All components use semantic tokens — never reference primitive values directly."
+    - StaticText "SURFACES"
+    - StaticText "--bg"
+    - StaticText "#09090b"
+    - StaticText "--surface"
+    - StaticText "#111113"
+    - StaticText "--surface-raised"
+    - StaticText "#18181b"
+    - StaticText "--surface-inset"
+    - StaticText "#0c0c0e"
+    - StaticText "TEXT"
+    - StaticText "--text"
+    - StaticText "#e4e4e8"
+    - StaticText "--text-muted"
+    - StaticText "#71717a"
+    - StaticText "--text-dim"
+    - StaticText "#52525b"
+    - StaticText "INTERACTIVE"
+    - StaticText "--accent"
+    - StaticText "#6366f1"
+    - StaticText "--accent-surface"
+    - StaticText "rgba(indigo,0.08)"
+    - StaticText "STATUS"
+    - StaticText "--success"
+    - StaticText "#22c55e"
+    - StaticText "--success-subtle"
+    - StaticText "--warning"
+    - StaticText "#eab308"
+    - StaticText "--warning-subtle"
+    - StaticText "--error"
+    - StaticText "#ef4444"
+    - StaticText "--error-subtle"
+    - StaticText "CHART PALETTE"
+    - StaticText "--chart-1"
+    - StaticText "indigo"
+    - StaticText "--chart-2"
+    - StaticText "cyan"
+    - StaticText "--chart-3"
+    - StaticText "purple"
+    - StaticText "--chart-4"
+    - StaticText "amber"
+    - StaticText "--chart-5"
+    - StaticText "emerald"
+    - StaticText "--chart-6"
+    - StaticText "rose"
+    - StaticText "--chart-7"
+    - StaticText "sky"
+    - StaticText "--chart-8"
+    - StaticText "gray"
+  - generic
+    - heading "Typography" [level=2, ref=e23]
+    - paragraph
+      - StaticText "Three font roles: sans (UI), serif (brand/display), mono (data). Six size steps."
+    - generic
+      - StaticText "--text-2xl"
+      - LineBreak "\n"
+      - StaticText "28px"
+    - StaticText "Instrument Serif — Display"
+    - generic
+      - StaticText "--text-xl"
+      - LineBreak "\n"
+      - StaticText "22px / 600"
+    - StaticText "Section Heading — Geist Semibold"
+    - generic
+      - StaticText "--text-lg"
+      - LineBreak "\n"
+      - StaticText "18px / 600"
+    - StaticText "Panel Title — Geist Semibold"
+    - generic
+      - StaticText "--text-md"
+      - LineBreak "\n"
+      - StaticText "15px / 400"
+    - StaticText "Body prose — Geist Regular. The quick brown fox jumps over the lazy dog. Readable at 15–16px with 1.65 line height for long-form content."
+    - generic
+      - StaticText "--text-base"
+      - LineBreak "\n"
+      - StaticText "13px / 400"
+    - StaticText "Default UI text — table rows, labels, descriptions, filter controls."
+    - generic
+      - StaticText "--text-sm"
+      - LineBreak "\n"
+      - StaticText "12px / 500"
+    - StaticText "Secondary metadata, captions, timestamps."
+    - generic
+      - StaticText "--text-xs"
+      - LineBreak "\n"
+      - StaticText "10px / uppercase"
+    - StaticText "COLUMN HEADER · SECTION LABEL"
+    - StaticText "mono numbers"
+    - StaticText "9,592  0.74  $82,500"
+    - StaticText "mono text"
+    - StaticText "claim_id: abc-7f3 | status: verified | src: reuters.com"
+  - generic
+    - heading "Spacing" [level=2, ref=e24]
+    - paragraph
+      - StaticText "4px base grid. Named stops from --space-1 (4px) to --space-16 (64px)."
+    - StaticText "--space-1 (4px)"
+    - StaticText "--space-2 (8px)"
+    - StaticText "--space-4 (16px)"
+    - StaticText "--space-6 (24px)"
+    - StaticText "--space-8 (32px)"
+    - StaticText "--space-12 (48px)"
+  - generic
+    - heading "Stat Cards" [level=2, ref=e25]
+    - paragraph
+      - StaticText "Dashboard metric display. Used in barnowl overview, keel dashboard, tern geography panel."
+    - StaticText "9,592"
+    - StaticText "TOTAL CLAIMS"
+    - StaticText "5,732"
+    - StaticText "VERIFIED"
+    - StaticText "+142 this week"
+    - StaticText "847"
+    - StaticText "PENDING REVIEW"
+    - StaticText "203"
+    - StaticText "DROPPED"
+    - StaticText "−12 vs prior"
+    - StaticText "0.74"
+    - StaticText "AVG SCORE"
+    - StaticText "312"
+    - StaticText "SOURCES"
+  - generic
+    - heading "Badges & Pills" [level=2, ref=e26]
+    - paragraph
+      - StaticText "Status badges (strong signal), outline tags (metadata), score badges (continuous range), keyboard hints."
+    - StaticText "STATUS BADGES"
+    - StaticText "verified"
+    - StaticText "pending"
+    - StaticText "dropped"
+    - StaticText "in progress"
+    - StaticText "draft"
+    - StaticText "active"
+    - StaticText "OUTLINE TAGS (SECONDARY METADATA)"
+    - StaticText "newspaper"
+    - StaticText "digital"
+    - StaticText "public radio"
+    - StaticText "safety"
+    - StaticText "health"
+    - StaticText "housing"
+    - StaticText "INN member"
+    - StaticText "SCORE BADGES (CONTINUOUS RANGE → 3 BANDS)"
+    - StaticText "0.84"
+    - StaticText "0.71"
+    - StaticText "0.58"
+    - StaticText "0.44"
+    - StaticText "0.31"
+    - StaticText "0.12"
+    - StaticText "—"
+    - StaticText "Thresholds: ≥ 0.70 = high · 0.40–0.70 = mid · < 0.40 = low. Document thresholds in each tool — they are domain decisions."
+    - StaticText "KEYBOARD SHORTCUT PILLS"
+    - StaticText "⌘K"
+    - StaticText "⌘/"
+    - StaticText "?"
+    - StaticText "j"
+    - StaticText "/"
+    - StaticText "k"
+    - StaticText "["
+    - StaticText "/"
+    - StaticText "]"
+    - StaticText "Esc"
+  - generic
+    - heading "Buttons" [level=2, ref=e27]
+    - paragraph
+      - StaticText "Four variants for four levels of visual prominence. Use primary sparingly — one per view maximum."
+    - button "Run analysis" [ref=e28]
+    - button "Export" [ref=e29]
+    - button "Cancel" [ref=e30]
+    - button "Delete" [ref=e31]
+    - button "Run" [ref=e32]
+    - button "Export" [ref=e33]
+    - button "Cancel" [ref=e34]
+  - generic
+    - heading "Data Tables" [level=2, ref=e35]
+    - paragraph
+      - StaticText "The core display pattern. Uppercase headers, monospace numbers, score badges, hover states."
+    - table
+      - rowgroup
+        - row
+          - columnheader "ORGANIZATION" [ref=e169]
+          - columnheader "STATUS" [ref=e170]
+          - columnheader "BEAT" [ref=e171]
+          - columnheader "SCORE" [ref=e172]
+          - columnheader "MENTIONS" [ref=e173]
+      - row
+        - cell "Reuters Wire service · NYC" [ref=e82]
+          - StaticText "Reuters"
+          - StaticText "Wire service · NYC"
+        - cell "verified" [ref=e83]
+        - cell "health" [ref=e84]
+        - cell "0.84" [ref=e85]
+        - cell "2,571" [ref=e86]
+          - generic
+            - StaticText "2,571"
+      - row
+        - cell "ProPublica Nonprofit · NYC" [ref=e87]
+          - StaticText "ProPublica"
+          - StaticText "Nonprofit · NYC"
+        - cell "verified" [ref=e88]
+        - cell "investigation" [ref=e89]
+        - cell "0.79" [ref=e90]
+        - cell "1,983" [ref=e91]
+          - generic
+            - StaticText "1,983"
+      - row
+        - cell "WBUR Boston Public radio · Boston" [ref=e92]
+          - StaticText "WBUR Boston"
+          - StaticText "Public radio · Boston"
+        - cell "pending" [ref=e93]
+        - cell "civic" [ref=e94]
+        - cell "0.54" [ref=e95]
+        - cell "1,063" [ref=e96]
+          - generic
+            - StaticText "1,063"
+      - row
+        - cell "Gothamist Digital · NYC" [ref=e97]
+          - StaticText "Gothamist"
+          - StaticText "Digital · NYC"
+        - cell "dropped" [ref=e98]
+        - cell "housing" [ref=e99]
+        - cell "0.28" [ref=e100]
+        - cell "412" [ref=e101]
+          - generic
+            - StaticText "412"
+  - generic
+    - heading "Filter Bar" [level=2, ref=e36]
+    - paragraph
+      - StaticText "Horizontal toolbar for 2–4 filters. For 5+ filters, use a sidebar panel instead. Active filters shown as dismissible chips."
+    - LabelText
+      - StaticText "Search organizations and titles"
+    - textbox "Search organizations and titles" [ref=e37]
+    - LabelText
+      - StaticText "Status"
+    - combobox "Status" [expanded=false, ref=e38]: any status
+      - MenuListPopup
+        - option "any status" [selected, ref=e102]
+        - option "verified" [ref=e103]
+        - option "pending" [ref=e104]
+        - option "dropped" [ref=e105]
+    - LabelText
+      - StaticText "Beat"
+    - combobox "Beat" [expanded=false, ref=e39]: any beat
+      - MenuListPopup
+        - option "any beat" [selected, ref=e106]
+        - option "health" [ref=e107]
+        - option "civic" [ref=e108]
+        - option "housing" [ref=e109]
+    - button "health Remove health filter" [ref=e40]
+      - StaticText "health"
+      - StaticText "Remove health filter"
+    - button "NYC Remove NYC filter" [ref=e41]
+      - StaticText "NYC"
+      - StaticText "Remove NYC filter"
+    - button "clear all" [ref=e42]
+    - StaticText "Debounce text inputs 300–400ms. Represent active filters as chips. Preserve filter state in URL query params."
+  - generic
+    - heading "Admin Page Entry Diagnostic" [level=2, ref=e43]
+    - paragraph
+      - StaticText "When an operator cannot orient to a route, check scope, task, current state and proof, then next move and consequence. This is not a universal header or a requirement to restate every fact."
+    - table
+      - rowgroup
+        - row
+          - columnheader "ARCHETYPE" [ref=e174]
+          - columnheader "SCOPE + OPERATOR TASK" [ref=e175]
+          - columnheader "CURRENT STATE + PROOF" [ref=e176]
+          - columnheader "NEXT MOVE + CONSEQUENCE" [ref=e177]
+          - columnheader "NAMED PATTERN" [ref=e178]
+      - row
+        - cell "Orientation" [ref=e110]
+          - strong
+            - StaticText "Orientation"
+        - cell "Authored mission and the strategic question for this review." [ref=e111]
+        - cell "Evidence-backed assessment, movement, and missing proof." [ref=e112]
+        - cell "Open the current focus; resolve bounded attention without turning inventory into the journey." [ref=e113]
+        - cell "journey-*" [ref=e114]
+          - code
+            - StaticText "journey-*"
+      - row
+        - cell "Attention" [ref=e115]
+          - strong
+            - StaticText "Attention"
+        - cell "Eligibility contract and the human judgment the queue reserves." [ref=e116]
+        - cell "Ready count, ranking or aging rule, and why each item remains unsettled." [ref=e117]
+        - cell "Open any item or apply a bounded disposition; state removal and undo behavior." [ref=e118]
+        - cell "decision-* / action-inbox" [ref=e119]
+          - code
+            - StaticText "decision-*"
+          - StaticText " / "
+          - code
+            - StaticText "action-inbox"
+      - row
+        - cell "Operations" [ref=e120]
+          - strong
+            - StaticText "Operations"
+        - cell "Run set, environment, and monitoring question." [ref=e121]
+        - cell "Live versus settled status, freshness, evidence, and error or blocker." [ref=e122]
+        - cell "Inspect evidence, recover or rerun, and show the resulting state transition." [ref=e123]
+        - cell "record-* + live-activity rules" [ref=e124]
+          - code
+            - StaticText "record-*"
+          - StaticText " + live-activity rules"
+      - row
+        - cell "Configuration" [ref=e125]
+          - strong
+            - StaticText "Configuration"
+        - cell "Effective scope and the setting or policy being changed." [ref=e126]
+        - cell "Current value, provenance, validation, and pending draft state." [ref=e127]
+        - cell "Apply safely, state the consequence, and keep cancel or revert adjacent." [ref=e128]
+        - cell "Local composition until a repeated family is proven" [ref=e129]
+    - paragraph
+      - StaticText "This diagnostic deliberately does not ship a universal page-header component. Journey briefings, attention queues, operational monitors, and settings workbenches keep distinct hierarchy, density, state, and verbs. Use it only when it explains an observed orientation failure."
+  - generic
+    - heading "Decision Workspace" [level=2, ref=e44]
+    - paragraph
+      - StaticText "Task-level composition for bounded queues and review rails. Flat surfaces and instrument typography make task entry, rationale, and action legible without a product-local visual system."
+    - sectionheader
+      - StaticText "DECISION DESK"
+      - heading "Review queue" [level=3, ref=e65]
+      - paragraph
+        - StaticText "Decide which current, high-confidence resources should receive analysis."
+      - navigation "Resource view" [ref=e66]
+        - link "Review queue 2" [ref=e130]
+          - StaticText "Review queue"
+          - StaticText "2"
+        - link "All inventory 55,832" [ref=e131]
+          - StaticText "All inventory"
+          - StaticText "55,832"
+    - generic
+      - generic
+        - StaticText "01"
+        - StaticText "QUEUE CONTRACT"
+        - heading "Why these items" [level=3, ref=e132]
+        - paragraph
+          - StaticText "Each candidate is current, unsettled, and above the review threshold."
+        - DescriptionList
+          - generic
+            - generic
+            - term "HUMAN DECISION"
+            - definition
+          - generic
+            - generic
+            - term "PRIMARY ACTION"
+            - definition
+          - generic
+            - generic
+            - term "AFTER ACTION"
+            - definition
+      - generic
+        - StaticText "Refine queue"
+        - button "clear" [ref=e133]
+        - LabelText
+          - StaticText "SEARCH QUEUE"
+        - textbox "SEARCH QUEUE" [ref=e134]
+        - LabelText
+          - StaticText "DISCOVERED WITHIN"
+        - combobox "DISCOVERED WITHIN" [expanded=false, ref=e135]: 30 days
+          - MenuListPopup
+            - option "30 days" [selected, ref=e180]
+        - button "Apply" [ref=e136]
+    - StaticText "Ready now"
+    - strong
+      - StaticText "2 current candidates"
+    - StaticText "Ranked by match quality"
+    - article
+      - StaticText "01"
+      - checkbox "Select candidate" [checked=false, ref=e67]
+      - StaticText "NIEMAN LAB · 12 minutes ago"
+      - heading "Local newsrooms are testing smaller, inspectable language models" [level=3, ref=e68]
+      - StaticText "WHY HERE"
+      - StaticText "Matched the newsroom-infrastructure brief; no analysis yet."
+      - StaticText "0.92"
+      - paragraph
+        - StaticText "The deciding evidence stays readable at list density, while provenance and machine artifacts remain one step away."
+      - StaticText "PRIMARY ACTION"
+      - button "Run analysis" [ref=e69]
+      - StaticText "Creates analysis and removes this item from the queue."
+  - generic
+    - heading "Journey Briefing" [level=2, ref=e45]
+    - paragraph
+      - StaticText "Intent-to-outcome composition for projects, missions, and initiatives. Authored outcomes lead; current proof, bounded attention, machine settlement, and complete inventory remain distinct."
+    - sectionheader
+      - StaticText "PROJECT BRIEFING"
+      - heading "Atlas" [level=3, ref=e70]
+      - paragraph
+        - StaticText "Source truth is moving. Release proof is still incomplete."
+      - paragraph
+        - StaticText "Keep current editorial intent traceable through commissioned work, accepted evidence, and observed outcomes."
+      - StaticText "NORTH-STAR METRIC"
+      - strong
+        - StaticText "Verified outcomes per review hour"
+      - paragraph
+        - StaticText "Derived weakness: two active commissions lack an accepted outcome edge."
+    - generic
+      - sectionheader
+        - StaticText "ROADMAP"
+        - heading "State of the journey" [level=3, ref=e137]
+        - paragraph
+          - StaticText "Authored outcomes are the spine. Derived state carries source freshness."
+      - article
+        - StaticText "01"
+        - StaticText "current focus"
+        - heading "Every projection is current enough to act on" [level=3, ref=e138]
+        - paragraph
+          - StaticText "The source chain is represented; restart proof remains incomplete."
+        - StaticText "moving · 3 source links"
+      - article
+        - StaticText "02"
+        - StaticText "off contract"
+        - heading "The operator sees decisions, not a feed" [level=3, ref=e139]
+        - paragraph
+          - StaticText "Captured narration still exceeds the bounded-attention contract."
+        - StaticText "stuck · eligibility defect"
+      - article
+        - StaticText "03"
+        - StaticText "in motion"
+        - heading "Commissions are durable intent contracts" [level=3, ref=e140]
+        - paragraph
+          - StaticText "Two proposed work links have not been accepted as canonical."
+        - StaticText "moving · linkage proposed"
+      - article
+        - StaticText "04"
+        - StaticText "later"
+        - heading "Released work teaches the next decision" [level=3, ref=e141]
+        - paragraph
+          - StaticText "No post-disposition evidence is linked yet."
+        - StaticText "not started"
+    - generic
+      - sectionheader
+        - StaticText "CURRENT CHAPTER · AUTHORED OUTCOME 1"
+        - heading "Make truth trustworthy enough to prioritize" [level=3, ref=e142]
+        - paragraph
+          - StaticText "Graduation is evidence-based; missing proof remains missing."
+        - link "Open roadmap" [ref=e143]
+      - paragraph
+        - StaticText "Can a live commission be reconstructed from current intent through exact evidence and final disposition?"
+      - article
+        - StaticText "supported"
+        - strong
+          - StaticText "Unsafe source truncation fails closed"
+        - paragraph
+          - StaticText "A reviewed change and receipt support this criterion."
+      - article
+        - StaticText "partial"
+        - strong
+          - StaticText "Source coordinates survive the chain"
+        - paragraph
+          - StaticText "One of three representative commissions is reconstructed."
+      - article
+        - StaticText "missing proof"
+        - strong
+          - StaticText "External terminal facts self-correct"
+        - paragraph
+          - StaticText "No restart receipt is attached to this outcome."
+      - article
+        - StaticText "partial"
+        - strong
+          - StaticText "Broken joins are actionable"
+        - paragraph
+          - StaticText "Freshness exists; the action path is not complete."
+      - strong
+        - StaticText "Proposed:"
+      - StaticText " two current work items resemble this outcome but carry no canonical edge."
+      - link "Review links →" [ref=e71]
+    - generic
+      - sectionheader
+        - StaticText "NEEDS YOU"
+        - heading "1 consequential decision" [level=3, ref=e144]
+        - paragraph
+          - StaticText "Deduplicated by decision coordinate."
+      - article
+        - StaticText "expires in 2d"
+        - StaticText "release authority"
+        - heading "Should the protected release path expand?" [level=3, ref=e145]
+        - paragraph
+          - StaticText "The choice changes who can publish and how emergency repair works."
+        - button "Decide" [ref=e146]
+        - link "Evidence" [ref=e147]
+    - generic
+      - StaticText "SYSTEM WORK"
+      - heading "The system reduces the backlog before projection" [level=3, ref=e72]
+      - paragraph
+        - StaticText "Settlement and linkage work are not human queues."
+      - article
+        - strong
+          - StaticText "75 → 8"
+        - paragraph
+          - StaticText "Captured signals after narration and settled state are removed."
+        - link "Inspect exceptions →" [ref=e148]
+      - article
+        - strong
+          - StaticText "14"
+        - paragraph
+          - StaticText "Stale blockers proposed for obviation or merge."
+        - link "Settlement receipt →" [ref=e149]
+      - article
+        - strong
+          - StaticText "20"
+        - paragraph
+          - StaticText "Loose work items; seven carry proposed outcome links."
+        - link "Review suggestions →" [ref=e150]
+    - group
+      - DisclosureTriangle "› Underlying inventory · grouped work · source evidence · 1,764 ledger records" [expanded=false]
+        - StaticText "›"
+        - StaticText "Underlying inventory · grouped work · source evidence · 1,764 ledger records"
+  - generic
+    - heading "Typed Record List" [level=2, ref=e46]
+    - paragraph
+      - StaticText "One aligned frame for heterogeneous operational objects. Decisions, PRs, todos, blockers, observations, and outcomes keep the evidence and verbs their type requires."
+    - generic
+      - sectionheader
+        - StaticText "NEEDS ATTENTION"
+        - heading "Current project signals" [level=3, ref=e151]
+        - paragraph
+          - StaticText "The shared frame aligns records without pretending they are the same object."
+        - link "Open full workspace →" [ref=e152]
+      - article
+        - StaticText "DECISION"
+        - StaticText "open"
+        - StaticText "2h"
+        - heading "Should branch protection cover the internal release repository?" [level=3, ref=e153]
+        - StaticText "Human authority is needed because the choice changes repository visibility, cost, and release control."
+        - StaticText "blocks release hardening"
+        - link "decision record" [ref=e154]
+        - button "Decide" [ref=e155]
+        - StaticText "Records the option and unblocks the gated work."
+      - article
+        - StaticText "PR"
+        - StaticText "draft"
+        - StaticText "18m"
+        - heading "#112 · Preserve wrapped plan bullets" [level=3, ref=e156]
+        - StaticText "Ready checks are green, but the author has not marked the pull request ready for review."
+        - StaticText "2 files · 41 LOC"
+        - StaticText "CI: green"
+        - StaticText "mergeable"
+        - link "Open PR" [ref=e157]
+        - StaticText "Review becomes available after the draft is marked ready."
+      - article
+        - StaticText "OBSERVATION"
+        - StaticText "6m"
+        - heading "The production page exposes more than one hundred links in a single stream" [level=3, ref=e158]
+        - StaticText "This is evidence, not a decision, so it stays readable without receiving an invented primary action."
+        - group
+          - DisclosureTriangle "› Read full observation" [expanded=false]
+            - StaticText "›"
+            - StaticText "Read full observation"
+        - StaticText "browser audit"
+        - link "source record" [ref=e159]
+  - generic
+    - heading "Action Inbox" [level=2, ref=e47]
+    - paragraph
+      - StaticText "For decisions, triage, reviews, and other queues that are too large or heterogeneous for sequential card processing. Filters stay beside the work; records open independently and retain full context."
+    - complementary "Filter actions"
+      - StaticText "Filter"
+      - LabelText
+        - StaticText "Search"
+        - searchbox "Search" [ref=e160]
+      - LabelText
+        - StaticText "Project"
+        - combobox "Project" [expanded=false, ref=e161]: All projects (28)
+          - MenuListPopup
+            - option "All projects (28)" [selected, ref=e181]
+            - option "george (9)" [ref=e182]
+            - option "fab (7)" [ref=e183]
+      - LabelText
+        - StaticText "Action type"
+        - combobox "Action type" [expanded=false, ref=e162]: All action types
+          - MenuListPopup
+            - option "All action types" [selected, ref=e184]
+            - option "Blocker" [ref=e185]
+            - option "Decision" [ref=e186]
+            - option "Pull request" [ref=e187]
+      - LabelText
+        - StaticText "Recency"
+        - combobox "Recency" [expanded=false, ref=e163]: Any time
+          - MenuListPopup
+            - option "Any time" [selected, ref=e188]
+            - option "Last 24 hours" [ref=e189]
+            - option "Last 7 days" [ref=e190]
+      - button "Clear filters" [ref=e73]
+      - paragraph
+        - StaticText "/ focuses search. Preserve filter state in the URL."
+    - region "Action records" [ref=e48]
+      - StaticText "28"
+      - StaticText " shown"
+      - StaticText "select any item"
+      - group
+        - DisclosureTriangle "Choose whether production releases require an independent approval george · blocks release automation · today at 10:42 AM decision" [expanded=true]
+          - StaticText "Choose whether production releases require an independent approval"
+          - StaticText "george · blocks release automation · today at 10:42 AM"
+          - StaticText "decision"
+        - StaticText "The current policy can merge internal changes automatically, but production deployment still changes a shared runtime. Decide where human authority begins."
+        - button "Review options" [ref=e179]
+      - group
+        - DisclosureTriangle "Release cannot proceed because the deployment checkout is not on main fab · fresh blocker · 18 minutes ago blocker" [expanded=false]
+          - StaticText "Release cannot proceed because the deployment checkout is not on main"
+          - StaticText "fab · fresh blocker · 18 minutes ago"
+          - StaticText "blocker"
+      - group
+        - DisclosureTriangle "Update roadmap ingestion to recognize authored milestones under docs george · ready to merge · yesterday at 4:08 PM PR" [expanded=false]
+          - StaticText "Update roadmap ingestion to recognize authored milestones under docs"
+          - StaticText "george · ready to merge · yesterday at 4:08 PM"
+          - StaticText "PR"
+  - generic
+    - heading "Callouts" [level=2, ref=e49]
+    - paragraph
+      - StaticText "Left-border callout boxes for contextual messages. Do not use for primary status — use badges for that."
+    - StaticText "This source has 3 claims under review. Results may be incomplete until the review queue clears."
+    - StaticText "Corpus updated 12 minutes ago. 142 new claims ingested from Reuters and AP."
+    - StaticText "Coverage gap detected: no claims from this source in the past 14 days."
+    - StaticText "Ingest failed: connection refused at feeds.source.com. Last successful run 6h ago."
+  - generic
+    - heading "Timeline" [level=2, ref=e50]
+    - paragraph
+      - StaticText "Chronological data with accent-color spine. Year labels are navigation anchors, not headings."
+    - StaticText "2026"
+    - list
+      - listitem [level=1]
+        - StaticText "verified"
+        - StaticText " State and local governments are using AI to draft routine public communications. reuters.com"
+      - listitem [level=1]
+        - StaticText "pending"
+        - StaticText " Three major wire services have announced formal AI content policies for newsrooms. ap.org"
+    - StaticText "2025"
+    - list
+      - listitem [level=1]
+        - StaticText "verified"
+        - StaticText " 47% of newsrooms surveyed have AI writing assistance tools deployed. pew.org"
+      - listitem [level=1]
+        - StaticText "dropped"
+        - StaticText " AI-generated content has fully replaced human reporters at several local papers. nieman.org"
+  - generic
+    - heading "Layout Patterns" [level=2, ref=e51]
+    - paragraph
+      - StaticText "Three layout patterns. Choose based on tool type, not personal preference."
+    - StaticText "THREE-COLUMN INSTRUMENT (KEEL MODEL)"
+    - StaticText "220px sidebar · 1fr main · 360px inspector (conditional)"
+    - StaticText "nav sidebar"
+    - LineBreak "\n"
+    - StaticText "220px"
+    - StaticText "main content"
+    - LineBreak "\n"
+    - StaticText "1fr"
+    - StaticText "inspector"
+    - LineBreak "\n"
+    - StaticText "360px"
+    - StaticText "Use for: research tools with navigation, list, and detail panel. Keel, barnowl with split view."
+    - StaticText "TWO-COLUMN WITH FILTER SIDEBAR (STEVE MODEL)"
+    - StaticText "240–280px filter panel · 1fr results"
+    - StaticText "filters"
+    - LineBreak "\n"
+    - StaticText "260px"
+    - StaticText "results / content"
+    - LineBreak "\n"
+    - StaticText "1fr"
+    - StaticText "Use for: list views with multiple filter dimensions. Steve, tern orgs view."
+    - StaticText "SINGLE COLUMN (WEAVER ARTIFACT)"
+    - StaticText "max-width 1200px centered, full-bleed chart sections"
+    - StaticText "centered content · chart blocks full-bleed"
+    - StaticText "Use for: published artifacts, analysis documents, weaver visualization pages."
+  - generic
+    - heading "Navigation" [level=2, ref=e52]
+    - paragraph
+      - StaticText "Header brand + nav links, sidebar section nav, breadcrumbs for deep pages."
+    - StaticText "HEADER BAR (STANDALONE TOOL)"
+    - StaticText "barnowl"
+    - link "Overview" [ref=e53]
+    - link "Claims" [ref=e54]
+    - link "Entities" [ref=e55]
+    - link "Sources" [ref=e56]
+    - StaticText "live"
+    - StaticText "BREADCRUMB"
+    - navigation
+      - link "Claims" [ref=e74]
+      - StaticText "›"
+      - link "Health" [ref=e75]
+      - StaticText "›"
+      - StaticText "Reuters — AI hospital diagnostics"
+    - StaticText "COMMAND PALETTE ENTRY"
+    - StaticText "⌘"
+    - textbox "Search commands" [ref=e76]: claims
+      - StaticText "claims"
+    - StaticText "Esc"
+    - StaticText "NAVIGATE"
+    - StaticText "→ Claims view"
+    - StaticText "Enter"
+    - StaticText "→ Claims by source"
+    - StaticText "ACTIONS"
+    - StaticText "Export claims as CSV"
+    - StaticText "⌘E"
+  - generic
+    - heading "Visualization Patterns" [level=2, ref=e57]
+    - paragraph
+      - StaticText "Reading guides, chart color use, and the detail-row pattern for tabular score display."
+    - StaticText "READING GUIDE"
+    - StaticText "HOW TO READ"
+    - StaticText "Each node is a segment of voters. Flow width = share of that segment."
+    - StaticText "Civic actives"
+    - StaticText "Habitual voters"
+    - StaticText "Selective engagers"
+    - StaticText "Aspirational"
+    - StaticText "Click a node to isolate its flow."
+    - StaticText "Reading guides appear directly above novel chart types. They name the reading strategy, not the conclusion."
+    - StaticText "DETAIL ROWS WITH SCORE BARS (FOR TABULAR AXIS DISPLAY)"
+    - StaticText "Journalism-shapedness"
+    - StaticText "Measures alignment with journalistic mission and reporting norms"
+    - StaticText "0.84"
+    - StaticText "0.84"
+    - StaticText "Automation risk"
+    - StaticText "Probability of partial or full AI substitution in 5 years"
+    - StaticText "0.58"
+    - StaticText "0.58"
+    - StaticText "Source diversity"
+    - StaticText "Coverage of underrepresented communities and perspectives"
+    - StaticText "0.24"
+    - StaticText "0.24"
+    - StaticText "SCORE BARS (IN-CELL VISUAL)"
+    - StaticText "Reuters"
+    - StaticText "84%"
+    - StaticText "ProPublica"
+    - StaticText "61%"
+    - StaticText "Gothamist"
+    - StaticText "28%"
+    - StaticText "CHART COLOR PALETTE IN CONTEXT"
+    - StaticText "civic actives"
+    - StaticText "habitual voters"
+    - StaticText "selective"
+    - StaticText "aspirational"
+    - StaticText "disengaged"
+    - StaticText "unknown"
+    - StaticText "6–8 categories maximum. No red/green as sole differentiator. Test in grayscale before shipping."
+  - generic
+    - heading "Prose / Article Mode" [level=2, ref=e58]
+    - paragraph
+      - StaticText "Newsreader (serif, optical sizing) for body and narrative headings. Geist Sans for structural dividers, kickers, bylines, and data labels. Named CSS grid with breakout zones — default prose at 680px, figures step out to 940px, tables can go full-width."
+    - StaticText "TYPE SCALE"
+    - StaticText "ARTICLE-KICKER · GEIST 11PX UPPERCASE"
+    - StaticText "GOVERNANCE · APRIL 2026"
+    - StaticText "ARTICLE-H1 · NEWSREADER 400 CLAMP(28–48PX)"
+    - StaticText "AI Governance in Newsrooms: What the Evidence Shows"
+    - StaticText "ARTICLE-DEK · NEWSREADER 400 19PX MUTED"
+    - StaticText "A synthesis of 847 verified claims across 312 sources — what policies actually say, where the gaps are, and what's still contested."
+    - StaticText "ARTICLE-BYLINE · GEIST 12PX DIM"
+    - generic
+      - StaticText "By Marc Lavallee  April 24, 2026  barnowl v2.1"
+    - separator
+    - StaticText "ARTICLE H2 / SECTION DIVIDER · GEIST 11PX UPPERCASE"
+    - StaticText "EDITORIAL INDEPENDENCE"
+    - StaticText "ARTICLE H3 · NEWSREADER 600 22PX"
+    - StaticText "The human sign-off requirement"
+    - StaticText "BODY · NEWSREADER 400 17PX — LEDE VS. BODY"
+    - paragraph
+      - StaticText "Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off."
+    - paragraph
+      - StaticText "Implementation varies significantly: 42% of organizations have formal sign-off workflows; the remainder rely on cultural norms alone. This gap is most pronounced among organizations with fewer than 50 editorial staff."
+    - StaticText "PULL QUOTE · NEWSREADER ITALIC CLAMP(20–26PX)"
+    - StaticText "\"The algorithm suggests; the editor decides.\""
+    - StaticText "Three independent newsroom policy documents, 2025"
+    - StaticText ".article — 7-track named grid: full · breakout · prose (680px) · margin-gap · margin (200px)"
+    - article
+      - navigation
+        - StaticText "Part 3 of 5 — AI Governance Series"
+        - link "← Transparency" [ref=e164]
+        - link "Accountability →" [ref=e165]
+      - note
+        - StaticText "Correction"
+        - paragraph
+          - StaticText "An earlier version of this article stated 38% of policies address vendor relationships. The correct figure is 37%. Updated April 25, 2026."
+      - StaticText "KEY FINDINGS"
+      - list
+        - listitem [level=1]
+          - ListMarker "• "
+          - StaticText "73% of newsroom AI policies require human sign-off on publication decisions"
+        - listitem [level=1]
+          - ListMarker "• "
+          - StaticText "Formal enforcement mechanisms lag significantly — only 28% of transparency provisions include any audit right"
+        - listitem [level=1]
+          - ListMarker "• "
+          - StaticText "Vendor due diligence is the largest gap: present in just 37% of policies despite universal outsourcing"
+        - listitem [level=1]
+          - ListMarker "• "
+          - StaticText "Language convergence across independent policies suggests emerging professional consensus or shared consulting influence"
+      - sectionheader
+        - StaticText "AI GOVERNANCE · APRIL 2026"
+        - heading "What 312 Newsroom Policies Actually Say About AI" [level=1, ref=e166]
+        - paragraph
+          - StaticText "A synthesis of verified claims from barnowl — where the consensus holds, where it fractures, and what the gaps reveal."
+        - StaticText "Marc Lavallee"
+        - StaticText "April 24, 2026"
+        - StaticText "barnowl v2.1 · 847 claims"
+      - heading "Editorial Independence" [level=2, ref=e77]
+      - paragraph
+        - StaticText "NEW YORK — April 24, 2026"
+      - paragraph
+        - StaticText "Editorial decisions must remain with human journalists. AI systems may surface, rank, or summarize — but publication decisions, editorial framing, and source selection require human sign-off."
+      - paragraph
+        - StaticText "This principle appears in 73% of reviewed policies, making it the single most widely-held norm in the dataset. Implementation varies significantly: 42% of organizations have formal sign-off workflows; the remainder rely on cultural norms alone."
+      - complementary "Definition"
+        - StaticText "SIGN-OFF"
+        - StaticText "Any documented human review step that must occur before AI-assisted content is published. Oral approval not counted."
+      - paragraph
+        - StaticText "This gap is most pronounced among organizations with fewer than 50 editorial staff, where the overhead of formal processes can exceed the perceived benefit. Smaller organizations disproportionately rely on cultural norms — an approach that correlates with lower audit-trail compliance in the dataset.†"
+      - complementary "Source"
+        - StaticText "1Reuters Institute Digital News Report 2025 found similar rates across European newsrooms."
+      - figure
+        - StaticText "73%"
+        - StaticText "REQUIRE HUMAN SIGN-OFF"
+        - StaticText "42%"
+        - StaticText "FORMAL WORKFLOW IN PLACE"
+        - StaticText "31%"
+        - StaticText "NORM-BASED ONLY"
+        - StaticText "27%"
+        - StaticText "NO EXPLICIT POLICY"
+        - Figcaption
+          - strong
+            - StaticText "Figure 1."
+          - StaticText " Editorial independence provisions across 312 reviewed policies. Percentages reflect proportion of total sample."
+      - figure
+        - StaticText "SIGN-OFF BY ORG SIZE"
+        - StaticText "50+ staff"
+        - StaticText "61%"
+        - StaticText "10–49 staff"
+        - StaticText "38%"
+        - StaticText "<10 staff"
+        - StaticText "14%"
+        - Figcaption
+          - StaticText "Formal sign-off rate by editorial headcount."
+      - heading "The consent gap" [level=3, ref=e78]
+      - paragraph
+        - StaticText "Among organizations with sign-off requirements, consent documentation is inconsistent. Only 18% maintain auditable records of AI-assisted editorial decisions"
+        - link "1" [ref=e167]
+          - superscript
+            - StaticText "1"
+        - StaticText " — a figure that likely understates the problem, since organizations without formal policies have no mechanism for tracking."
+      - blockquote
+        - paragraph
+          - StaticText "\"The algorithm suggests; the editor decides.\" This phrase, or close variants, appeared verbatim in three independent policy documents from newsrooms that had not coordinated on language."
+        - generic
+          - StaticText "barnowl claim cluster C-2847, synthesis of "
+          - term "recent policies"
+          - StaticText ", April 2026"
+      - paragraph
+        - StaticText "The convergence on similar language suggests emerging professional consensus — or shared consulting influence. Further source tracing is needed to distinguish the two. "
+        - Abbr "Natural Language Processing"
+          - StaticText "NLP"
+        - StaticText " similarity scoring across the corpus shows a coefficient of 0.74 for this specific phrase cluster."
+      - paragraph
+        - strong
+          - StaticText "Methodology note:"
+        - StaticText " Claims marked "
+        - code
+          - StaticText "needs_review"
+        - StaticText " are excluded from aggregate counts. 47 claims in this section were flagged for conflicting source interpretations; they are counted in the base but noted where they affect percentages by more than 2 points."
+      - heading "Transparency Requirements" [level=2, ref=e79]
+      - paragraph
+        - StaticText "Disclosure requirements — telling audiences when AI was involved — are the second most common provision at 61%. But the definition of "
+        - term "\"disclosure\""
+        - StaticText " varies so widely that comparisons across policies are unreliable."
+        - link "2" [ref=e168]
+          - superscript
+            - StaticText "2"
+        - StaticText " The trend line is "
+        - image
+        - StaticText " consistently upward — from 43% in 2022 to 61% today."
+      - complementary "Related chart"
+        - StaticText "trend 2022–2026"
+        - StaticText "Disclosure requirement prevalence has grown 18pp since 2022. See Figure 3."
+      - complementary "Note"
+        - StaticText "Seven distinct definitions of \"AI disclosure\" identified across European policies. "
+        - Abbr "Reuters Institute for the Study of Journalism"
+          - StaticText "RISJ"
+        - StaticText " 2025."
+      - blockquote
+        - StaticText "\"Fewer than a third of transparency provisions include any audit right or mechanism for verifying compliance.\""
+        - StaticText "From the transparency analysis below"
+      - paragraph
+        - StaticText "Some policies require disclosure of AI involvement in any published content; others only require it for AI-generated text; still others limit it to "
+        - insertion
+          - StaticText "fully autonomous"
+        - StaticText " publication with no human review. The original draft of this article "
+        - deletion
+          - StaticText "incorrectly conflated these categories"
+        - StaticText ". The practical implications differ substantially."
+      - figure
+        - table
+          - rowgroup
+            - row
+              - columnheader "POLICY CATEGORY" [ref=e213]
+              - columnheader "% WITH PROVISION" [ref=e214]
+              - columnheader "% WITH ENFORCEMENT" [ref=e215]
+              - columnheader "CONSENSUS" [ref=e216]
+          - row
+            - cell "Human sign-off" [ref=e191]
+            - cell "73%" [ref=e192]
+            - cell "42%" [ref=e193]
+            - cell "Strong" [ref=e194]
+          - row
+            - cell "Audience disclosure" [ref=e195]
+            - cell "61%" [ref=e196]
+            - cell "28%" [ref=e197]
+            - cell "Developing" [ref=e198]
+          - row
+            - cell "Staff training" [ref=e199]
+            - cell "44%" [ref=e200]
+            - cell "19%" [ref=e201]
+            - cell "Developing" [ref=e202]
+          - row
+            - cell "Vendor due diligence" [ref=e203]
+            - cell "37%" [ref=e204]
+            - cell "12%" [ref=e205]
+            - cell "Emerging" [ref=e206]
+          - row
+            - cell "Autonomous publication ban" [ref=e207]
+            - cell "29%" [ref=e208]
+            - cell "24%" [ref=e209]
+            - cell "Emerging" [ref=e210]
+        - Figcaption
+          - strong
+          - StaticText " Prevalence and enforcement of major policy categories. Enforcement defined as any formal process, audit right, or stated consequence for non-compliance."
+      - doc-endnotes
+        - StaticText "NOTES"
+        - list
+          - doc-footnote
+            - link "Return to text" [ref=e211]
+          - doc-footnote
+            - link "Return to text" [ref=e212]
+      - generic
+        - StaticText "SOURCES"
+        - list
+          - listitem [level=1]
+          - listitem [level=1]
+            - StaticText "Reuters Institute for the Study of Journalism — Digital News Report 2025: AI in the Newsroom. University of Oxford, 2025."
+          - listitem [level=1]
+            - StaticText "Diakopoulos, N. — Automating the News: How Algorithms Are Rewriting the Media. Harvard University Press, 2019."
+    - StaticText ".ARTICLE--SPLIT — PROSE + DATA PANEL"
+    - StaticText "2fr prose · 1fr sticky data panel · responsive stack at 860px"
+    - article
+      - heading "Vendor due diligence" [level=2, ref=e80]
+      - paragraph
+      - paragraph
+      - heading "The three criteria that matter" [level=3, ref=e81]
+      - paragraph
+        - StaticText "Policies that do address vendors tend to converge on three provisions: training data disclosure, bias audit rights, and model change notification. Of these, only the last appears in a majority of vendor-aware policies."
+  - generic
+    - StaticText "<!-- 1. Fonts -->\n<link href=\"https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap\" rel=\"stylesheet\">\n\n<!-- 2. Token layer (copy tokens.css to your project) -->\n<link rel=\"stylesheet\" href=\"/css/tokens.css\">\n\n<!-- 3. Optional: copy components.css for shared component styles -->\n<link rel=\"stylesheet\" href=\"/css/components.css\">\n\n<!-- 4. Tool-specific overrides only -->\n<link rel=\"stylesheet\" href=\"/css/index.css\">"
+    - StaticText "/* Drop at top of existing CSS to bridge old token names */\n:root {\n  /* steve ↔ system bridge */\n  --fg:          var(--text);\n  --fg-soft:     var(--text-muted);\n  --muted:       var(--text-dim);\n  --panel:       var(--surface);\n  --border-strong: var(--border);\n  --accent-soft: var(--accent-surface);\n  --good:        var(--success);\n  --warn:        var(--warning);\n\n  /* tern ↔ system bridge */\n  --green:  var(--success);\n  --yellow: var(--warning);\n  --red:    var(--error);\n  --dim:    var(--text-dim);\n}"

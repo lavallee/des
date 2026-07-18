@@ -1,0 +1,17 @@
+- banner
+  - StaticText "D"
+  - StaticText "DES"
+  - StaticText "0.5 CANDIDATE"
+  - StaticText "AUDIENCE-AWARE DESIGN PRACTICE"
+  - navigation "Page" [ref=e1]
+    - link "Modes" [ref=e7]
+    - link "Proof" [ref=e8]
+    - link "System" [ref=e9]
+- main
+  - region "Taste begins when the constraint is chosen." [ref=e2]
+  - region "One shared floor is not one shared look." [ref=e3]
+  - region "FOUR SURFACE MODES" [ref=e4]
+  - region "The receipt gets the last word." [ref=e5]
+  - region "Choose the audience. Then choose the constraint." [ref=e6]
+    - link "Mode docs (Markdown)" [ref=e14]
+    - link "Practice docs (Markdown)" [ref=e15]

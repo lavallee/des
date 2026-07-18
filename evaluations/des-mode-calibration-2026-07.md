@@ -1,6 +1,6 @@
 # DES audience modes and design-taste calibration
 
-Status: `candidate; human promotion authorized, publication not yet recorded`  
+Status: `candidate; human promotion authorized`
 Evaluation date: `2026-07-18`  
 Candidate version: `0.5.0`  
 Promotion authority: explicit human approval in the owning thread  
@@ -21,9 +21,9 @@ marketing constraints, and forced model aesthetics.
 
 | Mode | Audience and task | Default expression | Reference task |
 |---|---|---|---|
-| `operator` | Practiced operator completing repeated consequential work | low variance, compact density, functional motion, interface type, evidence-only imagery | Find the service needing attention and inspect its evidence in `ui-kits/keel.html` |
+| `operator` | Practiced operator completing repeated consequential work | low variance, compact density, functional motion, interface type, evidence-only imagery | Find the page-entry pattern and inspect its implementation contract in `showcase.html` |
 | `public-data` | Public reader comparing evidence without assumed fluency | medium variance, balanced density, explanatory motion, editorial-data type | Filter qualifier loss, reach exact wire-desk values, exercise empty scope and reset in `ui-kits/public-data.html` |
-| `editorial` | Reader following a sustained argument or documented record | medium variance, relaxed density, quiet motion, editorial type | Read a claim record and trace its evidence in `ui-kits/steve.html` |
+| `editorial` | Reader following a sustained argument or documented record | medium variance, relaxed density, quiet motion, editorial type | Read the claim, inspect its evidence, and continue through `ui-kits/weaver.html` |
 | `marketing` | Prospective user judging distinction, credibility, and action | high variance, relaxed density, expressive motion, branded type | Understand how DES differs by audience and reach its usage material in `ui-kits/des-marketing.html` |
 
 The shared floor retained honest proof, semantic status, accessibility,
@@ -33,8 +33,8 @@ shadows, motion theater, and structural novelty no longer apply globally.
 
 ## Mechanical and live evidence
 
-- Node test suite: `32 passed` before the second independent review; the final
-  suite adds coverage for unmeasured gradient contrast.
+- Node test suite: `33 passed`; the final case records unmeasured gradient
+  contrast rather than silently treating it as checked.
 - Four DES receipts: operator, public-data, editorial, and marketing each passed
   at `1440×1000`, `768×1024`, and `390×844`.
 - Each capture contains a viewport PNG, full-page PNG, accessibility snapshot,

@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 2,
+  "capturedAt": "2026-07-18T14:02:33.289Z",
+  "task": "Compare tracked and lost records, narrow scope, and recover from an empty result",
+  "surface": "DES public data explorer",
+  "url": "http://127.0.0.1:4173/ui-kits/public-data.html",
+  "arm": "variant",
+  "revision": "352b42e",
+  "profileAttestation": "self-declared by the invoking harness; not independently verified",
+  "designProfile": {
+    "schemaVersion": 1,
+    "profileId": "des-public-data-frontier-c936737aee21",
+    "capabilities": [
+      "browser",
+      "visual-input"
+    ],
+    "harness": "codex",
+    "mode": "public-data",
+    "modelTier": "frontier",
+    "requestedModel": "gpt-5",
+    "servedModel": "gpt-5",
+    "harnessContract": {
+      "contextStrategy": "Follow repository instructions, inspect the owning surface, and keep the just-in-time design plan adjacent to implementation.",
+      "toolStrategy": "Use workspace edits and executable checks for implementation; attach browser evidence instead of describing an unseen render."
+    },
+    "modeContract": {
+      "audience": "A public reader exploring evidence without assumed domain fluency",
+      "defaultTheme": "light",
+      "dials": {
+        "density": "balanced",
+        "imageryRole": "evidence-and-explanation",
+        "motion": "explanatory",
+        "typeRegister": "editorial-data",
+        "variance": "medium"
+      },
+      "objective": "Make comparison, uncertainty, provenance, and the path from overview to detail legible",
+      "reference": "modes/public-data.md"
+    },
+    "modelContract": {
+      "contextStrategy": "Load the shared floor and selected mode, then use references only for unresolved decisions.",
+      "instructionShape": "A concise plan with explicit mechanisms, anti-references, and proof is sufficient.",
+      "variationStrategy": "Generate alternatives only across a named dial; explain the task consequence of each."
+    },
+    "proofContract": {
+      "browserEvidence": "required",
+      "independentSeeing": "required for ship unless a human explicitly accepts",
+      "maximumAutonomousVerdict": "candidate"
+    }
+  },
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 3000,
+    "maxResources": 100,
+    "maxTransferKb": 2048
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "variant/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "Qualifier Observatory — public-data reference",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Where do qualifiers disappear?"
+            },
+            {
+              "level": 2,
+              "text": "March 2026 at a glance"
+            },
+            {
+              "level": 2,
+              "text": "Loss rate by phrase"
+            },
+            {
+              "level": 2,
+              "text": "Exact values"
+            },
+            {
+              "level": 2,
+              "text": "Method and provenance"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1425,
+          "scrollWidth": 1425
+        },
+        "render": {
+          "styleSheetCount": 1,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1698
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 25,
+          "failedResources": [],
+          "loadMs": 140,
+          "paints": {
+            "first-paint": 232,
+            "first-contentful-paint": 232
+          },
+          "resourceCount": 1,
+          "transferKb": 1
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/wide.png",
+      "fullPageScreenshot": "variant/wide.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "variant/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "Qualifier Observatory — public-data reference",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Where do qualifiers disappear?"
+            },
+            {
+              "level": 2,
+              "text": "March 2026 at a glance"
+            },
+            {
+              "level": 2,
+              "text": "Loss rate by phrase"
+            },
+            {
+              "level": 2,
+              "text": "Exact values"
+            },
+            {
+              "level": 2,
+              "text": "Method and provenance"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 753,
+          "scrollWidth": 753
+        },
+        "render": {
+          "styleSheetCount": 1,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1698
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 34,
+          "failedResources": [],
+          "loadMs": 208,
+          "paints": {
+            "first-paint": 228,
+            "first-contentful-paint": 228
+          },
+          "resourceCount": 1,
+          "transferKb": 1
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/tablet.png",
+      "fullPageScreenshot": "variant/tablet.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "variant/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "Qualifier Observatory — public-data reference",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Where do qualifiers disappear?"
+            },
+            {
+              "level": 2,
+              "text": "March 2026 at a glance"
+            },
+            {
+              "level": 2,
+              "text": "Loss rate by phrase"
+            },
+            {
+              "level": 2,
+              "text": "Exact values"
+            },
+            {
+              "level": 2,
+              "text": "Method and provenance"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 375,
+          "scrollWidth": 375
+        },
+        "render": {
+          "styleSheetCount": 1,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1679
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 17,
+          "failedResources": [],
+          "loadMs": 172,
+          "paints": {
+            "first-paint": 196,
+            "first-contentful-paint": 196
+          },
+          "resourceCount": 1,
+          "transferKb": 1
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/mobile.png",
+      "fullPageScreenshot": "variant/mobile.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "warnings": [],
+  "verdict": "pass"
+}

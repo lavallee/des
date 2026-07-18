@@ -1,0 +1,8 @@
+- banner
+  - link "weaver" [ref=e1]
+  - navigation
+    - link "Story" [ref=e4]
+    - link "Figures" [ref=e5]
+    - link "Methodology" [ref=e6]
+- main
+  - link "METHODOLOGY ↓" [ref=e3]

@@ -1,0 +1,102 @@
+- banner
+  - link "Qualifier Observatory" [ref=e1]
+  - navigation "Page" [ref=e2]
+    - link "Overview" [ref=e5]
+    - link "Exact values" [ref=e6]
+    - link "Method" [ref=e7]
+- main
+  - paragraph
+    - StaticText "PUBLIC-DATA REFERENCE · SYNTHETIC DATASET · INTERACTIONS ARE FUNCTIONAL"
+  - region "Where do qualifiers disappear?" [ref=e3]
+    - heading "Where do qualifiers disappear?" [level=1, ref=e8]
+    - paragraph
+      - StaticText "Explore how often caveats survived re-publication in a synthetic set of traced claims. Filters change every count and remain encoded in the URL."
+    - DescriptionList
+      - term "POPULATION"
+      - definition
+        - StaticText "Synthetic traced claims"
+      - term "PERIOD"
+      - definition
+        - StaticText "March 2026"
+      - term "UNIT"
+      - definition
+        - StaticText "Claim-phrase occurrences"
+      - term "UPDATED"
+      - definition
+        - StaticText "Fixture revision 1"
+  - generic
+    - group "SOURCE SCOPE"
+      - Legend
+        - StaticText "SOURCE SCOPE"
+      - button "All sources" [ref=e13]
+      - button "Briefings" [ref=e14]
+      - button "Wire desks" [ref=e15]
+      - button "Community reports" [ref=e16]
+    - LabelText
+      - StaticText "PERIOD"
+      - combobox "PERIOD" [expanded=false, ref=e17]: March 2026
+        - MenuListPopup
+          - option "March 2026" [selected, ref=e22]
+          - option "February 2026" [ref=e23]
+    - button "Encode shareable view" [ref=e9]
+    - status
+      - StaticText "Showing all 83 synthetic claim occurrences from March 2026."
+  - generic
+    - region "March 2026 at a glance" [ref=e10]
+      - sectionheader
+        - heading "March 2026 at a glance" [level=2, ref=e19]
+        - link "Jump to exact values" [ref=e20]
+      - StaticText "TRACKED OCCURRENCES"
+      - StaticText "83"
+      - StaticText "Current filter scope"
+      - StaticText "QUALIFIER LOST"
+      - StaticText "42"
+      - StaticText "Before third publication"
+      - StaticText "LOSS RATE"
+      - StaticText "51%"
+      - StaticText "Lost ÷ tracked"
+    - region "Comparison and exact values" [ref=e11]
+      - heading "Loss rate by phrase" [level=2, ref=e18]
+      - paragraph
+        - StaticText "Bar length encodes the share lost. The adjacent table supplies every exact value."
+      - generic "Qualifier loss rate comparison"
+        - StaticText "Internal estimate, pending publication"
+        - StaticText "74%"
+        - StaticText "Officials familiar with the matter"
+        - StaticText "45%"
+        - StaticText "Subject to revision"
+        - StaticText "15%"
+        - StaticText "Declined to confirm"
+        - StaticText "0%"
+      - generic
+        - heading "Exact values" [level=2, ref=e21]
+        - paragraph
+          - StaticText "Counts are synthetic and exist only to demonstrate the public-data interaction contract."
+        - table
+          - rowgroup
+            - row
+              - columnheader "QUALIFIER PHRASE" [ref=e40]
+              - columnheader "TRACKED" [ref=e41]
+              - columnheader "LOST" [ref=e42]
+              - columnheader "RATE" [ref=e43]
+          - row
+            - cell "Internal estimate, pending publication BRIEFING" [ref=e24]
+            - cell "42" [ref=e25]
+            - cell "31" [ref=e26]
+            - cell "74%" [ref=e27]
+          - row
+            - cell "Officials familiar with the matter WIRE DESK" [ref=e28]
+            - cell "20" [ref=e29]
+            - cell "9" [ref=e30]
+            - cell "45%" [ref=e31]
+          - row
+            - cell "Subject to revision BRIEFING" [ref=e32]
+            - cell "13" [ref=e33]
+            - cell "2" [ref=e34]
+            - cell "15%" [ref=e35]
+          - row
+            - cell "Declined to confirm WIRE DESK" [ref=e36]
+            - cell "8" [ref=e37]
+            - cell "0" [ref=e38]
+            - cell "0%" [ref=e39]
+  - region "Method and provenance" [ref=e4]

@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 2,
+  "capturedAt": "2026-07-18T14:02:33.530Z",
+  "task": "Understand the product promise, inspect proof, and choose a next step",
+  "surface": "DES marketing page",
+  "url": "http://127.0.0.1:4173/ui-kits/des-marketing.html",
+  "arm": "variant",
+  "revision": "352b42e",
+  "profileAttestation": "self-declared by the invoking harness; not independently verified",
+  "designProfile": {
+    "schemaVersion": 1,
+    "profileId": "des-marketing-frontier-aabeefb9ab26",
+    "capabilities": [
+      "browser",
+      "visual-input"
+    ],
+    "harness": "codex",
+    "mode": "marketing",
+    "modelTier": "frontier",
+    "requestedModel": "gpt-5",
+    "servedModel": "gpt-5",
+    "harnessContract": {
+      "contextStrategy": "Follow repository instructions, inspect the owning surface, and keep the just-in-time design plan adjacent to implementation.",
+      "toolStrategy": "Use workspace edits and executable checks for implementation; attach browser evidence instead of describing an unseen render."
+    },
+    "modeContract": {
+      "audience": "A prospective user deciding whether a product is distinct, credible, and relevant",
+      "defaultTheme": "custom-or-light",
+      "dials": {
+        "density": "relaxed",
+        "imageryRole": "art-directed",
+        "motion": "expressive",
+        "typeRegister": "branded",
+        "variance": "high"
+      },
+      "objective": "Create a memorable product argument with honest proof and purposeful visual identity",
+      "reference": "modes/marketing.md"
+    },
+    "modelContract": {
+      "contextStrategy": "Load the shared floor and selected mode, then use references only for unresolved decisions.",
+      "instructionShape": "A concise plan with explicit mechanisms, anti-references, and proof is sufficient.",
+      "variationStrategy": "Generate alternatives only across a named dial; explain the task consequence of each."
+    },
+    "proofContract": {
+      "browserEvidence": "required",
+      "independentSeeing": "required for ship unless a human explicitly accepts",
+      "maximumAutonomousVerdict": "candidate"
+    }
+  },
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 3000,
+    "maxResources": 100,
+    "maxTransferKb": 2048
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "variant/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "DES — choose the constraint",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 2,
+              "text": "Selected profile"
+            },
+            {
+              "level": 1,
+              "text": "Taste begins when the constraint is chosen."
+            },
+            {
+              "level": 2,
+              "text": "Marketing is allowed to make an entrance."
+            },
+            {
+              "level": 2,
+              "text": "One shared floor is not one shared look."
+            },
+            {
+              "level": 2,
+              "text": "Four surface modes"
+            },
+            {
+              "level": 3,
+              "text": "Operator"
+            },
+            {
+              "level": 3,
+              "text": "Public data"
+            },
+            {
+              "level": 3,
+              "text": "Editorial"
+            },
+            {
+              "level": 3,
+              "text": "Marketing"
+            },
+            {
+              "level": 2,
+              "text": "The receipt gets the last word."
+            },
+            {
+              "level": 2,
+              "text": "Choose the audience. Then choose the constraint."
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1425,
+          "scrollWidth": 1425
+        },
+        "render": {
+          "styleSheetCount": 1,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1996
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 39,
+          "failedResources": [],
+          "loadMs": 40,
+          "paints": {
+            "first-paint": 184,
+            "first-contentful-paint": 184
+          },
+          "resourceCount": 1,
+          "transferKb": 1
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/wide.png",
+      "fullPageScreenshot": "variant/wide.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "variant/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "DES — choose the constraint",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 2,
+              "text": "Selected profile"
+            },
+            {
+              "level": 1,
+              "text": "Taste begins when the constraint is chosen."
+            },
+            {
+              "level": 2,
+              "text": "Marketing is allowed to make an entrance."
+            },
+            {
+              "level": 2,
+              "text": "One shared floor is not one shared look."
+            },
+            {
+              "level": 2,
+              "text": "Four surface modes"
+            },
+            {
+              "level": 3,
+              "text": "Operator"
+            },
+            {
+              "level": 3,
+              "text": "Public data"
+            },
+            {
+              "level": 3,
+              "text": "Editorial"
+            },
+            {
+              "level": 3,
+              "text": "Marketing"
+            },
+            {
+              "level": 2,
+              "text": "The receipt gets the last word."
+            },
+            {
+              "level": 2,
+              "text": "Choose the audience. Then choose the constraint."
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 753,
+          "scrollWidth": 753
+        },
+        "render": {
+          "styleSheetCount": 1,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1996
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 153,
+          "failedResources": [],
+          "loadMs": 154,
+          "paints": {
+            "first-paint": 176,
+            "first-contentful-paint": 176
+          },
+          "resourceCount": 1,
+          "transferKb": 1
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/tablet.png",
+      "fullPageScreenshot": "variant/tablet.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "variant/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "DES — choose the constraint",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 2,
+              "text": "Selected profile"
+            },
+            {
+              "level": 1,
+              "text": "Taste begins when the constraint is chosen."
+            },
+            {
+              "level": 2,
+              "text": "Marketing is allowed to make an entrance."
+            },
+            {
+              "level": 2,
+              "text": "One shared floor is not one shared look."
+            },
+            {
+              "level": 2,
+              "text": "Four surface modes"
+            },
+            {
+              "level": 3,
+              "text": "Operator"
+            },
+            {
+              "level": 3,
+              "text": "Public data"
+            },
+            {
+              "level": 3,
+              "text": "Editorial"
+            },
+            {
+              "level": 3,
+              "text": "Marketing"
+            },
+            {
+              "level": 2,
+              "text": "The receipt gets the last word."
+            },
+            {
+              "level": 2,
+              "text": "Choose the audience. Then choose the constraint."
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 375,
+          "scrollWidth": 375
+        },
+        "render": {
+          "styleSheetCount": 1,
+          "visibleGraphicCount": 0,
+          "visibleTextCharacters": 1996
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 12,
+          "failedResources": [],
+          "loadMs": 38,
+          "paints": {
+            "first-paint": 148,
+            "first-contentful-paint": 148
+          },
+          "resourceCount": 1,
+          "transferKb": 1
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/mobile.png",
+      "fullPageScreenshot": "variant/mobile.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "warnings": [],
+  "verdict": "pass"
+}

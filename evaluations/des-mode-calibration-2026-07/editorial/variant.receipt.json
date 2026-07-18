@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 2,
+  "capturedAt": "2026-07-18T14:02:33.913Z",
+  "task": "Read the claim, inspect its evidence, and continue through the narrative",
+  "surface": "DES editorial data narrative",
+  "url": "http://127.0.0.1:4173/ui-kits/weaver.html",
+  "arm": "variant",
+  "revision": "352b42e",
+  "profileAttestation": "self-declared by the invoking harness; not independently verified",
+  "designProfile": {
+    "schemaVersion": 1,
+    "profileId": "des-editorial-frontier-468a5714451d",
+    "capabilities": [
+      "browser",
+      "visual-input"
+    ],
+    "harness": "codex",
+    "mode": "editorial",
+    "modelTier": "frontier",
+    "requestedModel": "gpt-5",
+    "servedModel": "gpt-5",
+    "harnessContract": {
+      "contextStrategy": "Follow repository instructions, inspect the owning surface, and keep the just-in-time design plan adjacent to implementation.",
+      "toolStrategy": "Use workspace edits and executable checks for implementation; attach browser evidence instead of describing an unseen render."
+    },
+    "modeContract": {
+      "audience": "A reader following a sustained argument, narrative, or documented record",
+      "defaultTheme": "light",
+      "dials": {
+        "density": "relaxed",
+        "imageryRole": "narrative-and-evidence",
+        "motion": "quiet",
+        "typeRegister": "editorial",
+        "variance": "medium"
+      },
+      "objective": "Protect reading rhythm, source custody, and the distinction between claim and interpretation",
+      "reference": "modes/editorial.md"
+    },
+    "modelContract": {
+      "contextStrategy": "Load the shared floor and selected mode, then use references only for unresolved decisions.",
+      "instructionShape": "A concise plan with explicit mechanisms, anti-references, and proof is sufficient.",
+      "variationStrategy": "Generate alternatives only across a named dial; explain the task consequence of each."
+    },
+    "proofContract": {
+      "browserEvidence": "required",
+      "independentSeeing": "required for ship unless a human explicitly accepts",
+      "maximumAutonomousVerdict": "candidate"
+    }
+  },
+  "tool": {
+    "agentBrowser": "agent-browser 0.22.1"
+  },
+  "budgets": {
+    "maxLoadMs": 3000,
+    "maxResources": 100,
+    "maxTransferKb": 2048
+  },
+  "captures": [
+    {
+      "label": "wide",
+      "width": 1440,
+      "height": 1000,
+      "accessibilitySnapshot": "variant/wide.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "weaver — UI kit",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Where the qualifier goes."
+            },
+            {
+              "level": 2,
+              "text": "The qualifier drop-off"
+            },
+            {
+              "level": 2,
+              "text": "What kind of qualifier goes missing?"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 1434,
+          "scrollWidth": 1434
+        },
+        "render": {
+          "styleSheetCount": 4,
+          "visibleGraphicCount": 1,
+          "visibleTextCharacters": 1656
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 19,
+          "failedResources": [],
+          "loadMs": 112,
+          "paints": {
+            "first-paint": 244,
+            "first-contentful-paint": 244
+          },
+          "resourceCount": 4,
+          "transferKb": 115
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/wide.png",
+      "fullPageScreenshot": "variant/wide.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024,
+      "accessibilitySnapshot": "variant/tablet.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "weaver — UI kit",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Where the qualifier goes."
+            },
+            {
+              "level": 2,
+              "text": "The qualifier drop-off"
+            },
+            {
+              "level": 2,
+              "text": "What kind of qualifier goes missing?"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 762,
+          "scrollWidth": 762
+        },
+        "render": {
+          "styleSheetCount": 4,
+          "visibleGraphicCount": 1,
+          "visibleTextCharacters": 1656
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 15,
+          "failedResources": [],
+          "loadMs": 345,
+          "paints": {
+            "first-paint": 228,
+            "first-contentful-paint": 228
+          },
+          "resourceCount": 4,
+          "transferKb": 115
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/tablet.png",
+      "fullPageScreenshot": "variant/tablet.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    },
+    {
+      "label": "mobile",
+      "width": 390,
+      "height": 844,
+      "accessibilitySnapshot": "variant/mobile.accessibility.txt",
+      "agentBrowser": "agent-browser 0.22.1",
+      "audit": {
+        "document": {
+          "title": "weaver — UI kit",
+          "lang": "en",
+          "mainLandmarks": 1,
+          "headings": [
+            {
+              "level": 1,
+              "text": "Where the qualifier goes."
+            },
+            {
+              "level": 2,
+              "text": "The qualifier drop-off"
+            },
+            {
+              "level": 2,
+              "text": "What kind of qualifier goes missing?"
+            }
+          ]
+        },
+        "layout": {
+          "bodyOverflow": false,
+          "clientWidth": 384,
+          "scrollWidth": 384
+        },
+        "render": {
+          "styleSheetCount": 4,
+          "visibleGraphicCount": 1,
+          "visibleTextCharacters": 1656
+        },
+        "accessibility": {
+          "contrastFailures": [],
+          "contrastUnmeasured": [],
+          "deadAffordances": [],
+          "duplicateIds": [],
+          "focusWithoutIndicator": [],
+          "headingSkips": [],
+          "imagesFailed": [],
+          "imagesWithoutAlt": []
+        },
+        "performance": {
+          "domContentLoadedMs": 11,
+          "failedResources": [],
+          "loadMs": 332,
+          "paints": {
+            "first-paint": 192,
+            "first-contentful-paint": 192
+          },
+          "resourceCount": 4,
+          "transferKb": 115
+        }
+      },
+      "consoleEntries": [],
+      "pageErrors": [],
+      "screenshot": "variant/mobile.png",
+      "fullPageScreenshot": "variant/mobile.full.png",
+      "failures": [],
+      "warnings": [],
+      "unnamedInteractive": [],
+      "verdict": "pass"
+    }
+  ],
+  "warnings": [],
+  "verdict": "pass"
+}
