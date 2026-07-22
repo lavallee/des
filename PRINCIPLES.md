@@ -109,9 +109,10 @@ Convey **category** with a tag chip or kind-dot, **status** with a badge,
 **emphasis** with type weight or surface tint. Neutral hairline separators
 (`var(--border)` / `--border-strong`) are structure, not accent — they're fine.
 The one tolerated colored side border is an active-state indicator inside a
-nav list; prefer background/weight there too. Existing violations are cleaned
-up whenever the component is next touched. (Decided 2026-06-10, prompted by
-atlas's kind-colored identity-card rule — removed same day across collagen.)
+nav list; prefer background/weight there too. No component, example, template,
+or generated surface may ship with any other colored side-border accent; the
+repository check rejects regressions. (Decided 2026-06-10, made enforceable
+2026-07-22.)
 
 ### Typography
 
@@ -467,11 +468,13 @@ For chronological data (barnowl scouting view, weaver historical data). The vert
 ```
 
 ```css
-.timeline-year { border-left: 2px solid var(--accent); padding-left: 16px; margin-bottom: 24px; }
+.timeline-year { border-top: 1px solid var(--border); padding-top: 16px; margin-bottom: 24px; }
 .timeline-year-label { font-size: 20px; font-weight: 400; color: var(--text-muted); margin-bottom: 8px; }
 ```
 
-Left-border spine with accent color. Year labels at large size (20–24px), muted weight — they are navigation anchors, not headings. Items below each year: standard list rendering.
+Use spacing and a neutral horizontal divider to separate years. Year labels at
+large size (20–24px), muted weight — they are navigation anchors, not headings.
+Items below each year use standard list rendering.
 
 ---
 

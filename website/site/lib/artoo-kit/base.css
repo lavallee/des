@@ -105,8 +105,8 @@ kbd {
 
 blockquote {
   margin: var(--sp-6) 0;
-  padding-left: var(--sp-4);
-  border-left: 3px solid var(--border-strong);
+  padding: var(--sp-4) 0;
+  border-block: 1px solid var(--border-strong);
   color: var(--text-2);
 }
 

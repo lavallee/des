@@ -101,7 +101,7 @@ test("rendered proof coordinates and nested-path recovery are build-derived", ()
   const fallbackTests = text("website/site/app.js").match(/testCount: (\d+)/)?.[1];
   assert.equal(Number(declaredTests), data.testCount);
   assert.equal(Number(fallbackTests), data.testCount);
-  assert.equal(data.testCount, 40);
+  assert.equal(data.testCount, 41);
   const notFound = text("website/site/404.html");
   assert.match(notFound, /href="https:\/\/lavallee\.github\.io\/des\/"/);
   assert.doesNotMatch(notFound, /(?:href|src)="\.\//);

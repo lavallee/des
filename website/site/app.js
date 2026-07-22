@@ -1,6 +1,6 @@
 const FALLBACK_DATA = {
   packageVersion: "0.5.0",
-  testCount: 40,
+  testCount: 41,
   revision: "unknown",
   modes: {
     operator: {

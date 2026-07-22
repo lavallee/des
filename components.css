@@ -1997,8 +1997,8 @@
 }
 
 .timeline-year {
-  border-left: 2px solid var(--accent);
-  padding-left: var(--space-4);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
 }
 
 .timeline-year__label {
@@ -2039,8 +2039,8 @@
 
 .callout {
   padding: var(--space-3) var(--space-4);
-  border-left: 3px solid;
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   margin-bottom: var(--space-3);
@@ -2371,8 +2371,8 @@
 /* ── Blockquote ────────────────────────────────────────────────────────── */
 
 .article blockquote {
-  border-left: 2px solid var(--accent);
-  padding-left: var(--space-5);
+  border-block: 1px solid var(--border);
+  padding: var(--space-4) 0;
   margin: var(--space-6) 0;
   color: var(--text-muted);
   font-style: italic;
@@ -2572,7 +2572,6 @@
 .article-note {
   background: var(--surface-raised);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--border-strong);
   border-radius: var(--radius-md);
   padding: var(--space-4) var(--space-5);
   margin: var(--space-5) 0;
@@ -2748,14 +2747,12 @@
 .article-correction {
   background: var(--error-subtle);
   border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
-  border-left: 3px solid var(--error);
   color: var(--text);
 }
 
 .article-update {
   background: var(--warning-subtle);
   border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
-  border-left: 3px solid var(--warning);
   color: var(--text);
 }
 
@@ -2813,7 +2810,7 @@
 
 /* Definition variant — term + explanation */
 .article-marginnote--def {
-  border-left: 2px solid var(--border);
+  border-left: 1px solid var(--border);
   padding-left: var(--space-3);
 }
 
@@ -2836,7 +2833,7 @@
 
 /* Source / citation variant */
 .article-marginnote--source {
-  border-left: 2px solid var(--border-subtle);
+  border-left: 1px solid var(--border-subtle);
   padding-left: var(--space-3);
   font-style: italic;
 }
@@ -2919,8 +2916,7 @@
      * reads as part of the article flow, not as a footnote chip. */
     background: var(--surface-raised);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    border-radius: var(--radius-sm);
     padding: var(--space-3) var(--space-4);
     margin: var(--space-3) 0 var(--space-5);
     font-size: var(--text-base);
@@ -2939,9 +2935,6 @@
     color: var(--text);
   }
 
-  .article-marginnote--callout {
-    border-left-width: 3px;
-  }
 }
 
 /* Inline sidenote ref marker (used for footnote-style calls into marginalia) */
@@ -3419,8 +3412,8 @@
 .prose pre code { background: none; border: none; padding: 0; font-size: 13px; }
 
 .prose blockquote {
-  border-left: 2px solid var(--accent);
-  padding-left: var(--space-4);
+  border-block: 1px solid var(--border);
+  padding: var(--space-3) 0;
   margin: 0 0 var(--space-4);
   color: var(--text-muted);
   font-style: italic;
